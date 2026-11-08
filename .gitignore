@@ -1,0 +1,8 @@
+node_modules/
+.mfe-dev/
+# Frozen examples track the dist files listed in example.lock.json explicitly.
+# Other build outputs remain ignored.
+dist/
+.npm-cache/
+artifacts/verification/
+artifact-store/

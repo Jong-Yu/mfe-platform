@@ -1,0 +1,12 @@
+{
+  "manifest": "dev/manifest.json",
+  "module": "./Widget",
+  "title": "차량 선택 B 2.x",
+  "description": "이 프로젝트의 소스와 발행된 MF 의존성을 함께 실행합니다.",
+  "user": {
+    "id": "developer",
+    "name": "서비스 개발자"
+  },
+  "theme": "light",
+  "pageContainer": true
+}

@@ -1,0 +1,7 @@
+{
+  "platform": {
+    "mode": "runtime",
+    "service": "platform",
+    "requires": ">=1.2.0 <2.0.0"
+  }
+}

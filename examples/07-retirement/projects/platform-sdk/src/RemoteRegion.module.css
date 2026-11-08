@@ -1,0 +1,5 @@
+.loading, .unavailable { padding: 18px; border-radius: 12px; border: 1px solid #ccd6e4; background: white; color: #33445c; }
+.unavailable { border-color: #d4b086; background: #fff8ee; color: #6b451e; }
+.unavailable p { margin: 8px 0 0; }
+.unavailable button { margin-top: 12px; padding: 9px 12px; border: 1px solid #996a34; border-radius: 7px; background: white; color: #6b451e; cursor: pointer; }
+.unavailable button:focus-visible { outline: 3px solid #3454dc; outline-offset: 3px; }

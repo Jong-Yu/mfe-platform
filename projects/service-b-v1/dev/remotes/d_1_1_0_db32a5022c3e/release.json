@@ -1,0 +1,11 @@
+{
+  "id": "d_1_1_0_db32a5022c3e",
+  "name": "mf_d_1_1_0_db32a5022c3e",
+  "service": "d",
+  "version": "1.1.0",
+  "entry": "/artifacts/d_1_1_0_db32a5022c3e/remoteEntry.js",
+  "dependencies": {},
+  "runtimeRequirements": {},
+  "runtimeDependencies": {},
+  "kind": "remote"
+}

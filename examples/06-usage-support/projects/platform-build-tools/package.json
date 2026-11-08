@@ -1,0 +1,30 @@
+{
+  "name": "@mfe/platform-build-tools",
+  "version": "1.7.1",
+  "description": "Standalone build and preview commands for versioned Module Federation artifacts",
+  "license": "UNLICENSED",
+  "bin": {
+    "mfe-build": "bin/mfe-build.cjs",
+    "mfe-serve": "bin/mfe-serve.cjs",
+    "mfe-dev": "bin/mfe-dev.cjs"
+  },
+  "files": [
+    "bin",
+    "lib",
+    "README.md",
+    "browser",
+    "runtime"
+  ],
+  "engines": {
+    "node": ">=22.9.0"
+  },
+  "dependencies": {
+    "webpack": "5.112.2",
+    "@babel/core": "7.29.13",
+    "@babel/preset-react": "7.29.7",
+    "babel-loader": "10.1.1",
+    "css-loader": "7.1.5",
+    "style-loader": "4.0.0",
+    "semver": "6.3.2"
+  }
+}

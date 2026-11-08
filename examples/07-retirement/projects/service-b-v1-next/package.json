@@ -1,0 +1,20 @@
+{
+  "name": "@mfe/service-b-v1",
+  "version": "1.5.0",
+  "private": true,
+  "scripts": {
+    "build": "mfe-build",
+    "start": "mfe-serve",
+    "dev": "mfe-dev"
+  },
+  "devDependencies": {
+    "@mfe/platform-build-tools": "file:vendor/mfe-platform-build-tools-1.3.0.tgz"
+  },
+  "dependencies": {
+    "react": "19.3.1",
+    "react-dom": "19.3.1"
+  },
+  "engines": {
+    "node": ">=22.9.0"
+  }
+}

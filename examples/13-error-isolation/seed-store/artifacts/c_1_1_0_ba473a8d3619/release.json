@@ -1,0 +1,23 @@
+{
+  "id": "c_1_1_0_ba473a8d3619",
+  "name": "mf_c_1_1_0_ba473a8d3619",
+  "service": "c",
+  "version": "1.1.0",
+  "entry": "/artifacts/c_1_1_0_ba473a8d3619/remoteEntry.js",
+  "dependencies": {},
+  "runtimeRequirements": {
+    "react": "19.3.1",
+    "react-dom": "19.3.1"
+  },
+  "runtimeDependencies": {
+    "b": {
+      "service": "b",
+      "requires": ">=2.1.0 <3.0.0"
+    }
+  },
+  "kind": "remote",
+  "retryProtocol": "failed-modules-v2",
+  "exposedModules": [
+    "./Widget"
+  ]
+}

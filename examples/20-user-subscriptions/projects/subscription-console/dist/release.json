@@ -1,0 +1,14 @@
+{
+  "id": "subscriptions_1_0_0_1b9bbc0f539d",
+  "name": "mf_subscriptions_1_0_0_1b9bbc0f539d",
+  "service": "subscriptions",
+  "version": "1.0.0",
+  "entry": "/artifacts/subscriptions_1_0_0_1b9bbc0f539d/shell.js",
+  "dependencies": {},
+  "runtimeRequirements": {
+    "react": "19.3.1",
+    "react-dom": "19.3.1"
+  },
+  "runtimeDependencies": {},
+  "kind": "shell"
+}

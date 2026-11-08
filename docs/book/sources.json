@@ -1,0 +1,33 @@
+{
+  "output": "docs/mfe-self-study.html",
+  "date": "2026-11-08",
+  "examples": 20,
+  "referenceDocuments": 4,
+  "embeddedImages": 2,
+  "sourceDocuments": {
+    "examples/01-coexistence/docs/index.html": "725e80534aab71e94d035bab9debcb1af7b2ac0c1ba143f903a0370d42828b98",
+    "examples/02-runtime-sdk/docs/index.html": "4c79fb8bdb2397516ae885b9f02e5b30cf2b2ff46acd6eb073678713b7f35604",
+    "examples/03-runtime-b/docs/index.html": "15ffb43fafcfbceed95e7bedea83b5731caff194e570a2569c1a736617bc2f67",
+    "examples/04-runtime-d/docs/index.html": "75794b1c0d1e5b42013aa0a3ec84f4e0a3055d4ffd6a28e69d47106428f5ec05",
+    "examples/05-composition-admin/docs/index.html": "9e88c84be0af98933c9444f92a651ce3b6ff13d126b5867b25353ecdba81fa47",
+    "examples/06-usage-support/docs/index.html": "9813b4bb493d2cb474cf6c86bdd4e60cb7e33e8926266135ac19475485e4c6ca",
+    "examples/07-retirement/docs/index.html": "2bf56ae376286214ab41fd404ac3debc746eec990ecd1af36a228f801c528396",
+    "examples/08-tab-leases/docs/index.html": "f2b10e77918f8264aee14dd37605e9495dd09a6e597c64c7598dba2e1e96200e",
+    "examples/09-legacy-transition/docs/index.html": "9c0b7e96443bea6e9e33ad8dda6ada79fc5c78073fca3b7237d9f281d8a24d8e",
+    "examples/10-service-dev-host/docs/index.html": "2b8698726d46bf7c219365a00b2a6b7dd43eeca94239270b0206506af78c832f",
+    "examples/11-service-onboarding/docs/index.html": "9c87a6c1bc83f1e6b00f3f9c49630239b94ce9b8037bd0f6a5934fe3ab2630a9",
+    "examples/12-nested-graph/docs/index.html": "c2880bd6c7619272e0b968064279f4b4ba8ebafa43f6d637b84b6d9744f27081",
+    "examples/13-error-isolation/docs/index.html": "79acf56ca7beeae2946f31001aaf5618b585a3f3efcc6a2e48c057340b841267",
+    "examples/14-region-retry/docs/index.html": "08934a6027bb853e32b6e6384d2eb7b12a3ab472c3eacc23621d72a12c2f68f0",
+    "examples/15-transitive-retry/docs/index.html": "8ec73033b369079d8c1b19353f5ebe7ea9b9de23ea0f4bb1cfc7035563236119",
+    "examples/16-sdk-remote-region/docs/index.html": "3a6ad84e39547ab0155d609acfe5629dacd6d880250978c7c02513f943ba34f1",
+    "examples/17-sdk-retry-upgrade/docs/index.html": "329eb1653904f993f96d6f18e3105b788a6143bdc3a6dfa8794819284bb6550e",
+    "examples/18-dynamic-menus/docs/index.html": "1ff91b0dffcbe4649f15451abf28c67028730714888dedf755ef9639abe966f8",
+    "examples/19-dashboard-widgets/docs/index.html": "0fedb8fac51aa6ea23b1fa0fcb466ddbfd700f8618eb8ac55cde54a3b72383b2",
+    "examples/20-user-subscriptions/docs/index.html": "ddfa29b6325653b07b069629ae677e09c47da751c24234eb7b330ab2b3a63747",
+    "docs/mfe-platform-versioning-guide.html": "8c23a02ad96e88c023dfe435ee3891f6601e6227e4fe0c86644b262b429688a4",
+    "docs/mfe-project-handbook.html": "c494f179cab149ec436f269c5b7127ae391b0308ad794f812f61405da82acfc0",
+    "docs/mfe-runtime-operations.html": "c6724c26f083c57ad0f77db0d15a22e622bf992861a3ae5b8fca645e5ade9bcd",
+    "docs/mfe-registry-db-design.html": "369b843f2f1cb89f9fa5af10722fc96dbe4bd6a9433201544b449199fcf44b51"
+  }
+}

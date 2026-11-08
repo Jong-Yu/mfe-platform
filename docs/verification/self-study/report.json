@@ -1,0 +1,53 @@
+{
+  "status": "passed",
+  "startedAt": "2026-11-08T12:04:12.814Z",
+  "scope": "Document browser QA only. The separate 20-example execution and 205 feature checks are recorded in ../walkthrough/report.json.",
+  "checks": [
+    {
+      "name": "20개 실습·4개 상세 문서·12개 개념 장과 해설 수록",
+      "status": "passed"
+    },
+    {
+      "name": "권장 학습 순서와 이전·다음 예제 이동 일치",
+      "status": "passed"
+    },
+    {
+      "name": "모든 내부 목차·링크·로컬 자료 존재",
+      "status": "passed"
+    },
+    {
+      "name": "단어 검색에서 접힌 상세 부록까지 찾아 이동",
+      "status": "passed"
+    },
+    {
+      "name": "목차에서 본문·예제·해설로 이동",
+      "status": "passed"
+    },
+    {
+      "name": "학습 체크 저장 후 새로 열어 복원",
+      "status": "passed"
+    },
+    {
+      "name": "390px 화면에서 본문·예제·상세 문서 넘침 없음",
+      "status": "passed"
+    },
+    {
+      "name": "인쇄 모드의 본문/전체 부록 선택과 화면 상태 복원",
+      "status": "passed"
+    },
+    {
+      "name": "HTML 한 파일만 다른 폴더로 복사해 오프라인 열기",
+      "status": "passed"
+    },
+    {
+      "name": "자바스크립트 없이도 본문·상세·해설 읽기",
+      "status": "passed"
+    },
+    {
+      "name": "추가 네트워크 의존과 브라우저 예외 없음",
+      "status": "passed"
+    }
+  ],
+  "localLinks": 747,
+  "finishedAt": "2026-11-08T12:04:19.782Z"
+}

@@ -1,0 +1,35 @@
+
+added 4 packages, and audited 5 packages in 194ms
+
+found 0 vulnerabilities
+
+> mfe-example-08-tab-leases@1.0.0 start
+> node run.cjs start
+
+MF proof: http://127.0.0.1:4508
+
+> mfe-example-08-tab-leases@1.0.0 test
+> node run.cjs test
+
+PASS 자체 저장소에서 Shell·SDK를 MF로 로드
+PASS B 1.4와 B 2.1의 상태·CSS·공통 React 격리
+PASS 예제 밖 요청·예상하지 않은 브라우저 예외 없음
+PASS 서비스 소스·번들·초기 설정을 변경하지 않음
+08-tab-leases: passed 4/4
+PASS Shell acquires a renewable lease before requesting SDK or service remotes
+PASS a failed initial lease never boots service remotes
+PASS live renewals extend protection and stale cleanup requests cannot override new responses
+PASS short network loss preserves input and recovery renews the same tab
+PASS an expired offline tab cannot interact, fetch, load another remote or execute a cached factory
+PASS real browser freeze and resume validates the server lease before further use
+PASS expiry is irreversible but still protects files until explicit cleanup after the grace period
+PASS legacy unknown tabs cannot be classified as protected or released by timeout
+PASS cleanup enforces confirmation and same-origin controls
+PASS UI releases only the expired tab and keeps its tombstone and a new retention period
+PASS active tabs and rollback references still prevent deletion after stale-tab cleanup
+PASS late heartbeat and open requests cannot revive released records or enter a retired composition
+PASS only after other references clear and post-cleanup retention passes are files actually deleted
+PASS the returning stale browser stays blocked and its explicit reload opens the latest composition
+PASS released evidence survives restart and remains reviewable on mobile
+PASS original service files and the live repository remain unchanged
+Session lease verification passed: 16/16

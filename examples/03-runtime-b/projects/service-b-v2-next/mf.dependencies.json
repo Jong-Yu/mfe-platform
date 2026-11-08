@@ -1,0 +1,18 @@
+{
+  "platform": {
+    "mode": "runtime",
+    "service": "platform",
+    "requires": ">=1.0.0 <2.0.0"
+  },
+  "d": {
+    "id": "d_2_0_0_765af7c70368",
+    "name": "mf_d_2_0_0_765af7c70368",
+    "service": "d",
+    "version": "2.0.0",
+    "entry": "/artifacts/d_2_0_0_765af7c70368/remoteEntry.js",
+    "dependencies": {},
+    "runtimeRequirements": {},
+    "runtimeDependencies": {},
+    "kind": "remote"
+  }
+}

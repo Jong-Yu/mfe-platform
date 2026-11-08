@@ -1,0 +1,27 @@
+{
+  "id": "e_1_0_0_5bae6a12cb66",
+  "name": "mf_e_1_0_0_5bae6a12cb66",
+  "service": "e",
+  "version": "1.0.0",
+  "entry": "/artifacts/e_1_0_0_5bae6a12cb66/remoteEntry.js",
+  "dependencies": {},
+  "runtimeRequirements": {
+    "platform": ">=1.2.0 <2.0.0",
+    "react": "19.3.1",
+    "react-dom": "19.3.1"
+  },
+  "runtimeDependencies": {},
+  "kind": "remote",
+  "retryProtocol": "failed-modules-v2",
+  "exposedModules": [
+    "./Widget"
+  ],
+  "widgets": [
+    {
+      "id": "notifications",
+      "title": "알림",
+      "exposedModule": "./Widget",
+      "contract": "platform-widget-v1"
+    }
+  ]
+}

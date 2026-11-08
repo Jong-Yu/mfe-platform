@@ -1,0 +1,71 @@
+{
+  "schemaVersion": 1,
+  "revision": "1.0.0",
+  "id": "08-tab-leases",
+  "number": 8,
+  "title": "응답 없는 탭의 안전한 정리",
+  "description": "만료·유예 기간·복귀 차단으로 실제 탭을 보호하며 끊긴 탭을 명시적으로 정리.",
+  "port": 4508,
+  "projects": [
+    "platform-build-tools",
+    "platform-sdk",
+    "service-d-v1",
+    "service-d-v2",
+    "service-b-v1",
+    "service-b-v2",
+    "service-c",
+    "service-a",
+    "shell",
+    "platform-admin",
+    "platform-sdk-next",
+    "service-b-v1-next",
+    "service-b-v2-next",
+    "service-d-v1-next",
+    "service-d-v2-next"
+  ],
+  "buildOrder": [
+    "platform-sdk",
+    "platform-sdk-next",
+    "service-d-v1",
+    "service-d-v2",
+    "service-d-v1-next",
+    "service-d-v2-next",
+    "service-b-v1",
+    "service-b-v2",
+    "service-b-v1-next",
+    "service-b-v2-next",
+    "service-c",
+    "service-a",
+    "shell",
+    "platform-admin"
+  ],
+  "specialTest": "sessions",
+  "variants": {
+    "platform-sdk-next": [
+      "platform-sdk",
+      "1.4.0"
+    ],
+    "service-b-v1-next": [
+      "service-b-v1",
+      "1.5.0"
+    ],
+    "service-b-v2-next": [
+      "service-b-v2",
+      "2.2.0"
+    ],
+    "service-d-v1-next": [
+      "service-d-v1",
+      "1.1.0"
+    ],
+    "service-d-v2-next": [
+      "service-d-v2",
+      "2.1.0"
+    ]
+  },
+  "provenance": "현재 작업본과 보존된 소스맵을 바탕으로 분리한 교육용 스냅샷. 과거 각 시점 전체 저장소의 원본 복원이 아님.",
+  "excluded": [
+    "사용자별 구독",
+    "DB 구현",
+    "실서비스 인증·S3 배포"
+  ]
+}

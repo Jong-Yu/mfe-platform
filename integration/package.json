@@ -1,0 +1,49 @@
+{
+  "name": "mfe-integration-verification",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Local artifact repository and cross-project verification; not an application workspace",
+  "scripts": {
+    "setup": "node tools/setup.cjs",
+    "bootstrap": "node tools/build-fixtures.cjs --bootstrap && node tools/build-admin.cjs",
+    "build": "node tools/build-fixtures.cjs && node tools/build-admin.cjs",
+    "start": "node tools/serve.cjs",
+    "publish": "node tools/publish.cjs",
+    "test": "node tests/independence.mjs && node tools/test.cjs && node tests/sdk-upgrade.mjs && node tests/business-upgrade.mjs && node tests/dependency-upgrade.mjs && node tests/admin.mjs && node tests/lifecycle.mjs && node tests/retirement.mjs && node tests/sessions.mjs && node tests/legacy.mjs && node tests/development.mjs && node tests/nested-graph.mjs && node tests/remote-region-sdk-upgrade.mjs",
+    "verify": "node tests/verify.mjs",
+    "test:independence": "node tests/independence.mjs",
+    "activate": "node tools/activate.cjs",
+    "test:sdk": "node tests/sdk-upgrade.mjs",
+    "test:business": "node tests/business-upgrade.mjs",
+    "test:dependency": "node tests/dependency-upgrade.mjs",
+    "build:admin": "node tools/build-admin.cjs",
+    "test:admin": "node tests/admin.mjs",
+    "test:lifecycle": "node tests/lifecycle.mjs",
+    "test:retirement": "node tests/retirement.mjs",
+    "test:sessions": "node tests/sessions.mjs",
+    "test:legacy": "node tests/legacy.mjs",
+    "prepare:dev": "node tools/prepare-dev.cjs",
+    "test:dev": "node tests/development.mjs",
+    "test:nested": "node tests/nested-graph.mjs",
+    "prepare:nested": "node tools/prepare-nested.cjs",
+    "demo:nested": "node tools/nested-demo.cjs",
+    "test:region-sdk": "node tests/remote-region-sdk-upgrade.mjs",
+    "demo:region-sdk": "node tools/remote-region-sdk-demo.cjs",
+    "prepare:onboarding": "node tools/prepare-onboarding.cjs",
+    "test:onboarding": "node tests/onboarding.mjs",
+    "demo:onboarding": "node tools/onboarding-demo.cjs",
+    "test:navigation": "node tests/navigation.mjs",
+    "demo:navigation": "node tools/navigation-demo.cjs",
+    "test:dashboard": "node tests/dashboard.mjs",
+    "demo:dashboard": "node tools/dashboard-demo.cjs"
+  },
+  "devDependencies": {
+    "playwright": "1.62.1"
+  },
+  "engines": {
+    "node": ">=22.9.0"
+  },
+  "dependencies": {
+    "semver": "6.3.2"
+  }
+}

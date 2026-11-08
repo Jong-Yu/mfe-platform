@@ -1,0 +1,338 @@
+<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="icon" href="data:,"><meta name="description" content="MF 버전 등록부의 DB 설계: 데이터 모델, 매니페스트 예시, API, 동시 변경, 탭 보호, 삭제, 작업 재시도와 이관 절차."><title>MF 버전 등록부 DB 상세 설계안</title><style>
+    :root { color-scheme: light; --ink:#172438; --muted:#59677c; --line:#dce3ed; --paper:#fff; --canvas:#f4f6fa; --accent:#2856c4; --tint:#edf2ff; --green:#17654c; --green-bg:#edf8f2; --amber:#855518; --amber-bg:#fff6e6; --radius:16px; }
+    * { box-sizing:border-box; }
+    html { scroll-behavior:smooth; scroll-padding-top:28px; }
+    body { margin:0; background:var(--canvas); color:var(--ink); font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Malgun Gothic",system-ui,sans-serif; font-size:16px; line-height:1.8; word-break:keep-all; overflow-wrap:anywhere; }
+    a { color:var(--accent); text-underline-offset:4px; }
+    button { font:inherit; cursor:pointer; }
+    a:focus-visible,button:focus-visible,summary:focus-visible { outline:3px solid #7c9deb; outline-offset:4px; }
+    .skip { position:absolute; left:24px; top:-80px; z-index:10; padding:10px 18px; background:var(--paper); }
+    .skip:focus { top:12px; }
+    .layout { display:grid; grid-template-columns:250px minmax(0,1fr); max-width:1500px; margin:auto; }
+    .sidebar { position:sticky; top:0; height:100vh; padding:38px 25px 26px; border-right:1px solid var(--line); background:var(--paper); display:flex; flex-direction:column; overflow-y:auto; }
+    .brand { display:flex; align-items:center; gap:11px; margin-bottom:34px; font-size:14px; font-weight:700; letter-spacing:.04em; }
+    .brand-mark { display:grid; place-items:center; width:35px; height:35px; border-radius:10px; background:var(--accent); color:#fff; font-size:13px; }
+    .nav-label,.eyebrow { font-size:12px; font-weight:700; letter-spacing:.12em; color:var(--muted); }
+    nav { margin-top:12px; }
+    nav a { display:flex; gap:12px; padding:10px 12px; margin:4px -12px; border-radius:9px; color:var(--muted); text-decoration:none; font-size:14px; line-height:1.5; }
+    nav a:hover,nav a[aria-current="location"] { color:var(--accent); background:var(--tint); }
+    nav .number { font-size:11px; min-width:16px; padding-top:2px; font-variant-numeric:tabular-nums; }
+    .sidebar-foot { margin-top:auto; padding-top:30px; color:var(--muted); font-size:12px; }
+    .sidebar-foot p { margin:8px 0 0; }
+    .print-button { width:100%; border:1px solid var(--line); background:var(--paper); color:var(--ink); padding:9px; border-radius:9px; margin-top:16px; font-size:13px; }
+    main { min-width:0; padding:58px 64px 76px; max-width:1180px; }
+    .hero { padding:0 0 38px; }
+    .hero .eyebrow { color:var(--accent); }
+    h1 { margin:14px 0 19px; font-size:clamp(32px,3.3vw,46px); line-height:1.35; font-weight:750; letter-spacing:-.055em; }
+    .lead { max-width:730px; font-size:19px; color:#3f5069; line-height:1.8; margin:0 0 22px; }
+    .badges { display:flex; flex-wrap:wrap; gap:8px; align-items:center; }
+    .badge { display:inline-flex; align-items:center; padding:4px 10px; border-radius:6px; font-size:12px; line-height:1.55; background:#e9edf4; color:#455469; font-weight:600; }
+    .badge.implemented { background:var(--green-bg); color:var(--green); }
+    .badge.pending { background:var(--amber-bg); color:var(--amber); }
+    .badge.blue { background:var(--tint); color:var(--accent); }
+    section { scroll-margin-top:28px; padding:34px 0 42px; border-top:1px solid var(--line); }
+    .section-head { display:flex; gap:16px; align-items:baseline; margin-bottom:20px; }
+    .section-number { color:var(--accent); font-size:13px; font-weight:700; letter-spacing:.08em; flex:0 0 20px; white-space:nowrap; }
+    h2 { margin:0; font-size:27px; line-height:1.45; letter-spacing:-.035em; }
+    h3 { font-size:18px; line-height:1.55; margin:0 0 9px; letter-spacing:-.025em; }
+    p { margin:0 0 16px; }
+    strong { font-weight:700; }
+    .muted { color:var(--muted); }
+    .small { font-size:13px; }
+    .two-up { display:grid; grid-template-columns:1fr 1fr; gap:18px; margin:22px 0; }
+    .card { border:1px solid var(--line); background:var(--paper); border-radius:var(--radius); padding:24px; }
+    .card p:last-child { margin-bottom:0; }
+    .card-label { font-size:12px; color:var(--accent); letter-spacing:.03em; font-weight:700; margin-bottom:9px; }
+    .statement { border-left:3px solid var(--accent); padding:18px 22px; background:var(--tint); border-radius:0 10px 10px 0; margin:22px 0; }
+    .statement p:last-child { margin-bottom:0; }
+    ul,ol { margin:10px 0 18px; padding-left:23px; }
+    li { padding-left:3px; margin:7px 0; }
+    code { background:#eaf0f6; padding:2px 5px; border-radius:4px; font-family:ui-monospace,SFMono-Regular,Consolas,"Liberation Mono",monospace; font-size:.87em; word-break:break-word; }
+    .table-scroll { overflow-x:auto; margin:20px 0; border:1px solid var(--line); border-radius:12px; background:var(--paper); }
+    table { border-collapse:collapse; width:100%; text-align:left; font-size:14px; line-height:1.7; }
+    th,td { padding:15px 18px; border-bottom:1px solid var(--line); vertical-align:top; }
+    th { background:#f0f3f8; font-weight:650; color:#34465e; }
+    tr:last-child td { border-bottom:0; }
+    td:first-child { font-weight:600; }
+    .nowrap { white-space:nowrap; }
+    .diagram { margin:24px 0; background:var(--paper); border:1px solid var(--line); border-radius:var(--radius); padding:27px; }
+    .diagram-title { margin:0 0 20px; font-size:13px; color:var(--muted); }
+    .shell-node { max-width:480px; margin:0 auto; padding:17px; background:var(--ink); color:#fff; text-align:center; border-radius:10px; }
+    .shell-node span { display:block; color:#ced9ea; font-size:13px; margin-top:3px; }
+    .branches { display:grid; grid-template-columns:1fr 1fr; gap:28px; margin-top:25px; }
+    .branch { border:1px solid var(--line); border-radius:12px; padding:20px; background:#fafbfd; }
+    .branch-title { font-size:12px; font-weight:650; color:var(--muted); margin-bottom:12px; }
+    .node { padding:12px 14px; border:1px solid #d4deed; border-radius:8px; background:var(--paper); text-align:center; line-height:1.5; }
+    .node small { display:block; font-size:12px; color:var(--muted); margin-top:3px; }
+    .node.business { border-color:#8ca8e4; background:var(--tint); color:#214492; }
+    .arrow { text-align:center; color:#6980a1; font-size:20px; line-height:1.4; padding:5px; }
+    .shared { margin-top:24px; padding:16px 20px; background:var(--green-bg); color:#195e49; border:1px solid #c8e1d6; border-radius:10px; text-align:center; }
+    .shared span { display:block; font-size:13px; margin-top:3px; }
+    .diagram-caption { margin:15px 0 0; color:var(--muted); font-size:13px; }
+    .flow { display:grid; grid-template-columns:repeat(4,1fr); gap:12px; margin:24px 0; }
+    .flow-item { background:var(--paper); border:1px solid var(--line); border-radius:12px; padding:18px 15px; }
+    .flow-count { font-size:11px; color:var(--accent); font-weight:700; margin-bottom:7px; }
+    .flow-item strong { display:block; font-size:15px; line-height:1.55; margin-bottom:6px; }
+    .flow-item p { color:var(--muted); font-size:13px; margin:0; }
+    details { margin:18px 0; border:1px solid var(--line); border-radius:11px; background:var(--paper); }
+    summary { cursor:pointer; padding:16px 20px; font-size:14px; font-weight:600; }
+    details[open] summary { border-bottom:1px solid var(--line); }
+    .details-body { padding:20px; }
+    .details-body p:last-child { margin-bottom:0; }
+    .code-block { border-radius:10px; border:1px solid #d8e0ec; overflow:hidden; background:#f8fafd; margin:14px 0 20px; }
+    .code-top { display:flex; justify-content:space-between; align-items:center; gap:16px; background:#edf1f7; border-bottom:1px solid #d8e0ec; padding:9px 15px; font-size:12px; color:#4e5f77; }
+    .copy { border:1px solid #c7d3e5; color:var(--accent); background:#fff; border-radius:6px; padding:3px 10px; font-size:12px; }
+    pre { margin:0; padding:18px; overflow-x:auto; line-height:1.8; tab-size:2; }
+    pre code { padding:0; background:none; border-radius:0; font-size:13px; white-space:pre; word-break:normal; }
+    .steps { list-style:none; counter-reset:steps; padding:0; margin:23px 0; }
+    .steps li { position:relative; counter-increment:steps; padding:0 0 21px 43px; margin:0; }
+    .steps li::before { content:counter(steps); position:absolute; left:0; top:1px; display:grid; place-items:center; width:27px; height:27px; border-radius:50%; background:var(--tint); color:var(--accent); font-size:12px; font-weight:700; }
+    .steps li strong { display:block; margin-bottom:3px; }
+    .steps li p { color:var(--muted); font-size:14px; margin:0; }
+    .simulation { padding:25px; margin-top:24px; border:1px solid #bccde9; border-radius:var(--radius); background:var(--paper); }
+    .sim-heading { display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:10px; margin-bottom:9px; }
+    .sim-heading h3 { margin:0; }
+    .sim-controls { display:flex; flex-wrap:wrap; gap:8px; margin:20px 0; }
+    .sim-controls button { border:1px solid var(--line); background:var(--paper); color:var(--muted); border-radius:8px; padding:8px 13px; font-size:13px; }
+    .sim-controls button[aria-pressed="true"] { color:#fff; background:var(--accent); border-color:var(--accent); }
+    .selection { display:flex; align-items:center; justify-content:space-between; gap:16px; padding:15px 18px; background:var(--tint); border-radius:9px; margin-bottom:18px; }
+    .selection span { color:#47618e; font-size:13px; }
+    .selection strong { color:var(--accent); font-size:20px; font-variant-numeric:tabular-nums; }
+    .tabs-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; }
+    .browser-tab { border:1px solid var(--line); border-radius:9px; padding:15px; background:#fafbfd; }
+    .browser-tab .tab-label { color:var(--muted); font-size:12px; }
+    .browser-tab strong { display:block; font-size:21px; font-variant-numeric:tabular-nums; line-height:1.5; margin:6px 0; }
+    .browser-tab .tab-note { color:var(--muted); font-size:12px; line-height:1.7; }
+    .sim-caption { margin:18px 0 0; font-size:14px; min-height:54px; }
+    .sim-foot { margin-top:15px; padding-top:15px; border-top:1px solid var(--line); font-size:12px; color:var(--muted); }
+    .print-only { display:none; }
+    .verification { display:grid; grid-template-columns:1fr 1fr; gap:14px; margin:24px 0; }
+    .verification .card { padding:20px; }
+    .verification h3 { font-size:16px; margin-bottom:10px; }
+    .verification p { font-size:13px; color:var(--muted); margin-top:10px; }
+    .source-list { list-style:none; padding:0; margin:0; }
+    .source-list li { padding:13px 0; margin:0; border-bottom:1px solid var(--line); }
+    .source-list li:last-child { border:0; }
+    .source-list a { font-size:14px; font-weight:600; }
+    .source-list span { display:block; font-size:13px; color:var(--muted); margin-top:3px; }
+    footer { padding-top:25px; border-top:1px solid var(--line); font-size:12px; color:var(--muted); }
+    .copy-status { min-height:1px; position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0,0,0,0); }
+    @media (min-width:1500px) { .sidebar { border-left:1px solid var(--line); } }
+    @media (max-width:1120px) { .layout { grid-template-columns:218px minmax(0,1fr); } main { padding:44px 35px 60px; } .sidebar { padding:32px 22px; } .flow { grid-template-columns:1fr 1fr; } }
+    @media (max-width:800px) { html { scroll-padding-top:20px; } .layout { display:block; } .sidebar { position:relative; height:auto; padding:18px 22px; border:0; border-bottom:1px solid var(--line); } .brand { margin:0 0 10px; } .nav-label,.sidebar-foot { display:none; } nav { display:flex; overflow:auto; gap:6px; margin:0 -6px; padding:3px; } nav a { flex-shrink:0; margin:0; padding:7px 9px; font-size:12px; gap:6px; } main { padding:32px 23px 50px; } h1 { font-size:34px; } .lead { font-size:17px; } h2 { font-size:24px; } section { padding:28px 0 34px; } }
+    @media (max-width:520px) { body { font-size:15px; } main { padding-left:18px; padding-right:18px; } .two-up,.verification { grid-template-columns:1fr; } .card { padding:20px; } .diagram { padding:17px 13px; } .branches { gap:10px; } .branch { padding:12px 8px; } .branch-title { font-size:11px; } .node { padding:11px 6px; font-size:14px; } .node small { font-size:11px; } .flow { gap:9px; } .flow-item { padding:15px 12px; } th,td { padding:12px; min-width:100px; } .simulation { padding:18px 14px; } .tabs-grid { grid-template-columns:1fr; } .browser-tab { display:grid; grid-template-columns:1fr auto; align-items:center; gap:2px 12px; } .browser-tab strong { grid-column:2; grid-row:1 / span 2; font-size:20px; } .browser-tab .tab-note { grid-column:1; } .sim-caption { min-height:85px; } }
+    @media (prefers-reduced-motion:reduce) { html { scroll-behavior:auto; } }
+    @media print { @page { size:A4; margin:17mm 16mm; } :root { --canvas:#fff; --line:#cbd2dc; } body { font-size:10pt; line-height:1.65; } .layout { display:block; } .sidebar,.skip,.copy,.sim-controls,.no-print { display:none!important; } main { padding:0; max-width:none; } .hero { padding-bottom:18px; } h1 { font-size:29pt; } h2 { font-size:18pt; } h3 { font-size:12pt; } .lead { font-size:12pt; } section { padding:21px 0; scroll-margin:0; } .section-head { margin-bottom:12px; } .card,.diagram,.simulation,.code-block,details,.flow-item,.browser-tab,.verification { break-inside:avoid; } h2,h3,summary { break-after:avoid; } .table-scroll { overflow:visible; } tr { break-inside:avoid; } table { font-size:9pt; } th,td { padding:9px 10px; } .two-up,.verification { gap:10px; } .card { padding:15px; } .flow { gap:9px; } .flow-item { padding:12px; } pre { white-space:pre-wrap; padding:12px; } pre code { white-space:pre-wrap; font-size:8.5pt; } .badge { font-size:8pt; } .small,.diagram-caption,.flow-item p,.verification p { font-size:9pt; } .sim-caption { min-height:0; } .print-only { display:block; } .print-only table { margin-top:15px; } details > .details-body { display:block!important; } .source-list a { font-size:10pt; } footer { font-size:8pt; } a { text-decoration:none; } }
+  
+.design-tag{font-size:12px;color:var(--accent);font-weight:700}.decision-list{display:flex;flex-wrap:wrap;gap:8px;margin:20px 0}.decision-list a{border:1px solid var(--line);border-radius:8px;background:white;padding:8px 12px;font-size:13px;text-decoration:none} .code-top{gap:12px}.code-top span{min-width:0}pre code{white-space:pre}details .details-body>.table-scroll:first-child{margin-top:0}.sidebar nav a{padding-top:7px;padding-bottom:7px}section{scroll-margin-top:24px}@media(max-width:520px){.details-body{padding:12px} .diagram .arrow{font-size:15px}}@media print{details{break-inside:auto}details .details-body{display:block!important}pre code{white-space:pre-wrap}.decision-list{display:none}}
+.doc-path{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 30px}.doc-path a{font-size:13px;padding:7px 11px;border:1px solid var(--line);border-radius:8px;text-decoration:none;background:var(--paper)}.doc-path a[aria-current="page"]{color:var(--paper);background:var(--accent);border-color:var(--accent)}
+.reading-note{background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:20px 22px;margin:22px 0}.reading-note p:last-child{margin-bottom:0}.lesson-end{border-left:3px solid var(--green);padding:10px 16px;color:var(--green);background:var(--green-bg);margin-top:22px}h3{margin-top:24px}.card h3,.flow-item h3{margin-top:0}.doc-path+header{padding-top:0}.term{font-weight:700}.flow-simple{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin:22px 0}.flow-simple>div{border:1px solid var(--line);padding:15px;border-radius:10px;background:var(--paper)}.flow-simple strong{display:block}.flow-simple span{font-size:14px;color:var(--muted)}.code-top span{min-width:0}.sidebar nav{min-height:0}.table-scroll{max-width:100%}
+@media(max-width:800px){.doc-path{margin-bottom:22px}.doc-path a{font-size:12px}.flow-simple{grid-template-columns:1fr 1fr}}
+@media(max-width:520px){.reading-note{padding:16px}.flow-simple{gap:8px}.flow-simple>div{padding:12px}pre{font-size:12px}}
+@media print{.doc-path{display:none}.reading-note,.lesson-end{break-inside:avoid}}
+</style></head><body><a class="skip" href="#main">본문으로 이동</a><div class="layout"><aside class="sidebar" aria-label="DB 설계 목차"><div class="brand"><span class="brand-mark">DB</span> REGISTRY DESIGN</div><div class="nav-label">개념 → 데이터 → 처리 → 운영</div><nav><a href="#reading-map"><span class="number">START</span>이 문서 읽는 순서</a><a href="#decision"><span class="number">01</span>저장 위치가 바뀌어도 유지할 원칙</a><a href="#manifest"><span class="number">02</span>버전·계약·매니페스트를 구분하기</a><a href="#schema"><span class="number">03</span>테이블·키·인덱스 설계</a><a href="#publish"><span class="number">04</span>서비스 버전을 등록하는 순서</a><a href="#activate"><span class="number">05</span>조합 선택·동시 변경·롤백</a><a href="#api"><span class="number">06</span>API 경계·오류·재시도 계약</a><a href="#browser"><span class="number">07</span>브라우저 부팅·캐시·구형 스키마</a><a href="#lifecycle"><span class="number">08</span>사용 추적·지원 종료·실제 삭제</a><a href="#storage"><span class="number">09</span>S3·작업자·장애 복구</a><a href="#dev"><span class="number">10</span>개발 키트·환경별 선택</a><a href="#operations"><span class="number">11</span>권한·공지·관측 운영</a><a href="#migration"><span class="number">12</span>현재 코드에서 DB로 이관하는 단계</a><a href="#verification"><span class="number">13</span>DB 구현 후 통과해야 할 검증</a><a href="#references"><span class="number">14</span>근거와 설계 결정의 범위</a></nav><div class="sidebar-foot"><strong>2026. 11. 08 · 상세 설계 보강</strong><p>설계 제안 · DB/S3 전환 미구현<br>SQL·API 예시는 구현 전 검토 자료</p><button type="button" class="print-button" id="print">인쇄 / PDF로 저장</button></div></aside><main id="main"><div class="unified-book-link" style="border:1px solid #b9d4c4;background:#eef6ed;border-radius:10px;padding:18px;margin:18px 0"><strong>기초부터 혼자 공부하려면</strong> <a href="mfe-self-study.html">통합 학습서 한 파일</a>에서 시작하세요. 이 문서의 상세 내용도 통합본 안에 포함되어 있습니다.</div><div class="doc-path" aria-label="설명서 읽는 순서"><a href="../docs/mfe-platform-versioning-guide.html">1 처음 이해하기</a><a href="../docs/mfe-project-handbook.html">2 개발하기</a><a href="../docs/mfe-runtime-operations.html">3 운영·검증 찾기</a><a href="../docs/mfe-registry-db-design.html" aria-current="page">4 DB 확장 설계</a></div><header class="hero"><div class="eyebrow">DB 버전 상세 설계안 / 기존 파일 등록부의 확장</div><h1>버전은 DB에서 관리하고,<br>실행 조합은 고정합니다.</h1><p class="lead">무엇을 저장할지부터 어떤 순서로 변경할지까지.<br>서비스의 독립 배포와 기존 탭 보호를 유지하는 설계입니다.</p><div class="badges"><span class="badge pending">설계 문서 · DB 전환 미구현</span><span class="badge">PostgreSQL 예시</span><span class="badge blue">데이터·API·동시성·운영·이관</span></div><div class="decision-list"><a href="#manifest">실제 데이터 모양</a><a href="#schema">테이블과 DDL</a><a href="#activate">변경 처리 순서</a><a href="#lifecycle">삭제와 탭 보호</a><a href="#migration">현재 코드에서 이관</a></div></header><section id="reading-map" aria-labelledby="reading-map-title"><div class="section-head"><span class="section-number">START</span><h2 id="reading-map-title">DB 설계는 마지막에 읽으세요</h2></div><p><strong>이 문서는 설계안입니다. 현재 코드는 로컬 JSON과 파일 저장소로 동작합니다.</strong> DB 전환을 구현하기 전에 데이터·API·운영 조건을 정리한 것이며, 현재 실행 방법을 찾는 문서는 아닙니다.</p><p>처음이라면 <a href="../docs/mfe-platform-versioning-guide.html#selection">버전과 조합</a> → <a href="../docs/mfe-runtime-operations.html#management">현재 사용 추적·삭제 절차</a>를 이해한 뒤 읽으세요. 설계의 핵심은 <strong>검색·운영 정보는 DB, 실행 파일은 S3, 브라우저에는 고정된 조합</strong>입니다. 브라우저가 DB를 직접 조회해 매번 버전을 바꾸는 방식은 아닙니다.</p><div class="table-scroll"><table><thead><tr><th scope="col">읽는 단계</th><th scope="col">절</th><th scope="col">읽고 답할 수 있어야 할 질문</th></tr></thead><tbody><tr><td>먼저 원리</td><td><a href="#decision">원칙</a> → <a href="#manifest">용어·매니페스트</a> → <a href="#browser">브라우저 부팅</a></td><td>DB로 옮겨도 기존 탭이 같은 조합을 유지하는가?</td></tr><tr><td>구현을 설계할 때</td><td><a href="#schema">테이블</a> → <a href="#publish">등록</a> → <a href="#activate">선택·롤백</a> → <a href="#api">API</a></td><td>새 버전과 실행 조합을 어떤 데이터로 저장하는가?</td></tr><tr><td>운영을 설계할 때</td><td><a href="#lifecycle">수명주기</a> → <a href="#storage">파일 저장소</a> → <a href="#operations">권한·공지</a></td><td>누가 사용하는 파일을 언제 안전하게 정리할 수 있는가?</td></tr><tr><td>이관 전 확인</td><td><a href="#migration">이관 단계</a> → <a href="#verification">필수 검증</a></td><td>현재 동작을 유지하면서 무엇부터 옮길 것인가?</td></tr></tbody></table></div><p>테이블의 열 이름과 API 본문은 두 번째 읽을 때 확인해도 됩니다. <code>artifact</code>는 정확한 배포물, <code>composition</code>은 선택을 고정한 조합, <code>revision</code>은 동시 수정 충돌을 알아내는 수정 번호입니다.</p></section><section id="decision" aria-labelledby="decision-title"><div class="section-head"><span class="section-number">01</span><h2 id="decision-title">저장 위치가 바뀌어도 유지할 원칙</h2></div><p><strong>현재의 파일 기반 등록부를 DB로 옮기는 것은 운영 환경에 적합한 다음 단계입니다.</strong> 버전 검색·팀별 권한·동시 변경·사용 현황·감사 이력이 늘어날수록 장점이 있습니다. 단, MF 버전 충돌 자체를 DB가 해결하는 것은 아닙니다. SDK 공유·격리·호환성 검사·고정된 실행 조합은 그대로 필요합니다.</p><div class="diagram"><div class="shell-node">관리 화면 / CI / 운영 API<span>인증·권한 확인 후 등록·선택·정리 요청</span></div><div class="arrow">↓</div><div class="node business">DB · 버전 메타데이터 / 의존 그래프 / 현재 조합 / 정책 / 사용 기록</div><div class="arrow">↓ 검증한 조합을 불변 스냅샷으로 발행</div><div class="node">Shell · 한 번 받은 조합을 문서 수명 동안 고정</div><div class="arrow">↓ 정확한 배포 ID의 URL로 로드</div><div class="node">S3 / CDN · SDK·서비스의 remoteEntry.js / chunk / HTML</div></div><p>추천 모델은 <strong>DB를 운영 상태의 기준으로 두고, S3에 불변 배포 파일과 조합 스냅샷을 보관하는 구조</strong>입니다. 브라우저가 DB에 직접 접속하거나, 위젯을 열 때마다 DB의 최신 버전을 다시 고르게 하지 않습니다.</p><p>이 문서는 설계 제안입니다. 현재 프로젝트의 운영 저장소는 여전히 로컬 JSON·파일이며, DB 서버·마이그레이션·S3 연동은 구현하지 않았습니다.</p><div class="table-scroll"><table><thead><tr><th>담당</th><th>제공하는 것</th><th>직접 다루지 않는 것</th></tr></thead><tbody><tr><td>서비스 팀</td><td>공개 모듈, 지원 SDK·업무 의존 범위, 빌드 산출물, 호환성 검증 결과</td><td>운영 DB에 직접 INSERT/UPDATE하지 않음. 자신의 권한으로 발행 API를 호출.</td></tr><tr><td>플랫폼 등록부 API</td><td>팀 권한, 매니페스트 검증, 조합 생성·선택, 정책·참조 검사</td><td>서비스의 업무 API 동작까지 자동으로 호환된다고 판단하지 않음.</td></tr><tr><td>백그라운드 작업자</td><td>파일 검증·삭제, 스냅샷 발행, 공지 전송, 실패 재시도</td><td>작업 중 DB 조건을 우회하거나 임의로 최신 버전을 선택하지 않음.</td></tr><tr><td>Shell·서비스 런타임</td><td>고정된 조합의 SDK·B·D를 MF로 로드하고 탭 사용 기한 갱신</td><td>DB 연결 정보나 운영 변경 권한을 브라우저에 넣지 않음.</td></tr></tbody></table></div><div class="statement"><p><strong>변경되지 않는 조건:</strong> 한 문서의 SDK는 하나, 같은 소비자 배포 ID·별칭에는 대상 하나, 배포 파일은 불변, 조합은 문서 수명 동안 고정, 등록 해제와 실제 삭제는 별도입니다.</p></div><p>처음 DB 구현은 하나의 운영 API와 하나의 PostgreSQL 쓰기 기준으로 시작하는 안입니다. 관리 서버가 여러 대여도 같은 DB 잠금·revision 규칙을 따라야 합니다. 지역별 동시 쓰기나 분산된 등록부는 이 설계의 초기 범위에 포함하지 않습니다.</p></section>
+<section id="manifest" aria-labelledby="manifest-title"><div class="section-head"><span class="section-number">02</span><h2 id="manifest-title">버전·계약·매니페스트를 구분하기</h2></div><div class="table-scroll"><table><thead><tr><th>종류</th><th>내용</th><th>바뀌는 시점</th></tr></thead><tbody><tr><td>배포물 매니페스트</td><td>배포 ID, service, version, container 이름, entry URL, exposes, SDK/React 요구 조건, 선언한 의존 범위, 파일 해시</td><td>한 번 발행하면 고정. 현재 release.json이 이 역할의 일부이며 exposes·파일 목록은 제품 release 형식에 추가할 수 있음.</td></tr><tr><td>실행 조합 매니페스트</td><td>어떤 Shell·SDK·A·C를 쓸지, A→B와 B→D의 정확한 대상 ID 전체</td><td>변경할 때 새 compositionId를 생성. 이전 조합은 유지.</td></tr><tr><td>운영 상태</td><td>어느 환경의 현재 조합인지, 지원 종료일, 등록/삭제 상태, 탭 사용 기한, 승인·공지·감사 이력</td><td>DB 트랜잭션으로 변경. 배포물 자체의 불변 메타데이터와 분리.</td></tr></tbody></table></div><p>이 프로젝트의 <code>release.json</code>, <code>compositions/*.json</code>, 개발용 <code>dev/manifest.json</code>은 자체 형식입니다. 특정 MF 라이브러리의 <code>mf-manifest.json</code>과 같은 규격이라고 가정하면 안 됩니다. 라이브러리를 바꾸면 변환 계층이나 동일 스키마 채택이 필요합니다.</p><p>Webpack MF의 실제 실행 인터페이스는 container의 <code>get</code>·<code>init</code>이며, 선택한 URL에서 container를 로드하는 방식과 메타데이터의 저장 위치는 분리할 수 있습니다. <a href="https://webpack.js.org/concepts/module-federation/#dynamic-remote-containers">Webpack 공식 문서</a></p><div class="table-scroll"><table><thead><tr><th>이름</th><th>예시</th><th>언제 올리는가</th></tr></thead><tbody><tr><td>서비스 버전</td><td>B 1.4.0 → 1.5.0</td><td>B 팀의 구현 릴리스. 공개 계약을 유지하면 소비자 재빌드 없이 새 배포물을 선택 가능.</td></tr><tr><td>배포 ID</td><td>b_1_4_0_&lt;빌드 입력 해시&gt;</td><td>같은 서비스 버전이라도 빌드 입력이 다르면 별도 ID. 파일 해시와 동일한 값이라고 가정하지 않음.</td></tr><tr><td>지원 범위</td><td>A가 B >=1.4.0 &lt;2.0.0 지원</td><td>A 코드가 검증된 API 범위. DB는 범위 충족을 검사하지만 의미적 API 호환성은 테스트해야 함.</td></tr><tr><td>매니페스트 schemaVersion</td><td>release/snapshot 형식 버전 1</td><td>필드 구조·해석 규칙 변경. SDK 버전이나 B 버전과 별개.</td></tr><tr><td>조합 ID</td><td>composition_&lt;내용 기반 해시&gt;</td><td>SDK·루트·해결된 의존 그래프가 바뀌면 새 ID. 정책 날짜나 사용자 이름은 조합 해시에서 제외.</td></tr><tr><td>환경 revision</td><td>production head 42 → 43</td><td>활성화 요청이 반영될 때 증가. 과거 조합으로 롤백해도 revision은 감소하지 않음.</td></tr></tbody></table></div><details><summary>B가 발행하는 매니페스트 예시</summary><div class="details-body"><p>아래 ID는 설명용 예시입니다. schemaVersion·exposes는 DB 전환안에서 보강할 필드이고, 파일 목록·SHA-256은 별도 release_files 레코드 또는 매니페스트 확장으로 관리합니다. 현재 release.json에 이미 모두 들어 있다는 뜻은 아닙니다.</p><div class="code-block"><div class="code-top"><span>공급자가 선언한 것 — D의 정확한 배포 ID는 아직 선택하지 않음</span><button class="copy" type="button">복사</button></div><pre><code class="language-json">{
+  &quot;schemaVersion&quot;: 1,
+  &quot;id&quot;: &quot;b_1_4_0_bbbbbbbbbbbb&quot;,
+  &quot;name&quot;: &quot;mf_b_1_4_0_bbbbbbbbbbbb&quot;,
+  &quot;service&quot;: &quot;b&quot;,
+  &quot;version&quot;: &quot;1.4.0&quot;,
+  &quot;kind&quot;: &quot;remote&quot;,
+  &quot;entry&quot;: &quot;/artifacts/b_1_4_0_bbbbbbbbbbbb/remoteEntry.js&quot;,
+  &quot;exposes&quot;: [
+    &quot;./Widget&quot;
+  ],
+  &quot;dependencies&quot;: {},
+  &quot;runtimeRequirements&quot;: {
+    &quot;platform&quot;: &quot;&gt;=1.0.0 &lt;2.0.0&quot;,
+    &quot;react&quot;: &quot;19.3.1&quot;,
+    &quot;react-dom&quot;: &quot;19.3.1&quot;
+  },
+  &quot;runtimeDependencies&quot;: {
+    &quot;d&quot;: {
+      &quot;service&quot;: &quot;d&quot;,
+      &quot;requires&quot;: &quot;&gt;=1.0.0 &lt;2.0.0&quot;
+    }
+  }
+}</code></pre></div></div></details><details><summary>플랫폼이 해결한 조합 예시</summary><div class="details-body"><p>핵심 선택 필드만 발췌했습니다. 실제 브라우저 응답에는 현재 런타임이 필요로 하는 shell·applications·artifacts의 전체 메타데이터도 포함해야 합니다. 이 예시만 기존 런타임에 전달하면 동작하지 않습니다.</p><div class="code-block"><div class="code-top"><span>소비자별로 정확한 B·D를 선택한 결과</span><button class="copy" type="button">복사</button></div><pre><code class="language-json">{
+  &quot;schemaVersion&quot;: 1,
+  &quot;compositionId&quot;: &quot;composition_0123456789abcdef01234567&quot;,
+  &quot;selected&quot;: {
+    &quot;platform&quot;: &quot;platform_1_2_0_ffffffffffff&quot;,
+    &quot;shell&quot;: &quot;shell_1_0_0_111111111111&quot;,
+    &quot;A&quot;: &quot;a_1_0_0_aaaaaaaaaaaa&quot;,
+    &quot;C&quot;: &quot;c_1_0_0_cccccccccccc&quot;
+  },
+  &quot;runtimeBindings&quot;: {
+    &quot;a_1_0_0_aaaaaaaaaaaa&quot;: {
+      &quot;b&quot;: &quot;b_1_4_0_bbbbbbbbbbbb&quot;
+    },
+    &quot;c_1_0_0_cccccccccccc&quot;: {
+      &quot;b&quot;: &quot;b_2_1_0_222222222222&quot;
+    },
+    &quot;b_1_4_0_bbbbbbbbbbbb&quot;: {
+      &quot;d&quot;: &quot;d_1_0_0_dddddddddddd&quot;
+    },
+    &quot;b_2_1_0_222222222222&quot;: {
+      &quot;d&quot;: &quot;d_2_0_0_eeeeeeeeeeee&quot;
+    }
+  }
+}</code></pre></div></div></details><div class="table-scroll"><table><thead><tr><th>소비자</th><th>선언한 별칭</th><th>조합에서 선택한 대상</th></tr></thead><tbody><tr><td>A 배포물</td><td>b</td><td>B 1.4.0 배포물</td></tr><tr><td>C 배포물</td><td>b</td><td>B 2.1.0 배포물</td></tr><tr><td>B 1.4.0 배포물</td><td>d</td><td>D 1.0.0 배포물</td></tr><tr><td>B 2.1.0 배포물</td><td>d</td><td>D 2.0.0 배포물</td></tr></tbody></table></div><p>DB가 임의로 두 B 중 하나를 전역 선택하지 않습니다. <code>(composition_id, consumer_artifact_id, alias)</code>별로 대상을 보존합니다. 같은 B 배포물 두 인스턴스에 서로 다른 D를 연결하는 기능은 현재 런타임 모델에 없으며, DB로 옮겨도 자동으로 생기지 않습니다.</p><p>해시 계산에는 스키마 버전, 키 정렬·문자 인코딩 등 직렬화 규칙을 고정합니다. JSONB의 출력 바이트나 공백에 의존해 ID를 계산하지 않습니다. 동일 ID에 다른 해시가 들어오면 충돌로 거절합니다. 기존 조합 ID와 기존 스냅샷 바이트는 이관 과정에서 재작성하지 않습니다.</p></section>
+<section id="navigation-design"><div class="section-head"><span class="section-number">MENU</span><h2>페이지 메뉴도 조합에 포함합니다</h2></div><p><strong>현재 구현:</strong> 로컬 JSON 조합의 navigation에 메뉴 ID·이름·경로·서비스 배포 ID·공개 모듈·배열 순서를 저장하고 관리 화면에서 검사·적용합니다. 서버가 메뉴 의존 연결을 생성하며 탭·롤백 보호에 포함합니다. <a href="../docs/mfe-project-handbook.html#registered-services">구현과 사용 절차</a>.</p><p><strong>DB로 옮길 때의 설계 제안:</strong> composition_menu 테이블에 composition_id, menu_id, label, path, artifact_id, exposed_module, position을 저장합니다. (composition_id, menu_id), (composition_id, path), (composition_id, position)에 각각 중복 제한을 두고 배포물 외래키를 검증합니다. 메뉴는 저장된 조합의 일부이므로 활성 메뉴 행을 직접 수정하지 않고 새 조합과 함께 작성한 뒤 활성 포인터를 전환합니다. 롤백은 메뉴·의존 관계를 포함한 저장 조합으로 전환합니다. DB와 S3를 실제 연결한 구현은 아직 아닙니다.</p></section><section id="dashboard-design"><div class="section-head"><span class="section-number">WIDGET</span><h2>공개 위젯과 대시보드 배치의 저장 위치</h2></div><p><strong>현재 구현:</strong> 서비스 배포 정보의 widgets는 공개 위젯 ID·이름·모듈·계약을 기록하고, 조합의 dashboard는 배치 ID·제목·배포 ID·위젯 ID·너비·배열 순서를 기록합니다. 로컬 JSON으로 구현했으며 <a href="../docs/mfe-project-handbook.html#dashboard-widgets">관리 화면에서 변경</a>할 수 있습니다.</p><p><strong>DB 이관 설계:</strong> release_widget(artifact_id, widget_id, title, exposed_module, contract)에 불변 공개 목록을 저장합니다. composition_widget(composition_id, placement_id, artifact_id, widget_id, title, position, span)에 배치를 저장하고 (artifact_id, widget_id) 외래키로 해당 배포물이 공개한 위젯만 참조합니다. (composition_id, placement_id)와 (composition_id, position)은 각각 유일하게 하고 span은 1 또는 2로 제한합니다. 같은 위젯의 복제 배치는 허용합니다. 새 조합·배치·의존성을 하나의 트랜잭션으로 기록한 뒤 활성 포인터를 변경합니다. 이전 배치와 공개 목록은 탭·롤백이 참조하는 동안 보존합니다. DB 구현은 여전히 설계안입니다.</p></section><section id="schema" aria-labelledby="schema-title"><div class="section-head"><span class="section-number">03</span><h2 id="schema-title">테이블·키·인덱스 설계</h2></div><p>불변 매니페스트는 JSONB로 보존하고, 검색·제약에 필요한 관계와 운영 상태를 테이블로 관리합니다. <strong>JSON 원본과 관계 테이블을 서로 다른 기준으로 수정할 수 없게</strong> 같은 쓰기 경로와 트랜잭션으로 묶습니다.</p><div class="table-scroll"><table><thead><tr><th>테이블</th><th>주요 필드·키</th><th>관리 규칙</th></tr></thead><tbody><tr><td>services</td><td>service_id PK, owner_team</td><td>소유 팀·발행 권한의 기준.</td></tr><tr><td>releases / release_files</td><td>artifact_id PK, service_id, semver, manifest, manifest_sha256 / artifact_id + relative_path, sha256, size, object_key</td><td>매니페스트·파일 목록은 발행 후 불변. 같은 semver의 다른 빌드는 허용하되 화면에서 정확한 ID를 표시.</td></tr><tr><td>release_publication</td><td>artifact_id PK/FK, state(pending/verifying/ready/failed), verification_result</td><td>업로드·파일 검증 진행 상태. ready 전에는 선택 불가.</td></tr><tr><td>declared_dependencies</td><td>consumer_artifact_id + alias PK, mode, required_service, supported_range 또는 fixed_target_id</td><td>빌드 시 선언한 요구사항. shared는 공통 SDK 요구, runtime은 b/d, fixed는 고정 참조.</td></tr><tr><td>compositions</td><td>composition_id PK, schema_version, snapshot, hash, object_key, publication_state</td><td>내용은 불변, 발행 상태만 변경. 작성자·시각은 감사 정보로 별도 관리.</td></tr><tr><td>composition_roots / composition_members</td><td>composition_id + role / composition_id + artifact_id</td><td>루트 선택 / Shell·SDK·모든 전이 의존성 포함 목록. 루트 역할을 일반화해도 현 Shell의 A/C 제한은 별도 수정 필요.</td></tr><tr><td>composition_bindings</td><td>composition_id + consumer_artifact_id + alias PK, target_artifact_id</td><td>업무 런타임 의존성을 해결한 연결. 고정 참조·공통 SDK 연결은 매니페스트에서 함께 해석해 사용 경로 계산.</td></tr><tr><td>environment_heads</td><td>environment_id PK, composition_id, revision, updated_at</td><td>환경별 현재 조합의 유일한 기준. 관리 앱의 선택은 제품과 별도 채널로 관리.</td></tr><tr><td>release_policies / composition_retirements</td><td>artifact_id PK, revision, support_ends_on, notice_accepted_at, registration_state, access_state, file_state, 관련 시각 / composition_id, retired_at</td><td>공지·지원·등록·접근·파일 상태를 구별. 조합 보관 해제는 현재 환경 참조를 전부 확인.</td></tr><tr><td>tab_leases / tab_artifact_refs</td><td>session_id PK, environment_id, composition_id, protocol, sequence, expires_at, last_seen_at, closed_at, released_at / session_id + artifact_id PK</td><td>새 탭과 기존 탭의 전체 조합 보호. 구형 탭의 특정 버전 정리는 refs의 released_at으로 표현.</td></tr><tr><td>transition_requests</td><td>request_id, session_id, ticket_hash, expires_at, confirmed_at, reason</td><td>구형 탭 전환 확인용. 원본 ticket은 관리 조회에 노출하지 않음.</td></tr><tr><td>notice_campaigns / notice_deliveries</td><td>campaign_id, artifact_id, plan_revision / campaign_id + recipient, status, attempts, delivery_id</td><td>공지 대상 고정, 전송 결과·실패 재시도. 로그 저장과 실제 전송 성공을 구별.</td></tr><tr><td>idempotency_requests / audit_events</td><td>scope + idempotency_key, request_hash, result / actor, action, previous_id, next_id, reason, request_id</td><td>네트워크 재시도 중복 방지 / 변경 이력. 조합 파일 생성 시각과 활성화 이력을 구별.</td></tr><tr><td>outbox_jobs</td><td>job_id, dedupe_key UNIQUE, type, payload, status, attempt, next_attempt_at, locked_until</td><td>DB 커밋 후 외부 작업 실행. at-least-once 실행을 전제로 멱등 처리.</td></tr></tbody></table></div><details><summary>핵심 테이블 DDL — 구현할 때의 출발점</summary><div class="details-body"><p>아래 SQL은 설계 예시이며 이번 작업에서 DB에 실행하지 않았습니다. 표시한 PK/FK만으로 전체 운영 규칙이 완성되지는 않습니다.</p><div class="code-block"><div class="code-top"><span>PostgreSQL 관계·제약의 골격</span><button class="copy" type="button">복사</button></div><pre><code class="language-sql">-- 관계와 제약을 설명하는 핵심 DDL 예시입니다.
+-- 운영 권한, 불변 필드 트리거, 수명주기·탭·작업 테이블은 아래 설계를 별도 구현해야 합니다.
+CREATE TABLE services (
+  service_id text PRIMARY KEY,
+  owner_team text NOT NULL
+);
+CREATE TABLE releases (
+  artifact_id text PRIMARY KEY,
+  service_id text NOT NULL REFERENCES services(service_id),
+  semver text NOT NULL,
+  metadata_schema integer NOT NULL CHECK (metadata_schema &gt; 0),
+  manifest jsonb NOT NULL CHECK (jsonb_typeof(manifest) = &#x27;object&#x27;),
+  manifest_sha256 text NOT NULL CHECK (manifest_sha256 ~ &#x27;^[0-9a-f]{64}$&#x27;),
+  storage_prefix text NOT NULL UNIQUE,
+  created_at timestamptz NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
+CREATE TABLE declared_dependencies (
+  consumer_artifact_id text NOT NULL REFERENCES releases(artifact_id),
+  alias text NOT NULL,
+  mode text NOT NULL CHECK (mode IN (&#x27;runtime&#x27;, &#x27;shared&#x27;, &#x27;fixed&#x27;)),
+  required_service text NOT NULL REFERENCES services(service_id),
+  supported_range text,
+  fixed_target_id text REFERENCES releases(artifact_id),
+  PRIMARY KEY (consumer_artifact_id, alias),
+  CHECK (
+    (mode = &#x27;fixed&#x27; AND fixed_target_id IS NOT NULL AND supported_range IS NULL)
+    OR
+    (mode IN (&#x27;runtime&#x27;, &#x27;shared&#x27;) AND fixed_target_id IS NULL AND supported_range IS NOT NULL)
+  )
+);
+CREATE TABLE compositions (
+  composition_id text PRIMARY KEY,
+  schema_version integer NOT NULL CHECK (schema_version &gt; 0),
+  snapshot jsonb NOT NULL CHECK (jsonb_typeof(snapshot) = &#x27;object&#x27;),
+  snapshot_sha256 text NOT NULL CHECK (snapshot_sha256 ~ &#x27;^[0-9a-f]{64}$&#x27;),
+  object_key text NOT NULL UNIQUE,
+  publication_state text NOT NULL CHECK (publication_state IN (&#x27;pending&#x27;, &#x27;ready&#x27;, &#x27;failed&#x27;)),
+  created_at timestamptz NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
+CREATE TABLE composition_members (
+  composition_id text NOT NULL REFERENCES compositions(composition_id),
+  artifact_id text NOT NULL REFERENCES releases(artifact_id),
+  PRIMARY KEY (composition_id, artifact_id)
+);
+CREATE TABLE composition_roots (
+  composition_id text NOT NULL,
+  role text NOT NULL,
+  artifact_id text NOT NULL,
+  PRIMARY KEY (composition_id, role),
+  FOREIGN KEY (composition_id, artifact_id)
+    REFERENCES composition_members(composition_id, artifact_id)
+);
+CREATE TABLE composition_bindings (
+  composition_id text NOT NULL,
+  consumer_artifact_id text NOT NULL,
+  alias text NOT NULL,
+  target_artifact_id text NOT NULL,
+  PRIMARY KEY (composition_id, consumer_artifact_id, alias),
+  FOREIGN KEY (consumer_artifact_id, alias)
+    REFERENCES declared_dependencies(consumer_artifact_id, alias),
+  FOREIGN KEY (composition_id, consumer_artifact_id)
+    REFERENCES composition_members(composition_id, artifact_id),
+  FOREIGN KEY (composition_id, target_artifact_id)
+    REFERENCES composition_members(composition_id, artifact_id)
+);
+CREATE TABLE environment_heads (
+  environment_id text PRIMARY KEY,
+  composition_id text NOT NULL REFERENCES compositions(composition_id),
+  revision bigint NOT NULL CHECK (revision &gt;= 0),
+  updated_at timestamptz NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
+CREATE INDEX members_by_artifact ON composition_members(artifact_id, composition_id);
+CREATE INDEX bindings_by_target ON composition_bindings(target_artifact_id, composition_id);
+CREATE INDEX fixed_consumers_by_target ON declared_dependencies(fixed_target_id)
+  WHERE fixed_target_id IS NOT NULL;</code></pre></div></div></details><div class="table-scroll"><table><thead><tr><th>DB 제약으로 보호</th><th>운영 API에서 검사</th><th>추가 운영 장치</th></tr></thead><tbody><tr><td>PK·UNIQUE: 같은 조합·소비자·별칭의 중복 대상 방지</td><td>SemVer 파싱·범위, alias의 mode와 service, 전체 그래프의 누락·순환</td><td>기존 소비자 산출물을 사용하는 조합 테스트.</td></tr><tr><td>FK: 존재하는 배포물·선언·조합 구성원 참조</td><td>공통 SDK 하나, SDK/React 호환, SDK 루트와 실제 참조 일치</td><td>알 수 없는 매니페스트 스키마는 수용하지 않는 버전 협상.</td></tr><tr><td>NOT NULL·CHECK: 상태 값과 같은 행의 기본 형식</td><td>지원 종료의 정확한 경로 예외, 모든 환경·탭·롤백·고정 참조</td><td>불변 필드 UPDATE 금지 권한/트리거, 메타데이터 삭제 대신 tombstone.</td></tr></tbody></table></div><p>CHECK에 다른 테이블 조회나 “현재 시각을 지나면 자동 실패” 같은 규칙을 넣어 해결하려 하지 않습니다. FK·UNIQUE·CHECK의 역할과 한계는 <a href="https://www.postgresql.org/docs/current/ddl-constraints.html">PostgreSQL 제약 문서</a>를 기준으로 구현합니다. 운영 정책은 작업 직전 잠금 안에서 다시 계산합니다.</p><p>주요 추가 인덱스는 <code>release_files(artifact_id)</code>, <code>tab_leases(composition_id, expires_at)</code>, <code>tab_artifact_refs(artifact_id, released_at)</code>, <code>outbox_jobs(status, next_attempt_at)</code>입니다. 실제 조회 계획과 데이터량으로 조정합니다. 참조 수 캐시는 화면 표시용이며, 삭제 허용을 캐시 값 0만 보고 결정하지 않습니다.</p></section>
+<section id="publish" aria-labelledby="publish-title"><div class="section-head"><span class="section-number">04</span><h2 id="publish-title">서비스 버전을 등록하는 순서</h2></div><ol><li>서비스 CI가 자기 프로젝트만 빌드해 배포 ID·release 메타데이터·노출 모듈·파일별 해시를 준비합니다. 플랫폼은 토큰의 팀과 service 소유권을 확인합니다.</li><li>등록 API가 idempotency key와 요청 해시를 기록하고 pending 발행 레코드를 만듭니다. 같은 키·같은 요청은 기존 결과를 반환하고, 같은 키·다른 내용은 409로 거절합니다.</li><li>승인된 저장소 prefix에 파일을 업로드합니다. 임시 업로드 권한은 그 prefix에만 적용하며 임의 URL을 운영 entry로 등록하지 못하게 합니다.</li><li>검증 작업자가 entry·chunk·파일 목록·해시, 허용된 경로/출처, 매니페스트 스키마를 검사합니다. S3 업로드·네트워크 검증 중 DB 행 잠금을 길게 잡지 않습니다.</li><li>DB 트랜잭션에서 발행 요청과 동일한 내용을 확인한 뒤 release_files·declared_dependencies를 기록하고 ready로 전환합니다. 파일이 준비되기 전에는 조합 후보에 노출하지 않습니다.</li><li>서비스 팀 또는 운영자가 조합 미리 검사로 새 버전을 선택합니다. 발행 자체는 environment_heads를 변경하지 않습니다.</li></ol><div class="table-scroll"><table><thead><tr><th>상황</th><th>처리</th></tr></thead><tbody><tr><td>같은 artifact_id와 같은 내용 재발행</td><td>동일 요청으로 처리. 메타데이터·파일을 덮어쓰지 않음.</td></tr><tr><td>같은 artifact_id인데 해시가 다름</td><td>409 ARTIFACT_CONTENT_CONFLICT. 새 ID가 필요한 배포로 거절.</td></tr><tr><td>동일 semver의 새 artifact_id</td><td>별도 배포로 등록 가능. 어느 빌드를 채택할지 명시적으로 선택. semver만으로 삭제·롤백하지 않음.</td></tr><tr><td>고정 의존 대상이 아직 없음</td><td>검증 대기 또는 거절. 대상 ready 확인 전 소비자 ready 금지. runtime 범위 선언은 대상 선택을 조합 단계까지 미룰 수 있음.</td></tr><tr><td>이미 등록 해제·삭제한 ID</td><td>같은 ID를 재발행해 복구하지 않음. 이관 작업을 포함해 tombstone 보존.</td></tr><tr><td>CI 테스트가 실패함</td><td>파일 발행 여부와 별개로 운영 조합 승인 조건 미충족. 검사 기록에 정확한 공급자·소비자 ID를 남김.</td></tr></tbody></table></div><p>ready는 파일과 메타데이터가 준비됐다는 뜻입니다. 모든 소비자와의 업무 호환성이 증명됐다는 뜻은 아닙니다. 호환성 증거는 <code>조합 해시 + 테스트 버전 + 결과</code>로 연결하고, 운영 적용 기준으로 사용할 범위를 별도로 정합니다.</p></section>
+<section id="activate" aria-labelledby="activate-title"><div class="section-head"><span class="section-number">05</span><h2 id="activate-title">조합 선택·동시 변경·롤백</h2></div><p>조합 생성은 준비 단계와 적용 단계로 나눕니다. 무거운 파일 작업은 트랜잭션 밖에서 끝내고, <strong>환경 head를 바꾸는 짧은 트랜잭션에서 현재 조건을 다시 검사</strong>합니다.</p><ol><li>미리 검사: 현재 head·정책 버전과 선택안을 읽어 전체 그래프를 해결합니다. candidate 내용 해시, 검사 기준 revision, 정책 revision, 토큰 만료 시각을 반환합니다. preview는 활성 head를 쓰지 않습니다.</li><li>준비: 정확한 Shell HTML과 JSON 스냅샷을 불변 키로 저장하고 발행을 확인합니다. JSON·관계 테이블의 구성원을 일치시킵니다. 아직 새 사용자는 이 조합을 선택하지 않습니다.</li><li>적용 트랜잭션: 현재 head의 revision을 잠금 아래 확인합니다. candidate의 모든 배포물·경로와 정책·파일/접근 상태를 다시 검사합니다. 미리 검사 토큰은 검사 생략 권한이 아닙니다.</li><li>커밋: head를 새 compositionId로 변경하고 revision을 1 증가시킵니다. audit와 후속 outbox 작업을 같은 트랜잭션에 기록합니다.</li><li>응답: 새 revision·compositionId를 반환합니다. 응답이 유실되어 재시도하더라도 같은 idempotency key는 원래 결과를 돌려줍니다.</li></ol><div class="code-block"><div class="code-top"><span>미리 검사 요청 예시</span><button class="copy" type="button">복사</button></div><pre><code class="language-json">{
+  &quot;environment&quot;: &quot;production&quot;,
+  &quot;expectedCompositionId&quot;: &quot;composition_0123456789abcdef01234567&quot;,
+  &quot;expectedRevision&quot;: 42,
+  &quot;selected&quot;: {
+    &quot;platform&quot;: &quot;platform_1_2_0_ffffffffffff&quot;,
+    &quot;shell&quot;: &quot;shell_1_0_0_111111111111&quot;,
+    &quot;A&quot;: &quot;a_1_0_0_aaaaaaaaaaaa&quot;,
+    &quot;C&quot;: &quot;c_1_0_0_cccccccccccc&quot;
+  },
+  &quot;runtimeBindings&quot;: {
+    &quot;a_1_0_0_aaaaaaaaaaaa&quot;: {
+      &quot;b&quot;: &quot;b_1_4_0_bbbbbbbbbbbb&quot;
+    },
+    &quot;c_1_0_0_cccccccccccc&quot;: {
+      &quot;b&quot;: &quot;b_2_1_0_222222222222&quot;
+    },
+    &quot;b_1_4_0_bbbbbbbbbbbb&quot;: {
+      &quot;d&quot;: &quot;d_1_0_0_dddddddddddd&quot;
+    },
+    &quot;b_2_1_0_222222222222&quot;: {
+      &quot;d&quot;: &quot;d_2_0_0_eeeeeeeeeeee&quot;
+    }
+  }
+}</code></pre></div><div class="code-block"><div class="code-top"><span>미리 검사 응답 예시 — token은 불투명한 값</span><button class="copy" type="button">복사</button></div><pre><code class="language-json">{
+  &quot;candidateCompositionId&quot;: &quot;composition_89abcdef0123456789abcdef&quot;,
+  &quot;previewToken&quot;: &quot;opaque-token&quot;,
+  &quot;expiresAt&quot;: &quot;2026-11-08T03:10:00Z&quot;,
+  &quot;baseRevision&quot;: 42,
+  &quot;policyRevisions&quot;: {
+    &quot;b_1_4_0_bbbbbbbbbbbb&quot;: 3,
+    &quot;b_2_1_0_222222222222&quot;: 7
+  },
+  &quot;blockers&quot;: []
+}</code></pre></div><details><summary>적용 트랜잭션 의사 코드</summary><div class="details-body"><div class="code-block"><div class="code-top"><span>실행 가능한 SQL 함수가 아닌 처리 순서</span><button class="copy" type="button">복사</button></div><pre><code>BEGIN
+  lock environment head;
+  lock composition-retirement rows;
+  lock referenced release policy rows in artifact_id order;
+  assert expectedRevision matches;
+  assert candidate hash and preview token match;
+  assert snapshot publication_state = ready;
+  recheck current graph, exact-path policy, access/file state;
+  update environment_heads with revision + 1;
+  append audit event and outbox jobs;
+COMMIT
+-- 실패하면 head·감사 이벤트·후속 작업 모두 반영하지 않음.</code></pre></div></div></details><div class="table-scroll"><table><thead><tr><th>경쟁 상황</th><th>결과</th></tr></thead><tbody><tr><td>관리자 두 명이 revision 42에서 편집</td><td>먼저 적용한 요청이 43을 만듦. 뒤 요청은 409 HEAD_CHANGED로 거절하며 자동 덮어쓰기 없음.</td></tr><tr><td>같은 조합 X → Y → X로 변경됨</td><td>compositionId는 다시 X여도 revision은 증가. 조합 ID만 비교하는 ABA 문제를 revision으로 방지.</td></tr><tr><td>미리 검사 이후 지원 종료·등록 해제</td><td>적용 직전 정책 검사가 거절. 준비한 스냅샷은 미활성 상태로 남음.</td></tr><tr><td>임시 네트워크 오류로 동일 적용 요청 재전송</td><td>동일 idempotency key/요청 해시이면 원래 결과 반환. 새 이벤트를 이중 기록하지 않음.</td></tr><tr><td>이전 조합으로 롤백</td><td>이전의 전체 SDK·B·D 조합을 후보로 가져와 같은 검사/적용 경로 사용. revision은 증가하며 종료 버전 재도입도 검사.</td></tr></tbody></table></div><div class="statement"><p>지원 종료 예외는 “그 버전이 어딘가에서 쓰이고 있음”이 아니라 <strong>그 환경의 직전 조합과 정확히 같은 사용 경로</strong>입니다. D가 같더라도 A 또는 B 배포 ID가 바뀌어 새 경로가 되면 신규 사용으로 판단합니다.</p></div><p>PostgreSQL의 행 잠금·격리 수준을 바탕으로 구현하되, 아래 잠금 규칙을 모든 쓰기 경로에 공통 적용해야 합니다. <a href="https://www.postgresql.org/docs/current/explicit-locking.html">잠금 동작</a> · <a href="https://www.postgresql.org/docs/current/transaction-iso.html">격리 수준</a></p></section>
+<section id="api" aria-labelledby="api-title"><div class="section-head"><span class="section-number">06</span><h2 id="api-title">API 경계·오류·재시도 계약</h2></div><p>아래는 <strong>DB 버전의 제안 API</strong>입니다. 현재 서버의 /api/admin/*·/api/runtime/*와 연결할 어댑터가 필요하며, 새 경로가 이미 제공된다는 뜻은 아닙니다. 브라우저가 받는 기존 snapshot 형식은 유지할 수 있습니다.</p><div class="table-scroll"><table><thead><tr><th>사용자</th><th>제안 API</th><th>의미 / 응답</th></tr></thead><tbody><tr><td>서비스 CI</td><td>POST /api/releases → 업로드 → POST /api/releases/{id}/verify</td><td>발행 요청·검증 job. 준비 중은 202 + jobId, 완료 ready는 조회로 확인.</td></tr><tr><td>관리 화면</td><td>GET /api/environments/{env}/head</td><td>현재 compositionId·revision·관리 가능한 범위.</td></tr><tr><td>관리 화면</td><td>POST /api/environments/{env}/compositions/preview</td><td>선택 전체와 expectedRevision → candidate hash·토큰·차이·보류 사유.</td></tr><tr><td>관리 화면</td><td>POST /api/environments/{env}/activations</td><td>candidate ID·previewToken·expectedRevision·사유·idempotency key → 새 head.</td></tr><tr><td>관리 화면</td><td>POST /api/environments/{env}/rollbacks</td><td>이전 compositionId를 후보로 사용. 지원·파일 상태 검사를 건너뛰지 않음.</td></tr><tr><td>Shell</td><td>GET /api/runtime/boot?environment={env}</td><td>선택한 Shell와 고정 manifest 위치. 사용자 권한과 환경 범위 검증.</td></tr><tr><td>Shell</td><td>POST /api/runtime/leases · /leases/{id}/renew · /close</td><td>탭 생성·갱신·종료. serverTime·expiresAt·sequence 반환. SDK/B/D 선택은 요청마다 바꾸지 않음.</td></tr><tr><td>운영자</td><td>GET /api/releases/{id}/usage · /retirement-check</td><td>현재·탭·롤백·고정 참조별 사용 경로와 조건. preview는 삭제를 예약하지 않음.</td></tr><tr><td>운영자</td><td>POST /api/releases/{id}/unregister · /revoke-access · /delete</td><td>각각 별도 작업. expectedRevision·전체 ID 확인·사유 등 필요. 파일 삭제는 202 + jobId.</td></tr><tr><td>개발 담당</td><td>POST /api/dev-kits</td><td>환경 또는 고정 조합·로컬 역할 선택 → 개발 키트 생성 job.</td></tr></tbody></table></div><div class="code-block"><div class="code-top"><span>적용 요청의 핵심 예시</span><button class="copy" type="button">복사</button></div><pre><code class="language-json">{
+  &quot;candidateCompositionId&quot;: &quot;composition_89abcdef0123456789abcdef&quot;,
+  &quot;previewToken&quot;: &quot;opaque-token&quot;,
+  &quot;expectedRevision&quot;: 42,
+  &quot;reason&quot;: &quot;A 경로의 B 호환 업데이트&quot;
+}</code></pre></div><p>변경 요청에는 <code>Idempotency-Key</code>를 붙이고, 서버는 인증 주체·환경·작업 종류와 함께 범위를 정합니다. 같은 키에 다른 payload가 들어오면 거절합니다. 완료 결과를 조회할 수 있어야 시간 초과 뒤 무작정 새 작업을 생성하지 않습니다.</p><div class="table-scroll"><table><thead><tr><th>응답</th><th>대표 코드 예시</th><th>호출자의 조치</th></tr></thead><tbody><tr><td>400 / 422</td><td>INVALID_MANIFEST, INCOMPATIBLE_GRAPH, RELEASE_UNAVAILABLE</td><td>입력·지원 범위·선택을 수정. 동일 요청 자동 반복 금지.</td></tr><tr><td>401 / 403</td><td>AUTH_REQUIRED, OWNER_MISMATCH</td><td>인증 또는 권한 확인. 숨은 경로를 추측해 우회하지 않음.</td></tr><tr><td>409</td><td>HEAD_CHANGED, POLICY_CHANGED, IDEMPOTENCY_CONFLICT</td><td>최신 head·정책을 다시 읽고 diff와 preview 재생성.</td></tr><tr><td>410</td><td>LEASE_EXPIRED, ARTIFACT_REVOKED</td><td>이전 탭은 재개 금지. 사용자가 최신 화면으로 이동.</td></tr><tr><td>202</td><td>JOB_ACCEPTED</td><td>jobId로 진행·실패·완료를 조회. 완료로 표시하지 않음.</td></tr><tr><td>503 / 시간 초과</td><td>REGISTRY_UNAVAILABLE, LOCK_TIMEOUT</td><td>같은 idempotency key로 제한적 재시도. 신규 lease 승인 실패 시 화면 시작 보류.</td></tr></tbody></table></div><p>오류 본문은 <code>code, message, requestId, blockers[]</code>를 제공하고, 보류 사유에 소비자 경로·현재 revision을 포함합니다. 인증 토큰, 전환 ticket 원문, 저장소 임시 자격 증명은 관리 목록·로그·MF 매니페스트에 담지 않습니다.</p></section>
+<section id="browser" aria-labelledby="browser-title"><div class="section-head"><span class="section-number">07</span><h2 id="browser-title">브라우저 부팅·캐시·구형 스키마</h2></div><p><code>/registry.json</code> 같은 진입 API는 DB head를 한 번 읽고 그 compositionId에 해당하는 전체 스냅샷을 돌려줍니다. HTML에서 선택한 Shell과 이후 가져올 조합 JSON도 같은 ID를 사용해야 합니다. 각각의 최신 값을 따로 읽으면 전환 순간에 서로 다른 조합이 섞일 수 있습니다.</p><ol><li>새 진입: 플랫폼이 현재 head를 읽어 선택한 Shell HTML과 고정된 manifest URL을 연결합니다.</li><li>Shell 시작: 탭 사용 기한을 발급받고 조합을 고정한 뒤 SDK·서비스를 불러옵니다.</li><li>지연 로딩: C를 나중에 열더라도 같은 조합의 C→B→D를 사용합니다. 개별 버전을 DB에서 다시 선택하지 않습니다.</li><li>조합 변경: 새 진입에만 적용합니다. 기존 탭은 사용 기한을 갱신하며 처음 조합을 유지합니다.</li></ol><p>불변 JSON과 배포 파일은 CDN 캐시 대상으로 삼을 수 있지만, 현재 head·사용 기한·정책 API는 별도의 캐시 규칙이 필요합니다. DB/API 장애 때 신규 탭에 오래된 조합을 무조건 제공하는 fallback은 종료·삭제 정책을 우회할 수 있으므로, 유효한 사용 기한 발급과 허용 상태를 확인하지 못하면 시작을 보류합니다. 기존 탭은 기존 기한 내에서만 계속 동작합니다.</p><div class="code-block"><div class="code-top"><span>부팅 API 응답 제안 — DB 내부 구조를 노출하지 않음</span><button class="copy" type="button">복사</button></div><pre><code class="language-json">{
+  &quot;environment&quot;: &quot;production&quot;,
+  &quot;revision&quot;: 43,
+  &quot;compositionId&quot;: &quot;composition_0123456789abcdef01234567&quot;,
+  &quot;shellEntry&quot;: &quot;/artifacts/shell_1_0_0_111111111111/shell.js&quot;,
+  &quot;manifestUrl&quot;: &quot;/compositions/composition_0123456789abcdef01234567.json&quot;,
+  &quot;manifestSchemaVersion&quot;: 1
+}</code></pre></div><div class="table-scroll"><table><thead><tr><th>대상</th><th>권장 전달 방식</th><th>주의점</th></tr></thead><tbody><tr><td>환경 head / boot</td><td>권한 확인 후 신선한 head 조회. no-store 또는 정책에 맞는 명시적 재검증</td><td>복제 지연이 있는 읽기 노드를 무조건 사용하면 종료·롤백 직후 오래된 선택이 나올 수 있음.</td></tr><tr><td>불변 조합 JSON·배포 파일</td><td>compositionId/artifactId 기반 URL로 캐시</td><td>순수 정적 파일과 접근 통제 정책의 캐시를 구별. 종료 정책을 우회하는 공개 origin을 남기지 않음.</td></tr><tr><td>사용 기한 발급·갱신</td><td>권한·상태 검사 가능한 운영 API, no-store</td><td>CDN의 과거 성공 응답으로 lease를 연장하지 않음.</td></tr><tr><td>구형 Shell의 스키마</td><td>기존 필드 형태를 유지하거나 지원되는 schemaVersion으로 변환</td><td>읽을 수 없는 스키마를 조용히 최신으로 해석하지 않음. 지원하지 못하면 명확히 시작 거절.</td></tr></tbody></table></div><p>매니페스트에 schemaVersion을 추가해도 기존 소비자가 자동 대응하지는 않습니다. 먼저 구·신 형식을 읽는 API 어댑터/호스트를 배포하고, 구형 탭의 유지 기간 동안 예전 스냅샷 경로를 보존한 뒤 새 형식을 발행하는 순서가 필요합니다. 저장소 DB 이관과 런타임 계약 변경을 한 번에 묶지 않는 안을 권합니다.</p></section>
+<section id="lifecycle" aria-labelledby="lifecycle-title"><div class="section-head"><span class="section-number">08</span><h2 id="lifecycle-title">사용 추적·지원 종료·실제 삭제</h2></div><p>버전 사용은 호환 범위 선언과 구별합니다. <strong>현재 환경의 실제 그래프, 열려 있는 탭의 전체 조합, 보관된 롤백 조합, 삭제되지 않은 고정 소비자</strong>를 각각 조회합니다. 아직 로드하지 않은 위젯도 해당 탭이 나중에 불러올 수 있으므로 전체 조합이 보호 대상입니다.</p><div class="table-scroll"><table><thead><tr><th>상태 축</th><th>값 예시</th><th>의미</th></tr></thead><tbody><tr><td>발행 상태</td><td>pending / verifying / ready / failed</td><td>파일·매니페스트 준비 여부.</td></tr><tr><td>지원 상태</td><td>미정 / 예정 / 종료 — 날짜에서 계산</td><td>종료 후 신규 경로 선택 차단. 현재의 정확히 같은 경로 유지 예외는 별도 검사.</td></tr><tr><td>등록 상태</td><td>registered / unregistered</td><td>신규 선택 목록에 남길지. 등록 해제만으로 파일을 삭제하지 않음.</td></tr><tr><td>접근 상태</td><td>serving / revoking / revoked</td><td>S3/CDN 실제 파일 제공 종료의 진행 여부. 요청 시각과 적용 확인 시각을 분리.</td></tr><tr><td>파일 상태</td><td>present / deleting / deleted</td><td>저장소 바이트 삭제 진행. 메타데이터 tombstone은 계속 보존.</td></tr></tbody></table></div><ol><li>지원 종료 계획과 대체 버전·공지 대상을 기록합니다. 현재·롤백·고정 소비자의 담당 팀과 구형 탭 현황을 표시합니다.</li><li>종료일 이후 새 소비 경로·재도입·롤백을 막습니다. 기존 경로 유지 규칙은 환경별 직전 조합과 비교합니다.</li><li>공지 유예와 현재 미사용 조건을 충족하면 등록 해제합니다. 과거 탭·롤백 보호는 남습니다.</li><li>롤백 보관 해제, 보호 탭 만료 후 정리, 구형 탭 전환 또는 버전 접근 종료를 각각 처리합니다. 구형 탭은 시간이 지났다는 이유만으로 자동 해제하지 않습니다.</li><li>최종 삭제 직전 모든 환경·탭·롤백·고정 참조, 관측 기간·보존 기간, 외부 사용 확인을 다시 검사합니다. 통과하면 file_state=deleting과 삭제 job을 같은 트랜잭션에 기록합니다.</li><li>작업자가 실제 파일 삭제를 완료한 뒤 deleted를 기록합니다. 부분 실패는 deleting에 남아 재시도합니다. 새 참조·새 사용 기한은 deleting 배포물을 채택하지 못합니다.</li></ol><div class="table-scroll"><table><thead><tr><th>현재 로컬 정책을 DB에서 유지할 기준</th><th>값 / 해석</th></tr></thead><tbody><tr><td>지원 종료일</td><td>Asia/Seoul의 지정 날짜 끝까지 지원. DB는 date와 평가 시간대를 함께 알고, 비교 시 서버 기준 시각을 사용.</td></tr><tr><td>공지 유예 / 관측 기간 / 보존 기간</td><td>각 30일. 공지 기산점과 정책 변경 revision을 고정해 감사 가능하게 기록.</td></tr><tr><td>일반 사용 보고</td><td>15초마다 보고, 120초 미응답은 확인 불가 표시. 미사용 또는 삭제 허가를 뜻하지 않음.</td></tr><tr><td>보호 탭 lease</td><td>5분 사용 기한. 만료 후 재개를 막고, 24시간 유예 뒤 명시적 참조 정리.</td></tr><tr><td>구형 탭 접근 종료</td><td>실제 파일 경로 차단 확인 이후 24시간 유예, 선택한 버전 참조만 정리. 다른 참조는 유지.</td></tr><tr><td>삭제 보존 시작</td><td>지원 종료, 공지 유예 종료, 등록 해제, 마지막 관측·탭 정리, 접근 종료 등의 가장 늦은 보호 시점을 기준으로 최소 30일.</td></tr></tbody></table></div><details><summary>삭제 검사와 heartbeat가 교차할 때의 잠금 규칙</summary><div class="details-body"><p>초기 구현은 정확성을 우선해 모든 관련 쓰기 연산에 아래 순서를 공통 적용하는 안입니다.</p><ul><li><strong>잠금 순서:</strong> 환경 head(필요한 경우, 환경 ID순) → 조합 보관 정책(조합 ID순) → 배포 정책(배포 ID순) → 탭/참조 행. 잠근 뒤 새롭게 발견한 선행 범위가 있으면 그 트랜잭션을 되돌리고 다시 시작합니다.</li><li>활성화·고정 참조 발행·새 lease·갱신·탭 해제·구형 탭 지연 보고·삭제가 해당 배포 정책 행의 공통 잠금 경로에 참여해야 합니다. 한 경로라도 우회하면 “참조 0 검사 뒤 새 참조 추가” 경쟁이 생깁니다.</li><li>삭제 작업은 배포 정책 행을 잠근 후 읽기 기준 시점의 최신 보호 참조를 다시 조회하고 deleting으로 전환합니다. DB FK만으로는 deleting 대상에 새 참조가 생기는 것을 막지 못합니다.</li><li>이 단순 배타 잠금 방식은 공유 SDK의 heartbeat 경합을 키울 수 있습니다. 실제 부하에서 검증한 뒤 compatible read/admission 잠금과 exclusive retirement 잠금을 구분하거나 갱신 처리를 최적화합니다. 고성능 처리가 이미 검증됐다는 뜻은 아닙니다.</li><li>잠금 시간 제한·교착·직렬화 실패에는 트랜잭션 전체를 제한적으로 재시도합니다. 재시도 사이 S3 업로드나 공지를 다시 수행하지 않도록 outbox와 멱등 키를 사용합니다.</li></ul></div></details><details><summary>사용 현황 조회의 개념</summary><div class="details-body"><div class="code-block"><div class="code-top"><span>현재 환경에서 이 버전을 참조하는 조합 찾기 — 설계 예시</span><button class="copy" type="button">복사</button></div><pre><code class="language-sql">SELECT h.environment_id, h.composition_id
+FROM environment_heads h
+JOIN composition_members m ON m.composition_id = h.composition_id
+WHERE m.artifact_id = :artifact_id;
+-- 이것은 현재 사용 조회일 뿐 삭제 허용 쿼리가 아닙니다.
+-- 탭·보관 조합·고정 참조·보존 기간을 별도로 함께 검사해야 합니다.</code></pre></div><p>사용 경로는 snapshot의 고정 의존, runtimeBindings, 공통 SDK 암묵 연결을 모두 펼쳐 A→B→D 형태로 보여줍니다. composition_members의 단순 개수만으로 경로 예외를 판정하지 않습니다.</p></div></details><p>새 lease는 sessionId에 compositionId를 고정하며, 갱신은 증가하는 sequence와 서버 시각을 검사합니다. 만료·종료·정리된 sessionId는 늦은 보고로 부활시키지 않습니다. 구형 탭의 버전별 해제는 tab_artifact_refs의 tombstone을 유지하고 그 탭의 다른 artifact 참조는 계속 갱신합니다.</p></section>
+<section id="storage" aria-labelledby="storage-title"><div class="section-head"><span class="section-number">09</span><h2 id="storage-title">S3·작업자·장애 복구</h2></div><div class="table-scroll"><table><thead><tr><th>실패 지점</th><th>처리 방식</th></tr></thead><tbody><tr><td>파일 업로드 성공, DB 등록 실패</td><td>활성화하지 않은 임시/미참조 배포물로 남김. 업로드 요청 ID로 재시도하거나 별도 유예 후 정리.</td></tr><tr><td>DB 메타데이터만 있고 파일 업로드 미완료</td><td>release를 pending 상태로 유지. ready 전에는 조합 선택 후보에서 제외.</td></tr><tr><td>조합 스냅샷 발행 성공, head 갱신 충돌</td><td>새 스냅샷은 미사용 상태로 보존. 다른 관리자의 선택을 덮어쓰지 않음.</td></tr><tr><td>DB에서 삭제 요청 기록 후 S3 삭제 실패</td><td>deleting 상태와 작업을 남기고 재시도. 완료 전 deleted로 표시하지 않음.</td></tr><tr><td>파일 삭제 성공, 완료 기록 실패</td><td>동일 작업 ID로 재시도해 이미 없는 파일도 성공으로 취급. 배포 ID tombstone을 남겨 재등록 방지.</td></tr><tr><td>공지 전송 실패</td><td>정책 저장과 전송 작업을 분리. 전송 대상·성공/실패·재시도 기록. 공지 유예 시작 기준을 “저장” 또는 “전달 확인” 중 운영 정책으로 명시.</td></tr></tbody></table></div><p>S3는 객체의 PUT/DELETE에 강한 일관성을 제공하지만, 여러 키를 묶은 원자적 갱신을 제공하지 않습니다. DB와 S3를 하나의 원자적 트랜잭션으로 취급하지 말고 위 상태 전이와 재시도를 설계해야 합니다. <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/Welcome.html#ConsistencyModel">S3 일관성 공식 문서</a></p><p>등록 해제와 실제 파일 삭제는 DB를 도입해도 계속 분리합니다. 현재 조합·유효 탭·구형 탭 처리·롤백·고정 참조·보존 기간 검사를 통과한 후 삭제 작업을 생성합니다. S3/CDN 접근 종료는 실제 제공 경로에도 적용해야 하며 DB 상태만 바꿔 이미 전달된 JavaScript를 회수할 수는 없습니다.</p><details><summary>Outbox 작업의 구체적인 처리 계약</summary><div class="details-body"><div class="table-scroll"><table><thead><tr><th>필드/상황</th><th>규칙</th></tr></thead><tbody><tr><td>dedupe_key</td><td>작업 종류 + artifact/composition ID + 작업 세대. 동일 작업을 중복 예약하지 않음.</td></tr><tr><td>pending → running</td><td>짧은 트랜잭션으로 작업을 선점하고 locked_until과 attempt 증가. 네트워크 작업은 잠금을 놓고 실행.</td></tr><tr><td>running → succeeded</td><td>작업 세대·선점 토큰이 여전히 자신의 것인지 확인해 완료 기록. 오래된 작업자가 새 작업 결과를 덮어쓰지 않음.</td></tr><tr><td>작업자 중단</td><td>locked_until 만료 후 다른 작업자가 재시도. 같은 외부 동작이 반복될 수 있음.</td></tr><tr><td>재시도</td><td>지수 지연·상한·jitter, 최대 시도 후 운영자 확인 대기. 자동으로 성공 처리하지 않음.</td></tr><tr><td>삭제 취소</td><td>deleting 이후 자동 재활성화 금지. 이미 부분 삭제됐을 수 있으므로 복구 절차를 별도 정의. 새 ID 발행이 기본 경로.</td></tr></tbody></table></div></div></details><p>S3와 CDN에서 접근 종료를 어떻게 집행할지도 정해야 합니다. <code>access_revoked_at</code> DB 값만 설정하고 정적 origin을 계속 공개하면 접근 종료가 성립하지 않습니다. origin 직접 접근을 제한하고 정책 게이트/짧은 유효 접근 권한 등 적용 방식을 정한 후, 새 요청 차단이 실제 제공 경로에서 확인된 시각을 기록합니다.</p><p>작업 상태·객체 목록·해시는 DB 백업과 함께 복구 대상입니다. 백업 복원 후에는 실제 파일 존재·스냅샷 준비 상태를 재확인하고, 오래된 head만 복원해 삭제된 배포물을 다시 활성화하지 않습니다. 오래된 lease를 그대로 유효하게 되살리지 않는 복구 세대(epoch) 또는 전체 재승인 절차도 필요합니다.</p></section>
+<section id="dev" aria-labelledby="dev-title"><div class="section-head"><span class="section-number">10</span><h2 id="dev-title">개발 키트·환경별 선택</h2></div><p>현재 개발용 Host는 서비스 폴더의 <code>dev/manifest.json</code>과 <code>dev/remotes/</code>를 읽습니다. 이는 플랫폼이 발행한 SDK·업무 모듈의 <strong>개발용 고정 스냅샷</strong>이며 npm SDK 소스가 아닙니다. 브라우저는 실제 remoteEntry.js를 HTTP로 요청하고 MF container를 초기화합니다.</p><p>DB 도입 후에는 플랫폼의 “개발 키트 생성” API가 개발 환경 head 또는 지정한 조합을 읽고, 같은 형식의 매니페스트·파일 목록·체크섬을 내보내면 됩니다. 서비스 개발자는 키트를 받아 자기 프로젝트에서만 실행합니다. 현재 이 API와 원격 다운로드 명령은 구현하지 않았으며, <code>integration/tools/prepare-dev.cjs</code>가 로컬 발행 저장소에서 같은 역할을 합니다.</p><p>개발 키트는 호환성 검사와 재현을 위해 버전을 고정합니다. 항상 latest를 따라가게 하지 않습니다. 의도적으로 새 키트를 받아 SDK·의존 모듈 변경을 확인합니다. 오프라인 복사본은 제품 서버의 탭 관측·원격 접근 종료 대상에 포함되지 않으므로, 개발용 재현 자료의 보존·폐기 정책은 별도로 관리합니다.</p><div class="table-scroll"><table><thead><tr><th>요청</th><th>플랫폼 처리</th><th>서비스 팀의 결과</th></tr></thead><tbody><tr><td>개발 환경의 현재 조합에서 A만 개발</td><td>dev head를 한 번 읽어 A를 로컬 대체할 위치로 정함. SDK와 B/D 전이 의존성은 고정.</td><td>A의 소스 + dev/manifest.json + 필요한 remote 파일만 받음.</td></tr><tr><td>버그 재현용 과거 조합 지정</td><td>지정 composition의 파일 보존·접근 권한을 확인. 재현 전용 허용 정책을 명시.</td><td>항상 같은 SDK/B/D로 재현. 운영의 신규 선택 규칙을 자동으로 우회하지 않음.</td></tr><tr><td>새 SDK를 시험하고 싶음</td><td>dev 후보 조합을 별도로 검사·발행해 키트를 생성. production head는 변경하지 않음.</td><td>기존 서비스 소스 그대로 SDK 호환성 테스트.</td></tr><tr><td>키트 다운로드 중 실패</td><td>불변 키트 ID와 파일별 해시로 재개/재시도. 모든 파일 검증 뒤 로컬 manifest를 교체.</td><td>절반만 내려받은 상태가 현재 개발 키트가 되지 않음.</td></tr></tbody></table></div><p>개발 키트 manifest에는 제품 운영 API의 자격 증명을 넣지 않습니다. mock 사용자 정보와 실제 로그인 토큰은 구별하며, 오프라인 키트의 사용량은 제품 탭의 보호 lease로 계산하지 않습니다.</p></section>
+<section id="operations" aria-labelledby="operations-title"><div class="section-head"><span class="section-number">11</span><h2 id="operations-title">권한·공지·관측 운영</h2></div><div class="table-scroll"><table><thead><tr><th>권한</th><th>가능한 작업</th><th>통제 지점</th></tr></thead><tbody><tr><td>service publisher</td><td>자기 service의 새 배포 등록·검증 조회</td><td>다른 팀 artifact 덮어쓰기·환경 head 변경 금지.</td></tr><tr><td>environment operator</td><td>허용 환경의 조합 검사·활성화·롤백</td><td>팀별 발행 권한과 별개. 운영 환경의 승인 정책은 이 권한에 적용.</td></tr><tr><td>retirement operator</td><td>공지 계획·등록 해제·접근 종료·삭제 요청</td><td>삭제 확인 ID·사유·revision·관측 밖 사용 확인을 서버가 검사.</td></tr><tr><td>runtime client</td><td>자기 탭의 조합 조회·lease 발급/갱신</td><td>관리 API 권한 없음. sessionId를 안다는 사실만으로 타인의 탭을 종료하지 못하게 바인딩.</td></tr><tr><td>job worker</td><td>할당된 저장소·공지 작업 실행</td><td>제한된 prefix/자격 증명, 작업 유형별 권한.</td></tr></tbody></table></div><p>서비스 팀이 공지를 잊는 문제는 계획 저장과 전송을 분리해 자동화합니다. 지원 종료 계획을 저장한 트랜잭션에서 notice campaign과 outbox를 만들고, 담당 팀·현재 소비 팀·고정 소비자의 연락 경로를 당시 기준으로 남깁니다. 이후 새 소비자가 생겼을 때의 추가 통지 규칙도 필요합니다.</p><div class="table-scroll"><table><thead><tr><th>알림 단계</th><th>예시 정책 — 도입 전 확정할 값</th></tr></thead><tbody><tr><td>계획 생성</td><td>종료일·대체 버전·현재 소비 경로를 담당 팀에 전송.</td></tr><tr><td>기간 알림</td><td>예: D-30 / D-14 / D-7에 반복. 실제 횟수·전송 채널은 조직 정책으로 확정.</td></tr><tr><td>전송 실패</td><td>자동 재시도 후 운영자 큐에 올림. 전달 확인이 안 된 계획을 공지 완료로 표시하지 않음.</td></tr><tr><td>기산점</td><td>현 로컬의 noticeRecordedAt과 DB 버전의 notice_accepted_at 차이를 명시. 권장안은 요구된 전달 조건 충족 시점을 사용하고, 예외 승인에는 근거를 남김.</td></tr><tr><td>삭제 예정</td><td>기술적 조건 충족과 별도로 영향·관측 범위를 보여 주는 삭제 검토 알림. 자동 파일 삭제는 별도 정책 승인 없이는 도입하지 않음.</td></tr></tbody></table></div><p>운영 지표는 head 충돌률, 미완료 발행, outbox 지연·재시도, lease 갱신 실패, 확인 불가 탭 수, 종료 예정 버전의 잔여 경로, 접근 종료 적용 지연, 삭제 미완료를 봅니다. 감사 기록에는 요청자·요청 ID·이전/다음 조합·변경 이유·검사 결과를 남기고 토큰 원문은 남기지 않습니다.</p><p>DB 장애 때는 신규 활성화·새 lease·삭제 허가를 보류합니다. 기존 탭은 현재 기한 안에서만 실행하고 갱신하지 못하면 기존 보호 규칙대로 잠깁니다. 쓰기 경로가 파일 저장소로 자동 우회하는 이중 기준은 만들지 않습니다.</p></section>
+<section id="migration" aria-labelledby="migration-title"><div class="section-head"><span class="section-number">12</span><h2 id="migration-title">현재 코드에서 DB로 이관하는 단계</h2></div><p>현재는 <code>store.cjs</code>, lifecycle, retirement, legacy가 JSON 파일 저장에 결합되어 있습니다. 인터페이스를 분리하고 기존 행위를 그대로 검증한 뒤 저장 기준을 옮기는 순서가 필요합니다.</p><div class="table-scroll"><table><thead><tr><th>현재 입력/기능</th><th>DB 버전의 대응</th><th>보존할 내용</th></tr></thead><tbody><tr><td>catalog.json + artifacts/*/release.json</td><td>releases·release_files·declared_dependencies·publication</td><td>artifact_id, MF container/entry, 실제 바이트·해시, 고정 의존.</td></tr><tr><td>compositions/*.json + .html</td><td>compositions·roots·bindings·members, 객체 스냅샷</td><td>기존 ID·원본 바이트·모든 전이 연결. 새 해시 규칙으로 옛 ID 재발행 금지.</td></tr><tr><td>current.json / admin.json</td><td>제품 환경 head / 관리 앱 별도 head</td><td>관리 화면은 제품 롤백과 독립.</td></tr><tr><td>usage.json</td><td>tab_leases·tab_artifact_refs·transition_requests</td><td>sequence·기한·종료/해제 tombstone·구형 전환 확인·버전별 legacyReleases.</td></tr><tr><td>lifecycle.json / composition-retirement.json</td><td>release_policies·composition_retirements</td><td>날짜·기산점·revision·접근/삭제 상태·롤백 보관 해제.</td></tr><tr><td>store.publish / preview / activate / rollback</td><td>등록부 서비스 + DB repository + artifact storage 어댑터</td><td>미리 검사와 쓰기 분리, ID/범위/순환 검사, 원자적 head 전환.</td></tr><tr><td>prepare-dev.cjs</td><td>키트 생성 API/worker</td><td>현재 개발용 manifest 형식·파일 해시·제품 조합과 분리.</td></tr></tbody></table></div><ol><li><strong>분리:</strong> 저장 인터페이스를 정의하되 파일 기반 구현으로 기존 145개 검증의 행위를 유지합니다. 현재 개수는 기준이며 DB 검증을 통과한 숫자가 아닙니다.</li><li><strong>적재:</strong> 불변 release/composition을 먼저 이관하고 파일 해시·건수·의존 그래프를 대조합니다. 실패한 발행·삭제 중간 상태도 정상으로 둔갑시키지 않습니다.</li><li><strong>그림자 조회:</strong> 쓰기는 기존 저장소 한 곳에만 유지하고 DB 조회 결과와 비교합니다. 비교용 복제 경로를 운영 판단의 기준으로 사용하지 않습니다.</li><li><strong>최종 동기화:</strong> 관리 변경과 사용 기한 기록의 쓰기 경로를 통제한 짧은 전환 구간에서 최종 상태를 이관합니다. 기존 탭의 갱신 경로·현재 기한을 먼저 보호해야 하며, 허용 시간을 넘으면 안전하게 잠기고 재진입하도록 처리합니다.</li><li><strong>단일 쓰기 전환:</strong> 운영 API·lease·job worker를 함께 DB 기준으로 전환합니다. 일부 API만 JSON에 쓰는 상태를 남기지 않습니다. origin·CDN 제공 경로도 이 상태를 참조하게 합니다.</li><li><strong>관찰:</strong> 활성 조합·기한 갱신·삭제 차단 결과를 대조합니다. 기존 정적 파일과 스냅샷은 검증·보존 기간 동안 남깁니다.</li></ol><details><summary>이관을 되돌릴 때의 조건</summary><div class="details-body"><p>DB에 새 쓰기가 발생하기 전에는 이전 읽기 경로로 돌아갈 수 있습니다. DB에서 새로운 활성화·lease·정리 기록이 발생한 뒤에는 오래된 JSON 포인터로 단순 복귀하면 안 됩니다.</p><ul><li>쓰기 중지 또는 통제 후 DB의 최신 head·lease·정리 tombstone·정책을 파일 형식으로 다시 내보내 검증해야 합니다.</li><li>역변환이 준비되지 않았다면 DB 운영 상태를 유지한 채 API 코드만 이전 호환 버전으로 되돌리는 복구를 우선합니다.</li><li>실제 삭제된 파일이나 무효화된 사용 기한은 DB 롤백만으로 되살리지 않습니다. 파일 복구와 사용자 재진입은 별도 절차입니다.</li></ul></div></details><div class="statement"><p>새 최상위 서비스를 DB에 등록하는 것과 Shell에 메뉴·라우트를 추가하는 것은 별개입니다. 현재 A/C를 아는 Shell을 범용 카탈로그로 바꾸는 작업까지 DB 이관에 포함된 것으로 간주하지 않습니다.</p></div></section>
+<section id="verification" aria-labelledby="verification-title"><div class="section-head"><span class="section-number">13</span><h2 id="verification-title">DB 구현 후 통과해야 할 검증</h2></div><p>이번 작업은 문서 보강입니다. 아래는 <strong>향후 DB 구현의 완료 기준</strong>이며 현재 PostgreSQL/S3를 대상으로 실행한 테스트 결과가 아닙니다. 기존 로컬 145개 검사는 DB의 동시성·외부 저장소 장애를 증명하지 않습니다.</p><div class="table-scroll"><table><thead><tr><th>시나리오</th><th>기대 결과</th></tr></thead><tbody><tr><td>같은 요청 두 번 발행 / 같은 ID 다른 파일</td><td>중복은 한 결과, 내용 충돌은 거절, 활성 head 불변.</td></tr><tr><td>A→B1→D1와 C→B2→D2</td><td>정확한 연결이 DB·snapshot·브라우저 요청에서 모두 같음. SDK 하나와 React 공유 유지.</td></tr><tr><td>두 관리자 동시 적용 / X→Y→X ABA</td><td>한 요청만 승리, 오래된 revision 거절, 이벤트 중복 없음.</td></tr><tr><td>preview 뒤 지원 종료 / 파일 접근 종료</td><td>적용 전 다시 검사해 거절. 준비된 스냅샷이 자동 활성화되지 않음.</td></tr><tr><td>종료 버전의 동일 경로 유지 / 새 경로 재도입</td><td>기존 예외만 허용, 새로운 조상·소비자·롤백 경로는 거절.</td></tr><tr><td>삭제 검사와 새 lease·고정 소비자 등록 경합</td><td>동일 잠금 경로가 경쟁을 직렬화. 삭제 또는 신규 보호 중 하나만 유효하게 성립.</td></tr><tr><td>lease 만료·지연 heartbeat·구형 버전별 정리</td><td>정리 기록 부활 없음, 같은 탭의 다른 참조 유지.</td></tr><tr><td>S3 업로드 성공 후 DB 실패 / DB 성공 후 응답 유실</td><td>pending 또는 미사용 상태 유지, 동일 요청 재시도 안전.</td></tr><tr><td>삭제 도중 작업자 중단 / 완료 기록 유실</td><td>deleting 유지, 멱등 재시도, 완료 전 deleted 표시 금지.</td></tr><tr><td>공지 전송 실패 / 같은 작업 두 번 실행</td><td>대상·이력 유지, 중복 영향 제한, 완료되지 않은 공지 유예 기산 금지.</td></tr><tr><td>head 전환 순간 새 탭 / 구형 스키마 탭</td><td>HTML·Shell·manifest가 같은 조합. 오래된 탭은 같은 ID로 지연 로딩.</td></tr><tr><td>DB 장애·복제 지연·백업 복원</td><td>오래된 상태로 신규 사용·삭제 승인하지 않음. 복구 후 파일·정책·lease 세대 검증.</td></tr><tr><td>다수 탭의 15초 갱신</td><td>SDK 공통 행 경합, 잠금 대기, 트랜잭션 재시도, DB 부하·보호 지연을 측정. 목표치는 실제 규모로 확정.</td></tr><tr><td>이관 전후 비교·역이관 연습</td><td>사용 경로·보류 사유·tombstone이 일치하고 단일 쓰기 기준 유지.</td></tr></tbody></table></div><p>검증은 API 응답만 보지 않고 DB 행·S3 파일·실제 브라우저의 MF 요청을 함께 확인합니다. 시각 이동·프로세스 중단·네트워크 실패·중복 작업을 주입하되 운영 파일은 별도 테스트 저장소로 격리합니다.</p></section>
+<section id="references" aria-labelledby="references-title"><div class="section-head"><span class="section-number">14</span><h2 id="references-title">근거와 설계 결정의 범위</h2></div><p>아래 공식 자료는 기술 동작의 근거입니다. 테이블명·API 경로·처리 순서·팀별 정책은 이 프로젝트에 맞춘 설계 제안입니다.</p><div class="table-scroll"><table><thead><tr><th>자료</th><th>이 설계에서 참고한 범위</th></tr></thead><tbody><tr><td><a href="https://webpack.js.org/concepts/module-federation/#dynamic-remote-containers">Webpack: Dynamic Remote Containers</a></td><td>container get/init과 런타임 로딩. DB 매니페스트는 이 인터페이스에 필요한 선택을 전달.</td></tr><tr><td><a href="https://www.postgresql.org/docs/current/ddl-constraints.html">PostgreSQL: Constraints</a></td><td>PK·FK·UNIQUE·CHECK가 담당하는 관계와 제약.</td></tr><tr><td><a href="https://www.postgresql.org/docs/current/explicit-locking.html">PostgreSQL: Explicit Locking</a></td><td>행 잠금과 경쟁 처리. 단순 “DB 저장”만으로 동시성 문제가 해결되지 않음.</td></tr><tr><td><a href="https://www.postgresql.org/docs/current/transaction-iso.html">PostgreSQL: Transaction Isolation</a></td><td>트랜잭션 가시성·직렬화와 재시도 설계.</td></tr><tr><td><a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/Welcome.html#ConsistencyModel">Amazon S3: Data consistency model</a></td><td>객체 일관성과 여러 키 사이 원자적 갱신의 한계.</td></tr></tbody></table></div><p>남은 구현 결정은 운영 DB 제품·버전, S3/CDN 접근 종료 방식, 실제 사용자/팀 인증, 공지 전송 채널과 전달 완료 기준, 데이터 보존·백업 목표, 탭 규모에 맞는 잠금 최적화입니다. 현재 로컬 코드의 정책을 바꾸는 결정은 별도 revision과 변경 근거를 남겨야 합니다.</p><p><a href="../docs/mfe-project-handbook.html">프로젝트 개발 안내서</a> · <a href="../docs/mfe-platform-versioning-guide.html">현재 구현·버전 운영 설명서</a></p></section><footer>2026. 11. 08 · 현재 프로젝트의 동작을 기준으로 작성한 DB 전환 설계안입니다. DB 구현·SQL 실행·S3 연동 검증 완료를 의미하지 않습니다.</footer></main></div><div class="copy-status" role="status" aria-live="polite"></div><script>
+const openedForPrint=[];
+function expandForPrint(){for(const d of document.querySelectorAll('details'))if(!d.open){d.open=true;openedForPrint.push(d);}}
+window.addEventListener('beforeprint',expandForPrint);
+window.addEventListener('afterprint',()=>{for(const d of openedForPrint.splice(0))d.open=false;});
+document.getElementById('print').addEventListener('click',()=>{expandForPrint();window.print();});
+for(const b of document.querySelectorAll('.copy'))b.addEventListener('click',async()=>{try{await navigator.clipboard.writeText(b.closest('.code-block').querySelector('code').textContent);b.textContent='복사됨';document.querySelector('.copy-status').textContent='예시를 복사했습니다.';setTimeout(()=>b.textContent='복사',1500);}catch{b.textContent='직접 선택해 복사';}});
+const links=[...document.querySelectorAll('nav a')];
+const observer=new IntersectionObserver(entries=>{for(const entry of entries)if(entry.isIntersecting)for(const link of links){if(link.hash==='#'+entry.target.id)link.setAttribute('aria-current','location');else link.removeAttribute('aria-current');}},{rootMargin:'-8% 0px -70% 0px'});
+for(const section of document.querySelectorAll('main > section'))observer.observe(section);
+</script></body></html>

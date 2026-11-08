@@ -1,0 +1,78 @@
+[
+  {
+    "id": "01-coexistence",
+    "exitCode": 0
+  },
+  {
+    "id": "02-runtime-sdk",
+    "exitCode": 0
+  },
+  {
+    "id": "03-runtime-b",
+    "exitCode": 0
+  },
+  {
+    "id": "04-runtime-d",
+    "exitCode": 0
+  },
+  {
+    "id": "05-composition-admin",
+    "exitCode": 0
+  },
+  {
+    "id": "06-usage-support",
+    "exitCode": 0
+  },
+  {
+    "id": "08-tab-leases",
+    "exitCode": 0
+  },
+  {
+    "id": "07-retirement",
+    "exitCode": 0
+  },
+  {
+    "id": "11-service-onboarding",
+    "exitCode": 0
+  },
+  {
+    "id": "12-nested-graph",
+    "exitCode": 0
+  },
+  {
+    "id": "09-legacy-transition",
+    "exitCode": 0
+  },
+  {
+    "id": "13-error-isolation",
+    "exitCode": 0
+  },
+  {
+    "id": "14-region-retry",
+    "exitCode": 0
+  },
+  {
+    "id": "15-transitive-retry",
+    "exitCode": 0
+  },
+  {
+    "id": "10-service-dev-host",
+    "exitCode": 0
+  },
+  {
+    "id": "16-sdk-remote-region",
+    "exitCode": 0
+  },
+  {
+    "id": "18-dynamic-menus",
+    "exitCode": 0
+  },
+  {
+    "id": "19-dashboard-widgets",
+    "exitCode": 0
+  },
+  {
+    "id": "17-sdk-retry-upgrade",
+    "exitCode": 0
+  }
+]

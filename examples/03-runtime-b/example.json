@@ -1,0 +1,51 @@
+{
+  "schemaVersion": 1,
+  "revision": "1.0.0",
+  "id": "03-runtime-b",
+  "number": 3,
+  "title": "소비자별 B 런타임 선택",
+  "description": "A의 B 1.4 → 1.5, C의 B 2.1 → 2.2를 각각 교체. A·C 재빌드 없음.",
+  "port": 4503,
+  "projects": [
+    "platform-build-tools",
+    "platform-sdk",
+    "service-d-v1",
+    "service-d-v2",
+    "service-b-v1",
+    "service-b-v2",
+    "service-c",
+    "service-a",
+    "shell",
+    "service-b-v1-next",
+    "service-b-v2-next"
+  ],
+  "buildOrder": [
+    "platform-sdk",
+    "service-d-v1",
+    "service-d-v2",
+    "service-b-v1",
+    "service-b-v2",
+    "service-b-v1-next",
+    "service-b-v2-next",
+    "service-c",
+    "service-a",
+    "shell"
+  ],
+  "specialTest": null,
+  "variants": {
+    "service-b-v1-next": [
+      "service-b-v1",
+      "1.5.0"
+    ],
+    "service-b-v2-next": [
+      "service-b-v2",
+      "2.2.0"
+    ]
+  },
+  "provenance": "현재 작업본과 보존된 소스맵을 바탕으로 분리한 교육용 스냅샷. 과거 각 시점 전체 저장소의 원본 복원이 아님.",
+  "excluded": [
+    "사용자별 구독",
+    "DB 구현",
+    "실서비스 인증·S3 배포"
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "id": "platform_1_4_0_837cf2de56e4",
+  "name": "mf_platform_1_4_0_837cf2de56e4",
+  "service": "platform",
+  "version": "1.4.0",
+  "entry": "/artifacts/platform_1_4_0_837cf2de56e4/remoteEntry.js",
+  "dependencies": {},
+  "runtimeRequirements": {
+    "react": "19.3.1",
+    "react-dom": "19.3.1"
+  },
+  "runtimeDependencies": {},
+  "kind": "remote"
+}

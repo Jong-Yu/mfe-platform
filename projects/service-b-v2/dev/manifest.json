@@ -1,0 +1,53 @@
+{
+  "schemaVersion": 1,
+  "platform": "platform_1_2_0_11681bf2b051",
+  "artifacts": {
+    "platform_1_2_0_11681bf2b051": {
+      "id": "platform_1_2_0_11681bf2b051",
+      "name": "mf_platform_1_2_0_11681bf2b051",
+      "service": "platform",
+      "version": "1.2.0",
+      "entry": "/artifacts/platform_1_2_0_11681bf2b051/remoteEntry.js",
+      "dependencies": {},
+      "runtimeRequirements": {
+        "react": "19.3.1",
+        "react-dom": "19.3.1"
+      },
+      "runtimeDependencies": {},
+      "kind": "remote"
+    },
+    "d_2_1_0_26a11234ca4f": {
+      "id": "d_2_1_0_26a11234ca4f",
+      "name": "mf_d_2_1_0_26a11234ca4f",
+      "service": "d",
+      "version": "2.1.0",
+      "entry": "/artifacts/d_2_1_0_26a11234ca4f/remoteEntry.js",
+      "dependencies": {},
+      "runtimeRequirements": {},
+      "runtimeDependencies": {},
+      "kind": "remote"
+    }
+  },
+  "runtimeBindings": {},
+  "localBindings": {
+    "d": "d_2_1_0_26a11234ca4f"
+  },
+  "files": {
+    "platform_1_2_0_11681bf2b051": {
+      "release.json": "8688eeaf0de2aafb8b0d122e11345e307acb91b3c01b6661385c01a82b6ad4d0",
+      "remoteEntry.js": "8380be279f36b9f31cdbcea59631d6ad70f284d968538137a47c229aaba86ed1",
+      "remoteEntry.js.map": "6463cf5bc8bb96d04c90b8ba1ead6afc79cbefd280e290031b8907284db69833",
+      "src_sdk_jsx.417d6a946906e3a74913.js": "9b43cc9c4119cc7140e762bf1a2da598c527c061af32bf65bf1727e9892c1450",
+      "src_sdk_jsx.417d6a946906e3a74913.js.map": "99df08e47cc723a9b1c1bf8aca6bf4643e995b9a1044fa2d6360abab811fcc29",
+      "vendors-node_modules_react_index_js.7ac5078087998dbfdb10.js": "dface5bb8815f826a81cf52f9df432a7f96cbda4cee376645129745ff70fd806",
+      "vendors-node_modules_react_index_js.7ac5078087998dbfdb10.js.map": "9dfe59db071c6a7127b728970af89cc3adbf669ed28cd178f7f1b3d27c77cf6c"
+    },
+    "d_2_1_0_26a11234ca4f": {
+      "release.json": "b3077677cd38fb0b0b954b420702b9157229ed3f57489f8c485cd7b9119b77e8",
+      "remoteEntry.js": "bd0ea9eff40353af7e807b277489def6826e1d0df0e3db8ccd4161fe9625f825",
+      "remoteEntry.js.map": "1551fb4689ee94711d8a6a6c9392164cd7a8050d4c23e310c7eb9ee54f18dae0",
+      "src_index_js.923312edab5bfa2926e4.js": "014a66183f3867c88b9283e91c2362eafbd2b8f017f2aaeb8495bf384466e075",
+      "src_index_js.923312edab5bfa2926e4.js.map": "de355f5107d5686e00e64851fa470aa090d9a17c8fef062d23f5269d54dac6d0"
+    }
+  }
+}

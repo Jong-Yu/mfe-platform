@@ -1,0 +1,101 @@
+{
+  "status": "passed",
+  "startedAt": "2026-11-08T12:00:06.848Z",
+  "scope": "Isolated UI service copies with offline npm installs and published MF dev kits; no product host or remote service processes required.",
+  "checks": [
+    {
+      "name": "four service repositories install offline without sibling sources",
+      "status": "passed",
+      "durationMs": 2977
+    },
+    {
+      "name": "A, C, B 1.x and B 2.x each boot alone with actual MF SDK and dependencies",
+      "status": "passed",
+      "durationMs": 5374,
+      "detail": [
+        {
+          "name": "service-a",
+          "local": "a_1_0_0_088dd82d0c55",
+          "sdk": "platform_1_3_1_a208cb489e0e",
+          "containers": [
+            "platform_1_3_1_a208cb489e0e",
+            "a_1_0_0_088dd82d0c55",
+            "b_1_4_0_bbf5e421fdcc",
+            "d_1_0_0_efd88575af01"
+          ]
+        },
+        {
+          "name": "service-c",
+          "local": "c_1_0_0_6f13fcf126c2",
+          "sdk": "platform_1_3_1_a208cb489e0e",
+          "containers": [
+            "platform_1_3_1_a208cb489e0e",
+            "c_1_0_0_6f13fcf126c2",
+            "b_2_1_0_23aa13a1e7d1",
+            "d_2_0_0_765af7c70368"
+          ]
+        },
+        {
+          "name": "service-b-v1",
+          "local": "b_1_4_0_bbf5e421fdcc",
+          "sdk": "platform_1_3_1_a208cb489e0e",
+          "containers": [
+            "platform_1_3_1_a208cb489e0e",
+            "b_1_4_0_bbf5e421fdcc",
+            "d_1_0_0_efd88575af01"
+          ]
+        },
+        {
+          "name": "service-b-v2",
+          "local": "b_2_1_0_23aa13a1e7d1",
+          "sdk": "platform_1_3_1_a208cb489e0e",
+          "containers": [
+            "platform_1_3_1_a208cb489e0e",
+            "b_2_1_0_23aa13a1e7d1",
+            "d_2_0_0_765af7c70368"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "SDK mock user/theme, duplicated state/cache/portal and unmount cleanup",
+      "status": "passed",
+      "durationMs": 283
+    },
+    {
+      "name": "source saving rebuilds only the local service and reloads the browser",
+      "status": "passed",
+      "durationMs": 797
+    },
+    {
+      "name": "compile errors preserve the last working screen and recover on the next save",
+      "status": "passed",
+      "durationMs": 1089
+    },
+    {
+      "name": "service code can import PageContainer from the same MF SDK",
+      "status": "passed",
+      "durationMs": 800
+    },
+    {
+      "name": "development manifest rejects incompatible SDK/React, missing targets and cycles",
+      "status": "passed",
+      "durationMs": 9
+    },
+    {
+      "name": "missing or tampered remote bytes are rejected; private project files are not served",
+      "status": "passed",
+      "durationMs": 7
+    },
+    {
+      "name": "mobile layout, page landmarks and production output exclusion",
+      "status": "passed",
+      "durationMs": 970
+    },
+    {
+      "name": "original service projects and active production composition remain unchanged",
+      "status": "passed",
+      "durationMs": 8
+    }
+  ]
+}

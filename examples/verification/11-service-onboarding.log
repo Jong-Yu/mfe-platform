@@ -1,0 +1,10 @@
+
+added 4 packages in 234ms
+PASS frozen sources, configuration, packages and deployment bytes: 296 files
+PASS 자체 저장소에서 Shell·SDK를 MF로 로드
+PASS B 1.4와 B 2.1의 상태·CSS·공통 React 격리
+PASS 독립 E 프로젝트 배포가 고정 Shell 슬롯에서 동작
+PASS 프로젝트 하나 복사·수정·단독 개발·재빌드·배포·Shell 연결
+PASS 예제 밖 요청·예상하지 않은 브라우저 예외 없음
+PASS 서비스 소스·번들·초기 설정을 변경하지 않음
+11-service-onboarding: passed 6/6

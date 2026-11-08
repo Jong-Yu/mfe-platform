@@ -1,0 +1,12 @@
+
+added 4 packages in 240ms
+PASS frozen sources, configuration, packages and deployment bytes: 299 files
+PASS 자체 저장소에서 Shell·SDK를 MF로 로드
+PASS B 1.4와 B 2.1의 상태·CSS·공통 React 격리
+PASS service-c 실제 503 오류 격리·새로고침 없는 복구
+PASS service-b-v2 실제 503 오류 격리·새로고침 없는 복구
+PASS service-d-v2 실제 503 오류 격리·새로고침 없는 복구
+PASS SDK 1.3.0과 1.3.1의 재시도 횟수 차이·기존 탭 유지
+PASS 예제 밖 요청·예상하지 않은 브라우저 예외 없음
+PASS 서비스 소스·번들·초기 설정을 변경하지 않음
+17-sdk-retry-upgrade: passed 8/8

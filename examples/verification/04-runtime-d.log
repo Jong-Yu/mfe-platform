@@ -1,0 +1,10 @@
+
+added 4 packages in 290ms
+PASS frozen sources, configuration, packages and deployment bytes: 297 files
+PASS 자체 저장소에서 Shell·SDK를 MF로 로드
+PASS B 1.4와 B 2.1의 상태·CSS·공통 React 격리
+PASS 소비자 재빌드 없이 버전 교체·기존 탭 유지·롤백
+PASS A 경로만·C 경로만 각각 버전 교체
+PASS 예제 밖 요청·예상하지 않은 브라우저 예외 없음
+PASS 서비스 소스·번들·초기 설정을 변경하지 않음
+04-runtime-d: passed 6/6

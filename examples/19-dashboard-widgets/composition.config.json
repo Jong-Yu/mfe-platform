@@ -1,0 +1,66 @@
+{
+  "base": {
+    "platform": "platform-sdk",
+    "shell": "shell",
+    "A": "service-a",
+    "C": "service-c",
+    "dashboard": []
+  },
+  "edges": {
+    "service-a": {
+      "b": "service-b-v1"
+    },
+    "service-c": {
+      "b": "service-b-v2"
+    },
+    "service-b-v1": {
+      "d": "service-d-v1"
+    },
+    "service-b-v2": {
+      "d": "service-d-v2"
+    }
+  },
+  "fixed": {},
+  "profiles": {
+    "baseline": {},
+    "dashboard": {
+      "dashboard": [
+        {
+          "id": "b14",
+          "title": "B 1.4",
+          "project": "service-b-v1",
+          "widgetId": "car-picker",
+          "span": 1
+        },
+        {
+          "id": "b14-copy",
+          "title": "B 1.4 복제",
+          "project": "service-b-v1",
+          "widgetId": "car-picker",
+          "span": 1
+        },
+        {
+          "id": "b21",
+          "title": "B 2.1",
+          "project": "service-b-v2",
+          "widgetId": "car-picker",
+          "span": 2
+        },
+        {
+          "id": "summary",
+          "title": "차량 요약",
+          "project": "service-b-v2",
+          "widgetId": "summary",
+          "span": 2
+        },
+        {
+          "id": "notifications",
+          "title": "알림",
+          "project": "service-e",
+          "widgetId": "notifications",
+          "span": 2
+        }
+      ]
+    }
+  }
+}

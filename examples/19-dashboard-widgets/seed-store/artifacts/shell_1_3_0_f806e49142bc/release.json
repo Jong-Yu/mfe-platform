@@ -1,0 +1,19 @@
+{
+  "id": "shell_1_3_0_f806e49142bc",
+  "name": "mf_shell_1_3_0_f806e49142bc",
+  "service": "shell",
+  "version": "1.3.0",
+  "entry": "/artifacts/shell_1_3_0_f806e49142bc/shell.js",
+  "dependencies": {},
+  "runtimeRequirements": {
+    "platform": ">=1.3.0 <2.0.0",
+    "react": "19.3.1",
+    "react-dom": "19.3.1"
+  },
+  "runtimeDependencies": {},
+  "kind": "shell",
+  "retryProtocol": "failed-modules-v2",
+  "exposedModules": [],
+  "navigationProtocol": "registered-menu-v1",
+  "dashboardProtocol": "registered-dashboard-v1"
+}

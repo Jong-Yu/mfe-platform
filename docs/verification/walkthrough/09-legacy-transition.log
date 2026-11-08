@@ -1,0 +1,36 @@
+
+added 4 packages, and audited 5 packages in 195ms
+
+found 0 vulnerabilities
+
+> mfe-example-09-legacy-transition@1.0.0 start
+> node run.cjs start
+
+MF proof: http://127.0.0.1:4509
+
+> mfe-example-09-legacy-transition@1.0.0 test
+> node run.cjs test
+
+PASS 자체 저장소에서 Shell·SDK를 MF로 로드
+PASS B 1.4와 B 2.1의 상태·CSS·공통 React 격리
+PASS 예제 밖 요청·예상하지 않은 브라우저 예외 없음
+PASS 서비스 소스·번들·초기 설정을 변경하지 않음
+09-legacy-transition: passed 4/4
+PASS reconstructed pre-lease Shell and frozen response-ignoring telemetry run before any bridge exists
+PASS UI installs a same-origin bridge that controls an already-open unchanged legacy tab
+PASS transition commands require confirmation, current evidence and a same-origin administrator request
+PASS UI transition navigates the original tab and releases references only after a new document confirms
+PASS failed confirmation never pretends a transition completed; retry is idempotent
+PASS a browser without the bridge remains pending and no acknowledgement means no release
+PASS current usage, protected tabs, recent legacy tabs and rollback references prevent access termination
+PASS access termination rechecks new heartbeats and retains protection for fixed consumers
+PASS UI access termination preserves bytes but consistently denies all paths to this artifact
+PASS legacy reference cleanup requires a fence and grace period and only releases the selected artifact
+PASS late legacy responses preserve tombstones and do not restart the selected artifact retention forever
+PASS after explicit reference cleanup and retention, actual removal keeps the access fence
+PASS a denied script request independently triggers bridge navigation without a telemetry heartbeat
+PASS a returning unchanged legacy tab is moved out of old code by the bridge after cleanup
+PASS a bridge-free returning browser is denied retired files and can manually reload to the latest composition
+PASS transition and per-artifact retirement records persist across restart and remain usable on mobile
+PASS all original service projects and the live store remain unchanged
+Legacy transition verification passed: 17/17

@@ -1,0 +1,11 @@
+const fs = require('node:fs');
+const path = require('node:path');
+const latest = path.join(__dirname, '../artifacts/remote-region-sdk-upgrade/latest.json');
+if (!fs.existsSync(latest)) throw new Error('먼저 npm run test:region-sdk를 실행해 SDK 교체 검증 조합을 준비하세요.');
+const { directory } = JSON.parse(fs.readFileSync(latest, 'utf8'));
+const { baseline, upgraded } = JSON.parse(fs.readFileSync(path.join(directory, 'scenario.json'), 'utf8'));
+process.env.MFE_ARTIFACT_STORE = path.join(directory, 'store');
+process.env.PORT ||= '4175';
+console.log(`SDK ${upgraded.platformVersion}: http://127.0.0.1:${process.env.PORT}/?empty=1`);
+console.log(`이전 SDK ${baseline.platformVersion}: http://127.0.0.1:${process.env.PORT}/compositions/${baseline.compositionId}.html?empty=1`);
+require('./serve.cjs');

@@ -1,0 +1,6 @@
+{
+  "manifest": "dev/manifest.json", "module": "./Widget",
+  "title": "알림 서비스 E", "description": "새 서비스 팀의 독립 개발 예제",
+  "user": { "id": "developer-e", "name": "E 개발자" },
+  "theme": "light", "pageContainer": false
+}

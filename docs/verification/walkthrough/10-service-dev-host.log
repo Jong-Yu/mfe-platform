@@ -1,0 +1,137 @@
+
+added 4 packages, and audited 5 packages in 205ms
+
+found 0 vulnerabilities
+
+> mfe-example-10-service-dev-host@1.0.0 start
+> node run.cjs start
+
+MF proof: http://127.0.0.1:4510
+
+added 124 packages, and audited 125 packages in 642ms
+
+20 packages are looking for funding
+  run `npm fund` for details
+
+found 0 vulnerabilities
+
+> @mfe/service-a@1.0.0 dev
+> mfe-dev
+
+Built a@1.0.0: a_1_0_0_e146549d8c29
+Release metadata: /private/var/folders/jv/7byd7qdd7lnc0trccnv0_2v00000gn/T/mfe-reader-9pf4tH/mfe/examples/10-service-dev-host/projects/service-a/.mfe-dev/builds/a_1_0_0_e146549d8c29/release.json
+Dev ready: a_1_0_0_e146549d8c29 / SDK 1.3.1
+Service Dev Host: http://127.0.0.1:4201/
+Built a@1.0.0: a_1_0_0_088dd82d0c55
+Release metadata: /private/var/folders/jv/7byd7qdd7lnc0trccnv0_2v00000gn/T/mfe-reader-9pf4tH/mfe/examples/10-service-dev-host/projects/service-a/.mfe-dev/builds/a_1_0_0_088dd82d0c55/release.json
+Dev ready: a_1_0_0_088dd82d0c55 / SDK 1.3.1
+
+> mfe-example-10-service-dev-host@1.0.0 prepare:dev
+> node run.cjs prepare:dev
+
+Prepared service-a: SDK 1.3.1, 3 MF artifacts. No service build or production selection change.
+Prepared service-c: SDK 1.3.1, 3 MF artifacts. No service build or production selection change.
+Prepared service-b-v1: SDK 1.3.1, 2 MF artifacts. No service build or production selection change.
+Prepared service-b-v2: SDK 1.3.1, 2 MF artifacts. No service build or production selection change.
+
+> mfe-example-10-service-dev-host@1.0.0 test
+> node run.cjs test
+
+PASS 자체 저장소에서 Shell·SDK를 MF로 로드
+PASS B 1.4와 B 2.1의 상태·CSS·공통 React 격리
+PASS 예제 밖 요청·예상하지 않은 브라우저 예외 없음
+PASS 서비스 소스·번들·초기 설정을 변경하지 않음
+10-service-dev-host: passed 4/4
+PASS four service repositories install offline without sibling sources
+PASS A, C, B 1.x and B 2.x each boot alone with actual MF SDK and dependencies
+PASS SDK mock user/theme, duplicated state/cache/portal and unmount cleanup
+PASS source saving rebuilds only the local service and reloads the browser
+PASS compile errors preserve the last working screen and recover on the next save
+PASS service code can import PageContainer from the same MF SDK
+PASS development manifest rejects incompatible SDK/React, missing targets and cycles
+PASS missing or tampered remote bytes are rejected; private project files are not served
+PASS mobile layout, page landmarks and production output exclusion
+PASS original service projects and active production composition remain unchanged
+
+added 4 packages, and audited 5 packages in 518ms
+
+found 0 vulnerabilities
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.2
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.2
+npm notice To update run: npm install -g npm@12.2.2
+npm notice
+
+> mfe-example-10-service-dev-host@1.0.0 start
+> node run.cjs start
+
+MF proof: http://127.0.0.1:4510
+
+added 124 packages, and audited 125 packages in 854ms
+
+20 packages are looking for funding
+  run `npm fund` for details
+
+found 0 vulnerabilities
+
+> @mfe/service-a@1.0.0 dev
+> mfe-dev
+
+Built a@1.0.0: a_1_0_0_e146549d8c29
+Release metadata: /private/var/folders/jv/7byd7qdd7lnc0trccnv0_2v00000gn/T/mfe-reader-I0CyG7/mfe/examples/10-service-dev-host/projects/service-a/.mfe-dev/builds/a_1_0_0_e146549d8c29/release.json
+Dev ready: a_1_0_0_e146549d8c29 / SDK 1.3.1
+Service Dev Host: http://127.0.0.1:4201/
+Built a@1.0.0: a_1_0_0_088dd82d0c55
+Release metadata: /private/var/folders/jv/7byd7qdd7lnc0trccnv0_2v00000gn/T/mfe-reader-I0CyG7/mfe/examples/10-service-dev-host/projects/service-a/.mfe-dev/builds/a_1_0_0_088dd82d0c55/release.json
+Dev ready: a_1_0_0_088dd82d0c55 / SDK 1.3.1
+
+> mfe-example-10-service-dev-host@1.0.0 prepare:dev
+> node run.cjs prepare:dev
+
+Prepared service-a: SDK 1.3.1, 3 MF artifacts. No service build or production selection change.
+Prepared service-c: SDK 1.3.1, 3 MF artifacts. No service build or production selection change.
+Prepared service-b-v1: SDK 1.3.1, 2 MF artifacts. No service build or production selection change.
+Prepared service-b-v2: SDK 1.3.1, 2 MF artifacts. No service build or production selection change.
+
+> mfe-example-10-service-dev-host@1.0.0 setup
+> node run.cjs setup
+
+
+added 4 packages in 209ms
+
+added 120 packages in 607ms
+
+added 124 packages in 644ms
+
+added 121 packages in 608ms
+
+added 121 packages in 656ms
+
+added 124 packages in 784ms
+
+added 124 packages in 704ms
+
+added 124 packages in 653ms
+
+added 124 packages in 939ms
+
+added 124 packages in 734ms
+
+> mfe-example-10-service-dev-host@1.0.0 test
+> node run.cjs test
+
+PASS 자체 저장소에서 Shell·SDK를 MF로 로드
+PASS B 1.4와 B 2.1의 상태·CSS·공통 React 격리
+PASS 예제 밖 요청·예상하지 않은 브라우저 예외 없음
+PASS 서비스 소스·번들·초기 설정을 변경하지 않음
+10-service-dev-host: passed 4/4
+PASS four service repositories install offline without sibling sources
+PASS A, C, B 1.x and B 2.x each boot alone with actual MF SDK and dependencies
+PASS SDK mock user/theme, duplicated state/cache/portal and unmount cleanup
+PASS source saving rebuilds only the local service and reloads the browser
+PASS compile errors preserve the last working screen and recover on the next save
+PASS service code can import PageContainer from the same MF SDK
+PASS development manifest rejects incompatible SDK/React, missing targets and cycles
+PASS missing or tampered remote bytes are rejected; private project files are not served
+PASS mobile layout, page landmarks and production output exclusion
+PASS original service projects and active production composition remain unchanged

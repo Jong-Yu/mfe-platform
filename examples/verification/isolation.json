@@ -1,0 +1,182 @@
+{
+  "status": "passed",
+  "originalExamplesUnchanged": true,
+  "examples": [
+    {
+      "id": "01-coexistence",
+      "copiedOutsideWorkspace": true,
+      "status": "passed",
+      "checks": [
+        "copied source/config/artifact hashes match",
+        "own server and full browser tests pass after relocation"
+      ]
+    },
+    {
+      "id": "02-runtime-sdk",
+      "copiedOutsideWorkspace": true,
+      "status": "passed",
+      "checks": [
+        "copied source/config/artifact hashes match",
+        "own server and full browser tests pass after relocation",
+        "full source rebuild reproduces pinned files and composition"
+      ]
+    },
+    {
+      "id": "03-runtime-b",
+      "copiedOutsideWorkspace": true,
+      "status": "passed",
+      "checks": [
+        "copied source/config/artifact hashes match",
+        "own server and full browser tests pass after relocation"
+      ]
+    },
+    {
+      "id": "04-runtime-d",
+      "copiedOutsideWorkspace": true,
+      "status": "passed",
+      "checks": [
+        "copied source/config/artifact hashes match",
+        "own server and full browser tests pass after relocation"
+      ]
+    },
+    {
+      "id": "05-composition-admin",
+      "copiedOutsideWorkspace": true,
+      "status": "passed",
+      "checks": [
+        "copied source/config/artifact hashes match",
+        "own server and full browser tests pass after relocation"
+      ]
+    },
+    {
+      "id": "06-usage-support",
+      "copiedOutsideWorkspace": true,
+      "status": "passed",
+      "checks": [
+        "copied source/config/artifact hashes match",
+        "own server and full browser tests pass after relocation"
+      ]
+    },
+    {
+      "id": "07-retirement",
+      "copiedOutsideWorkspace": true,
+      "status": "passed",
+      "checks": [
+        "copied source/config/artifact hashes match",
+        "own server and full browser tests pass after relocation"
+      ]
+    },
+    {
+      "id": "08-tab-leases",
+      "copiedOutsideWorkspace": true,
+      "status": "passed",
+      "checks": [
+        "copied source/config/artifact hashes match",
+        "own server and full browser tests pass after relocation"
+      ]
+    },
+    {
+      "id": "09-legacy-transition",
+      "copiedOutsideWorkspace": true,
+      "status": "passed",
+      "checks": [
+        "copied source/config/artifact hashes match",
+        "own server and full browser tests pass after relocation"
+      ]
+    },
+    {
+      "id": "10-service-dev-host",
+      "copiedOutsideWorkspace": true,
+      "status": "passed",
+      "checks": [
+        "copied source/config/artifact hashes match",
+        "own server and full browser tests pass after relocation"
+      ]
+    },
+    {
+      "id": "11-service-onboarding",
+      "copiedOutsideWorkspace": true,
+      "status": "passed",
+      "checks": [
+        "copied source/config/artifact hashes match",
+        "own server and full browser tests pass after relocation"
+      ]
+    },
+    {
+      "id": "12-nested-graph",
+      "copiedOutsideWorkspace": true,
+      "status": "passed",
+      "checks": [
+        "copied source/config/artifact hashes match",
+        "own server and full browser tests pass after relocation"
+      ]
+    },
+    {
+      "id": "13-error-isolation",
+      "copiedOutsideWorkspace": true,
+      "status": "passed",
+      "checks": [
+        "copied source/config/artifact hashes match",
+        "own server and full browser tests pass after relocation"
+      ]
+    },
+    {
+      "id": "14-region-retry",
+      "copiedOutsideWorkspace": true,
+      "status": "passed",
+      "checks": [
+        "copied source/config/artifact hashes match",
+        "own server and full browser tests pass after relocation"
+      ]
+    },
+    {
+      "id": "15-transitive-retry",
+      "copiedOutsideWorkspace": true,
+      "status": "passed",
+      "checks": [
+        "copied source/config/artifact hashes match",
+        "own server and full browser tests pass after relocation",
+        "full source rebuild reproduces pinned files and composition",
+        "edited A rebuilt and executed in relocated project"
+      ]
+    },
+    {
+      "id": "16-sdk-remote-region",
+      "copiedOutsideWorkspace": true,
+      "status": "passed",
+      "checks": [
+        "copied source/config/artifact hashes match",
+        "own server and full browser tests pass after relocation"
+      ]
+    },
+    {
+      "id": "17-sdk-retry-upgrade",
+      "copiedOutsideWorkspace": true,
+      "status": "passed",
+      "checks": [
+        "copied source/config/artifact hashes match",
+        "own server and full browser tests pass after relocation"
+      ]
+    },
+    {
+      "id": "18-dynamic-menus",
+      "copiedOutsideWorkspace": true,
+      "status": "passed",
+      "checks": [
+        "copied source/config/artifact hashes match",
+        "own server and full browser tests pass after relocation"
+      ]
+    },
+    {
+      "id": "19-dashboard-widgets",
+      "copiedOutsideWorkspace": true,
+      "status": "passed",
+      "checks": [
+        "copied source/config/artifact hashes match",
+        "own server and full browser tests pass after relocation",
+        "full source rebuild reproduces pinned files and composition"
+      ]
+    }
+  ],
+  "scope": "All 19 complete example folders moved outside workspace with own npm install and full tests. Full source rebuild in 02/15/19; source edit and browser execution in 15. No outer source imports or prior test reports."
+}

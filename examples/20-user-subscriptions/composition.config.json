@@ -1,0 +1,54 @@
+{
+  "base": {
+    "platform": "platform-sdk",
+    "shell": "shell",
+    "A": "service-a",
+    "C": "service-c",
+    "dashboard": [],
+    "service-b-v1": "service-b-v1-next",
+    "service-d-v1": "service-d-v1-next"
+  },
+  "edges": {
+    "service-a": {
+      "b": "service-b-v1"
+    },
+    "service-c": {
+      "b": "service-b-v2"
+    },
+    "service-b-v1": {
+      "d": "service-d-v1"
+    },
+    "service-b-v2": {
+      "d": "service-d-v2"
+    }
+  },
+  "fixed": {},
+  "profiles": {
+    "baseline": {},
+    "previous": {
+      "service-b-v1": "service-b-v1",
+      "service-d-v1": "service-d-v1"
+    }
+  },
+  "subscriptionProfiles": [
+    {
+      "profile": "baseline",
+      "label": "현재 운영 · A의 B 1.5 / D 1.1"
+    },
+    {
+      "profile": "previous",
+      "label": "이전 운영 · A의 B 1.4 / D 1.0"
+    }
+  ],
+  "subscriptionWidgetBindings": {
+    "service-b-v1": {
+      "d": "service-d-v1"
+    },
+    "service-b-v1-next": {
+      "d": "service-d-v1-next"
+    },
+    "service-b-v2": {
+      "d": "service-d-v2"
+    }
+  }
+}

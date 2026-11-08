@@ -1,0 +1,10 @@
+[
+  { "project": "platform-sdk", "dependencies": {} },
+  { "project": "service-d-v1", "dependencies": {} },
+  { "project": "service-d-v2", "dependencies": {} },
+  { "project": "service-b-v1", "dependencies": { "platform": "platform-sdk", "d": "service-d-v1" }, "runtime": { "d": ">=1.0.0 <2.0.0" } },
+  { "project": "service-b-v2", "dependencies": { "platform": "platform-sdk", "d": "service-d-v2" }, "runtime": { "d": ">=2.0.0 <3.0.0" } },
+  { "project": "service-a", "dependencies": { "b": "service-b-v1" }, "runtime": { "b": ">=1.4.0 <2.0.0" } },
+  { "project": "service-c", "dependencies": { "b": "service-b-v2" }, "runtime": { "b": ">=2.1.0 <3.0.0" } },
+  { "project": "shell", "dependencies": { "platform": "platform-sdk" } }
+]

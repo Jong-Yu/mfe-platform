@@ -1,0 +1,27 @@
+
+added 4 packages in 201ms
+PASS frozen sources, configuration, packages and deployment bytes: 434 files
+PASS 자체 저장소에서 Shell·SDK를 MF로 로드
+PASS B 1.4와 B 2.1의 상태·CSS·공통 React 격리
+PASS 예제 밖 요청·예상하지 않은 브라우저 예외 없음
+PASS 서비스 소스·번들·초기 설정을 변경하지 않음
+07-retirement: passed 4/4
+PASS a real existing tab uses the target release before its support period ends
+PASS ending support disables selection but preserves unchanged current paths and the existing tab
+PASS expired SDK/B selections and new indirect paths to expired D are rejected
+PASS switching away blocks reselection through stale apply, CLI and rollback while the old tab still runs
+PASS notice grace, request confirmation and same-origin controls are enforced before unregistration
+PASS UI unregistration removes the choice while leaving all artifact files and tab/rollback references intact
+PASS immediate deletion is blocked by post-unregistration retention, a live tab and rollback references
+PASS explicit rollback-retention release preserves snapshot evidence but blocks rollback and direct HTML boot
+PASS missing heartbeat remains a deletion blocker even after rollback retention and date conditions are cleared
+PASS confirmed tab closure releases its reference but restarts the quiet retention period
+PASS a published fixed consumer prevents deletion until its own stored files have been removed
+PASS deletion requires the exact release confirmation, external-use acknowledgement and current revision
+PASS a newly reported old tab after preparing deletion is caught by the server at commit time
+PASS explicit UI file deletion removes bytes only after all references and retention conditions clear
+PASS a symlink substitution cannot redirect file deletion outside the selected artifact directory
+PASS an interrupted deletion is recorded as incomplete and can resume without falsely reporting success
+PASS retirement and deletion records survive restart and render on mobile without overflow
+PASS all original projects and the live artifact repository remain unchanged
+Retirement verification passed: 18/18

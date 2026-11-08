@@ -1,0 +1,38 @@
+{
+  "schemaVersion": 1,
+  "revision": "1.0.0",
+  "id": "14-region-retry",
+  "number": 14,
+  "title": "C 영역만 다시 시도",
+  "description": "서비스 A가 가진 지역 로더에서 실패 캐시를 정리하고 재시도. 직접 B의 입력·카운터 보존.",
+  "port": 4514,
+  "projects": [
+    "platform-build-tools",
+    "platform-sdk",
+    "service-d-v1",
+    "service-d-v2",
+    "service-b-v1",
+    "service-b-v2",
+    "service-c",
+    "service-a",
+    "shell"
+  ],
+  "buildOrder": [
+    "platform-sdk",
+    "service-d-v1",
+    "service-d-v2",
+    "service-b-v1",
+    "service-b-v2",
+    "service-c",
+    "service-a",
+    "shell"
+  ],
+  "specialTest": null,
+  "variants": {},
+  "provenance": "현재 작업본과 보존된 소스맵을 바탕으로 분리한 교육용 스냅샷. 과거 각 시점 전체 저장소의 원본 복원이 아님.",
+  "excluded": [
+    "사용자별 구독",
+    "DB 구현",
+    "실서비스 인증·S3 배포"
+  ]
+}

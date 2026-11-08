@@ -1,0 +1,86 @@
+{
+  "status": "passed",
+  "checks": [
+    {
+      "name": "reconstructed pre-lease Shell and frozen response-ignoring telemetry run before any bridge exists",
+      "status": "passed"
+    },
+    {
+      "name": "UI installs a same-origin bridge that controls an already-open unchanged legacy tab",
+      "status": "passed"
+    },
+    {
+      "name": "transition commands require confirmation, current evidence and a same-origin administrator request",
+      "status": "passed"
+    },
+    {
+      "name": "UI transition navigates the original tab and releases references only after a new document confirms",
+      "status": "passed"
+    },
+    {
+      "name": "failed confirmation never pretends a transition completed; retry is idempotent",
+      "status": "passed"
+    },
+    {
+      "name": "a browser without the bridge remains pending and no acknowledgement means no release",
+      "status": "passed"
+    },
+    {
+      "name": "current usage, protected tabs, recent legacy tabs and rollback references prevent access termination",
+      "status": "passed"
+    },
+    {
+      "name": "access termination rechecks new heartbeats and retains protection for fixed consumers",
+      "status": "passed"
+    },
+    {
+      "name": "UI access termination preserves bytes but consistently denies all paths to this artifact",
+      "status": "passed"
+    },
+    {
+      "name": "legacy reference cleanup requires a fence and grace period and only releases the selected artifact",
+      "status": "passed"
+    },
+    {
+      "name": "late legacy responses preserve tombstones and do not restart the selected artifact retention forever",
+      "status": "passed"
+    },
+    {
+      "name": "after explicit reference cleanup and retention, actual removal keeps the access fence",
+      "status": "passed"
+    },
+    {
+      "name": "a denied script request independently triggers bridge navigation without a telemetry heartbeat",
+      "status": "passed"
+    },
+    {
+      "name": "a returning unchanged legacy tab is moved out of old code by the bridge after cleanup",
+      "status": "passed"
+    },
+    {
+      "name": "a bridge-free returning browser is denied retired files and can manually reload to the latest composition",
+      "status": "passed"
+    },
+    {
+      "name": "transition and per-artifact retirement records persist across restart and remain usable on mobile",
+      "status": "passed"
+    },
+    {
+      "name": "all original service projects and the live store remain unchanged",
+      "status": "passed"
+    }
+  ],
+  "startedAt": "2026-11-08T11:54:31.976Z",
+  "consumerBuildsExecuted": 0,
+  "pageErrors": [],
+  "scope": "Reconstructed pre-lease Shell and frozen original telemetry in real browsers; retrofit transition bridge, navigation acknowledgement, per-artifact access fence and reference cleanup. Disposable storage only; elapsed dates are seeded in metadata.",
+  "browserVersion": "156.0.8078.80",
+  "historicalShell": "shell_1_0_0_d2100e305573",
+  "telemetryHash": "cf7f7ce7065fc4ef15da5b250901ef516611ca55d7e2decfe6a656d9262faa25",
+  "frozenClient": "Chrome Page.setWebLifecycleState",
+  "deletedArtifact": "d_1_1_0_209d19a1ee10",
+  "forcedTestServerStops": 1,
+  "liveStoreUnchanged": true,
+  "passedChecks": 17,
+  "finishedAt": "2026-11-08T11:54:47.054Z"
+}

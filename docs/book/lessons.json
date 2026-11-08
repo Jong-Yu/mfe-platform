@@ -1,0 +1,293 @@
+[
+  {
+    "n": 1,
+    "goal": "별도 빌드의 두 B가 한 문서에서 상태를 섞지 않고 실행되는지 확인합니다.",
+    "before": "1~3장. A/C가 소비자이고 B가 제공자라는 관계를 이해합니다.",
+    "steps": [
+      "4501을 열고 A와 C의 B 버전 표시를 비교합니다.",
+      "각 B의 카운터·입력·캐시·팝업을 따로 조작합니다.",
+      "위젯을 복제하거나 제거하며 다른 인스턴스가 그대로인지 확인합니다."
+    ],
+    "expected": "B 1.4와 2.1이 동시에 표시되고 각 인스턴스의 상태가 독립적입니다. 이 단계의 B/D 선택은 빌드에 고정되어 있습니다.",
+    "question": "MF인데 왜 B 선택을 바꾸려면 소비자를 다시 빌드하나요?",
+    "answer": "코드를 가져오는 기술은 MF지만, 어떤 배포물을 가져올지는 소비자 빌드에 고정했기 때문입니다. 중앙 런타임 선택은 03번부터 추가됩니다.",
+    "read": "service-a/src/index.jsx → service-b-v1/src/Widget.jsx → platform-sdk/src/sdk.jsx"
+  },
+  {
+    "n": 2,
+    "goal": "서비스 파일을 그대로 둔 채 SDK 선택만 바꿉니다.",
+    "before": "4장. 발행·선택·기존 탭의 차이를 이해합니다.",
+    "steps": [
+      "4502에서 기존 탭을 열고 입력·카운터를 바꿉니다.",
+      "같은 예제 폴더의 두 번째 터미널에서 npm run select -- upgraded를 실행합니다.",
+      "새 탭을 열어 SDK 1.4.0을 확인하고, 기존 탭의 1.3.1 및 상태와 비교합니다.",
+      "npm run select -- baseline으로 되돌리고 다시 새 탭을 엽니다."
+    ],
+    "expected": "선택 중 소비자 빌드는 없고, 탭마다 시작할 때의 SDK를 유지합니다. 17번의 재시도 정책 변경과는 다른 SDK 교체 실습입니다.",
+    "question": "SDK를 발행만 하고 선택하지 않았다면 새 탭은 무엇을 쓰나요?",
+    "answer": "기존 조합의 SDK를 씁니다. 발행은 후보 파일을 준비하는 과정이고 선택이 새 진입의 동작을 바꿉니다.",
+    "read": "composition.config.json의 platform → shell/src → 두 SDK의 src"
+  },
+  {
+    "n": 3,
+    "goal": "A와 C가 사용할 B를 각각 고릅니다.",
+    "before": "4~5장. 소비자 배포 ID + 별칭으로 연결한다는 규칙입니다.",
+    "steps": [
+      "4503을 열고 A의 B 1.4, C의 B 2.1을 확인합니다.",
+      "npm run select -- a-only 후 새 탭에서 A만 B 1.5로 바뀌는지 봅니다.",
+      "npm run select -- c-only 후 새 탭에서 C만 B 2.2로 바뀌는지 봅니다.",
+      "npm run select -- upgraded로 두 새 B를 선택합니다."
+    ],
+    "expected": "각 프로필은 baseline에 대한 완성된 선택입니다. a-only 다음 c-only가 누적되는 것이 아닙니다. A/C 재빌드 없이 B를 바꿉니다.",
+    "question": "C가 B 2.2로 바뀌면 A도 B 2.2를 써야 하나요?",
+    "answer": "아닙니다. A.b와 C.b가 별도 연결이며 각 소비자의 지원 범위 안에서 선택합니다.",
+    "read": "service-a/mf.dependencies.json → service-c/mf.dependencies.json → composition.config.json"
+  },
+  {
+    "n": 4,
+    "goal": "B를 다시 빌드하지 않고 B가 사용하는 D를 바꿉니다.",
+    "before": "03번과 5장의 전이 의존성.",
+    "steps": [
+      "4504에서 두 B가 표시하는 D 버전을 확인합니다.",
+      "npm run select -- a-only로 D 1.0 → 1.1을 선택하고 새 탭을 봅니다.",
+      "npm run select -- c-only 또는 upgraded로 D 2.0 → 2.1 경로도 비교합니다."
+    ],
+    "expected": "B의 코드와 배포물은 유지되고, B 배포 ID를 소비자로 한 d 연결만 달라집니다. D는 백엔드 서버가 아닌 MF 함수 모듈입니다.",
+    "question": "D의 선택은 A 배포 ID 밑에 기록하나요?",
+    "answer": "직접 소비자인 B 배포 ID의 d 별칭에 기록합니다. A→B→D의 전체 그래프를 조합이 보관합니다.",
+    "read": "service-b-v1/mf.dependencies.json → service-d-v1/src → composition.config.json"
+  },
+  {
+    "n": 5,
+    "goal": "관리 화면에서 조합을 적용하고 이전 선택으로 되돌립니다.",
+    "before": "9장의 불변 조합과 현재 포인터.",
+    "steps": [
+      "4505/admin을 열고 SDK·A/C 경로의 B·D 선택을 확인합니다.",
+      "호환되는 새 버전을 선택해 검사한 뒤 적용합니다.",
+      "기존 제품 탭과 새 제품 탭을 비교합니다.",
+      "이력에서 이전 조합의 불러오기 → 조합 검사 → 검사 통과 → 이 조합으로 롤백을 누르고 새 탭을 엽니다."
+    ],
+    "expected": "소비자 빌드 없이 새 선택과 롤백이 동작하며 기존 탭은 유지됩니다. 오래된 관리 상태에서의 덮어쓰기는 거절합니다.",
+    "question": "롤백하면 이미 열린 새 버전 탭도 이전 코드로 바뀌나요?",
+    "answer": "아닙니다. 롤백 후 새로 시작한 탭이 복구한 조합을 사용합니다. 기존 탭은 각자 시작한 조합을 유지합니다.",
+    "read": "platform-admin/src → integration/tools/admin-api.cjs → integration/tools/store.cjs"
+  },
+  {
+    "n": 6,
+    "goal": "배포물의 직접·전이 사용 경로와 종료 일정을 확인합니다.",
+    "before": "9장. 미접속 사용자 구독은 20번에서 별도로 추가됩니다.",
+    "steps": [
+      "4506 제품 탭을 열어 둡니다.",
+      "4506/admin#lifecycle에서 B와 D의 사용 현황을 확인합니다.",
+      "지원 종료 계획을 저장하고 새 선택과 기존 사용을 구분합니다.",
+      "npm test로 사용 추적과 정책 검증까지 확인합니다."
+    ],
+    "expected": "탭뿐 아니라 현재 조합·롤백·의존 관계가 삭제 판단에 등장합니다. 접속 숫자만으로 판단하지 않습니다.",
+    "question": "D를 직접 쓰는 화면이 없는데 왜 사용 중인가요?",
+    "answer": "B가 D를 사용하고 A/C가 B를 사용하므로 전이 참조가 있습니다. 전체 경로를 따라가야 합니다.",
+    "read": "integration/tools/lifecycle.cjs → platform-admin/src의 사용 현황"
+  },
+  {
+    "n": 7,
+    "goal": "신규 선택 차단·등록 해제·실제 삭제를 구분합니다.",
+    "before": "06번과 9장의 삭제 보호 근거.",
+    "steps": [
+      "4507/admin#lifecycle에서 버전 정책과 차단 사유를 봅니다.",
+      "아래 안내대로 아직 선택하지 않은 B 1.5.0을 지원 종료 처리한 뒤 upgraded 선택이 거절되는지 확인합니다.",
+      "등록 해제와 파일 삭제가 다른 작업인지 확인합니다.",
+      "npm test로 임시 저장소에서 실제 파일 삭제와 탭·롤백 차단을 재현합니다."
+    ],
+    "expected": "참조와 보관 조건이 남으면 삭제를 막습니다. 시험은 과거 날짜 메타데이터로 기간을 재현하며 실제 30일을 기다리지 않습니다.",
+    "question": "등록 해제 버튼을 누르면 청크 파일도 바로 없어지나요?",
+    "answer": "아닙니다. 기존 탭과 롤백을 보호하기 위해 실제 파일 삭제는 별도 조건과 명령으로 처리합니다.",
+    "read": "integration/tools/retirement.cjs → lifecycle.cjs"
+  },
+  {
+    "n": 8,
+    "goal": "응답이 끊긴 탭을 영구 차단 요인으로 남기지 않고 정리합니다.",
+    "before": "07번. lease=기한이 있는 탭 사용 약속.",
+    "steps": [
+      "4508 제품과 관리 화면에서 탭 기록을 봅니다.",
+      "npm test를 실행해 만료·유예·정리·오래된 탭 복귀를 재현합니다.",
+      "검증 결과에서 만료와 실제 참조 해제를 별도로 확인합니다."
+    ],
+    "expected": "응답 없음만으로 즉시 삭제하지 않고 보호 기한과 정리 절차를 거칩니다. 정리된 탭은 지연된 갱신으로 되살아나지 않습니다.",
+    "question": "브라우저가 잠들었다 깨어나면 옛 파일을 계속 요청해도 되나요?",
+    "answer": "보호 기한과 서버의 사용 허용 상태를 먼저 확인해야 합니다. 정리된 탭은 기존 실행을 이어가지 않고 재진입하도록 차단합니다.",
+    "read": "integration/tools/lease-client.js → runtime-api.cjs → lifecycle.cjs"
+  },
+  {
+    "n": 9,
+    "goal": "lease 도입 전에 열린 구형 탭의 전환과 정리를 다룹니다.",
+    "before": "08번. 오래된 탭에는 새 보호 코드가 없을 수 있습니다.",
+    "steps": [
+      "4509의 관리 화면에서 구형 탭 전환·접근 종료 작업을 확인합니다.",
+      "npm test로 구형 Shell을 열고 전환 확인·파일 제공 차단·참조 정리를 재현합니다.",
+      "검증 범위에서 이미 내려받은 코드와 향후 요청의 차이를 읽습니다."
+    ],
+    "expected": "구형 탭의 보호 근거를 명시적으로 전환하거나 해제합니다. 이미 실행 중인 JavaScript를 서버가 강제 제거하는 기능은 아닙니다.",
+    "question": "파일 제공을 막으면 이미 다운로드한 코드도 사라지나요?",
+    "answer": "아닙니다. 관리되는 서버 경로의 향후 요청을 제어할 수 있을 뿐입니다. 오프라인 복사본 등 관측 밖 사용은 운영 정책이 필요합니다.",
+    "read": "projects/shell-legacy → integration/tools/legacy.cjs"
+  },
+  {
+    "n": 10,
+    "goal": "서비스 하나만 실행하면서 SDK Layout과 PageContainer를 사용합니다.",
+    "before": "6장. 개발 키트와 제품 조합의 차이.",
+    "steps": [
+      "projects/service-a 폴더에서 npm ci 후 npm run dev를 실행합니다.",
+      "src/index.jsx에서 B만 반환하는 부분을 아래 JSX 예시로 바꾸고 저장 후 ‘내 OTA 화면 수정’을 확인합니다.",
+      "mf.dev.json의 개발 사용자·테마·pageContainer 설정을 살펴봅니다.",
+      "새 개발 키트가 필요할 때만 예제 루트의 npm run prepare:dev를 사용합니다.",
+      "자동 검증 전에는 예제 루트에서 npm run setup으로 패키지 캐시를 준비한 뒤 npm test를 실행합니다."
+    ],
+    "expected": "별도의 Shell·B·D 서버 없이 개발합니다. SDK와 의존성은 고정된 개발 키트의 MF 파일로 로딩됩니다.",
+    "question": "개발 키트를 바꾸면 운영 사용자도 새 SDK를 쓰나요?",
+    "answer": "아닙니다. 개발 키트와 제품의 활성 조합은 별도입니다.",
+    "read": "mf.dev.json → dev/manifest.json → src → platform-sdk의 DevLayout/PageContainer"
+  },
+  {
+    "n": 11,
+    "goal": "새 팀이 E 프로젝트를 복사해 수정·빌드·발행하고 기존 슬롯에 연결합니다.",
+    "before": "10번. 이 예제는 고정 E 슬롯이며 자동 메뉴 등록은 18번입니다.",
+    "steps": [
+      "projects/service-e만 별도 위치로 복사하고 그 폴더에서 npm ci → npm run dev를 실행합니다.",
+      "src/Widget.jsx의 첫 화면 문구를 바꿉니다.",
+      "npm version 1.0.1 --no-git-tag-version → npm run build로 새 E를 만듭니다.",
+      "아래 상세 설명의 publish와 activate 명령으로 E를 발행·선택합니다. ID 자리에는 실제 발행 결과를 넣습니다."
+    ],
+    "expected": "자기 프로젝트만으로 수정·빌드하고 제품의 기존 E 슬롯에 연결합니다. 기존 탭은 이전 E를 유지합니다.",
+    "question": "왜 11번에서는 Shell 슬롯을 설명하고 18번에서는 Shell 수정이 없다고 하나요?",
+    "answer": "11번은 고정 슬롯 방식의 독립 예제이고 18번은 등록형 메뉴를 도입한 예제입니다. 기능 도입의 전제가 다릅니다.",
+    "read": "service-e/src/Widget.jsx → mf.config.cjs → mf.dependencies.json → integration/tools/publish.cjs"
+  },
+  {
+    "n": 12,
+    "goal": "A가 B를 직접 사용하면서 C를 통해 다른 B도 사용하는 구조를 확인합니다.",
+    "before": "5장. 호출 경로와 소비자별 바인딩.",
+    "steps": [
+      "4512/?empty=1을 열고 A 불러오기를 누릅니다.",
+      "A의 직접 B 1.4와 A 안의 C 1.1이 사용하는 B 2.1을 확인합니다.",
+      "직접 B와 중첩 B의 카운터·입력·팝업을 따로 조작합니다."
+    ],
+    "expected": "A만 불러와도 직접·간접 경로의 두 B가 동시에 실행됩니다. 이 예제에는 지역별 실패 복구가 아직 없습니다.",
+    "question": "C는 부모 A의 B 1.4 선택을 물려받나요?",
+    "answer": "아닙니다. C 배포 ID의 b 연결을 사용하므로 B 2.1을 가져옵니다.",
+    "read": "service-a/src/index.jsx → service-c/src/index.jsx → composition.config.json"
+  },
+  {
+    "n": 13,
+    "goal": "C 또는 B 2.1 로딩 실패가 직접 B 1.4를 망가뜨리지 않게 합니다.",
+    "before": "12번과 8장.",
+    "steps": [
+      "4513에서 중첩 화면의 정상 상태를 먼저 봅니다.",
+      "npm test로 실제 C·B 요청의 503을 주입합니다.",
+      "결과에서 C 오류 표시, 직접 B 상태 유지, 재시도 버튼 없음의 세 조건을 확인합니다."
+    ],
+    "expected": "오류는 C 영역에 표시되고 직접 B는 계속 동작합니다. 이 단계는 오류 격리만 구현합니다.",
+    "question": "오류 메시지가 보이면 복구 기능도 완성된 것인가요?",
+    "answer": "아닙니다. 실패한 로딩을 다시 시작하고 상태를 보존하는 재시도는 14번의 별도 기능입니다.",
+    "read": "service-a의 지역 오류 경계와 로더 → verify.mjs"
+  },
+  {
+    "n": 14,
+    "goal": "파일이 복구되면 페이지 새로고침 없이 C만 재시도합니다.",
+    "before": "13번. 정상 형제 영역의 상태를 지키는 목적.",
+    "steps": [
+      "4514에서 정상 화면을 확인합니다.",
+      "npm test로 실패 주입 → 오류 확인 → 차단 해제 → 재시도 클릭을 실행합니다.",
+      "문서와 직접 B의 DOM·입력·카운터가 유지되는 결과를 확인합니다."
+    ],
+    "expected": "같은 페이지에서 C 영역이 복원되고 직접 B가 초기화되지 않습니다. 지역 복구 구현은 아직 A가 가집니다.",
+    "question": "재시도 때 A 전체를 새로 마운트하면 왜 안 되나요?",
+    "answer": "정상인 직접 B의 상태까지 잃을 수 있습니다. 실패한 C 영역만 다시 시작해야 합니다.",
+    "read": "service-a의 지역 재시도 구현 → verify.mjs의 unroute/retry"
+  },
+  {
+    "n": 15,
+    "goal": "C→B 2.1→D 2.0의 하위 실패도 C 영역에서 복구합니다.",
+    "before": "14번과 전이 의존성.",
+    "steps": [
+      "4515의 정상 중첩 그래프를 확인합니다.",
+      "npm test에서 D 2.0 요청 실패와 복구를 확인합니다.",
+      "C의 재시도 뒤 D 버전 표시와 직접 B 상태가 정상인지 봅니다."
+    ],
+    "expected": "직접 불러온 C뿐 아니라 C가 필요로 하는 하위 모듈의 실패도 해당 영역에서 다룹니다.",
+    "question": "C의 entry 요청이 성공했는데도 C 영역이 실패할 수 있나요?",
+    "answer": "그렇습니다. C의 B 또는 B의 D가 필요한 순간 로딩에 실패할 수 있습니다. entry 성공만으로 전체 의존 실행 성공을 보장하지 않습니다.",
+    "read": "service-b-v2의 D 로딩 → A 지역 로더 → verify.mjs"
+  },
+  {
+    "n": 16,
+    "goal": "반복되는 오류·재시도 코드를 SDK RemoteRegion으로 옮깁니다.",
+    "before": "15번. 공통 기능과 업무 코드의 경계.",
+    "steps": [
+      "4516에서 기존 중첩 화면을 확인합니다.",
+      "A 소스의 RemoteRegion 사용과 platform-sdk/src/RemoteRegion.jsx를 비교합니다.",
+      "npm test로 C·B·D 실패와 복구 결과가 유지되는지 봅니다."
+    ],
+    "expected": "A가 공통 컴포넌트에 소비자·별칭·모듈을 전달하고 SDK가 영역 로딩과 재시도를 담당합니다.",
+    "question": "공통 SDK로 옮기면 업무 데이터 props도 SDK가 정해야 하나요?",
+    "answer": "아닙니다. SDK는 실행 경계를 제공합니다. 대상 모듈이 요구하는 업무 계약은 서비스가 정하고 componentProps 등으로 명시합니다.",
+    "read": "service-a/src/index.jsx → platform-sdk/src/RemoteRegion.jsx → remote-loader.js"
+  },
+  {
+    "n": 17,
+    "goal": "재시도 정책을 SDK에서만 바꾸고 소비자 재빌드 없이 적용합니다.",
+    "before": "02번과 16번. 이 사례의 SDK는 1.3.0 → 1.3.1입니다.",
+    "steps": [
+      "4517에서 기존 탭을 유지합니다.",
+      "npm run select -- upgraded로 새 SDK를 선택하고 새 탭을 엽니다.",
+      "npm test로 같은 실패 상황에서 기존 SDK 1회와 새 SDK의 추가 1회 시도를 비교합니다."
+    ],
+    "expected": "새 SDK는 수동 재시도 중 일시 파일 실패에 500ms 뒤 한 번 더 시도합니다. A·C·B 파일은 동일하며 기존 탭은 이전 정책입니다.",
+    "question": "02번의 1.4.0과 17번의 1.3.1은 이어서 설치하는 순서인가요?",
+    "answer": "아닙니다. 서로 다른 질문을 검증하는 독립 스냅샷입니다. 각 예제의 SDK 버전 표를 기준으로 봅니다.",
+    "read": "platform-sdk와 platform-sdk-next의 RemoteRegion → composition.config.json → verify.mjs"
+  },
+  {
+    "n": 18,
+    "goal": "관리 화면의 등록으로 새 메뉴와 서비스를 연결합니다.",
+    "before": "11번과 7장. 등록형 Shell이 이미 제공된 출발점입니다.",
+    "steps": [
+      "4518/admin#services에서 E의 배포물·공개 모듈·경로·이름을 선택해 검사·적용합니다.",
+      "또는 npm run select -- registered로 제공된 등록 조합을 사용합니다.",
+      "새 탭에서 알림 메뉴와 E 페이지를 열고 기존 탭과 비교합니다."
+    ],
+    "expected": "Shell 소스를 바꾸거나 다시 빌드하지 않고 메뉴와 페이지가 연결됩니다. 메뉴도 조합에 저장되어 롤백됩니다.",
+    "question": "서비스 파일을 발행만 하면 사이드바에 자동으로 나타나나요?",
+    "answer": "아닙니다. 노출할 메뉴·경로·공개 모듈을 등록하고 조합을 적용해야 합니다.",
+    "read": "platform-admin의 서비스 등록 → shell의 navigation 렌더링 → composition.config.json"
+  },
+  {
+    "n": 19,
+    "goal": "공개 위젯을 선택·복제·배치해 공통 대시보드를 만듭니다.",
+    "before": "7장과 18번. 개인별 저장은 다음 20번입니다.",
+    "steps": [
+      "첫 제품 화면의 ‘표시할 위젯이 없습니다’는 정상입니다. 아래 두 방법 중 하나로 배치를 추가합니다.",
+      "4519/admin#dashboard에서 공개 위젯을 선택해 배치 ID·제목·순서·너비를 설정합니다.",
+      "또는 npm run select -- dashboard로 B 1.4 복제본·B 2.1·요약·E 알림을 함께 배치합니다.",
+      "새 탭에서 같은 B 복제본과 다른 버전의 입력·상태를 비교합니다."
+    ],
+    "expected": "Shell 재빌드 없이 배치가 바뀌며 일반 exposes의 데이터 함수는 위젯 목록에 나타나지 않습니다. 현재 지원 너비는 1칸·2칸입니다.",
+    "question": "같은 위젯 두 개에 같은 배치 ID를 사용해도 되나요?",
+    "answer": "안 됩니다. 배치 ID가 각 인스턴스의 식별자이므로 중복을 막습니다.",
+    "read": "서비스 mf.config.cjs.widgets → 조합 dashboard → Shell의 위젯 렌더링"
+  },
+  {
+    "n": 20,
+    "goal": "사용자마다 버전·조합을 저장하고 기존 탭과 미접속 구독을 보호합니다.",
+    "before": "10장과 19번, 삭제 보호는 06~09번.",
+    "steps": [
+      "4520/subscriptions에서 Alice의 기본 조합과 B 1.4 위젯을 검사·저장합니다.",
+      "다른 브라우저 프로필에서 Bob이 다른 조합과 B 2.1을 저장하고 동시에 실행합니다.",
+      "Alice의 기존 배치 행을 B 1.5로 변경해 저장하고 새 탭과 기존 탭을 비교합니다. 새 행 추가와 버전 교체를 구분합니다.",
+      "Carol은 저장만 하고 화면을 열지 않은 뒤, 관리 화면에서 Carol의 B/D 참조를 확인합니다.",
+      "npm test로 실제 삭제 차단·예약 경합·구독 해제·기존 탭 보호·최종 삭제를 재현합니다."
+    ],
+    "expected": "구독은 서버에 남고 전역 current와 분리됩니다. 구독을 해제해도 기존 탭·롤백·보관 조건이 남으면 파일 삭제를 막습니다.",
+    "question": "구독을 바꾸면 이미 열린 탭의 lease도 새 조합으로 바꾸나요?",
+    "answer": "아닙니다. 기존 탭은 처음 받은 조합을 보호합니다. 새 탭이 현재 저장된 구독으로 시작합니다.",
+    "read": "subscription-console → subscriptions.cjs → subscription-api.cjs → lifecycle.cjs"
+  }
+]

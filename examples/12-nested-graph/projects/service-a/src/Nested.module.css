@@ -1,0 +1,5 @@
+.group { display: grid; gap: 16px; min-width: 0; }
+.heading { border: 1px solid #ccd6e4; border-radius: 12px; padding: 16px; background: #f3f6fc; color: #18243b; }
+.heading p { margin: 8px 0 12px; font-size: 14px; overflow-wrap: anywhere; }
+.heading button { padding: 9px 12px; border: 1px solid #8293ac; background: white; color: #18243b; border-radius: 7px; cursor: pointer; }
+.heading button:focus-visible { outline: 3px solid #3454dc; outline-offset: 3px; }

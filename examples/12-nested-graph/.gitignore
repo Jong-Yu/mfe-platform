@@ -1,0 +1,5 @@
+**/node_modules/
+artifact-store/
+verification/
+**/.mfe-dev/
+integration/artifacts/

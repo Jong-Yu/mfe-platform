@@ -1,0 +1,56 @@
+{
+  "schemaVersion": 1,
+  "revision": "1.0.0",
+  "id": "20-user-subscriptions",
+  "number": 20,
+  "title": "사용자별 위젯·배포 조합 구독",
+  "description": "사용자별 구독을 저장하고 기존 탭·미접속 구독의 직접·전이 참조를 삭제로부터 보호.",
+  "port": 4520,
+  "projects": [
+    "platform-build-tools",
+    "platform-sdk",
+    "service-d-v1",
+    "service-d-v2",
+    "service-b-v1",
+    "service-b-v2",
+    "service-c",
+    "service-a",
+    "shell",
+    "platform-admin",
+    "service-e",
+    "service-b-v1-next",
+    "service-d-v1-next",
+    "subscription-console"
+  ],
+  "buildOrder": [
+    "platform-sdk",
+    "service-d-v1",
+    "service-d-v1-next",
+    "service-d-v2",
+    "service-b-v1",
+    "service-b-v1-next",
+    "service-b-v2",
+    "service-c",
+    "service-a",
+    "service-e",
+    "shell",
+    "platform-admin",
+    "subscription-console"
+  ],
+  "specialTest": null,
+  "variants": {
+    "service-b-v1-next": [
+      "service-b-v1",
+      "1.5.0"
+    ],
+    "service-d-v1-next": [
+      "service-d-v1",
+      "1.1.0"
+    ]
+  },
+  "provenance": "19번 예제의 독립 사본에 사용자 구독을 구현한 revision 1.0.0",
+  "excluded": [
+    "DB 구현",
+    "실서비스 인증·S3 배포"
+  ]
+}

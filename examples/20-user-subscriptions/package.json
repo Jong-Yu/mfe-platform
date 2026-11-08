@@ -1,0 +1,21 @@
+{
+  "name": "mfe-example-20-user-subscriptions",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "setup": "node run.cjs setup",
+    "build": "node run.cjs build",
+    "start": "node run.cjs start",
+    "select": "node run.cjs select",
+    "reset": "node run.cjs reset",
+    "test": "node run.cjs test",
+    "pins": "node run.cjs pins",
+    "prepare:dev": "node run.cjs prepare:dev",
+    "seed": "node integration/tools/seed-subscriptions.cjs",
+    "publish:options": "node integration/tools/publish-subscription-options.cjs",
+    "test:independence": "node verify-independent.mjs"
+  },
+  "engines": {
+    "node": ">=22.9.0"
+  }
+}

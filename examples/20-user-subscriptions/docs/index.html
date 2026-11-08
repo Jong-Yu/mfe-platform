@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>20 · 사용자별 위젯·배포 조합 구독</title>
+<style>
+*{box-sizing:border-box}body{margin:0;background:#f4f7fb;color:#1d2d47;font:16px/1.85 system-ui,-apple-system,sans-serif}main{max-width:1120px;margin:auto;padding:44px 24px 80px}h1{font-size:clamp(30px,4vw,48px);line-height:1.3;letter-spacing:-.04em}h2{font-size:25px;margin-top:0}h3{font-size:19px;margin-top:28px}a{color:#3156bf;text-underline-offset:3px}.eyebrow{font-weight:700;color:#516ad0;font-size:13px;letter-spacing:.12em}.lead{font-size:19px;color:#53637c}section{background:white;border:1px solid #dce3ef;border-radius:16px;padding:28px;margin-top:24px}.badge{display:inline-block;border-radius:20px;padding:3px 12px;background:#e1f4e9;color:#246a43;font-size:14px}code{font-family:ui-monospace,monospace;font-size:.85em;overflow-wrap:anywhere}pre{padding:22px;background:#17253b;color:#eef4ff;border-radius:10px;white-space:pre-wrap;overflow-wrap:anywhere;font-size:14px;line-height:1.8}table{width:100%;border-collapse:collapse;font-size:14px}td,th{text-align:left;padding:12px 10px;border-bottom:1px solid #e2e8f1;vertical-align:top;overflow-wrap:anywhere}th{background:#f3f6fb}.table{overflow:auto}nav{display:flex;flex-wrap:wrap;gap:18px;margin:28px 0}.note{border-left:4px solid #5577d6;padding:14px 20px;background:#edf2fe;border-radius:4px}li{margin:10px 0}img{max-width:100%;border-radius:10px;border:1px solid #dce3ef}details{padding:12px 0}summary{cursor:pointer;font-weight:650}@media(max-width:600px){main{padding:24px 14px}section{padding:20px}td,th{padding:8px 6px;font-size:12px}}
+</style></head><body><main>
+<div class="eyebrow">INDEPENDENT MFE EXAMPLE · 20</div>
+<h1>사용자마다 다른 버전을,<br>안전하게 구독하기.</h1>
+<p class="lead">한 사람의 선택이 다른 사람이나 이미 열린 탭을 바꾸지 않도록 합니다. 화면을 열지 않은 사람의 구독도 삭제 검사에 포함합니다.</p>
+<span class="badge">독립 예제 20 · revision 1.0.0</span> <span class="badge">실제 실행 20/20 통과</span>
+<nav><a href="#start">실행</a><a href="#try">따라 하기</a><a href="#model">저장 방식</a><a href="#protection">삭제 보호</a><a href="#source">프로젝트 안내</a><a href="#proof">검증</a></nav>
+<section id="start"><h2>1. 이 폴더만 실행하세요</h2>
+<pre>cd examples/20-user-subscriptions
+npm --prefix integration ci
+npm start</pre>
+<p><a href="http://127.0.0.1:4520/subscriptions">사용자별 구독 화면</a>에서 시작합니다. <a href="http://127.0.0.1:4520/admin#lifecycle">사용 현황·삭제 관리</a>는 별도 화면입니다. Node 22.9 이상과 npm이 필요하며 다른 예제나 원래 프로젝트는 필요하지 않습니다.</p>
+<p>기본 포트는 4520입니다. 다른 포트를 쓰려면 <code>PORT=4600 npm start</code>. 종료는 Ctrl+C입니다. seed-store의 초기 배포물을 artifact-store에 복사하여 사용합니다.</p>
+<div class="note">Alice·Bob·Carol 선택은 로컬 데모 로그인입니다. 같은 브라우저 프로필의 탭은 로그인 쿠키를 공유합니다. 서로 다른 사용자 비교에는 별도 프로필이나 일반 창·시크릿 창을 사용하세요. 한 사용자의 이전 탭과 새 탭은 같은 프로필에서 비교합니다.</div>
+</section>
+<section id="try"><h2>2. 세 사용자로 비교하세요</h2>
+<ol>
+<li><strong>Alice:</strong> “현재 운영” 조합을 선택하고 B 1.4.0 차량 선택 위젯을 추가합니다. B 2.1.0도 함께 추가할 수 있습니다. 조합 검사 → 내 구독 저장 → 내 대시보드 새 탭을 누릅니다.</li>
+<li><strong>Bob:</strong> 다른 브라우저 프로필에서 “이전 운영” 조합과 B 2.1.0을 저장하고 대시보드를 엽니다. 각 사용자의 이름·위젯 버전과 카운터·메모가 독립적인지 확인합니다.</li>
+<li><strong>Alice 변경:</strong> 편집 화면에서 B 1.4.0을 B 1.5.0으로 교체해 저장합니다. 새 탭은 1.5.0, 기존 탭은 1.4.0과 기존 입력을 유지합니다. Bob의 구독은 그대로입니다.</li>
+<li><strong>Carol:</strong> B 1.4.0 구독만 저장하고 대시보드를 열지 않은 채 브라우저를 닫습니다.</li>
+<li><strong>관리 화면:</strong> B 1.4.0과 D 1.0.0을 선택합니다. “저장된 사용자 구독”에 Carol과 사용 경로가 표시됩니다. 접속하지 않았어도 등록 해제·삭제를 막습니다.</li>
+<li><strong>해제:</strong> “내 구독 해제” → “해제 확인”. 저장된 구독 참조는 없어지지만 기존 탭·롤백·공지·보관 조건이 남으면 파일은 삭제되지 않습니다.</li>
+</ol>
+<p>제공 상태에는 사용자 구독이 없습니다. “현재 운영”은 A → B 1.5 → D 1.1, “이전 운영”은 A → B 1.4 → D 1.0입니다. 두 조합의 C는 B 2.1 → D 2.0을 사용하며 SDK는 모두 1.3.1입니다. 사용자별 위젯 배치를 그 위에 추가합니다.</p>
+<img src="../verification/subscriptions-editor.png" alt="실제 사용자별 구독 편집 화면" loading="lazy">
+</section>
+<section id="model"><h2>3. 버전 이름 대신 완성된 조합을 저장합니다</h2>
+<pre>사용자 Alice ──→ 저장된 구독 revision 2
+                 ├─ 선택한 기본 배포 조합 ID
+                 ├─ 위젯 배포 ID · 공개 위젯 ID · 배치
+                 └─ 해석이 끝난 전체 조합 ID
+                      ├─ Shell / SDK / A / C
+                      ├─ B별로 선택한 D 배포 ID
+                      └─ 개인 대시보드 B 1.5 + B 2.1
+
+기존 Alice 탭 ──→ 처음 받은 조합 (독립적인 탭 보호)
+새 Alice 탭   ──→ 현재 저장된 구독
+Bob의 탭      ──→ Bob이 저장한 구독</pre>
+<p>서버는 SDK 지원 범위·공개 위젯 계약·하위 의존성·순환 관계·지원 종료 상태를 확인하고 불변 조합을 만듭니다. 새 위젯의 하위 버전은 플랫폼이 공개한 정확한 기본값에서 가져옵니다. 기본 조합에 이미 있는 배포물은 그 조합의 의존 선택을 따릅니다. latest나 가장 높은 버전을 자동 선택하지 않습니다.</p>
+<p><strong>한 문서 안의 SDK는 하나입니다.</strong> 다른 B 버전은 MF 컨테이너와 CSS 이름을 구분하고, 같은 B의 복제는 배치 ID로 상태를 구분합니다. 서버가 확인한 사용자 정보를 Shell의 PlatformProvider에 전달합니다. 위젯 팀이 사용자별 props를 새로 정의하지 않습니다.</p>
+<p>동일한 선택을 한 사용자들은 같은 불변 조합 파일을 참조할 수 있습니다. 소유권은 사용자별 레코드에 따로 저장합니다. 한 사용자가 해제해도 다른 사용자의 참조가 남으면 보호가 계속됩니다. 요청 본문의 userId로 다른 사용자의 구독을 수정할 수 없습니다.</p>
+<table><tr><th>행동</th><th>결과</th></tr>
+<tr><td>조합 검사</td><td>검증만 수행. 구독 저장·전역 current 변경 없음.</td></tr>
+<tr><td>내 구독 저장</td><td>내 레코드와 불변 조합 저장. 새 탭부터 적용.</td></tr>
+<tr><td>전역 조합 변경</td><td>이미 저장된 개인 구독은 그대로 유지.</td></tr>
+<tr><td>오래된 편집 화면에서 저장</td><td>revision이 다르면 409로 거부. 최신 구독을 불러와 다시 검사.</td></tr>
+<tr><td>지원 종료</td><td>새 사용자·새 경로의 선택 차단. 기존 사용자의 동일 참조는 유지 가능.</td></tr>
+<tr><td>구독 해제</td><td>내 활성 참조 제거. 기존 탭이나 배포 파일은 즉시 제거하지 않음.</td></tr></table>
+</section>
+<section id="protection"><h2>4. 접속 여부와 사용 권한을 분리합니다</h2>
+<table><tr><th>보호 근거</th><th>보호 대상</th><th>해제 조건</th></tr>
+<tr><td>저장된 사용자 구독</td><td>SDK·Shell·위젯과 전이 의존성 전체. 미접속 사용자 포함.</td><td>버전 전환 또는 명시적인 해제. 자동 만료 없음.</td></tr>
+<tr><td>화면 열기 예약</td><td>HTML을 받은 뒤 탭 보호를 시작하기 전의 조합.</td><td>30초 후 만료. 만료된 예약으로 새 탭 시작 불가.</td></tr>
+<tr><td>기존 탭</td><td>처음 받은 조합. 아직 로드하지 않은 의존성 포함.</td><td>정상 종료 또는 사용 기한·유예 기간·명시적 탭 정리 절차.</td></tr>
+<tr><td>전역 현재 조합·롤백·고정 소비자</td><td>기존 운영 정책의 참조.</td><td>각 참조를 별도로 전환·해제.</td></tr></table>
+<p>구독 저장·해제, 조합 보관 해제, 등록 해제와 파일 삭제는 동일한 쓰기 잠금을 사용합니다. 삭제 요청 시 최신 구독과 탭을 다시 검사합니다. 이전에 표시된 “삭제 가능” 상태만 믿고 삭제하지 않습니다.</p>
+<p>활성 구독이 사용하는 기본 조합과 개인 조합은 보관 해제를 막습니다. 개인 구독의 이전 조합 파일은 기록으로 남겨도 자동으로 영구 롤백 참조가 되지는 않습니다. 아직 사용하는 사용자나 탭이 있으면 각각의 참조로 보호합니다.</p>
+<p>활성 구독이나 열기 예약이 있으면 등록 해제와 파일 제공 차단도 막습니다. 모두 전환·해제한 뒤에는 기존 탭을 보호하면서 등록을 해제할 수 있습니다. 실제 파일 삭제는 열린 탭까지 해소하고 공지·관측·보관 기간을 충족해야 합니다. 마지막 구독 참조 해제 시각도 보관 기간 계산에 포함합니다.</p>
+<p>기본 정책은 공지 유예 30일·관측 30일·보관 30일입니다. 보관은 등록 해제·마지막 사용·구독 해제 등 가장 늦은 시점부터 계산합니다. 탭은 15초마다 갱신하며 사용 기한 5분, 만료 후 정리 유예 24시간입니다. 구독 자체에는 탭 시간 제한을 적용하지 않습니다.</p>
+<img src="../verification/subscription-protection.png" alt="미접속 Carol 구독과 삭제 차단 사유를 보여 주는 관리 화면" loading="lazy">
+</section>
+<section id="source"><h2>5. 어느 프로젝트를 수정하나요?</h2>
+<table><tr><th>위치</th><th>역할</th></tr>
+<tr><td><code>projects/subscription-console</code></td><td>새 독립 React 앱. 사용자 선택·조합/위젯 선택·검사·저장·해제.</td></tr>
+<tr><td><code>projects/shell</code></td><td>MF 조합 실행. 확인된 사용자를 SDK Provider에 전달. 도입 후 사용자 구독 변경에는 재빌드 불필요.</td></tr>
+<tr><td><code>projects/platform-admin</code></td><td>버전별 사용자 구독·전이 경로·등록 해제·파일 삭제 관리.</td></tr>
+<tr><td><code>projects/platform-sdk</code></td><td>기존 MF SDK 1.3.1. Context·WidgetBoundary·RemoteRegion 그대로 사용.</td></tr>
+<tr><td><code>projects/service-a / service-c</code></td><td>A·C 소비자. 구독 저장 중 코드와 번들은 바뀌지 않음.</td></tr>
+<tr><td><code>projects/service-b-v1 / service-b-v1-next / service-b-v2</code></td><td>B 1.4·1.5·2.1의 독립 소스와 공개 위젯.</td></tr>
+<tr><td><code>projects/service-d-v1 / service-d-v1-next / service-d-v2</code></td><td>D 1.0·1.1·2.0. 전이 의존성 삭제 보호 검증.</td></tr>
+<tr><td><code>projects/service-e</code></td><td>다른 서비스가 공개한 알림 위젯. 구독 목록에서 선택 가능.</td></tr>
+<tr><td><code>projects/platform-build-tools</code></td><td>빌드·개발 Host 도구. 각 서비스는 자체 vendor와 lockfile의 고정 도구를 사용.</td></tr>
+<tr><td><code>integration/tools/subscriptions.cjs</code></td><td>구독 해석·동시 수정 검사·영속 저장·참조 조회·실행 예약.</td></tr>
+<tr><td><code>integration/tools/subscription-api.cjs</code></td><td>데모 세션·사용자 API·개인 조합으로 제품 HTML 제공.</td></tr>
+<tr><td><code>integration/tools/lifecycle.cjs / retirement.cjs</code></td><td>구독·탭·롤백·예약과 기간을 모두 확인한 삭제 판단.</td></tr>
+<tr><td><code>composition.config.json</code></td><td>기본 조합의 소스 프로젝트 선택.</td></tr>
+<tr><td><code>integration/tools/seed-subscriptions.cjs</code></td><td>기본 조합과 공개 위젯의 하위 버전 초기화. 구독 기록이 있으면 실행 거부.</td></tr>
+<tr><td><code>verify.mjs</code></td><td>분리된 브라우저 사용자·재시작·실제 삭제 검증.</td></tr></table>
+<pre># 잠긴 의존성 설치
+npm run setup
+# 구독 편집기만 수정·빌드·발행
+npm run build -- subscription-console
+# 모든 프로젝트를 각자 빌드
+npm run build
+# 새 배포물을 구독 선택 목록으로 공개 (기존 구독은 유지)
+npm run publish:options
+# 기본 전역 조합 적용 (개인 구독은 유지)
+npm run select -- baseline
+# 고정 상태와 파일 해시 비교
+npm run pins</pre>
+<p>서비스 팀은 위젯과 SDK 계약을 유지하고 공개 위젯을 배포합니다. 플랫폼 팀은 사용자별 해석·저장·실행, 공통 Provider, 수명 관리와 도구를 담당합니다. 구독을 바꿀 때마다 서비스 팀의 코드 대응이나 재빌드는 필요하지 않습니다.</p>
+<p>새 기본 조합과 위젯 의존 선택은 composition.config.json의 subscriptionProfiles·subscriptionWidgetBindings로 정하고 publish:options로 공개합니다. 사용자가 이미 저장한 조합을 바꾸지 않습니다. 지원 종료된 선택지를 새로 공개할 수 없으므로 종료된 조합은 공개 목록 설정에서 제거해야 합니다. seed는 초기 배포물 작성용이고, 사용자 구독이 있는 저장소에서는 실행을 거부합니다.</p><h3>서버에 남는 데이터</h3>
+<table><tr><th>artifact-store 파일</th><th>내용</th></tr>
+<tr><td><code>subscriptions.json</code></td><td>사용자별 revision·활성 여부·기본 조합 ID·완성된 조합 ID·위젯 배치, 마지막 참조 해제 시각.</td></tr>
+<tr><td><code>compositions/*.json</code></td><td>정확한 배포 ID·의존 관계를 담은 불변 조합. 사용자 이름과 로그인 비밀은 포함하지 않음.</td></tr>
+<tr><td><code>subscription-options.json</code></td><td>선택 가능한 기본 조합·새 위젯의 고정 하위 버전.</td></tr>
+<tr><td><code>composition-origins.json</code></td><td>공용 롤백 조합과 개인 구독 기록 구분.</td></tr>
+<tr><td><code>subscription-launches.json / usage.json</code></td><td>짧은 실행 예약과 사용자·조합에 고정된 탭 보호 기록.</td></tr>
+<tr><td><code>lifecycle.json</code></td><td>지원 종료·등록 해제·삭제 작업 기록.</td></tr>
+<tr><td><code>demo-auth.json</code></td><td>데모 세션 서명 키. seed에는 없으며 첫 로그인 때 생성.</td></tr></table>
+<p>구독을 localStorage에만 두지 않고 서버 파일에 저장하므로 브라우저를 닫거나 서버를 재시작해도 남습니다. 전역 current.json은 개인 구독 저장으로 바뀌지 않습니다.</p>
+</section>
+<section><h2>고정 버전</h2><p>소스·설정·lockfile·vendor·배포 파일을 example.lock.json으로 비교합니다. 수정하면 pins가 차이를 보여 주는 것이 정상입니다.</p><div class="table"><table><tr><th>프로젝트</th><th>버전</th><th>배포 ID</th></tr><tr><td>platform-sdk</td><td>1.3.1</td><td><code>platform_1_3_1_a208cb489e0e</code></td></tr><tr><td>service-d-v1</td><td>1.0.0</td><td><code>d_1_0_0_efd88575af01</code></td></tr><tr><td>service-d-v1-next</td><td>1.1.0</td><td><code>d_1_1_0_209d19a1ee10</code></td></tr><tr><td>service-d-v2</td><td>2.0.0</td><td><code>d_2_0_0_765af7c70368</code></td></tr><tr><td>service-b-v1</td><td>1.4.0</td><td><code>b_1_4_0_983409a6e2ce</code></td></tr><tr><td>service-b-v1-next</td><td>1.5.0</td><td><code>b_1_5_0_9ab9b4ea587a</code></td></tr><tr><td>service-b-v2</td><td>2.1.0</td><td><code>b_2_1_0_c751f7ae2573</code></td></tr><tr><td>service-c</td><td>1.0.0</td><td><code>c_1_0_0_6f13fcf126c2</code></td></tr><tr><td>service-a</td><td>1.0.0</td><td><code>a_1_0_0_e146549d8c29</code></td></tr><tr><td>service-e</td><td>1.0.0</td><td><code>e_1_0_0_5bae6a12cb66</code></td></tr><tr><td>shell</td><td>1.4.0</td><td><code>shell_1_4_0_514b36976cb8</code></td></tr><tr><td>platform-admin</td><td>1.3.0</td><td><code>admin_1_3_0_9f16db563744</code></td></tr><tr><td>subscription-console</td><td>1.0.0</td><td><code>subscriptions_1_0_0_1b9bbc0f539d</code></td></tr></table></div><p>다른 예제의 파일·latest 포인터·node_modules를 참조하지 않습니다. 기존 01~19번 폴더는 변경하지 않았습니다.</p></section>
+<section id="proof"><h2>6. 실제 검증</h2>
+<pre>npm test
+npm run pins
+# 다른 위치로 복사하여 전체 실행·소스 재빌드 확인
+npm run test:independence</pre>
+<p>seed-store를 임시 디렉터리에 복사하고 실제 Chrome·HTTP·MF와 분리된 브라우저 사용자로 검사합니다. Chrome 경로는 CHROME_EXECUTABLE_PATH로 지정하거나 integration에서 <code>npx playwright install chromium</code>으로 설치하세요.</p>
+<ul><li>로그인 전 안내·사용자별 서버 세션 · 통과</li><li>서로 다른 배포 조합·위젯 버전을 UI로 선택·저장 · 통과</li><li>두 사용자·두 B 버전 동시 실행·Context·상태·CSS·포털 격리 · 통과</li><li>한 번도 대시보드를 열지 않은 Carol의 B와 전이 D 참조 보호 · 통과</li><li>전역 조합 변경·서버 재시작 후에도 구독과 기존 탭 유지 · 통과</li><li>다른 사용자 지정·타 세션 CSRF·조합 URL 직접 열기 거부 · 통과</li><li>미공개 위젯·중복 배치 ID·검사 없는 저장 거부 · 통과</li><li>서비스 재빌드 없이 Alice 구독 교체·기존 탭과 Bob 유지·동시 수정 충돌 차단 · 통과</li><li>배포 조합 변경은 새 탭에만 적용·아직 로드하지 않은 의존성도 보호 · 통과</li><li>활성 구독의 조합 보관 해제 금지·개인 과거 기록과 롤백 참조 구분 · 통과</li><li>지원 종료 버전은 신규 구독 금지·기존 소유자의 동일 참조 유지 · 통과</li><li>관리 화면에 미접속 구독·차단 사유 표시·B와 D 등록 해제/삭제 차단 · 통과</li><li>화면 열기와 구독 해제 사이에도 실행 예약으로 보호 · 통과</li><li>구독 해제 후에도 기존 탭은 B와 전이 D 삭제를 막음 · 통과</li><li>만료 예약 재사용 차단·해제된 구독 신규 화면 차단 · 통과</li><li>모든 구독·탭을 정리해도 별도 보관 기간 적용 · 통과</li><li>참조·공지·보관 조건 해소 후 B와 D 파일 실제 삭제 · 통과</li><li>삭제한 버전 재구독 금지·다른 사용자 구독과 재시작 정상 · 통과</li><li>모바일 편집 화면·예상하지 않은 브라우저 예외 없음 · 통과</li><li>구독 작업 중 서비스·SDK·Shell 소스와 번들·초기 조합 유지 · 통과</li></ul>
+<p><a href="../verification/report.json">검증 결과 JSON</a> · <a href="../verification/alice-dashboard.png">Alice 화면</a> · <a href="../verification/bob-dashboard.png">Bob 화면</a></p>
+<p>공지·보관 기간은 임시 저장소에 과거 날짜를 기록하여 재현합니다. 실제 30일을 기다린 검증은 아닙니다. 삭제는 임시 저장소의 실제 파일에 수행하며 초기 배포물과 서비스 프로젝트는 유지합니다.</p>
+<p>독립성 검증은 폴더를 작업 공간 밖으로 복사하고 자체 의존성을 설치한 뒤 전체 브라우저 테스트와 모든 프로젝트의 재빌드를 수행합니다. npm 캐시가 준비되어 있어야 합니다. NPM_CACHE로 캐시 위치를 지정할 수 있습니다. 결과는 verification/independence.json에 기록합니다.</p><h3>초기화</h3><pre># 이 예제의 서버와 탭을 먼저 닫으세요.
+npm run reset</pre><p>사용자 구독·운영 기록을 포함한 실행 저장소를 제공된 빈 구독 상태로 복원합니다. 소스 수정은 복원하지 않습니다.</p>
+<h3>범위</h3><p>사용자 선택은 데모용입니다. 실서비스 인증·역할 권한·테넌트 보안은 구현하지 않았으며 관리 API도 로컬 관리 도구입니다. 운영에서는 실제 서버 인증과 DB 트랜잭션으로 연결해야 합니다. 현재는 파일 기반 단일 저장소이며 DB·S3 구현을 포함하지 않습니다.</p>
+</section></main></body></html>

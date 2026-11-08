@@ -1,0 +1,11 @@
+{
+  "id": "d_2_1_0_98e28af6b2b3",
+  "name": "mf_d_2_1_0_98e28af6b2b3",
+  "service": "d",
+  "version": "2.1.0",
+  "entry": "/artifacts/d_2_1_0_98e28af6b2b3/remoteEntry.js",
+  "dependencies": {},
+  "runtimeRequirements": {},
+  "runtimeDependencies": {},
+  "kind": "remote"
+}

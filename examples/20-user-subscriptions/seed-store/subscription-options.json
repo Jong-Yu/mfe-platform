@@ -1,0 +1,23 @@
+{
+  "bases": [
+    {
+      "label": "현재 운영 · A의 B 1.5 / D 1.1",
+      "compositionId": "composition_fd2eeb55dc84db2fad20e51b"
+    },
+    {
+      "label": "이전 운영 · A의 B 1.4 / D 1.0",
+      "compositionId": "composition_393972b7a0f3f1414938d176"
+    }
+  ],
+  "widgetBindings": {
+    "b_1_4_0_983409a6e2ce": {
+      "d": "d_1_0_0_efd88575af01"
+    },
+    "b_1_5_0_9ab9b4ea587a": {
+      "d": "d_1_1_0_209d19a1ee10"
+    },
+    "b_2_1_0_c751f7ae2573": {
+      "d": "d_2_0_0_765af7c70368"
+    }
+  }
+}

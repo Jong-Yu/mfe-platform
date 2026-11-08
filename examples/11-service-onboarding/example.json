@@ -1,0 +1,40 @@
+{
+  "schemaVersion": 1,
+  "revision": "1.0.0",
+  "id": "11-service-onboarding",
+  "number": 11,
+  "title": "새 서비스 생성·배포",
+  "description": "자체 프로젝트 E의 SDK 연결·단독 실행·배포와 고정 Shell 슬롯 연결. 메뉴 자동 등록 전 단계.",
+  "port": 4511,
+  "projects": [
+    "platform-build-tools",
+    "platform-sdk",
+    "service-d-v1",
+    "service-d-v2",
+    "service-b-v1",
+    "service-b-v2",
+    "service-c",
+    "service-a",
+    "shell",
+    "service-e"
+  ],
+  "buildOrder": [
+    "platform-sdk",
+    "service-d-v1",
+    "service-d-v2",
+    "service-b-v1",
+    "service-b-v2",
+    "service-c",
+    "service-a",
+    "service-e",
+    "shell"
+  ],
+  "specialTest": null,
+  "variants": {},
+  "provenance": "현재 작업본과 보존된 소스맵을 바탕으로 분리한 교육용 스냅샷. 과거 각 시점 전체 저장소의 원본 복원이 아님.",
+  "excluded": [
+    "사용자별 구독",
+    "DB 구현",
+    "실서비스 인증·S3 배포"
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "id": "a_1_0_0_e146549d8c29",
+  "name": "mf_a_1_0_0_e146549d8c29",
+  "service": "a",
+  "version": "1.0.0",
+  "entry": "/artifacts/a_1_0_0_e146549d8c29/remoteEntry.js",
+  "dependencies": {},
+  "runtimeRequirements": {
+    "react": "19.3.1",
+    "react-dom": "19.3.1"
+  },
+  "runtimeDependencies": {
+    "b": {
+      "service": "b",
+      "requires": ">=1.4.0 <2.0.0"
+    }
+  },
+  "kind": "remote"
+}

@@ -1,0 +1,91 @@
+{
+  "status": "passed",
+  "pages": [
+    {
+      "file": "index.html",
+      "title": "독립 MFE 예제 안내"
+    },
+    {
+      "file": "verification/index.html",
+      "title": "독립 예제 검증 결과"
+    },
+    {
+      "file": "01-coexistence/docs/index.html",
+      "title": "두 B 버전의 동시 실행"
+    },
+    {
+      "file": "02-runtime-sdk/docs/index.html",
+      "title": "SDK만 런타임 교체"
+    },
+    {
+      "file": "03-runtime-b/docs/index.html",
+      "title": "소비자별 B 런타임 선택"
+    },
+    {
+      "file": "04-runtime-d/docs/index.html",
+      "title": "B가 사용하는 D 런타임 선택"
+    },
+    {
+      "file": "05-composition-admin/docs/index.html",
+      "title": "배포 조합 관리·롤백"
+    },
+    {
+      "file": "06-usage-support/docs/index.html",
+      "title": "사용 관계·지원 종료 예정"
+    },
+    {
+      "file": "07-retirement/docs/index.html",
+      "title": "등록 해제와 파일 삭제"
+    },
+    {
+      "file": "08-tab-leases/docs/index.html",
+      "title": "응답 없는 탭의 안전한 정리"
+    },
+    {
+      "file": "09-legacy-transition/docs/index.html",
+      "title": "보호 도입 전 탭 전환"
+    },
+    {
+      "file": "10-service-dev-host/docs/index.html",
+      "title": "서비스 프로젝트 단독 개발"
+    },
+    {
+      "file": "11-service-onboarding/docs/index.html",
+      "title": "새 서비스 생성·배포"
+    },
+    {
+      "file": "12-nested-graph/docs/index.html",
+      "title": "A 안에서 C를 거쳐 다른 B 사용"
+    },
+    {
+      "file": "13-error-isolation/docs/index.html",
+      "title": "C·B 2.1 실패 격리"
+    },
+    {
+      "file": "14-region-retry/docs/index.html",
+      "title": "C 영역만 다시 시도"
+    },
+    {
+      "file": "15-transitive-retry/docs/index.html",
+      "title": "D 실패까지 지역 복구"
+    },
+    {
+      "file": "16-sdk-remote-region/docs/index.html",
+      "title": "SDK 공통 RemoteRegion"
+    },
+    {
+      "file": "17-sdk-retry-upgrade/docs/index.html",
+      "title": "SDK 재시도 정책만 교체"
+    },
+    {
+      "file": "18-dynamic-menus/docs/index.html",
+      "title": "관리 화면에서 서비스·메뉴 등록"
+    },
+    {
+      "file": "19-dashboard-widgets/docs/index.html",
+      "title": "공개 위젯 선택·배치"
+    }
+  ],
+  "mobileWidth": 390,
+  "localLinks": "all resolve"
+}

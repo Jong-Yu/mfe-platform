@@ -1,0 +1,42 @@
+{
+  "base": {
+    "platform": "platform-sdk",
+    "shell": "shell",
+    "A": "service-a",
+    "C": "service-c"
+  },
+  "edges": {
+    "service-a": {
+      "b": "service-b-v1"
+    },
+    "service-c": {
+      "b": "service-b-v2"
+    },
+    "service-b-v1": {
+      "d": "service-d-v1"
+    },
+    "service-b-v2": {
+      "d": "service-d-v2"
+    }
+  },
+  "fixed": {
+    "service-a": [
+      "b"
+    ],
+    "service-c": [
+      "b"
+    ],
+    "service-b-v1": [
+      "d"
+    ],
+    "service-b-v2": [
+      "d"
+    ]
+  },
+  "profiles": {
+    "baseline": {},
+    "upgraded": {
+      "platform": "platform-sdk-next"
+    }
+  }
+}

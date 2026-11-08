@@ -1,0 +1,38 @@
+{
+  "schemaVersion": 1,
+  "revision": "1.0.0",
+  "id": "15-transitive-retry",
+  "number": 15,
+  "title": "D 실패까지 지역 복구",
+  "description": "B 2.1의 D 2.0 실패를 C 영역에 격리하고 같은 탭에서 복구. 정상인 B 1.4 보존.",
+  "port": 4515,
+  "projects": [
+    "platform-build-tools",
+    "platform-sdk",
+    "service-d-v1",
+    "service-d-v2",
+    "service-b-v1",
+    "service-b-v2",
+    "service-c",
+    "service-a",
+    "shell"
+  ],
+  "buildOrder": [
+    "platform-sdk",
+    "service-d-v1",
+    "service-d-v2",
+    "service-b-v1",
+    "service-b-v2",
+    "service-c",
+    "service-a",
+    "shell"
+  ],
+  "specialTest": null,
+  "variants": {},
+  "provenance": "현재 작업본과 보존된 소스맵을 바탕으로 분리한 교육용 스냅샷. 과거 각 시점 전체 저장소의 원본 복원이 아님.",
+  "excluded": [
+    "사용자별 구독",
+    "DB 구현",
+    "실서비스 인증·S3 배포"
+  ]
+}

@@ -1,0 +1,8 @@
+
+added 4 packages in 210ms
+PASS frozen sources, configuration, packages and deployment bytes: 272 files
+PASS 자체 저장소에서 Shell·SDK를 MF로 로드
+PASS B 1.4와 B 2.1의 상태·CSS·공통 React 격리
+PASS 예제 밖 요청·예상하지 않은 브라우저 예외 없음
+PASS 서비스 소스·번들·초기 설정을 변경하지 않음
+12-nested-graph: passed 4/4

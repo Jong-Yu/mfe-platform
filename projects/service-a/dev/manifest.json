@@ -1,0 +1,88 @@
+{
+  "schemaVersion": 1,
+  "platform": "platform_1_2_0_11681bf2b051",
+  "artifacts": {
+    "platform_1_2_0_11681bf2b051": {
+      "id": "platform_1_2_0_11681bf2b051",
+      "name": "mf_platform_1_2_0_11681bf2b051",
+      "service": "platform",
+      "version": "1.2.0",
+      "entry": "/artifacts/platform_1_2_0_11681bf2b051/remoteEntry.js",
+      "dependencies": {},
+      "runtimeRequirements": {
+        "react": "19.3.1",
+        "react-dom": "19.3.1"
+      },
+      "runtimeDependencies": {},
+      "kind": "remote"
+    },
+    "b_1_5_0_133c48011d9b": {
+      "id": "b_1_5_0_133c48011d9b",
+      "name": "mf_b_1_5_0_133c48011d9b",
+      "service": "b",
+      "version": "1.5.0",
+      "entry": "/artifacts/b_1_5_0_133c48011d9b/remoteEntry.js",
+      "dependencies": {},
+      "runtimeRequirements": {
+        "platform": ">=1.0.0 <2.0.0",
+        "react": "19.3.1",
+        "react-dom": "19.3.1"
+      },
+      "runtimeDependencies": {
+        "d": {
+          "service": "d",
+          "requires": ">=1.0.0 <2.0.0"
+        }
+      },
+      "kind": "remote"
+    },
+    "d_1_1_0_db32a5022c3e": {
+      "id": "d_1_1_0_db32a5022c3e",
+      "name": "mf_d_1_1_0_db32a5022c3e",
+      "service": "d",
+      "version": "1.1.0",
+      "entry": "/artifacts/d_1_1_0_db32a5022c3e/remoteEntry.js",
+      "dependencies": {},
+      "runtimeRequirements": {},
+      "runtimeDependencies": {},
+      "kind": "remote"
+    }
+  },
+  "runtimeBindings": {
+    "b_1_5_0_133c48011d9b": {
+      "d": "d_1_1_0_db32a5022c3e"
+    }
+  },
+  "localBindings": {
+    "b": "b_1_5_0_133c48011d9b"
+  },
+  "files": {
+    "platform_1_2_0_11681bf2b051": {
+      "release.json": "8688eeaf0de2aafb8b0d122e11345e307acb91b3c01b6661385c01a82b6ad4d0",
+      "remoteEntry.js": "8380be279f36b9f31cdbcea59631d6ad70f284d968538137a47c229aaba86ed1",
+      "remoteEntry.js.map": "6463cf5bc8bb96d04c90b8ba1ead6afc79cbefd280e290031b8907284db69833",
+      "src_sdk_jsx.417d6a946906e3a74913.js": "9b43cc9c4119cc7140e762bf1a2da598c527c061af32bf65bf1727e9892c1450",
+      "src_sdk_jsx.417d6a946906e3a74913.js.map": "99df08e47cc723a9b1c1bf8aca6bf4643e995b9a1044fa2d6360abab811fcc29",
+      "vendors-node_modules_react_index_js.7ac5078087998dbfdb10.js": "dface5bb8815f826a81cf52f9df432a7f96cbda4cee376645129745ff70fd806",
+      "vendors-node_modules_react_index_js.7ac5078087998dbfdb10.js.map": "9dfe59db071c6a7127b728970af89cc3adbf669ed28cd178f7f1b3d27c77cf6c"
+    },
+    "b_1_5_0_133c48011d9b": {
+      "release.json": "71b39f95f3dfe337eae451226c3d98bbf9119e8a01822c56423efb6c94eeb4b6",
+      "remoteEntry.js": "8eed60ad9ac40bcf198d8769cea3494839cfa7492af299390882d2188457e646",
+      "remoteEntry.js.map": "a1edae48b47e5aa91400280674477e7bd96f95d753273b5e3087ea773c3d5ff7",
+      "src_Widget_jsx.f89f061f840ccc647349.js": "4606bf54c8f9381abb2a1de8f309d56c9c40947a1074d2edf3bb1cc142f99ca4",
+      "src_Widget_jsx.f89f061f840ccc647349.js.map": "e2f369e95f116ccea88e029299c3065330e1ceaa5f2d103f6d2f78f5cd9b8d80",
+      "vendors-node_modules_react-dom_index_js.197690d83453d39cfa40.js": "775a2250b03536162f4f0da05200a862dac73ad6f1fdde571bc14b6c341ca352",
+      "vendors-node_modules_react-dom_index_js.197690d83453d39cfa40.js.map": "bb6373b9cdf4231c73a1cb919284aa6195530fdc2cee80621a6e5faa3c7c5f11",
+      "vendors-node_modules_react_index_js.2352ca690ef0fdaafe8d.js": "451eccad36758861c085cdc5c9082be9ac2c5912a3e97db89c0992bc845f354d",
+      "vendors-node_modules_react_index_js.2352ca690ef0fdaafe8d.js.map": "f315a4337b8ed227268508d2ac45d1583a183ae7acfeb600afdfcf56864126af"
+    },
+    "d_1_1_0_db32a5022c3e": {
+      "release.json": "10baa5d44c48bed1e4ba6b2eda0c33b92ffcff58d3369c78e600f3fa15cab185",
+      "remoteEntry.js": "f825bf4c8f167ee1aeac3c42f3aafbdd4c7f2dfd44242cb994540143a2ef046c",
+      "remoteEntry.js.map": "b6c28e32510121a265ae52fdd2d6f8a517175d5cbca0d89ca33ed552bdba5b06",
+      "src_index_js.358b94b63b6711185136.js": "f3a33e3e225de5f8e1f6e5053a0aae2513a9c03684133d05f9cd4c64a74858ef",
+      "src_index_js.358b94b63b6711185136.js.map": "5c83dd2eefea6c388cde951966c4f0ca17c4854f3dcdab586ab553788b38b113"
+    }
+  }
+}

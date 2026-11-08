@@ -1,0 +1,40 @@
+
+added 4 packages, and audited 5 packages in 196ms
+
+found 0 vulnerabilities
+
+> mfe-example-05-composition-admin@1.0.0 start
+> node run.cjs start
+
+MF proof: http://127.0.0.1:4505
+
+added 4 packages, and audited 5 packages in 206ms
+
+found 0 vulnerabilities
+
+> mfe-example-05-composition-admin@1.0.0 start
+> node run.cjs start
+
+MF proof: http://127.0.0.1:4505
+
+> mfe-example-05-composition-admin@1.0.0 test
+> node run.cjs test
+
+PASS 자체 저장소에서 Shell·SDK를 MF로 로드
+PASS B 1.4와 B 2.1의 상태·CSS·공통 React 격리
+PASS 예제 밖 요청·예상하지 않은 브라우저 예외 없음
+PASS 서비스 소스·번들·초기 설정을 변경하지 않음
+05-composition-admin: passed 4/4
+PASS management UI displays the real SDK and A/C-to-B-to-D graph without loading service remotes
+PASS SDK/B/D choices require complete nested bindings and a fresh preview before apply
+PASS preview validates the full draft but does not change the live pointer
+PASS apply changes the actual composition atomically without any service build
+PASS new tabs execute the chosen versions while already opened tabs preserve state and their original graph
+PASS incompatible D selection is rejected in the UI and cannot be applied
+PASS an intervening update from another manager rejects the stale UI apply without overwriting it
+PASS history selection is a preview and explicit rollback restores the complete earlier composition
+PASS admin stays independent of service remotes and of a historical Shell rollback when one is available
+PASS API rejects cross-origin writes, missing tokens, unreviewed apply and a tampered reviewed target
+PASS version controls, history and mobile layout remain usable without horizontal page overflow
+PASS original projects and published service bytes are unchanged after all management operations
+Management verification passed: 12/12. Report: /private/var/folders/jv/7byd7qdd7lnc0trccnv0_2v00000gn/T/mfe-reader-mC0TBA/mfe/examples/05-composition-admin/integration/artifacts/verification/admin.json

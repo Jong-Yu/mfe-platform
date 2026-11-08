@@ -1,0 +1,551 @@
+{
+  "status": "passed",
+  "startedAt": "2026-11-08T11:56:54.978Z",
+  "checks": [
+    {
+      "name": "management UI displays the real SDK and A/C-to-B-to-D graph without loading service remotes",
+      "status": "passed"
+    },
+    {
+      "name": "SDK/B/D choices require complete nested bindings and a fresh preview before apply",
+      "status": "passed"
+    },
+    {
+      "name": "preview validates the full draft but does not change the live pointer",
+      "status": "passed"
+    },
+    {
+      "name": "apply changes the actual composition atomically without any service build",
+      "status": "passed"
+    },
+    {
+      "name": "new tabs execute the chosen versions while already opened tabs preserve state and their original graph",
+      "status": "passed"
+    },
+    {
+      "name": "incompatible D selection is rejected in the UI and cannot be applied",
+      "status": "passed"
+    },
+    {
+      "name": "an intervening update from another manager rejects the stale UI apply without overwriting it",
+      "status": "passed"
+    },
+    {
+      "name": "history selection is a preview and explicit rollback restores the complete earlier composition",
+      "status": "passed"
+    },
+    {
+      "name": "admin stays independent of service remotes and of a historical Shell rollback when one is available",
+      "status": "passed"
+    },
+    {
+      "name": "API rejects cross-origin writes, missing tokens, unreviewed apply and a tampered reviewed target",
+      "status": "passed"
+    },
+    {
+      "name": "version controls, history and mobile layout remain usable without horizontal page overflow",
+      "status": "passed"
+    },
+    {
+      "name": "original projects and published service bytes are unchanged after all management operations",
+      "status": "passed"
+    }
+  ],
+  "consumerBuildsExecuted": 0,
+  "pageErrors": [],
+  "evidenceScope": "Real management UI and HTTP API against a temporary copy of the published repository. SDK/B/D selections, preflight, apply, stale edits, full rollback and independent admin availability. All project source and dist bytes remain unchanged.",
+  "seededReleases": [],
+  "initialComposition": {
+    "compositionId": "composition_a02a38b9a81e74960e2c3d61",
+    "platformVersion": "1.3.1",
+    "shell": {
+      "id": "shell_1_0_0_2f40eb1d4d4e",
+      "name": "mf_shell_1_0_0_2f40eb1d4d4e",
+      "service": "shell",
+      "version": "1.0.0",
+      "entry": "/artifacts/shell_1_0_0_2f40eb1d4d4e/shell.js",
+      "dependencies": {},
+      "runtimeRequirements": {
+        "platform": ">=1.3.0 <2.0.0",
+        "react": "19.3.1",
+        "react-dom": "19.3.1"
+      },
+      "runtimeDependencies": {},
+      "kind": "shell",
+      "retryProtocol": "failed-modules-v2",
+      "exposedModules": []
+    },
+    "applications": {
+      "A": {
+        "id": "a_1_0_0_e146549d8c29",
+        "name": "mf_a_1_0_0_e146549d8c29",
+        "service": "a",
+        "version": "1.0.0",
+        "entry": "/artifacts/a_1_0_0_e146549d8c29/remoteEntry.js",
+        "dependencies": {},
+        "runtimeRequirements": {
+          "react": "19.3.1",
+          "react-dom": "19.3.1"
+        },
+        "runtimeDependencies": {
+          "b": {
+            "service": "b",
+            "requires": ">=1.4.0 <2.0.0"
+          }
+        },
+        "kind": "remote"
+      },
+      "C": {
+        "id": "c_1_0_0_6f13fcf126c2",
+        "name": "mf_c_1_0_0_6f13fcf126c2",
+        "service": "c",
+        "version": "1.0.0",
+        "entry": "/artifacts/c_1_0_0_6f13fcf126c2/remoteEntry.js",
+        "dependencies": {},
+        "runtimeRequirements": {
+          "react": "19.3.1",
+          "react-dom": "19.3.1"
+        },
+        "runtimeDependencies": {
+          "b": {
+            "service": "b",
+            "requires": ">=2.1.0 <3.0.0"
+          }
+        },
+        "kind": "remote"
+      }
+    },
+    "artifacts": {
+      "platform_1_3_1_a208cb489e0e": {
+        "id": "platform_1_3_1_a208cb489e0e",
+        "name": "mf_platform_1_3_1_a208cb489e0e",
+        "service": "platform",
+        "version": "1.3.1",
+        "entry": "/artifacts/platform_1_3_1_a208cb489e0e/remoteEntry.js",
+        "dependencies": {},
+        "runtimeRequirements": {
+          "react": "19.3.1",
+          "react-dom": "19.3.1"
+        },
+        "runtimeDependencies": {},
+        "kind": "remote"
+      },
+      "d_1_0_0_efd88575af01": {
+        "id": "d_1_0_0_efd88575af01",
+        "name": "mf_d_1_0_0_efd88575af01",
+        "service": "d",
+        "version": "1.0.0",
+        "entry": "/artifacts/d_1_0_0_efd88575af01/remoteEntry.js",
+        "dependencies": {},
+        "runtimeRequirements": {},
+        "runtimeDependencies": {},
+        "kind": "remote"
+      },
+      "b_1_4_0_bbf5e421fdcc": {
+        "id": "b_1_4_0_bbf5e421fdcc",
+        "name": "mf_b_1_4_0_bbf5e421fdcc",
+        "service": "b",
+        "version": "1.4.0",
+        "entry": "/artifacts/b_1_4_0_bbf5e421fdcc/remoteEntry.js",
+        "dependencies": {},
+        "runtimeRequirements": {
+          "platform": ">=1.0.0 <2.0.0",
+          "react": "19.3.1",
+          "react-dom": "19.3.1"
+        },
+        "runtimeDependencies": {
+          "d": {
+            "service": "d",
+            "requires": ">=1.0.0 <2.0.0"
+          }
+        },
+        "kind": "remote"
+      },
+      "a_1_0_0_e146549d8c29": {
+        "id": "a_1_0_0_e146549d8c29",
+        "name": "mf_a_1_0_0_e146549d8c29",
+        "service": "a",
+        "version": "1.0.0",
+        "entry": "/artifacts/a_1_0_0_e146549d8c29/remoteEntry.js",
+        "dependencies": {},
+        "runtimeRequirements": {
+          "react": "19.3.1",
+          "react-dom": "19.3.1"
+        },
+        "runtimeDependencies": {
+          "b": {
+            "service": "b",
+            "requires": ">=1.4.0 <2.0.0"
+          }
+        },
+        "kind": "remote"
+      },
+      "d_2_0_0_765af7c70368": {
+        "id": "d_2_0_0_765af7c70368",
+        "name": "mf_d_2_0_0_765af7c70368",
+        "service": "d",
+        "version": "2.0.0",
+        "entry": "/artifacts/d_2_0_0_765af7c70368/remoteEntry.js",
+        "dependencies": {},
+        "runtimeRequirements": {},
+        "runtimeDependencies": {},
+        "kind": "remote"
+      },
+      "b_2_1_0_23aa13a1e7d1": {
+        "id": "b_2_1_0_23aa13a1e7d1",
+        "name": "mf_b_2_1_0_23aa13a1e7d1",
+        "service": "b",
+        "version": "2.1.0",
+        "entry": "/artifacts/b_2_1_0_23aa13a1e7d1/remoteEntry.js",
+        "dependencies": {},
+        "runtimeRequirements": {
+          "platform": ">=1.0.0 <2.0.0",
+          "react": "19.3.1",
+          "react-dom": "19.3.1"
+        },
+        "runtimeDependencies": {
+          "d": {
+            "service": "d",
+            "requires": ">=2.0.0 <3.0.0"
+          }
+        },
+        "kind": "remote"
+      },
+      "c_1_0_0_6f13fcf126c2": {
+        "id": "c_1_0_0_6f13fcf126c2",
+        "name": "mf_c_1_0_0_6f13fcf126c2",
+        "service": "c",
+        "version": "1.0.0",
+        "entry": "/artifacts/c_1_0_0_6f13fcf126c2/remoteEntry.js",
+        "dependencies": {},
+        "runtimeRequirements": {
+          "react": "19.3.1",
+          "react-dom": "19.3.1"
+        },
+        "runtimeDependencies": {
+          "b": {
+            "service": "b",
+            "requires": ">=2.1.0 <3.0.0"
+          }
+        },
+        "kind": "remote"
+      },
+      "platform": {
+        "id": "platform_1_3_1_a208cb489e0e",
+        "name": "mf_platform_1_3_1_a208cb489e0e",
+        "service": "platform",
+        "version": "1.3.1",
+        "entry": "/artifacts/platform_1_3_1_a208cb489e0e/remoteEntry.js",
+        "dependencies": {},
+        "runtimeRequirements": {
+          "react": "19.3.1",
+          "react-dom": "19.3.1"
+        },
+        "runtimeDependencies": {},
+        "kind": "remote"
+      }
+    },
+    "selected": {
+      "platform": "platform_1_3_1_a208cb489e0e",
+      "shell": "shell_1_0_0_2f40eb1d4d4e",
+      "A": "a_1_0_0_e146549d8c29",
+      "C": "c_1_0_0_6f13fcf126c2"
+    },
+    "runtimeBindings": {
+      "a_1_0_0_e146549d8c29": {
+        "b": "b_1_4_0_bbf5e421fdcc"
+      },
+      "b_1_4_0_bbf5e421fdcc": {
+        "d": "d_1_0_0_efd88575af01"
+      },
+      "b_2_1_0_23aa13a1e7d1": {
+        "d": "d_2_0_0_765af7c70368"
+      },
+      "c_1_0_0_6f13fcf126c2": {
+        "b": "b_2_1_0_23aa13a1e7d1"
+      }
+    }
+  },
+  "browserVersion": "156.0.8078.80",
+  "appliedComposition": {
+    "compositionId": "composition_3f7a6af0305caaa42a649650",
+    "platformVersion": "1.4.0",
+    "shell": {
+      "id": "shell_1_0_0_2f40eb1d4d4e",
+      "name": "mf_shell_1_0_0_2f40eb1d4d4e",
+      "service": "shell",
+      "version": "1.0.0",
+      "entry": "/artifacts/shell_1_0_0_2f40eb1d4d4e/shell.js",
+      "dependencies": {},
+      "runtimeRequirements": {
+        "platform": ">=1.3.0 <2.0.0",
+        "react": "19.3.1",
+        "react-dom": "19.3.1"
+      },
+      "runtimeDependencies": {},
+      "kind": "shell",
+      "retryProtocol": "failed-modules-v2",
+      "exposedModules": []
+    },
+    "applications": {
+      "A": {
+        "id": "a_1_0_0_e146549d8c29",
+        "name": "mf_a_1_0_0_e146549d8c29",
+        "service": "a",
+        "version": "1.0.0",
+        "entry": "/artifacts/a_1_0_0_e146549d8c29/remoteEntry.js",
+        "dependencies": {},
+        "runtimeRequirements": {
+          "react": "19.3.1",
+          "react-dom": "19.3.1"
+        },
+        "runtimeDependencies": {
+          "b": {
+            "service": "b",
+            "requires": ">=1.4.0 <2.0.0"
+          }
+        },
+        "kind": "remote"
+      },
+      "C": {
+        "id": "c_1_0_0_6f13fcf126c2",
+        "name": "mf_c_1_0_0_6f13fcf126c2",
+        "service": "c",
+        "version": "1.0.0",
+        "entry": "/artifacts/c_1_0_0_6f13fcf126c2/remoteEntry.js",
+        "dependencies": {},
+        "runtimeRequirements": {
+          "react": "19.3.1",
+          "react-dom": "19.3.1"
+        },
+        "runtimeDependencies": {
+          "b": {
+            "service": "b",
+            "requires": ">=2.1.0 <3.0.0"
+          }
+        },
+        "kind": "remote"
+      }
+    },
+    "artifacts": {
+      "platform_1_4_0_837cf2de56e4": {
+        "id": "platform_1_4_0_837cf2de56e4",
+        "name": "mf_platform_1_4_0_837cf2de56e4",
+        "service": "platform",
+        "version": "1.4.0",
+        "entry": "/artifacts/platform_1_4_0_837cf2de56e4/remoteEntry.js",
+        "dependencies": {},
+        "runtimeRequirements": {
+          "react": "19.3.1",
+          "react-dom": "19.3.1"
+        },
+        "runtimeDependencies": {},
+        "kind": "remote"
+      },
+      "d_1_1_0_209d19a1ee10": {
+        "id": "d_1_1_0_209d19a1ee10",
+        "name": "mf_d_1_1_0_209d19a1ee10",
+        "service": "d",
+        "version": "1.1.0",
+        "entry": "/artifacts/d_1_1_0_209d19a1ee10/remoteEntry.js",
+        "dependencies": {},
+        "runtimeRequirements": {},
+        "runtimeDependencies": {},
+        "kind": "remote"
+      },
+      "b_1_5_0_c31af82fe4c3": {
+        "id": "b_1_5_0_c31af82fe4c3",
+        "name": "mf_b_1_5_0_c31af82fe4c3",
+        "service": "b",
+        "version": "1.5.0",
+        "entry": "/artifacts/b_1_5_0_c31af82fe4c3/remoteEntry.js",
+        "dependencies": {},
+        "runtimeRequirements": {
+          "platform": ">=1.0.0 <2.0.0",
+          "react": "19.3.1",
+          "react-dom": "19.3.1"
+        },
+        "runtimeDependencies": {
+          "d": {
+            "service": "d",
+            "requires": ">=1.0.0 <2.0.0"
+          }
+        },
+        "kind": "remote"
+      },
+      "a_1_0_0_e146549d8c29": {
+        "id": "a_1_0_0_e146549d8c29",
+        "name": "mf_a_1_0_0_e146549d8c29",
+        "service": "a",
+        "version": "1.0.0",
+        "entry": "/artifacts/a_1_0_0_e146549d8c29/remoteEntry.js",
+        "dependencies": {},
+        "runtimeRequirements": {
+          "react": "19.3.1",
+          "react-dom": "19.3.1"
+        },
+        "runtimeDependencies": {
+          "b": {
+            "service": "b",
+            "requires": ">=1.4.0 <2.0.0"
+          }
+        },
+        "kind": "remote"
+      },
+      "d_2_1_0_98e28af6b2b3": {
+        "id": "d_2_1_0_98e28af6b2b3",
+        "name": "mf_d_2_1_0_98e28af6b2b3",
+        "service": "d",
+        "version": "2.1.0",
+        "entry": "/artifacts/d_2_1_0_98e28af6b2b3/remoteEntry.js",
+        "dependencies": {},
+        "runtimeRequirements": {},
+        "runtimeDependencies": {},
+        "kind": "remote"
+      },
+      "b_2_2_0_19fe2415edaf": {
+        "id": "b_2_2_0_19fe2415edaf",
+        "name": "mf_b_2_2_0_19fe2415edaf",
+        "service": "b",
+        "version": "2.2.0",
+        "entry": "/artifacts/b_2_2_0_19fe2415edaf/remoteEntry.js",
+        "dependencies": {},
+        "runtimeRequirements": {
+          "platform": ">=1.0.0 <2.0.0",
+          "react": "19.3.1",
+          "react-dom": "19.3.1"
+        },
+        "runtimeDependencies": {
+          "d": {
+            "service": "d",
+            "requires": ">=2.0.0 <3.0.0"
+          }
+        },
+        "kind": "remote"
+      },
+      "c_1_0_0_6f13fcf126c2": {
+        "id": "c_1_0_0_6f13fcf126c2",
+        "name": "mf_c_1_0_0_6f13fcf126c2",
+        "service": "c",
+        "version": "1.0.0",
+        "entry": "/artifacts/c_1_0_0_6f13fcf126c2/remoteEntry.js",
+        "dependencies": {},
+        "runtimeRequirements": {
+          "react": "19.3.1",
+          "react-dom": "19.3.1"
+        },
+        "runtimeDependencies": {
+          "b": {
+            "service": "b",
+            "requires": ">=2.1.0 <3.0.0"
+          }
+        },
+        "kind": "remote"
+      },
+      "platform": {
+        "id": "platform_1_4_0_837cf2de56e4",
+        "name": "mf_platform_1_4_0_837cf2de56e4",
+        "service": "platform",
+        "version": "1.4.0",
+        "entry": "/artifacts/platform_1_4_0_837cf2de56e4/remoteEntry.js",
+        "dependencies": {},
+        "runtimeRequirements": {
+          "react": "19.3.1",
+          "react-dom": "19.3.1"
+        },
+        "runtimeDependencies": {},
+        "kind": "remote"
+      }
+    },
+    "selected": {
+      "platform": "platform_1_4_0_837cf2de56e4",
+      "shell": "shell_1_0_0_2f40eb1d4d4e",
+      "A": "a_1_0_0_e146549d8c29",
+      "C": "c_1_0_0_6f13fcf126c2"
+    },
+    "runtimeBindings": {
+      "a_1_0_0_e146549d8c29": {
+        "b": "b_1_5_0_c31af82fe4c3"
+      },
+      "b_1_5_0_c31af82fe4c3": {
+        "d": "d_1_1_0_209d19a1ee10"
+      },
+      "b_2_2_0_19fe2415edaf": {
+        "d": "d_2_1_0_98e28af6b2b3"
+      },
+      "c_1_0_0_6f13fcf126c2": {
+        "b": "b_2_2_0_19fe2415edaf"
+      }
+    }
+  },
+  "historicalShellRollback": "No historical Shell in this repository; remote independence still checked.",
+  "originalFingerprints": {
+    "platform-admin": {
+      "files": 32,
+      "sha256": "ae92a9d63c1ee81f2c4b08e0c5717ebd50aac850833d1416001e73e77e0d7c52"
+    },
+    "platform-build-tools": {
+      "files": 17,
+      "sha256": "169ef4092afcc6429bcf312111a612abed394086fcb1a53f501a480789b6f48f"
+    },
+    "platform-sdk": {
+      "files": 20,
+      "sha256": "c851532d51bf12cdf5e05554288ae152d971258fe8bddebc7e7fe38c2fdeb74a"
+    },
+    "platform-sdk-next": {
+      "files": 20,
+      "sha256": "ba72a538b9b9fd9a965c0592d94bc4e5007be4da8b5b6512ec7d1bd2ea6ef698"
+    },
+    "service-a": {
+      "files": 17,
+      "sha256": "a904aa6c6d033530bd893314f75c555d6731a2f36f83b8ae4136fef0e8a58995"
+    },
+    "service-b-v1": {
+      "files": 20,
+      "sha256": "daaf87ed2fe1cfccf66543946822a6c867ea66ef15941f129148670027fca799"
+    },
+    "service-b-v1-next": {
+      "files": 20,
+      "sha256": "bd4dc1e7f8243d2aa381e2238ea771f8b595af4c77ec1502c85900c3ff9fb927"
+    },
+    "service-b-v2": {
+      "files": 20,
+      "sha256": "04c01eec73be28d1b893b95e20cd7a211f51e1f81b41f4efa4be0dc5f9221225"
+    },
+    "service-b-v2-next": {
+      "files": 20,
+      "sha256": "f03eae7d9dbec7e8096d8767468996bf59b8627732bcc49a379b87c54ebd8c5e"
+    },
+    "service-c": {
+      "files": 17,
+      "sha256": "b9e7ba9a370740093877146861f4d3e70c6bfba6f632d0dca1ff82202eab43cd"
+    },
+    "service-d-v1": {
+      "files": 14,
+      "sha256": "a457cc759a6520dfa509282cb0e74a814806b68fbe470f351b9567953f9ff916"
+    },
+    "service-d-v1-next": {
+      "files": 14,
+      "sha256": "6fd4690b53baa73791244ccde5dc189246d0a94f00ace2b065c55bbfbac8e6fb"
+    },
+    "service-d-v2": {
+      "files": 14,
+      "sha256": "13f69b94cea120766335807153aeb20ad3dade5c6103aae8b7e638155e3c8acc"
+    },
+    "service-d-v2-next": {
+      "files": 14,
+      "sha256": "a69c1823f0b8b9bb2778b2949ca112d908d25253a367416d02bff59d6d9af0e6"
+    },
+    "shell": {
+      "files": 30,
+      "sha256": "8dfc5fbb117d96e360f7b1d7a9e6c57ea59f4db26240b032c2bffe774370fd0c"
+    }
+  },
+  "publishedArtifactsFingerprint": {
+    "files": 112,
+    "sha256": "1d851c04557998fe277241382820a603776713f4654775d931628204ca74a080"
+  },
+  "liveStoreUnchanged": true,
+  "finishedAt": "2026-11-08T11:57:00.845Z",
+  "passedChecks": 12
+}

@@ -1,0 +1,18 @@
+
+added 4 packages in 223ms
+PASS frozen sources, configuration, packages and deployment bytes: 330 files
+PASS 자체 저장소에서 Shell·SDK를 MF로 로드
+PASS B 1.4와 B 2.1의 상태·CSS·공통 React 격리
+PASS 예제 밖 요청·예상하지 않은 브라우저 예외 없음
+PASS 서비스 소스·번들·초기 설정을 변경하지 않음
+10-service-dev-host: passed 4/4
+PASS four service repositories install offline without sibling sources
+PASS A, C, B 1.x and B 2.x each boot alone with actual MF SDK and dependencies
+PASS SDK mock user/theme, duplicated state/cache/portal and unmount cleanup
+PASS source saving rebuilds only the local service and reloads the browser
+PASS compile errors preserve the last working screen and recover on the next save
+PASS service code can import PageContainer from the same MF SDK
+PASS development manifest rejects incompatible SDK/React, missing targets and cycles
+PASS missing or tampered remote bytes are rejected; private project files are not served
+PASS mobile layout, page landmarks and production output exclusion
+PASS original service projects and active production composition remain unchanged

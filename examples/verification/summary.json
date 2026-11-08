@@ -1,0 +1,147 @@
+{
+  "status": "passed",
+  "finishedAt": "2026-11-08T09:20:53.950878+00:00",
+  "featureChecks": 205,
+  "examples": [
+    {
+      "id": "01-coexistence",
+      "title": "두 B 버전의 동시 실행",
+      "checks": 4,
+      "status": "passed"
+    },
+    {
+      "id": "02-runtime-sdk",
+      "title": "SDK만 런타임 교체",
+      "checks": 5,
+      "status": "passed"
+    },
+    {
+      "id": "03-runtime-b",
+      "title": "소비자별 B 런타임 선택",
+      "checks": 6,
+      "status": "passed"
+    },
+    {
+      "id": "04-runtime-d",
+      "title": "B가 사용하는 D 런타임 선택",
+      "checks": 6,
+      "status": "passed"
+    },
+    {
+      "id": "05-composition-admin",
+      "title": "배포 조합 관리·롤백",
+      "checks": 16,
+      "status": "passed"
+    },
+    {
+      "id": "06-usage-support",
+      "title": "사용 관계·지원 종료 예정",
+      "checks": 18,
+      "status": "passed"
+    },
+    {
+      "id": "07-retirement",
+      "title": "등록 해제와 파일 삭제",
+      "checks": 22,
+      "status": "passed"
+    },
+    {
+      "id": "08-tab-leases",
+      "title": "응답 없는 탭의 안전한 정리",
+      "checks": 20,
+      "status": "passed"
+    },
+    {
+      "id": "09-legacy-transition",
+      "title": "보호 도입 전 탭 전환",
+      "checks": 21,
+      "status": "passed"
+    },
+    {
+      "id": "10-service-dev-host",
+      "title": "서비스 프로젝트 단독 개발",
+      "checks": 14,
+      "status": "passed"
+    },
+    {
+      "id": "11-service-onboarding",
+      "title": "새 서비스 생성·배포",
+      "checks": 6,
+      "status": "passed"
+    },
+    {
+      "id": "12-nested-graph",
+      "title": "A 안에서 C를 거쳐 다른 B 사용",
+      "checks": 4,
+      "status": "passed"
+    },
+    {
+      "id": "13-error-isolation",
+      "title": "C·B 2.1 실패 격리",
+      "checks": 6,
+      "status": "passed"
+    },
+    {
+      "id": "14-region-retry",
+      "title": "C 영역만 다시 시도",
+      "checks": 6,
+      "status": "passed"
+    },
+    {
+      "id": "15-transitive-retry",
+      "title": "D 실패까지 지역 복구",
+      "checks": 7,
+      "status": "passed"
+    },
+    {
+      "id": "16-sdk-remote-region",
+      "title": "SDK 공통 RemoteRegion",
+      "checks": 7,
+      "status": "passed"
+    },
+    {
+      "id": "17-sdk-retry-upgrade",
+      "title": "SDK 재시도 정책만 교체",
+      "checks": 8,
+      "status": "passed"
+    },
+    {
+      "id": "18-dynamic-menus",
+      "title": "관리 화면에서 서비스·메뉴 등록",
+      "checks": 5,
+      "status": "passed"
+    },
+    {
+      "id": "19-dashboard-widgets",
+      "title": "공개 위젯 선택·배치",
+      "checks": 4,
+      "status": "passed"
+    },
+    {
+      "id": "20-user-subscriptions",
+      "title": "사용자별 위젯·배포 조합 구독",
+      "checks": 20,
+      "status": "passed"
+    }
+  ],
+  "relocatedExamples": 20,
+  "fullRebuildExamples": [
+    "02-runtime-sdk",
+    "15-transitive-retry",
+    "19-dashboard-widgets",
+    "20-user-subscriptions"
+  ],
+  "sourceEditExample": "15-transitive-retry",
+  "otherExamplesUnchanged": true,
+  "originalComposition": "composition_9924abd231b981e1d87f3b27",
+  "subscriptions": "implemented in independent example 20",
+  "db": "design-only",
+  "buildToolFix": "1.7.1: relative retry module requests keep source maps reproducible after relocation",
+  "frozenFiles": 6882,
+  "htmlPagesChecked": 22,
+  "subscriptionVerification": "../20-user-subscriptions/verification/report.json",
+  "subscriptionIndependence": "../20-user-subscriptions/verification/independence.json",
+  "htmlLinkVerification": "html-links.json",
+  "subscriptionDocumentVerification": "../20-user-subscriptions/verification/docs.json",
+  "auditScope": "01-19 retain prior execution evidence; 20 independently executed and rebuilt in this update. All 20 frozen inventories and 22 HTML link graphs rechecked."
+}

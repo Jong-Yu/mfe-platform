@@ -1,0 +1,23 @@
+
+added 4 packages in 385ms
+PASS frozen sources, configuration, packages and deployment bytes: 434 files
+PASS 자체 저장소에서 Shell·SDK를 MF로 로드
+PASS B 1.4와 B 2.1의 상태·CSS·공통 React 격리
+PASS 예제 밖 요청·예상하지 않은 브라우저 예외 없음
+PASS 서비스 소스·번들·초기 설정을 변경하지 않음
+06-usage-support: passed 4/4
+PASS reverse usage includes SDK sharing and exact A/C -> B -> D paths, not every compatible range
+PASS a real browser reports its immutable composition and protects not-yet-loaded C dependencies
+PASS switching D leaves the older tab and rollback snapshot visible as blockers for the old version
+PASS an expired heartbeat becomes unknown and still prevents deletion instead of being counted unused
+PASS management UI shows the old version consumers, tab evidence and concrete deletion blockers
+PASS saving a support end date and notice reference persists metadata without changing service selection
+PASS concurrent support-policy edits are rejected and cannot silently overwrite another manager
+PASS invalid dates, unknown artifacts, cross-origin writes and missing tokens cannot alter policy
+PASS usage reports reject foreign artifacts, replayed reports cannot reopen a closed session, and BFCache stays reserved
+PASS retirement assessment enforces Korean date boundaries, notice, observation, retention and every reference type
+PASS support metadata and usage evidence survive a server restart
+PASS search and filters work on mobile with labeled controls and no page overflow
+PASS support ending preserves files but blocks reintroducing the release through rollback
+PASS all original service builds, published bytes and the live composition remain unchanged
+Lifecycle verification passed: 14/14

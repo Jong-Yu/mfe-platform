@@ -1,0 +1,25 @@
+{
+  "example": "19-dashboard-widgets",
+  "checks": [
+    {
+      "name": "자체 저장소에서 Shell·SDK를 MF로 로드",
+      "status": "passed"
+    },
+    {
+      "name": "관리 화면 등록·검사·적용 후 Shell 재빌드 없이 반영",
+      "status": "passed"
+    },
+    {
+      "name": "예제 밖 요청·예상하지 않은 브라우저 예외 없음",
+      "status": "passed"
+    },
+    {
+      "name": "서비스 소스·번들·초기 설정을 변경하지 않음",
+      "status": "passed"
+    }
+  ],
+  "status": "passed",
+  "startedAt": "2026-11-08T11:56:49.051Z",
+  "scope": "실제 Chrome·HTTP·MF. 임시 저장소만 변경. 소스/배포 고정은 별도의 pins 명령으로 확인.",
+  "finishedAt": "2026-11-08T11:56:51.153Z"
+}

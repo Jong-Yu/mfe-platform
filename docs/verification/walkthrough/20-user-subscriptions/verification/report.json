@@ -1,0 +1,91 @@
+{
+  "example": "20-user-subscriptions",
+  "status": "passed",
+  "startedAt": "2026-11-08T11:54:51.105Z",
+  "checks": [
+    {
+      "name": "로그인 전 안내·사용자별 서버 세션",
+      "status": "passed"
+    },
+    {
+      "name": "서로 다른 배포 조합·위젯 버전을 UI로 선택·저장",
+      "status": "passed"
+    },
+    {
+      "name": "두 사용자·두 B 버전 동시 실행·Context·상태·CSS·포털 격리",
+      "status": "passed"
+    },
+    {
+      "name": "한 번도 대시보드를 열지 않은 Carol의 B와 전이 D 참조 보호",
+      "status": "passed"
+    },
+    {
+      "name": "전역 조합 변경·서버 재시작 후에도 구독과 기존 탭 유지",
+      "status": "passed"
+    },
+    {
+      "name": "다른 사용자 지정·타 세션 CSRF·조합 URL 직접 열기 거부",
+      "status": "passed"
+    },
+    {
+      "name": "미공개 위젯·중복 배치 ID·검사 없는 저장 거부",
+      "status": "passed"
+    },
+    {
+      "name": "서비스 재빌드 없이 Alice 구독 교체·기존 탭과 Bob 유지·동시 수정 충돌 차단",
+      "status": "passed"
+    },
+    {
+      "name": "배포 조합 변경은 새 탭에만 적용·아직 로드하지 않은 의존성도 보호",
+      "status": "passed"
+    },
+    {
+      "name": "활성 구독의 조합 보관 해제 금지·개인 과거 기록과 롤백 참조 구분",
+      "status": "passed"
+    },
+    {
+      "name": "지원 종료 버전은 신규 구독 금지·기존 소유자의 동일 참조 유지",
+      "status": "passed"
+    },
+    {
+      "name": "관리 화면에 미접속 구독·차단 사유 표시·B와 D 등록 해제/삭제 차단",
+      "status": "passed"
+    },
+    {
+      "name": "화면 열기와 구독 해제 사이에도 실행 예약으로 보호",
+      "status": "passed"
+    },
+    {
+      "name": "구독 해제 후에도 기존 탭은 B와 전이 D 삭제를 막음",
+      "status": "passed"
+    },
+    {
+      "name": "만료 예약 재사용 차단·해제된 구독 신규 화면 차단",
+      "status": "passed"
+    },
+    {
+      "name": "모든 구독·탭을 정리해도 별도 보관 기간 적용",
+      "status": "passed"
+    },
+    {
+      "name": "참조·공지·보관 조건 해소 후 B와 D 파일 실제 삭제",
+      "status": "passed"
+    },
+    {
+      "name": "삭제한 버전 재구독 금지·다른 사용자 구독과 재시작 정상",
+      "status": "passed"
+    },
+    {
+      "name": "모바일 편집 화면·예상하지 않은 브라우저 예외 없음",
+      "status": "passed"
+    },
+    {
+      "name": "구독 작업 중 서비스·SDK·Shell 소스와 번들·초기 조합 유지",
+      "status": "passed"
+    }
+  ],
+  "consumerBuildsExecuted": 0,
+  "scope": "Real Chrome contexts and MF requests. Persistent subscriptions and actual file deletion in a disposable store; past metadata simulates notice/retention periods.",
+  "globalComposition": "composition_fd2eeb55dc84db2fad20e51b",
+  "finishedAt": "2026-11-08T11:54:57.670Z"
+}

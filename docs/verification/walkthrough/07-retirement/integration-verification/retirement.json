@@ -1,0 +1,94 @@
+{
+  "status": "passed",
+  "checks": [
+    {
+      "name": "a real existing tab uses the target release before its support period ends",
+      "status": "passed"
+    },
+    {
+      "name": "ending support disables selection but preserves unchanged current paths and the existing tab",
+      "status": "passed"
+    },
+    {
+      "name": "expired SDK/B selections and new indirect paths to expired D are rejected",
+      "status": "passed"
+    },
+    {
+      "name": "switching away blocks reselection through stale apply, CLI and rollback while the old tab still runs",
+      "status": "passed"
+    },
+    {
+      "name": "notice grace, request confirmation and same-origin controls are enforced before unregistration",
+      "status": "passed"
+    },
+    {
+      "name": "UI unregistration removes the choice while leaving all artifact files and tab/rollback references intact",
+      "status": "passed"
+    },
+    {
+      "name": "immediate deletion is blocked by post-unregistration retention, a live tab and rollback references",
+      "status": "passed"
+    },
+    {
+      "name": "explicit rollback-retention release preserves snapshot evidence but blocks rollback and direct HTML boot",
+      "status": "passed"
+    },
+    {
+      "name": "missing heartbeat remains a deletion blocker even after rollback retention and date conditions are cleared",
+      "status": "passed"
+    },
+    {
+      "name": "confirmed tab closure releases its reference but restarts the quiet retention period",
+      "status": "passed"
+    },
+    {
+      "name": "a published fixed consumer prevents deletion until its own stored files have been removed",
+      "status": "passed"
+    },
+    {
+      "name": "deletion requires the exact release confirmation, external-use acknowledgement and current revision",
+      "status": "passed"
+    },
+    {
+      "name": "a newly reported old tab after preparing deletion is caught by the server at commit time",
+      "status": "passed"
+    },
+    {
+      "name": "explicit UI file deletion removes bytes only after all references and retention conditions clear",
+      "status": "passed"
+    },
+    {
+      "name": "a symlink substitution cannot redirect file deletion outside the selected artifact directory",
+      "status": "passed"
+    },
+    {
+      "name": "an interrupted deletion is recorded as incomplete and can resume without falsely reporting success",
+      "status": "passed"
+    },
+    {
+      "name": "retirement and deletion records survive restart and render on mobile without overflow",
+      "status": "passed"
+    },
+    {
+      "name": "all original projects and the live artifact repository remain unchanged",
+      "status": "passed"
+    }
+  ],
+  "startedAt": "2026-11-08T11:54:04.400Z",
+  "consumerBuildsExecuted": 0,
+  "pageErrors": [],
+  "scope": "Real browser/API and CLI in a fresh disposable store. Actual file removal, unchanged consumers, lifetime references and commit-time guards. Past timestamps are seeded only in test metadata; no production clock override.",
+  "browserVersion": "156.0.8078.80",
+  "blockedDeletionReasons": [
+    "OPEN_TABS",
+    "ROLLBACK",
+    "RETENTION",
+    "OBSERVATION"
+  ],
+  "fixedReferenceProbe": "Metadata-only consumer fixture; guard and file deletion tested, fixture code not executed.",
+  "deletedArtifact": "d_1_1_0_209d19a1ee10",
+  "projectFingerprint": "08308a286724bbac77af5fb1944e50c428015f58bfe1b5fb604ddaba5fbf69ee",
+  "liveStoreUnchanged": true,
+  "finishedAt": "2026-11-08T11:54:19.162Z",
+  "passedChecks": 18
+}

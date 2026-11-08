@@ -1,0 +1,38 @@
+{
+  "schemaVersion": 1,
+  "revision": "1.0.0",
+  "id": "13-error-isolation",
+  "number": 13,
+  "title": "C·B 2.1 실패 격리",
+  "description": "A가 직접 사용하는 B 1.4는 유지하면서 C 또는 C의 B 로딩 실패만 해당 영역에 표시. 재시도 전 단계.",
+  "port": 4513,
+  "projects": [
+    "platform-build-tools",
+    "platform-sdk",
+    "service-d-v1",
+    "service-d-v2",
+    "service-b-v1",
+    "service-b-v2",
+    "service-c",
+    "service-a",
+    "shell"
+  ],
+  "buildOrder": [
+    "platform-sdk",
+    "service-d-v1",
+    "service-d-v2",
+    "service-b-v1",
+    "service-b-v2",
+    "service-c",
+    "service-a",
+    "shell"
+  ],
+  "specialTest": null,
+  "variants": {},
+  "provenance": "현재 작업본과 보존된 소스맵을 바탕으로 분리한 교육용 스냅샷. 과거 각 시점 전체 저장소의 원본 복원이 아님.",
+  "excluded": [
+    "사용자별 구독",
+    "DB 구현",
+    "실서비스 인증·S3 배포"
+  ]
+}

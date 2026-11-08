@@ -1,0 +1,14 @@
+{
+  "id": "admin_1_2_0_7664357fd5c7",
+  "name": "mf_admin_1_2_0_7664357fd5c7",
+  "service": "admin",
+  "version": "1.2.0",
+  "entry": "/artifacts/admin_1_2_0_7664357fd5c7/shell.js",
+  "dependencies": {},
+  "runtimeRequirements": {
+    "react": "19.3.1",
+    "react-dom": "19.3.1"
+  },
+  "runtimeDependencies": {},
+  "kind": "shell"
+}

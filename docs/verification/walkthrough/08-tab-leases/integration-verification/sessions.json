@@ -1,0 +1,79 @@
+{
+  "status": "passed",
+  "checks": [
+    {
+      "name": "Shell acquires a renewable lease before requesting SDK or service remotes",
+      "status": "passed"
+    },
+    {
+      "name": "a failed initial lease never boots service remotes",
+      "status": "passed"
+    },
+    {
+      "name": "live renewals extend protection and stale cleanup requests cannot override new responses",
+      "status": "passed"
+    },
+    {
+      "name": "short network loss preserves input and recovery renews the same tab",
+      "status": "passed"
+    },
+    {
+      "name": "an expired offline tab cannot interact, fetch, load another remote or execute a cached factory",
+      "status": "passed"
+    },
+    {
+      "name": "real browser freeze and resume validates the server lease before further use",
+      "status": "passed"
+    },
+    {
+      "name": "expiry is irreversible but still protects files until explicit cleanup after the grace period",
+      "status": "passed"
+    },
+    {
+      "name": "legacy unknown tabs cannot be classified as protected or released by timeout",
+      "status": "passed"
+    },
+    {
+      "name": "cleanup enforces confirmation and same-origin controls",
+      "status": "passed"
+    },
+    {
+      "name": "UI releases only the expired tab and keeps its tombstone and a new retention period",
+      "status": "passed"
+    },
+    {
+      "name": "active tabs and rollback references still prevent deletion after stale-tab cleanup",
+      "status": "passed"
+    },
+    {
+      "name": "late heartbeat and open requests cannot revive released records or enter a retired composition",
+      "status": "passed"
+    },
+    {
+      "name": "only after other references clear and post-cleanup retention passes are files actually deleted",
+      "status": "passed"
+    },
+    {
+      "name": "the returning stale browser stays blocked and its explicit reload opens the latest composition",
+      "status": "passed"
+    },
+    {
+      "name": "released evidence survives restart and remains reviewable on mobile",
+      "status": "passed"
+    },
+    {
+      "name": "original service files and the live repository remain unchanged",
+      "status": "passed"
+    }
+  ],
+  "startedAt": "2026-11-08T11:54:22.267Z",
+  "consumerBuildsExecuted": 0,
+  "pageErrors": [],
+  "scope": "Real browser/API in a disposable store: lease renewal, offline and frozen resume gates, explicit stale session release, deletion guards and actual removal. Browser clocks and past metadata simulate elapsed time; production has no clock override.",
+  "browserVersion": "156.0.8078.80",
+  "deletedArtifact": "d_1_1_0_209d19a1ee10",
+  "liveStoreUnchanged": true,
+  "projectFingerprint": "08308a286724bbac77af5fb1944e50c428015f58bfe1b5fb604ddaba5fbf69ee",
+  "passedChecks": 16,
+  "finishedAt": "2026-11-08T11:54:28.838Z"
+}

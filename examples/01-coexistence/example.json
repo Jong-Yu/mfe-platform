@@ -1,0 +1,38 @@
+{
+  "schemaVersion": 1,
+  "revision": "1.0.0",
+  "id": "01-coexistence",
+  "number": 1,
+  "title": "두 B 버전의 동시 실행",
+  "description": "A → B 1.4 / C → B 2.1. 빌드에 고정한 의존성과 인스턴스 상태·CSS·이벤트 격리.",
+  "port": 4501,
+  "projects": [
+    "platform-build-tools",
+    "platform-sdk",
+    "service-d-v1",
+    "service-d-v2",
+    "service-b-v1",
+    "service-b-v2",
+    "service-c",
+    "service-a",
+    "shell"
+  ],
+  "buildOrder": [
+    "platform-sdk",
+    "service-d-v1",
+    "service-d-v2",
+    "service-b-v1",
+    "service-b-v2",
+    "service-c",
+    "service-a",
+    "shell"
+  ],
+  "specialTest": null,
+  "variants": {},
+  "provenance": "현재 작업본과 보존된 소스맵을 바탕으로 분리한 교육용 스냅샷. 과거 각 시점 전체 저장소의 원본 복원이 아님.",
+  "excluded": [
+    "사용자별 구독",
+    "DB 구현",
+    "실서비스 인증·S3 배포"
+  ]
+}

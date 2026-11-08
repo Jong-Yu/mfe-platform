@@ -1,0 +1,18 @@
+
+added 4 packages, and audited 5 packages in 338ms
+
+found 0 vulnerabilities
+
+> mfe-example-01-coexistence@1.0.0 start
+> node run.cjs start
+
+MF proof: http://127.0.0.1:4501
+
+> mfe-example-01-coexistence@1.0.0 test
+> node run.cjs test
+
+PASS 자체 저장소에서 Shell·SDK를 MF로 로드
+PASS B 1.4와 B 2.1의 상태·CSS·공통 React 격리
+PASS 예제 밖 요청·예상하지 않은 브라우저 예외 없음
+PASS 서비스 소스·번들·초기 설정을 변경하지 않음
+01-coexistence: passed 4/4

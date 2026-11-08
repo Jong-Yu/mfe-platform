@@ -1,0 +1,107 @@
+{
+  "status": "passed",
+  "checks": [
+    {
+      "name": "reverse usage includes SDK sharing and exact A/C -> B -> D paths, not every compatible range",
+      "status": "passed"
+    },
+    {
+      "name": "a real browser reports its immutable composition and protects not-yet-loaded C dependencies",
+      "status": "passed"
+    },
+    {
+      "name": "switching D leaves the older tab and rollback snapshot visible as blockers for the old version",
+      "status": "passed"
+    },
+    {
+      "name": "an expired heartbeat becomes unknown and still prevents deletion instead of being counted unused",
+      "status": "passed"
+    },
+    {
+      "name": "management UI shows the old version consumers, tab evidence and concrete deletion blockers",
+      "status": "passed"
+    },
+    {
+      "name": "saving a support end date and notice reference persists metadata without changing service selection",
+      "status": "passed"
+    },
+    {
+      "name": "concurrent support-policy edits are rejected and cannot silently overwrite another manager",
+      "status": "passed"
+    },
+    {
+      "name": "invalid dates, unknown artifacts, cross-origin writes and missing tokens cannot alter policy",
+      "status": "passed"
+    },
+    {
+      "name": "usage reports reject foreign artifacts, replayed reports cannot reopen a closed session, and BFCache stays reserved",
+      "status": "passed"
+    },
+    {
+      "name": "retirement assessment enforces Korean date boundaries, notice, observation, retention and every reference type",
+      "status": "passed"
+    },
+    {
+      "name": "support metadata and usage evidence survive a server restart",
+      "status": "passed"
+    },
+    {
+      "name": "search and filters work on mobile with labeled controls and no page overflow",
+      "status": "passed"
+    },
+    {
+      "name": "support ending preserves files but blocks reintroducing the release through rollback",
+      "status": "passed"
+    },
+    {
+      "name": "all original service builds, published bytes and the live composition remain unchanged",
+      "status": "passed"
+    }
+  ],
+  "startedAt": "2026-11-08T11:53:55.052Z",
+  "consumerBuildsExecuted": 0,
+  "pageErrors": [],
+  "scope": "Local usage graph and actual browser heartbeats, lifecycle UI/API, deterministic policy clock checks; no file deletion or production-wide absence proof.",
+  "initialComposition": "composition_a02a38b9a81e74960e2c3d61",
+  "browserVersion": "156.0.8078.80",
+  "oldVersionAfterSwitch": {
+    "id": "d_1_0_0_efd88575af01",
+    "currentPaths": [],
+    "recentTabs": 1,
+    "blockers": [
+      {
+        "code": "OPEN_TABS",
+        "message": "최근 응답한 1개 탭에서 이 버전이 필요합니다. 지연 로딩도 포함합니다."
+      },
+      {
+        "code": "ROLLBACK",
+        "message": "저장된 조합 1개가 롤백을 위해 이 파일을 참조합니다."
+      },
+      {
+        "code": "REGISTERED",
+        "message": "파일 삭제 전에 먼저 등록을 해제해야 합니다."
+      },
+      {
+        "code": "NO_END_DATE",
+        "message": "지원 종료일을 지정하지 않았습니다."
+      },
+      {
+        "code": "NO_NOTICE",
+        "message": "공지 기록이 없습니다."
+      },
+      {
+        "code": "NO_RETENTION_START",
+        "message": "지원 종료·공지 기록·등록 해제 후 보존 기간을 계산합니다."
+      },
+      {
+        "code": "OBSERVATION",
+        "message": "이 저장소의 관측 기록이 아직 30일 미만입니다."
+      }
+    ]
+  },
+  "projectsFingerprint": "08308a286724bbac77af5fb1944e50c428015f58bfe1b5fb604ddaba5fbf69ee",
+  "artifactsFingerprint": "1d851c04557998fe277241382820a603776713f4654775d931628204ca74a080",
+  "liveStoreUnchanged": true,
+  "finishedAt": "2026-11-08T11:54:01.038Z",
+  "passedChecks": 14
+}

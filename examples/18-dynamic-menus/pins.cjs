@@ -1,0 +1,7 @@
+const fs=require('node:fs'),path=require('node:path'),crypto=require('node:crypto');
+const root=__dirname, skip=new Set(['node_modules','.git','.mfe-dev','artifact-store','verification','example.lock.json']);
+function inventory(){const result={};function walk(dir){for(const item of fs.readdirSync(dir,{withFileTypes:true}).sort((a,b)=>a.name.localeCompare(b.name))){if(skip.has(item.name))continue;const file=path.join(dir,item.name),relative=path.relative(root,file).split(path.sep).join('/');if(relative==='integration/artifacts')continue;if(item.isSymbolicLink())throw Error('External links prohibited: '+relative);if(item.isDirectory())walk(file);else result[relative]=crypto.createHash('sha256').update(fs.readFileSync(file)).digest('hex');}}walk(root);return result;}
+function check(){const frozen=JSON.parse(fs.readFileSync(path.join(root,'example.lock.json'))), actual=inventory();const changed=[...new Set([...Object.keys(frozen.files),...Object.keys(actual)])].filter(p=>actual[p]!==frozen.files[p]);if(changed.length)throw Error('Changed since frozen revision (intentional edits are allowed):\n'+changed.join('\n'));console.log('PASS frozen sources, configuration, packages and deployment bytes: '+Object.keys(actual).length+' files');return actual;}
+function freeze(){const c=require('./example.json');fs.writeFileSync(path.join(root,'example.lock.json'),JSON.stringify({schemaVersion:1,id:c.id,revision:c.revision,files:inventory()},null,2)+'\n');}
+module.exports={check,freeze,inventory};
+if(require.main===module)check();

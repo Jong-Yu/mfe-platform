@@ -1,0 +1,7 @@
+{
+  "b": {
+    "mode": "runtime",
+    "service": "b",
+    "requires": ">=2.1.0 <3.0.0"
+  }
+}

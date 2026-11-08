@@ -1,0 +1,40 @@
+{
+  "id": "b_2_1_0_c751f7ae2573",
+  "name": "mf_b_2_1_0_c751f7ae2573",
+  "service": "b",
+  "version": "2.1.0",
+  "entry": "/artifacts/b_2_1_0_c751f7ae2573/remoteEntry.js",
+  "dependencies": {},
+  "runtimeRequirements": {
+    "platform": ">=1.0.0 <2.0.0",
+    "react": "19.3.1",
+    "react-dom": "19.3.1"
+  },
+  "runtimeDependencies": {
+    "d": {
+      "service": "d",
+      "requires": ">=2.0.0 <3.0.0"
+    }
+  },
+  "kind": "remote",
+  "retryProtocol": "failed-modules-v2",
+  "exposedModules": [
+    "./Summary",
+    "./Widget",
+    "./helper"
+  ],
+  "widgets": [
+    {
+      "id": "car-picker",
+      "title": "차량 선택",
+      "exposedModule": "./Widget",
+      "contract": "platform-widget-v1"
+    },
+    {
+      "id": "summary",
+      "title": "차량 요약",
+      "exposedModule": "./Summary",
+      "contract": "platform-widget-v1"
+    }
+  ]
+}

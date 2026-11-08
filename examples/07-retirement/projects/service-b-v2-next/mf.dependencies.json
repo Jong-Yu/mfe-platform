@@ -1,0 +1,12 @@
+{
+  "platform": {
+    "mode": "runtime",
+    "service": "platform",
+    "requires": ">=1.0.0 <2.0.0"
+  },
+  "d": {
+    "mode": "runtime",
+    "service": "d",
+    "requires": ">=2.0.0 <3.0.0"
+  }
+}

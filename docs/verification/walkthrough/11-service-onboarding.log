@@ -1,0 +1,155 @@
+
+added 4 packages, and audited 5 packages in 206ms
+
+found 0 vulnerabilities
+
+> mfe-example-11-service-onboarding@1.0.0 start
+> node run.cjs start
+
+MF proof: http://127.0.0.1:4511
+
+added 124 packages, and audited 125 packages in 625ms
+
+20 packages are looking for funding
+  run `npm fund` for details
+
+found 0 vulnerabilities
+
+> @mfe/service-e@1.0.0 dev
+> mfe-dev
+
+Built e@1.0.0: e_1_0_0_5bae6a12cb66
+Release metadata: /private/var/folders/jv/7byd7qdd7lnc0trccnv0_2v00000gn/T/mfe-reader-qq8qOm/service-e-learning/.mfe-dev/builds/e_1_0_0_5bae6a12cb66/release.json
+Dev ready: e_1_0_0_5bae6a12cb66 / SDK 1.3.1
+Service Dev Host: http://127.0.0.1:4207/
+Built e@1.0.0: e_1_0_0_460a74534aab
+Release metadata: /private/var/folders/jv/7byd7qdd7lnc0trccnv0_2v00000gn/T/mfe-reader-qq8qOm/service-e-learning/.mfe-dev/builds/e_1_0_0_460a74534aab/release.json
+Dev ready: e_1_0_0_460a74534aab / SDK 1.3.1
+v1.0.1
+
+> @mfe/service-e@1.0.1 build
+> mfe-build
+
+Built e@1.0.1: e_1_0_1_9269cdd3628b
+Release metadata: /private/var/folders/jv/7byd7qdd7lnc0trccnv0_2v00000gn/T/mfe-reader-qq8qOm/service-e-learning/dist/release.json
+{
+  "published": "e_1_0_1_9269cdd3628b",
+  "activatedAs": null,
+  "entry": "/artifacts/e_1_0_1_9269cdd3628b/remoteEntry.js"
+}
+{
+  "compositionId": "composition_4490b3ef475379b83aca4d10",
+  "platformVersion": "1.3.1",
+  "selected": {
+    "platform": "platform_1_3_1_a208cb489e0e",
+    "shell": "shell_1_0_0_456e7029d213",
+    "A": "a_1_0_0_e146549d8c29",
+    "C": "c_1_0_0_6f13fcf126c2"
+  },
+  "runtimeBindings": {
+    "a_1_0_0_e146549d8c29": {
+      "b": "b_1_4_0_bbf5e421fdcc"
+    },
+    "b_1_4_0_bbf5e421fdcc": {
+      "d": "d_1_0_0_efd88575af01"
+    },
+    "b_2_1_0_23aa13a1e7d1": {
+      "d": "d_2_0_0_765af7c70368"
+    },
+    "c_1_0_0_6f13fcf126c2": {
+      "b": "b_2_1_0_23aa13a1e7d1"
+    },
+    "shell_1_0_0_456e7029d213": {
+      "e": "e_1_0_1_9269cdd3628b"
+    }
+  }
+}
+
+> mfe-example-11-service-onboarding@1.0.0 test
+> node run.cjs test
+
+PASS 자체 저장소에서 Shell·SDK를 MF로 로드
+PASS B 1.4와 B 2.1의 상태·CSS·공통 React 격리
+PASS 독립 E 프로젝트 배포가 고정 Shell 슬롯에서 동작
+PASS 프로젝트 하나 복사·수정·단독 개발·재빌드·배포·Shell 연결
+PASS 예제 밖 요청·예상하지 않은 브라우저 예외 없음
+PASS 서비스 소스·번들·초기 설정을 변경하지 않음
+11-service-onboarding: passed 6/6
+
+added 4 packages, and audited 5 packages in 203ms
+
+found 0 vulnerabilities
+
+> mfe-example-11-service-onboarding@1.0.0 start
+> node run.cjs start
+
+MF proof: http://127.0.0.1:4511
+
+added 124 packages, and audited 125 packages in 700ms
+
+20 packages are looking for funding
+  run `npm fund` for details
+
+found 0 vulnerabilities
+
+> @mfe/service-e@1.0.0 dev
+> mfe-dev
+
+Built e@1.0.0: e_1_0_0_5bae6a12cb66
+Release metadata: /private/var/folders/jv/7byd7qdd7lnc0trccnv0_2v00000gn/T/mfe-reader-QEIC7b/mfe/examples/service-e-learning/.mfe-dev/builds/e_1_0_0_5bae6a12cb66/release.json
+Dev ready: e_1_0_0_5bae6a12cb66 / SDK 1.3.1
+Service Dev Host: http://127.0.0.1:4207/
+Built e@1.0.0: e_1_0_0_460a74534aab
+Release metadata: /private/var/folders/jv/7byd7qdd7lnc0trccnv0_2v00000gn/T/mfe-reader-QEIC7b/mfe/examples/service-e-learning/.mfe-dev/builds/e_1_0_0_460a74534aab/release.json
+Dev ready: e_1_0_0_460a74534aab / SDK 1.3.1
+v1.0.1
+
+> @mfe/service-e@1.0.1 build
+> mfe-build
+
+Built e@1.0.1: e_1_0_1_9269cdd3628b
+Release metadata: /private/var/folders/jv/7byd7qdd7lnc0trccnv0_2v00000gn/T/mfe-reader-QEIC7b/mfe/examples/service-e-learning/dist/release.json
+{
+  "published": "e_1_0_1_9269cdd3628b",
+  "activatedAs": null,
+  "entry": "/artifacts/e_1_0_1_9269cdd3628b/remoteEntry.js"
+}
+shell_1_0_0_456e7029d213
+{
+  "compositionId": "composition_4490b3ef475379b83aca4d10",
+  "platformVersion": "1.3.1",
+  "selected": {
+    "platform": "platform_1_3_1_a208cb489e0e",
+    "shell": "shell_1_0_0_456e7029d213",
+    "A": "a_1_0_0_e146549d8c29",
+    "C": "c_1_0_0_6f13fcf126c2"
+  },
+  "runtimeBindings": {
+    "a_1_0_0_e146549d8c29": {
+      "b": "b_1_4_0_bbf5e421fdcc"
+    },
+    "b_1_4_0_bbf5e421fdcc": {
+      "d": "d_1_0_0_efd88575af01"
+    },
+    "b_2_1_0_23aa13a1e7d1": {
+      "d": "d_2_0_0_765af7c70368"
+    },
+    "c_1_0_0_6f13fcf126c2": {
+      "b": "b_2_1_0_23aa13a1e7d1"
+    },
+    "shell_1_0_0_456e7029d213": {
+      "e": "e_1_0_1_9269cdd3628b"
+    }
+  }
+}
+
+> mfe-example-11-service-onboarding@1.0.0 test
+> node run.cjs test
+
+PASS 자체 저장소에서 Shell·SDK를 MF로 로드
+PASS B 1.4와 B 2.1의 상태·CSS·공통 React 격리
+PASS 독립 E 프로젝트 배포가 고정 Shell 슬롯에서 동작
+PASS 프로젝트 하나 복사·수정·단독 개발·재빌드·배포·Shell 연결
+PASS 예제 밖 요청·예상하지 않은 브라우저 예외 없음
+PASS 서비스 소스·번들·초기 설정을 변경하지 않음
+11-service-onboarding: passed 6/6
