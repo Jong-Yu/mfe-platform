@@ -1,0 +1,120 @@
+{
+  "status": "local-candidate-passed",
+  "date": "2026-11-10",
+  "scope": "45 passing checks apply only to the complete local candidate commit freshly git-cloned without an overlay or preinstalled active projects. Each suite copied inputs exclusively from that clone and started with a new empty npm cache. At verification time the actual GitHub clone was the older Webpack revision. This historical report does not describe the current remote HEAD or claim a new execution.",
+  "environment": {
+    "node": "v24.22.1",
+    "chrome": "157.0.8103.39",
+    "platform": "darwin",
+    "installation": "New empty private npm caches, online initial install, no inherited npm configuration; later installs reuse only the newly populated per-run cache",
+    "npm": "11.19.1"
+  },
+  "parts": [
+    {
+      "name": "V5 development and error recovery",
+      "checks": 10,
+      "passed": 10,
+      "status": "passed",
+      "report": "development/report.json"
+    },
+    {
+      "name": "V6 B release, CLI/UI activation and rollback",
+      "checks": 13,
+      "passed": 13,
+      "status": "passed",
+      "report": "release/report.json"
+    },
+    {
+      "name": "V7 SDK and D replacement and rollback",
+      "checks": 22,
+      "passed": 22,
+      "status": "passed",
+      "report": "versions/report.json"
+    }
+  ],
+  "checks": 45,
+  "passed": 45,
+  "originalPreserved": true,
+  "findings": "findings.json",
+  "productCodeChanged": false,
+  "scripts": [
+    "../../book/vite-dev-walkthrough.mjs",
+    "../../book/vite-release-walkthrough.mjs",
+    "../../book/vite-version-walkthrough.mjs"
+  ],
+  "earlyAttempts": [
+    {
+      "report": "first-attempt/failure.json",
+      "kind": "unsupported Node selected in a new shell"
+    }
+  ],
+  "updatedBookSHA256": "f61773ed8f8f648e40a9a244b1d1518da1e8e5cabedef5a860de4ee76eaabb68",
+  "cacheEvidence": {
+    "paths": [
+      "/private/tmp/mfe-vite-dev-empty-cache-G5tlir",
+      "/private/tmp/mfe-vite-release-empty-cache-pczsW9",
+      "/private/tmp/mfe-vite-versions-empty-cache-O7ARh1"
+    ],
+    "entriesBeforeFirstInstall": [
+      [],
+      [],
+      []
+    ],
+    "officialRegistry": "https://registry.npmjs.org/",
+    "cacheMissDownloads": {
+      "development": 41,
+      "release": 44,
+      "versions": 44
+    }
+  },
+  "replayMode": [
+    "MFE_WALKTHROUGH_COLD=1",
+    "MFE_RELEASE_COLD=1",
+    "MFE_VERSIONS_COLD=1"
+  ],
+  "upstream": {
+    "status": "blocked-at-version-check",
+    "source": "https://github.com/Jong-Yu/mfe-platform.git",
+    "directory": "/private/tmp/mfe-git-clone-check.otAOJS/remote",
+    "commit": "e4498f6d02a87999940f4cec08a18979b05e38d0",
+    "branch": "main",
+    "initialStatus": "",
+    "buildTools": "1.7.0",
+    "bundler": "webpack",
+    "currentViteChapterPresent": false,
+    "currentViteVendorPresent": false,
+    "finding": "The actual upstream clone is the committed Webpack implementation and older learning book. Local Vite migration and revised book are not yet in that commit. This is a version/distribution gap, not an npm or Vite runtime failure. No local files were overlaid onto this remote clone."
+  },
+  "candidate": {
+    "source": "/private/tmp/mfe-git-clone-check.otAOJS/candidate",
+    "directory": "/private/tmp/mfe-git-clone-check.otAOJS/validated-node24",
+    "commit": "319fa9a1a3ffa683beb15eade95be3893455b44f",
+    "branch": "codex/vite-clone-validation",
+    "initialStatus": "",
+    "noLocalOverlayAfterClone": true,
+    "noPreinstalledActiveProjects": true,
+    "bookSHA256": "4dd83f8d00dbfd68140b53fcb1a21f4e438791caf1fceb34ad4433eddb1ba25b",
+    "node": "v24.22.1",
+    "npm": "11.19.1",
+    "preflight": "candidate-preflight.json",
+    "runtimeSelection": "Existing nvm installation: nvm use selected .nvmrc=24 in this same shell; Node itself was not installed during verification."
+  },
+  "candidatePreserved": {
+    "commit": "319fa9a1a3ffa683beb15eade95be3893455b44f",
+    "status": "",
+    "runtimeInstructionsUnchanged": true,
+    "v5ThroughV7SHA256": "be89b034f5dcdf92d3158193c8aa4e58b67bed043287a1723d72950de3461edd",
+    "harnessCodeMatchesClone": {
+      "vite-dev-walkthrough.mjs": "c19107b46f442fc3bd8f3529bcb183bb6118cd0a3b8be359f291e352b0aac48b",
+      "vite-release-walkthrough.mjs": "1d03d340bf0ff08bac83abd4a1ed411501df8f13e6107a2835e90c04e1d4fcb0",
+      "vite-version-walkthrough.mjs": "92b83e88c0437c8886bab41dea03405a398b896f2060f820add30af9901763dc"
+    },
+    "originalWorktreeHEAD": "e4498f6d02a87999940f4cec08a18979b05e38d0",
+    "originalIndexUnchanged": true
+  },
+  "preflight": "candidate-preflight.json",
+  "preflightRegression": "preflight-regression.json",
+  "runtimeInstructionsUnchangedAfterExecution": true,
+  "recordType": "historical-prepublication-validation",
+  "publicationPendingAtVerification": true
+}

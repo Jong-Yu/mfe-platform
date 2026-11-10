@@ -3,6 +3,7 @@ import { existsSync } from 'node:fs';
 import { mkdir, writeFile } from 'node:fs/promises';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 import path from 'node:path';
+import semver from 'semver';
 
 // Run against the already-running proof server: node tests/verify.mjs
 const baseURL = process.env.BASE_URL || `http://127.0.0.1:${process.env.PORT || 4173}`;
@@ -352,13 +353,14 @@ async function runFullScenario(order) {
     const platformConsumers = [scenario.registry.shell, ...Object.values(scenario.registry.artifacts).filter((artifact) => artifact.service === 'b')];
     for (const consumer of platformConsumers) {
       assert.equal(consumer.dependencies.platform, undefined, `${consumer.id} must not compile a concrete SDK artifact into its business dependencies`);
-      assert.equal(consumer.runtimeRequirements.platform, '>=1.0.0 <2.0.0', `${consumer.id} must declare its supported runtime SDK range`);
+      assert(semver.validRange(consumer.runtimeRequirements.platform), `${consumer.id} must declare its supported runtime SDK range`);
+      assert(semver.satisfies(scenario.registry.platformVersion, consumer.runtimeRequirements.platform), `${consumer.id} must support the selected SDK`);
       assert.equal(consumer.runtimeRequirements.react, '19.3.1');
       assert.equal(consumer.runtimeRequirements['react-dom'], '19.3.1');
     }
     scenario.registryArtifactIds = registryArtifactIds(scenario.registry);
     scenario.loadedArtifacts = await page.evaluate(() => [...window.__MFE_PROOF__.loadedArtifacts]);
-    scenario.containerNames = await page.evaluate(() => Object.keys(window).filter((key) => key.startsWith('mf_')).sort());
+    scenario.containerNames = await page.evaluate(() => window.__MFE_RUNTIME__.getDiagnostics().containers.map(container => container.name).sort());
     const platformPrefix = `platform_${scenario.registry.artifacts.platform.version.replaceAll('.', '_')}`;
     const selectedArtifactPrefixes = [platformPrefix, ...artifactPrefixes];
     const artifactIds = selectedArtifactPrefixes.map((prefix) => {
@@ -450,7 +452,8 @@ async function runFailureRetryScenario() {
     };
     await page.route(cEntryURL, abortEntry, { times: 1 });
     await page.getByTestId('add-c').click();
-    const errorAlert = page.getByRole('alert').filter({ hasText: 'Remote unavailable:' });
+    const transportError = /Remote unavailable:|Failed to fetch dynamically imported module|Importing a module script failed|error loading dynamically imported module/i;
+    const errorAlert = page.getByRole('alert').filter({ hasText: transportError });
     await errorAlert.waitFor({ state: 'visible' });
     assert((await readText(errorAlert)).includes(cArtifact.entry), 'The error must identify the unavailable C artifact');
     await page.waitForFunction(() => !document.querySelector('[data-testid="add-c"]').disabled);
@@ -468,9 +471,10 @@ async function runFailureRetryScenario() {
     assert.equal(scenario.failedRequests.length, 1, 'Exactly the deliberately aborted request may fail');
     assert.equal(scenario.failedRequests[0].url, cEntryURL);
     assert.match(scenario.failedRequests[0].error, /ERR_FAILED/);
-    assert(scenario.consoleErrors.some((entry) => entry.text.includes(`Remote unavailable: ${cArtifact.entry}`)), 'The handled loader failure should be reported');
+    const isLoaderFailure = text => text.includes(cArtifact.entry) && transportError.test(text);
+    assert(scenario.consoleErrors.some((entry) => isLoaderFailure(entry.text)), 'The handled loader failure should be reported');
     for (const entry of scenario.consoleErrors) {
-      const loaderFailure = entry.text.includes(`Remote unavailable: ${cArtifact.entry}`);
+      const loaderFailure = isLoaderFailure(entry.text);
       const resourceFailure = entry.location.url === cEntryURL && /Failed to load resource/.test(entry.text);
       assert(loaderFailure || resourceFailure, `Unexpected console error during the injected failure: ${entry.text}`);
     }
@@ -500,7 +504,11 @@ async function runFailureRetryScenario() {
     assert.deepEqual(await styles(page, 'A'), originalStyles);
     await emitAndVerify(page, ['A', 'C']);
     const retryResponses = scenario.remoteEntries.slice(responsesBeforeRetry);
-    assert(retryResponses.some((entry) => entry.url === cEntryURL && entry.status === 200), 'Retry must fetch C remoteEntry successfully after the rejected promise is cleared');
+    assert(retryResponses.some((entry) => {
+      const url = new URL(entry.url);
+      url.searchParams.delete('mfe_retry');
+      return url.href === cEntryURL && entry.status === 200;
+    }), 'Retry must fetch C remoteEntry successfully after the rejected promise is cleared');
     assert.equal(scenario.failedRequests.length, failuresBeforeRetry, 'Retry must not add failed requests');
     assert.equal(scenario.consoleErrors.length, consoleErrorsBeforeRetry, 'Retry must not add console errors');
     assert.deepEqual(scenario.pageErrors, []);

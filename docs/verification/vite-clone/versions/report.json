@@ -1,0 +1,356 @@
+{
+  "startedAt": "2026-11-10T13:14:13.093Z",
+  "status": "passed",
+  "scope": "Current Vite V7 SDK-only and D-only replacement, unchanged consumer bytes, old/new tabs, rollback and failed-selection behavior. This is not the historical Webpack example 17.",
+  "sourceRepository": "/private/tmp/mfe-git-clone-check.otAOJS/validated-node24",
+  "nodeVersion": "v24.22.1",
+  "sourceSelection": {
+    "rootOverride": true,
+    "harnessRepository": "/private/tmp/mfe-git-clone-check.otAOJS/validated-node24",
+    "execution": "Copy the selected source checkout into a fresh temporary tree, excluding installed dependencies, build outputs, runtime stores and prior artifacts; run install/build/tests only in that copy."
+  },
+  "outputDirectory": "/Users/jong-yu/Projects/mfe/docs/verification/vite-clone/versions",
+  "outputOverride": true,
+  "installation": {
+    "cache": "/private/tmp/mfe-vite-versions-empty-cache-O7ARh1",
+    "cold": true,
+    "mode": "verified-empty private npm cache; official-registry online initial installs; isolated upgrade installs use only this newly populated cache",
+    "cacheEntriesBeforeInstall": [],
+    "emptyCacheVerifiedAt": "2026-11-10T13:14:13.094Z",
+    "registry": "https://registry.npmjs.org/",
+    "privateEmptyConfigs": {
+      "userconfig": "/private/tmp/mfe-vite-versions-npm-config-NXPIU2/user.npmrc",
+      "globalconfig": "/private/tmp/mfe-vite-versions-npm-config-NXPIU2/global.npmrc"
+    },
+    "inheritedNpmConfigurationRemoved": true,
+    "localNpmConfigs": [],
+    "noCopiedInstallOrBuildOutputs": true,
+    "successfulOfficialRegistryFetches": 45,
+    "cacheMisses": 44,
+    "cacheEntriesAfterInstall": [
+      "_cacache",
+      "_logs",
+      "_update-notifier-last-checked"
+    ],
+    "initialDownloadsCompletedAt": "2026-11-10T13:14:22.290Z"
+  },
+  "commands": [
+    {
+      "label": "integration-install",
+      "command": "npm",
+      "args": [
+        "ci",
+        "--ignore-scripts",
+        "--no-audit",
+        "--no-fund",
+        "--cache",
+        "/private/tmp/mfe-vite-versions-empty-cache-O7ARh1"
+      ],
+      "cwd": "/private/tmp/mfe-vite-versions-DiUHAT/integration",
+      "log": "01-integration-install.log",
+      "startedAt": "2026-11-10T13:14:13.371Z",
+      "status": "passed",
+      "exitCode": 0,
+      "signal": null,
+      "durationMs": 547,
+      "finishedAt": "2026-11-10T13:14:13.919Z",
+      "httpEvidence": {
+        "httpLineCount": 9,
+        "cacheMisses": 4,
+        "successfulOfficialRegistryFetches": 5,
+        "fetchedURLs": [
+          "https://registry.npmjs.org/fsevents/-/fsevents-2.3.2.tgz",
+          "https://registry.npmjs.org/semver/-/semver-6.3.2.tgz",
+          "https://registry.npmjs.org/npm",
+          "https://registry.npmjs.org/playwright/-/playwright-1.62.1.tgz",
+          "https://registry.npmjs.org/playwright-core/-/playwright-core-1.62.1.tgz"
+        ],
+        "sample": [
+          "npm http fetch GET 200 https://registry.npmjs.org/fsevents/-/fsevents-2.3.2.tgz 68ms (cache miss)",
+          "npm http fetch GET 200 https://registry.npmjs.org/semver/-/semver-6.3.2.tgz 71ms (cache miss)",
+          "npm http fetch GET 200 https://registry.npmjs.org/playwright/-/playwright-1.62.1.tgz 130ms (cache miss)",
+          "npm http fetch GET 200 https://registry.npmjs.org/playwright-core/-/playwright-core-1.62.1.tgz 171ms (cache miss)"
+        ]
+      }
+    },
+    {
+      "label": "project-install",
+      "command": "npm",
+      "args": [
+        "run",
+        "setup"
+      ],
+      "cwd": "/private/tmp/mfe-vite-versions-DiUHAT/integration",
+      "log": "02-project-install.log",
+      "startedAt": "2026-11-10T13:14:13.921Z",
+      "status": "passed",
+      "exitCode": 0,
+      "signal": null,
+      "durationMs": 8368,
+      "finishedAt": "2026-11-10T13:14:22.289Z",
+      "httpEvidence": {
+        "httpLineCount": 450,
+        "cacheMisses": 40,
+        "successfulOfficialRegistryFetches": 40,
+        "fetchedURLs": [
+          "https://registry.npmjs.org/tinyglobby/-/tinyglobby-0.2.17.tgz",
+          "https://registry.npmjs.org/util-deprecate/-/util-deprecate-1.0.2.tgz",
+          "https://registry.npmjs.org/picocolors/-/picocolors-1.1.1.tgz",
+          "https://registry.npmjs.org/ws/-/ws-8.21.3.tgz",
+          "https://registry.npmjs.org/picomatch/-/picomatch-4.0.7.tgz",
+          "https://registry.npmjs.org/source-map-js/-/source-map-js-1.2.2.tgz",
+          "https://registry.npmjs.org/nanoid/-/nanoid-3.3.20.tgz",
+          "https://registry.npmjs.org/isomorphic-ws/-/isomorphic-ws-5.0.0.tgz",
+          "https://registry.npmjs.org/postcss/-/postcss-8.5.32.tgz",
+          "https://registry.npmjs.org/postcss-selector-parser/-/postcss-selector-parser-7.2.0.tgz",
+          "https://registry.npmjs.org/lightningcss/-/lightningcss-1.33.0.tgz",
+          "https://registry.npmjs.org/fsevents/-/fsevents-2.3.3.tgz",
+          "https://registry.npmjs.org/detect-libc/-/detect-libc-2.1.2.tgz",
+          "https://registry.npmjs.org/adm-zip/-/adm-zip-0.6.1.tgz",
+          "https://registry.npmjs.org/vite/-/vite-8.3.6.tgz",
+          "https://registry.npmjs.org/@rolldown/pluginutils/-/pluginutils-1.0.1.tgz",
+          "https://registry.npmjs.org/@oxc-project/types/-/types-0.156.0.tgz",
+          "https://registry.npmjs.org/react-dom/-/react-dom-19.3.1.tgz",
+          "https://registry.npmjs.org/@module-federation/third-party-dts-extractor/-/third-party-dts-extractor-2.9.3.tgz",
+          "https://registry.npmjs.org/@module-federation/runtime/-/runtime-2.9.3.tgz",
+          "https://registry.npmjs.org/@module-federation/error-codes/-/error-codes-2.9.3.tgz",
+          "https://registry.npmjs.org/undici/-/undici-7.30.1.tgz",
+          "https://registry.npmjs.org/@module-federation/managers/-/managers-2.9.3.tgz",
+          "https://registry.npmjs.org/scheduler/-/scheduler-0.28.0.tgz",
+          "https://registry.npmjs.org/@module-federation/vite/-/vite-1.23.11.tgz",
+          "https://registry.npmjs.org/@module-federation/dts-plugin/-/dts-plugin-2.9.3.tgz",
+          "https://registry.npmjs.org/postcss-value-parser/-/postcss-value-parser-4.2.0.tgz",
+          "https://registry.npmjs.org/typescript/-/typescript-7.0.2.tgz",
+          "https://registry.npmjs.org/@module-federation/runtime-core/-/runtime-core-2.9.3.tgz",
+          "https://registry.npmjs.org/lightningcss-darwin-arm64/-/lightningcss-darwin-arm64-1.33.0.tgz",
+          "https://registry.npmjs.org/magic-string/-/magic-string-1.4.5.tgz",
+          "https://registry.npmjs.org/fdir/-/fdir-6.5.0.tgz",
+          "https://registry.npmjs.org/react/-/react-19.3.1.tgz",
+          "https://registry.npmjs.org/icss-utils/-/icss-utils-5.1.0.tgz",
+          "https://registry.npmjs.org/rolldown/-/rolldown-1.2.16.tgz",
+          "https://registry.npmjs.org/@jridgewell/sourcemap-codec/-/sourcemap-codec-1.6.0.tgz",
+          "https://registry.npmjs.org/@module-federation/sdk/-/sdk-2.9.3.tgz",
+          "https://registry.npmjs.org/postcss-modules-local-by-default/-/postcss-modules-local-by-default-4.2.0.tgz",
+          "https://registry.npmjs.org/@typescript/typescript-darwin-arm64/-/typescript-darwin-arm64-7.0.2.tgz",
+          "https://registry.npmjs.org/@rolldown/binding-darwin-arm64/-/binding-darwin-arm64-1.2.16.tgz"
+        ],
+        "sample": [
+          "npm http fetch GET 200 https://registry.npmjs.org/tinyglobby/-/tinyglobby-0.2.17.tgz 107ms (cache miss)",
+          "npm http fetch GET 200 https://registry.npmjs.org/util-deprecate/-/util-deprecate-1.0.2.tgz 112ms (cache miss)",
+          "npm http fetch GET 200 https://registry.npmjs.org/picocolors/-/picocolors-1.1.1.tgz 132ms (cache miss)",
+          "npm http fetch GET 200 https://registry.npmjs.org/ws/-/ws-8.21.3.tgz 148ms (cache miss)",
+          "npm http fetch GET 200 https://registry.npmjs.org/picomatch/-/picomatch-4.0.7.tgz 150ms (cache miss)",
+          "npm http fetch GET 200 https://registry.npmjs.org/source-map-js/-/source-map-js-1.2.2.tgz 156ms (cache miss)",
+          "npm http fetch GET 200 https://registry.npmjs.org/nanoid/-/nanoid-3.3.20.tgz 156ms (cache miss)",
+          "npm http fetch GET 200 https://registry.npmjs.org/isomorphic-ws/-/isomorphic-ws-5.0.0.tgz 165ms (cache miss)"
+        ]
+      }
+    },
+    {
+      "label": "baseline-build",
+      "command": "npm",
+      "args": [
+        "run",
+        "build"
+      ],
+      "cwd": "/private/tmp/mfe-vite-versions-DiUHAT/integration",
+      "log": "03-baseline-build.log",
+      "startedAt": "2026-11-10T13:14:22.290Z",
+      "status": "passed",
+      "exitCode": 0,
+      "signal": null,
+      "durationMs": 16974,
+      "finishedAt": "2026-11-10T13:14:39.264Z",
+      "httpEvidence": {
+        "httpLineCount": 0,
+        "cacheMisses": 0,
+        "successfulOfficialRegistryFetches": 0,
+        "fetchedURLs": [],
+        "sample": []
+      }
+    },
+    {
+      "label": "test-sdk",
+      "command": "npm",
+      "args": [
+        "run",
+        "test:sdk"
+      ],
+      "cwd": "/private/tmp/mfe-vite-versions-DiUHAT/integration",
+      "log": "04-test-sdk.log",
+      "startedAt": "2026-11-10T13:14:39.267Z",
+      "status": "passed",
+      "exitCode": 0,
+      "signal": null,
+      "durationMs": 8306,
+      "finishedAt": "2026-11-10T13:14:47.573Z",
+      "httpEvidence": {
+        "httpLineCount": 0,
+        "cacheMisses": 0,
+        "successfulOfficialRegistryFetches": 0,
+        "fetchedURLs": [],
+        "sample": []
+      }
+    },
+    {
+      "label": "test-dependency",
+      "command": "npm",
+      "args": [
+        "run",
+        "test:dependency"
+      ],
+      "cwd": "/private/tmp/mfe-vite-versions-DiUHAT/integration",
+      "log": "05-test-dependency.log",
+      "startedAt": "2026-11-10T13:14:47.578Z",
+      "status": "passed",
+      "exitCode": 0,
+      "signal": null,
+      "durationMs": 11642,
+      "finishedAt": "2026-11-10T13:14:59.221Z",
+      "httpEvidence": {
+        "httpLineCount": 0,
+        "cacheMisses": 0,
+        "successfulOfficialRegistryFetches": 0,
+        "fetchedURLs": [],
+        "sample": []
+      }
+    }
+  ],
+  "suites": [
+    {
+      "name": "SDK only replacement and rollback",
+      "command": "npm run test:sdk",
+      "status": "passed",
+      "passedChecks": 10,
+      "checks": 10,
+      "consumerBuildsExecuted": 0,
+      "browserVersion": "157.0.8103.39",
+      "report": "sdk-upgrade.json",
+      "transition": {
+        "from": "1.3.1",
+        "to": "1.4.0",
+        "unsupported": "2.0.0"
+      },
+      "evidenceScope": "Only a temporary SDK checkout is installed and rebuilt at the next minor version. Existing consumer sources, configurations and dist bytes are fingerprinted. Browser tabs execute the actual baseline and upgraded SDK files; incompatible-release probes are explicitly metadata-only."
+    },
+    {
+      "name": "D only replacement and rollback",
+      "command": "npm run test:dependency",
+      "status": "passed",
+      "passedChecks": 12,
+      "checks": 12,
+      "consumerBuildsExecuted": 0,
+      "browserVersion": "157.0.8103.39",
+      "report": "dependency-upgrade.json",
+      "transition": {
+        "service-d-v1": {
+          "from": "1.0.0",
+          "to": "1.1.0"
+        },
+        "service-d-v2": {
+          "from": "2.0.0",
+          "to": "2.1.0"
+        }
+      },
+      "evidenceScope": "After the one-time runtime migration, only two isolated D checkouts are built. All original project source/configuration/output bytes are compared. Real browser tabs keep A/C and B identities unchanged while B 1.x and B 2.x select different D releases using one SDK. Invalid graph probes are metadata-only."
+    }
+  ],
+  "originalSourceFingerprints": {
+    "projects": {
+      "files": 401,
+      "sha256": "307f5360a72241f6aab038fe717fd3a14f0f25951c30b1e20da410ba63aad8fd"
+    },
+    "integration": {
+      "files": 66,
+      "sha256": "cba0fab9b5abb14e35b2f3b491ac4dc5559c7f62aa6403404fa7bf63db92690e"
+    }
+  },
+  "isolatedRepository": "/private/tmp/mfe-vite-versions-DiUHAT",
+  "copyExclusions": [
+    "node_modules",
+    "dist",
+    ".mfe-dev",
+    "artifact-store",
+    "artifacts",
+    ".git"
+  ],
+  "copiedSourceFingerprints": {
+    "projects": {
+      "files": 401,
+      "sha256": "307f5360a72241f6aab038fe717fd3a14f0f25951c30b1e20da410ba63aad8fd"
+    },
+    "integration": {
+      "files": 66,
+      "sha256": "cba0fab9b5abb14e35b2f3b491ac4dc5559c7f62aa6403404fa7bf63db92690e"
+    }
+  },
+  "baselineCurrent": {
+    "compositionId": "composition_88ee38ebfe391a69f3cdb828"
+  },
+  "baselineReleases": {
+    "platform-sdk": {
+      "id": "platform_1_3_1_e25c8d049944",
+      "version": "1.3.1",
+      "format": "esm",
+      "federation": "vite"
+    },
+    "service-d-v1": {
+      "id": "d_1_0_0_c6adbe1cb721",
+      "version": "1.0.0",
+      "format": "esm",
+      "federation": "vite"
+    },
+    "service-d-v2": {
+      "id": "d_2_0_0_a4251bae8bc7",
+      "version": "2.0.0",
+      "format": "esm",
+      "federation": "vite"
+    },
+    "service-b-v1": {
+      "id": "b_1_4_0_6cc8bf6c0028",
+      "version": "1.4.0",
+      "format": "esm",
+      "federation": "vite"
+    },
+    "service-b-v2": {
+      "id": "b_2_1_0_479272f66af5",
+      "version": "2.1.0",
+      "format": "esm",
+      "federation": "vite"
+    },
+    "service-a": {
+      "id": "a_1_0_0_0321deb69c28",
+      "version": "1.0.0",
+      "format": "esm",
+      "federation": "vite"
+    },
+    "service-c": {
+      "id": "c_1_0_0_369b0db5dc78",
+      "version": "1.0.0",
+      "format": "esm",
+      "federation": "vite"
+    },
+    "shell": {
+      "id": "shell_1_3_0_46ac9795cddf",
+      "version": "1.3.0",
+      "format": "esm",
+      "federation": "vite"
+    }
+  },
+  "passedChecks": 22,
+  "totalChecks": 22,
+  "baselineStorePointerUnchanged": true,
+  "originalSourceFingerprintsAfter": {
+    "projects": {
+      "files": 401,
+      "sha256": "307f5360a72241f6aab038fe717fd3a14f0f25951c30b1e20da410ba63aad8fd"
+    },
+    "integration": {
+      "files": 66,
+      "sha256": "cba0fab9b5abb14e35b2f3b491ac4dc5559c7f62aa6403404fa7bf63db92690e"
+    }
+  },
+  "originalSourcesUnchanged": true,
+  "retainedIsolatedCopy": "/private/tmp/mfe-vite-versions-DiUHAT",
+  "finishedAt": "2026-11-10T13:14:59.321Z"
+}

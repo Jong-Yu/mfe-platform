@@ -97,7 +97,8 @@ try{
   await check('create and build independent F after E registration without touching Shell',async()=>{
     fs.cpSync(path.join(integration,'templates/service-e'),fproject,{recursive:true});
     const pkg=json(path.join(fproject,'package.json'));pkg.name='@mfe/service-f';write(path.join(fproject,'package.json'),pkg);
-    fs.mkdirSync(path.join(fproject,'vendor'));fs.copyFileSync(path.join(root,'projects/shell/vendor/mfe-platform-build-tools-1.7.0.tgz'),path.join(fproject,'vendor/mfe-platform-build-tools-1.7.0.tgz'));
+    const toolFile=`mfe-platform-build-tools-${json(path.join(root,'projects/platform-build-tools/package.json')).version}.tgz`;
+    fs.mkdirSync(path.join(fproject,'vendor'));fs.copyFileSync(path.join(root,'projects/shell/vendor',toolFile),path.join(fproject,'vendor',toolFile));
     fs.writeFileSync(path.join(fproject,'mf.config.cjs'),"module.exports={service:'f',kind:'remote',port:4208,exposes:{'./Widget':'./src/Widget.jsx'}};\n");
     const dependencies=json(path.join(fproject,'mf.dependencies.json'));dependencies.d={mode:'runtime',service:'d',requires:'>=2.0.0 <3.0.0'};write(path.join(fproject,'mf.dependencies.json'),dependencies);
     const file=path.join(fproject,'src/Widget.jsx');let source=fs.readFileSync(file,'utf8').replaceAll('service-e-','service-f-').replaceAll('"e-','"f-').replace('알림 서비스 E','리포트 서비스 F');

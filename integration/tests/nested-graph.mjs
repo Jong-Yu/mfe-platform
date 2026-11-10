@@ -8,16 +8,27 @@ import os from 'node:os';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { chromium } from 'playwright';
+import { exposeChunkPath } from './expose-chunk.mjs';
 
 const integration = fileURLToPath(new URL('../', import.meta.url));
 const projects = path.resolve(integration, '../projects');
 const output = path.join(integration, 'artifacts/verification');
 const names = ['platform-sdk', 'shell', 'service-a', 'service-c', 'service-b-v1', 'service-b-v2', 'service-d-v1', 'service-d-v2'];
 const report = { startedAt: new Date().toISOString(), status: 'running', checks: [], pages: [],
-  evidenceScope: 'Actual independently installed and built A 1.1, C 1.1 and B 2.1 with retry controls. A statically imports B 1.4 and uses RemoteRegion from the selected SDK 1.3 MF remote for C isolation and retries. No private RemoteRegion source is bundled in A. C imports B 2.1. Tests include real entry/chunk HTTP failures and withheld C responses. The new SDK 1.3 build is selected centrally. Existing Shell, B 1.4 and D builds are reused. D 2.0 entry/chunk failures and recovery are also exercised. Explicit retry tests restore the same failed URL without a page reload and compare direct B DOM/state and React/Context identity. This does not prove security isolation or arbitrary remote compatibility.' };
+  evidenceScope: 'Actual independently installed and built A 1.1, C 1.1 and B 2.1 with retry controls. A statically imports B 1.4 and uses RemoteRegion from the selected SDK 1.3 MF remote for C isolation and retries. No private RemoteRegion source is bundled in A. C imports B 2.1. Tests include real entry/chunk HTTP failures and withheld C responses. The new SDK 1.3 build is selected centrally. Existing Shell, B 1.4 and D builds are reused. D 2.0 entry/chunk failures and recovery are also exercised. Explicit retry tests restore the same failed URL without a page reload and compare direct B DOM/state and React/Context identity. One manual retry is also tested with an HTTP 503 followed by a delayed HTTP 200, while evaluation errors, missing exposes and invalid consumers receive no automatic second attempt. This does not prove security isolation or arbitrary remote compatibility.' };
 const json = async (file) => JSON.parse(await readFile(file, 'utf8'));
 const w = (page, id) => page.getByTestId(`widget-${id}`);
 const txt = async (locator) => (await locator.innerText()).trim();
+// A retry changes only the transport cache key, not the immutable artifact URL.
+function sameResource(actual, expected) {
+  const canonical = (value) => {
+    const url = new URL(value);
+    url.searchParams.delete('mfe_retry');
+    return url.href;
+  };
+  return canonical(actual) === canonical(expected);
+}
+
 const originalStore = process.env.MFE_ARTIFACT_STORE;
 let temporary, server, browser, currentPage, scenario, baseURL;
 await mkdir(output, { recursive: true });
@@ -80,7 +91,7 @@ async function session(name, { navigate = true, mobile = false } = {}) {
   report.pages.push(record);
   page.on('request', (request) => record.requests.push(request.url()));
   page.on('response', (response) => {
-    if (response.url().endsWith('/remoteEntry.js')) record.remoteEntries.push({ url: response.url(), status: response.status() });
+    if (new URL(response.url()).pathname.endsWith('/remoteEntry.js')) record.remoteEntries.push({ url: response.url(), status: response.status() });
     if (response.status() >= 400) record.httpErrors.push({ url: response.url(), status: response.status() });
   });
   page.on('pageerror', (error) => record.pageErrors.push(error.message));
@@ -215,9 +226,9 @@ try {
     report.buildLog = await run(['tools/prepare-nested.cjs', '--output', prepared]);
     scenario = await json(path.join(prepared, 'scenario.json'));
     report.scenario = scenario;
-    assert.equal(scenario.toolVersion, '1.5.0');
-    assert.equal(scenario.releases['service-c'].retryProtocol, 'failed-modules-v2');
-    assert.equal(scenario.releases['service-b-v2'].retryProtocol, 'failed-modules-v2');
+    assert.equal(scenario.toolVersion, (await json(path.join(projects, 'platform-build-tools/package.json'))).version);
+    assert.equal(scenario.releases['service-c'].retryProtocol, 'vite-preflight-v1');
+    assert.equal(scenario.releases['service-b-v2'].retryProtocol, 'vite-preflight-v1');
     assert.equal(scenario.builds.length, 3);
     assert.equal(scenario.releases['platform-sdk'].version, (await json(path.join(projects, 'platform-sdk/package.json'))).version);
     assert.equal(scenario.releases['service-a'].runtimeRequirements.platform, '>=1.3.0 <2.0.0');
@@ -377,16 +388,13 @@ try {
       const release = scenario.releases[failure.project];
       let requestPath = release.entry;
       if (failure.chunk) {
-        const files = await readdir(path.join(scenario.storeDirectory, 'artifacts', release.id));
-        const chunks = files.filter((name) => name.startsWith('src_') && name.endsWith('.js'));
-        assert.equal(chunks.length, 1);
-        requestPath = `/artifacts/${release.id}/${chunks[0]}`;
+        requestPath = await exposeChunkPath(scenario.storeDirectory, release, failure.project.startsWith('service-d') ? './data' : './Widget');
       }
       const failedURL = new URL(requestPath, baseURL).href;
       let releaseRequest;
       const gate = new Promise((resolve) => { releaseRequest = resolve; });
-      const reached = s.page.waitForRequest(failedURL);
-      await s.page.route(failedURL, async (route) => {
+      const reached = s.page.waitForRequest(request => sameResource(request.url(), failedURL));
+      await s.page.route(requestURL => sameResource(requestURL.href, failedURL), async (route) => {
         await gate;
         await route.fulfill({ status: failure.status, contentType: 'text/plain', body: 'Deliberate remote outage for isolation verification' });
       });
@@ -409,8 +417,8 @@ try {
         s.record.proof = await directProof(s.page);
         assert.deepEqual(s.record.proof.mounts, ['A']);
         assert(s.record.httpErrors.length >= 1);
-        assert(s.record.httpErrors.every((entry) => entry.url === failedURL && entry.status === failure.status));
-        assert(s.record.failedRequests.every((entry) => entry.url === failedURL));
+        assert(s.record.httpErrors.every((entry) => sameResource(entry.url, failedURL) && entry.status === failure.status));
+        assert(s.record.failedRequests.every((entry) => sameResource(entry.url, failedURL)));
         assert.deepEqual(s.record.pageErrors, []);
         assert(s.record.consoleErrors.every((error) => /RemoteRegion load failed|Failed to load resource/.test(error)));
         s.record.expectedFailure = { url: failedURL, status: failure.status, boundary: 'A--c only' };
@@ -436,13 +444,14 @@ try {
     await check(`${failure.name} recovers by retrying only C after the same file becomes available`, async () => {
       const s = await session(`recovered-${failure.name}`, { navigate: false });
       const release = scenario.releases[failure.project];
-      const files = failure.chunk ? await readdir(path.join(scenario.storeDirectory, 'artifacts', release.id)) : [];
-      const requestPath = failure.chunk ? `/artifacts/${release.id}/${files.find((name) => name.startsWith('src_') && name.endsWith('.js'))}` : release.entry;
+      const requestPath = failure.chunk
+        ? await exposeChunkPath(scenario.storeDirectory, release, failure.project.startsWith('service-d') ? './data' : './Widget')
+        : release.entry;
       const failedURL = new URL(requestPath, baseURL).href;
       let broken = true;
       let navigationCount = 0;
       s.page.on('framenavigated', (frame) => { if (frame === s.page.mainFrame()) navigationCount++; });
-      await s.page.route(failedURL, (route) => broken
+      await s.page.route(requestURL => sameResource(requestURL.href, failedURL), (route) => broken
         ? route.fulfill({ status: failure.status, contentType: 'text/plain', body: 'Temporary outage for recovery verification' })
         : route.continue());
       await s.page.goto(`${baseURL}/?empty=1`, { waitUntil: 'networkidle' });
@@ -460,7 +469,7 @@ try {
       }));
       // A retry during the outage must fail locally again, not fall back or reset A.
       if (['B2-entry', 'D2-entry', 'D2-chunk'].includes(failure.name)) {
-        const nextError = s.page.waitForResponse((response) => response.url() === failedURL && response.status() === failure.status);
+        const nextError = s.page.waitForResponse((response) => sameResource(response.url(), failedURL) && response.status() === failure.status);
         await s.page.getByTestId('retry-A--c').click();
         await nextError;
         await s.page.getByTestId('remote-error-A--c').waitFor();
@@ -468,10 +477,10 @@ try {
         assert.deepEqual(await state(s.page, 'A'), { count: '1', cache: value });
         assert.equal(await s.page.getByTestId('popup-A').count(), 1);
       }
-      const failedAttempts = s.record.httpErrors.filter((entry) => entry.url === failedURL).length;
+      const failedAttempts = s.record.httpErrors.filter((entry) => sameResource(entry.url, failedURL)).length;
       assert(failedAttempts >= 1);
       broken = false;
-      const restoredResponse = s.page.waitForResponse((response) => response.url() === failedURL && response.status() === 200);
+      const restoredResponse = s.page.waitForResponse((response) => sameResource(response.url(), failedURL) && response.status() === 200);
       await s.page.getByTestId('retry-A--c').click();
       await restoredResponse;
       s.record.proof = await proof(s.page, { A: '1.4.0', 'A--c': '2.1.0' });
@@ -493,11 +502,10 @@ try {
       });
       assert(recoveryLog.some((entry) => entry.artifactId === scenario.releases['service-c'].id));
       assert(recoveryLog.every((entry) => entry.consumerId === scenario.releases['service-a'].id && entry.alias === 'c'));
-      if (failure.project === 'service-b-v2') assert(recoveryLog.some((entry) => entry.removed.some((id) => id.includes('src/index.jsx'))), 'C module evaluation failures were actually evicted');
+      if (failure.project === 'service-b-v2') assert(recoveryLog.some((entry) => entry.artifactId === scenario.releases['service-c'].id && entry.removed.includes('./Widget')), 'C failed expose is prepared for retry');
       if (failure.project === 'service-d-v2') {
         const bRecoveries = recoveryLog.filter((entry) => entry.artifactId === scenario.releases['service-b-v2'].id);
-        assert(bRecoveries.some((entry) => entry.removed.includes('./src/Widget.jsx')));
-        assert(bRecoveries.some((entry) => entry.removed.includes('webpack/container/remote/d/data')));
+        assert(bRecoveries.some((entry) => entry.removed.includes('./Widget')));
         assert(bRecoveries.some((entry) => entry.prepared.includes('./Widget')), 'B dependency loading is re-entered before C evaluation');
         const bIndex = recoveryLog.findIndex((entry) => entry.artifactId === scenario.releases['service-b-v2'].id);
         const cIndex = recoveryLog.findIndex((entry) => entry.artifactId === scenario.releases['service-c'].id);
@@ -507,7 +515,7 @@ try {
       }
       assert(recoveryLog.every((entry) => !['service-b-v1', 'service-d-v1', 'platform-sdk'].some((name) => entry.artifactId === scenario.releases[name].id)));
       s.record.recovery = { failedURL, failedAttempts, restoredStatus: 200, navigationCount, recoveryLog };
-      assert(s.record.httpErrors.every((entry) => entry.url === failedURL && entry.status === failure.status));
+      assert(s.record.httpErrors.every((entry) => sameResource(entry.url, failedURL) && entry.status === failure.status));
       assert.deepEqual(s.record.pageErrors, []);
       assert(s.record.consoleErrors.every((error) => /RemoteRegion load failed|Failed to load resource/.test(error)));
       await s.page.screenshot({ path: path.join(output, `nested-recovered-${failure.name}.png`), fullPage: true });
@@ -518,13 +526,96 @@ try {
       }
     });
   }
+  for (const failure of failures.filter(item => ['C-entry', 'B2-chunk', 'D2-chunk'].includes(item.name))) {
+    await check(`${failure.name}: one manual retry waits before a second transport attempt and preserves direct B`, async () => {
+      const s = await session(`delayed-auto-retry-${failure.name}`, { navigate: false });
+      const release = scenario.releases[failure.project];
+      const requestPath = failure.chunk
+        ? await exposeChunkPath(scenario.storeDirectory, release, failure.project.startsWith('service-d') ? './data' : './Widget')
+        : release.entry;
+      const url = new URL(requestPath, baseURL).href;
+      let manual = false, initialRequests = 0, navigations = 0;
+      const attempts = [], statuses = [];
+      s.page.on('response', response => { if (sameResource(response.url(), url)) statuses.push(response.status()); });
+      s.page.on('framenavigated', frame => { if (frame === s.page.mainFrame()) navigations++; });
+      await s.page.route(requestURL => sameResource(requestURL.href, url), async route => {
+        if (!manual) {
+          initialRequests++;
+          return route.fulfill({ status: 503, contentType: 'text/plain', body: 'Initial transport outage' });
+        }
+        attempts.push(Date.now());
+        if (attempts.length === 1) return route.fulfill({ status: 503, contentType: 'text/plain', body: 'First manual attempt still unavailable' });
+        return route.continue();
+      });
+      await s.page.goto(`${baseURL}/?empty=1`, { waitUntil: 'networkidle' });
+      await s.page.getByTestId('add-a').click();
+      await s.page.getByTestId('remote-error-A--c').waitFor();
+      await directProof(s.page);
+      await s.page.waitForTimeout(650);
+      assert.equal(initialRequests, 1, 'initial loading does not automatically retry');
+      const element = await w(s.page, 'A').elementHandle();
+      const value = `${failure.name}-delayed-retry-kept`;
+      await exerciseDirect(s.page, value);
+      manual = true;
+      const restored = s.page.waitForResponse(response => sameResource(response.url(), url) && response.status() === 200);
+      await s.page.getByTestId('retry-A--c').click();
+      await restored;
+      s.record.proof = await proof(s.page, { A: '1.4.0', 'A--c': '2.1.0' });
+      assert.equal(attempts.length, 2, 'one manual click makes at most two transport attempts');
+      const delayMs = attempts[1] - attempts[0];
+      assert(delayMs >= 400, `the second attempt must be delayed, observed ${delayMs}ms`);
+      assert.equal(navigations, 1);
+      assert.equal(await s.page.getByRole('alert').count(), 0);
+      await assertDirectPreserved(s.page, value, element);
+      const recovery = await s.page.evaluate(async () => {
+        const sdk = await window.__MFE_RUNTIME__.getContainer('platform');
+        return (await sdk.get('./sdk'))().getRemoteRecoveryLog();
+      });
+      assert.deepEqual(statuses, [503, 503, 200], 'initial failure, first manual failure, then delayed successful response');
+      assert(recovery.some(entry => entry.attempt === 2));
+      assert(recovery.every(entry => entry.attempt <= 2));
+      assert(s.record.httpErrors.every(entry => sameResource(entry.url, url) && entry.status === 503));
+      assert.deepEqual(s.record.pageErrors, []);
+      s.record.delayedRetry = { url, initialRequests, manualRequests: attempts.length, statuses, delayMs, navigations, recovery };
+    });
+  }
+  await check('module evaluation errors receive one manual attempt without automatic transport retry', async () => {
+    const s = await session('evaluation-error-no-auto-retry', { navigate: false });
+    const release = scenario.releases['service-c'];
+    const url = new URL(await exposeChunkPath(scenario.storeDirectory, release, './Widget'), baseURL).href;
+    await s.page.route(requestURL => sameResource(requestURL.href, url), route => route.fulfill({
+      status: 200, contentType: 'text/javascript',
+      body: 'globalThis.__MFE_EVALUATION_ATTEMPTS__ = (globalThis.__MFE_EVALUATION_ATTEMPTS__ || 0) + 1; throw new Error("Deliberate remote evaluation error");',
+    }));
+    await s.page.goto(`${baseURL}/?empty=1`, { waitUntil: 'networkidle' });
+    await s.page.getByTestId('add-a').click();
+    await s.page.getByTestId('remote-error-A--c').waitFor();
+    await directProof(s.page);
+    const element = await w(s.page, 'A').elementHandle();
+    await exerciseDirect(s.page, 'evaluation-error-kept');
+    await s.page.getByTestId('retry-A--c').click();
+    await s.page.getByTestId('remote-error-A--c').waitFor();
+    await s.page.waitForTimeout(650);
+    const result = await s.page.evaluate(async () => {
+      const sdk = await window.__MFE_RUNTIME__.getContainer('platform');
+      return { evaluations: window.__MFE_EVALUATION_ATTEMPTS__, recovery: (await sdk.get('./sdk'))().getRemoteRecoveryLog() };
+    });
+    assert.equal(result.evaluations, 1, 'failed ESM evaluation remains cached');
+    assert(result.recovery.length > 0);
+    assert(result.recovery.every(entry => entry.attempt === 1), 'evaluation errors do not enter the delayed second attempt');
+    assert.equal(s.record.consoleErrors.filter(error => error.startsWith('RemoteRegion load failed:')).length, 2);
+    assert.deepEqual(s.record.httpErrors, []);
+    assert.deepEqual(s.record.pageErrors, []);
+    await assertDirectPreserved(s.page, 'evaluation-error-kept', element);
+    s.record.evaluationFailure = result;
+  });
   for (const retryProject of ['service-c', 'service-d-v2']) {
   await check(`${retryProject}: two C regions share one pending retry while retaining separate UI state`, async () => {
     const s = await session(`concurrent-retry-${retryProject}`, { navigate: false });
     const url = new URL(scenario.releases[retryProject].entry, baseURL).href;
     let broken = true, successfulRequests = 0, releaseRequest;
     const gate = new Promise((resolve) => { releaseRequest = resolve; });
-    await s.page.route(url, async (route) => {
+    await s.page.route(requestURL => sameResource(requestURL.href, url), async (route) => {
       if (broken) return route.fulfill({ status: 503, body: 'Unavailable' });
       successfulRequests++;
       await gate;
@@ -540,7 +631,7 @@ try {
       const element = await w(s.page, 'A').elementHandle();
       await exerciseDirect(s.page, 'concurrent-retry-kept');
       broken = false;
-      const requested = s.page.waitForRequest(url);
+      const requested = s.page.waitForRequest(request => sameResource(request.url(), url));
       await s.page.getByTestId('retry-A--c').click();
       await requested;
       await s.page.getByTestId('retry-A-copy--c').click();
@@ -562,7 +653,7 @@ try {
     const url = new URL(scenario.releases[retryProject].entry, baseURL).href;
     let broken = true, releaseRequest;
     const gate = new Promise((resolve) => { releaseRequest = resolve; });
-    await s.page.route(url, async (route) => {
+    await s.page.route(requestURL => sameResource(requestURL.href, url), async (route) => {
       if (broken) return route.fulfill({ status: 503, body: 'Unavailable' });
       await gate;
       await route.continue();
@@ -574,7 +665,7 @@ try {
       const element = await w(s.page, 'A').elementHandle();
       await exerciseDirect(s.page, 'hidden-retry-kept');
       broken = false;
-      const requested = s.page.waitForRequest(url);
+      const requested = s.page.waitForRequest(request => sameResource(request.url(), url));
       await s.page.getByTestId('retry-A--c').click();
       await requested;
       await s.page.getByTestId('remote-loading-A--c').waitFor();
@@ -599,8 +690,8 @@ try {
     const url = new URL(scenario.releases['service-c'].entry, baseURL).href;
     let releaseRequest;
     const gate = new Promise((resolve) => { releaseRequest = resolve; });
-    const reached = s.page.waitForRequest(url);
-    await s.page.route(url, async (route) => { await gate; await route.continue(); });
+    const reached = s.page.waitForRequest(request => sameResource(request.url(), url));
+    await s.page.route(requestURL => sameResource(requestURL.href, url), async (route) => { await gate; await route.continue(); });
     try {
       await s.page.goto(`${baseURL}/?empty=1`, { waitUntil: 'networkidle' });
       await s.page.getByTestId('add-a').click();
@@ -623,8 +714,8 @@ try {
     const url = new URL(scenario.releases['service-c'].entry, baseURL).href;
     let releaseRequest;
     const gate = new Promise((resolve) => { releaseRequest = resolve; });
-    const reached = s.page.waitForRequest(url);
-    await s.page.route(url, async (route) => { await gate; await route.continue(); });
+    const reached = s.page.waitForRequest(request => sameResource(request.url(), url));
+    await s.page.route(requestURL => sameResource(requestURL.href, url), async (route) => { await gate; await route.continue(); });
     try {
       await s.page.goto(`${baseURL}/?empty=1`, { waitUntil: 'networkidle' });
       await s.page.getByTestId('add-a').click();
@@ -687,7 +778,9 @@ try {
       const runtime = window.__MFE_RUNTIME__;
       const container = await runtime.getArtifactContainer(runtime.registry.applications.A);
       const probe = (await container.get('./RemoteRegionProbe'))();
-      const host = document.createElement('section'); document.body.appendChild(host);
+      const host = document.createElement('section');
+      host.style.marginLeft = '300px';
+      document.body.appendChild(host);
       window.__SDK_PROBE__ = probe.mount(host, []);
       window.__UPDATE_SDK_PROBE__ = (consumer, exposedModule = './Widget') => window.__SDK_PROBE__.render([{
         consumerId: runtime.registry.applications[consumer]?.id || 'unknown-consumer', alias: 'b', exposedModule,
@@ -708,13 +801,25 @@ try {
       await s.page.getByTestId('remote-error-probe').waitFor();
       assert.equal(await txt(s.page.getByTestId('retry-probe')), '차량 목록 영역 다시 시도');
       await proof(s.page, { A: '1.4.0', 'A--c': '2.1.0' });
+      const failuresBeforeRetry = s.record.consoleErrors.filter(error => error.startsWith('RemoteRegion load failed:')).length;
+      const nextFailure = s.page.waitForEvent('console', message => message.type() === 'error' && message.text().startsWith('RemoteRegion load failed:'));
+      await s.page.getByTestId('retry-probe').click();
+      await nextFailure;
+      await s.page.getByTestId('remote-error-probe').waitFor();
+      await s.page.waitForTimeout(650);
+      assert.equal(s.record.consoleErrors.filter(error => error.startsWith('RemoteRegion load failed:')).length, failuresBeforeRetry + 1);
+      const retryLog = await s.page.evaluate(async () => {
+        const sdk = await window.__MFE_RUNTIME__.getContainer('platform');
+        return (await sdk.get('./sdk'))().getRemoteRecoveryLog();
+      });
+      assert(retryLog.every(entry => entry.attempt === 1), 'invalid consumers and missing exposes never enter the delayed second attempt');
       await s.page.evaluate(() => window.__UPDATE_SDK_PROBE__('C'));
       await proof(s.page, { A: '1.4.0', 'A--c': '2.1.0', probe: '2.1.0' });
     }
     await assertDirectPreserved(s.page, 'sdk-component-kept', element);
     await s.page.evaluate(() => window.__SDK_PROBE__.unmount());
     await proof(s.page, { A: '1.4.0', 'A--c': '2.1.0' });
-    assert.equal(s.record.consoleErrors.filter((error) => error.startsWith('RemoteRegion load failed:')).length, 2);
+    assert.equal(s.record.consoleErrors.filter((error) => error.startsWith('RemoteRegion load failed:')).length, 4);
     assert.deepEqual(s.record.pageErrors, []);
     assert.deepEqual(s.record.httpErrors, []);
   });

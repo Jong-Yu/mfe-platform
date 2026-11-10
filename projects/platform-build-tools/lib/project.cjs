@@ -96,7 +96,7 @@ function readProject(root = process.cwd()) {
       if (alias === 'platform' || artifact.service === 'platform') {
         if (alias !== 'platform' || artifact.service !== 'platform') throw new Error('The platform SDK must use the platform alias.');
         runtimeRequirements.platform = artifact.requires;
-        remotes.platform = 'promise globalThis.__MFE_RUNTIME__.getContainer("platform")';
+        remotes.platform = true;
       } else {
         runtimeDependencies[alias] = { service: artifact.service, requires: artifact.requires };
       }
@@ -109,7 +109,7 @@ function readProject(root = process.cwd()) {
     if (typeof artifact.service !== 'string' || !artifact.service || !semanticVersion(artifact.version)) throw new Error(`Remote ${alias} needs a service and semantic version.`);
     if (!artifact.dependencies || typeof artifact.dependencies !== 'object' || Array.isArray(artifact.dependencies) || Object.values(artifact.dependencies).some((id) => typeof id !== 'string')) throw new Error(`Remote ${alias} needs a dependencies object.`);
     dependencies[alias] = artifact.id;
-    remotes[alias] = `${artifact.name}@${artifact.entry}`;
+    remotes[alias] = true;
   }
   const hash = crypto.createHash('sha256');
   function hashPart(label, bytes) {
@@ -122,29 +122,7 @@ function readProject(root = process.cwd()) {
   }
   const id = `${config.service}_${pkg.version.replaceAll('.', '_')}_${hash.digest('hex').slice(0, 12)}`;
   const name = `mf_${id.replace(/[^A-Za-z0-9_$]/g, '_')}`;
-  for (const alias of Object.keys(runtimeDependencies)) {
-    // Cache a stable proxy, not a rejected container Promise. Each operation can
-    // resolve the same pinned target again after an explicit retry.
-    const resolve = `globalThis.__MFE_RUNTIME__.getDependencyContainer(${JSON.stringify(id)}, ${JSON.stringify(alias)})`;
-    remotes[alias] = `promise Promise.resolve((() => {
-      let scope, initScope;
-      return {
-        init(nextScope, nextInitScope) {
-          if (scope && scope !== nextScope) throw new Error('Different retry proxy share scope');
-          scope = nextScope; initScope = nextInitScope;
-          // Do not cache network failures in webpack's one-time share init.
-          // The target is initialized with this same scope when get is called.
-        },
-        get(request, getScope) {
-          if (!scope) return Promise.reject(new Error('Retry proxy has not been initialized'));
-          return ${resolve}.then(async container => {
-            await container.init(scope, initScope);
-            return container.get(request, getScope);
-          });
-        }
-      };
-    })())`;
-  }
+  for (const alias of Object.keys(runtimeDependencies)) remotes[alias] = true;
   const release = {
     id,
     name,
@@ -155,7 +133,9 @@ function readProject(root = process.cwd()) {
     runtimeRequirements,
     runtimeDependencies,
     kind: config.kind,
-    retryProtocol: 'failed-modules-v2',
+    format: 'esm',
+    federation: 'vite',
+    retryProtocol: 'vite-preflight-v1',
     exposedModules: Object.keys(exposes).sort(),
   };
   if (config.navigationProtocol !== undefined) {
@@ -168,7 +148,7 @@ function readProject(root = process.cwd()) {
     if (config.kind !== 'shell' || config.dashboardProtocol !== 'registered-dashboard-v1') throw new Error('Unsupported Shell dashboard protocol');
     release.dashboardProtocol = config.dashboardProtocol;
   }
-  return { root, src, pkg, config, exposes, entryFile, htmlFile, remotes, release, dist: path.join(root, 'dist') };
+  return { root, src, pkg, config, exposes, entryFile, htmlFile, remotes, remoteDescriptors: remoteArtifacts, release, dist: path.join(root, 'dist') };
 }
 
 module.exports = { inside, readJson, readProject };

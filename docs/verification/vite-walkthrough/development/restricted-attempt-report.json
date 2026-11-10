@@ -1,0 +1,750 @@
+{
+  "status": "failed",
+  "startedAt": "2026-11-10T12:38:48.826Z",
+  "scope": "Current Vite guide V5: isolated B source copy, actual npm installation, service development server and fresh Chrome UI. Product sources, dist, dev kits and active composition are not changed.",
+  "limitations": [
+    "This run uses a prepared npm cache unless online mode is explicitly selected; it does not prove a first-ever network installation.",
+    "Playwright comes from the original integration installation only as a test harness; the copied service has no sibling source or server dependency.",
+    "This script checks development only. Build/publication/activation/rollback are covered by the separate release walkthrough."
+  ],
+  "environment": {
+    "node": "v24.22.1",
+    "platform": "darwin",
+    "installMode": "offline",
+    "cache": "/private/tmp/mfe-npm-cache",
+    "browserExecutable": "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
+  },
+  "checks": [
+    {
+      "name": "copy one B service with its published dev kit and no sibling sources",
+      "status": "passed",
+      "durationMs": 75,
+      "evidence": {
+        "isolatedParentEntries": [
+          "service-b-v1"
+        ],
+        "kitPlatform": "platform_1_3_1_e25c8d049944",
+        "copiedFingerprint": "58b4dcbc09c21250244aac6286375c307d3479a9955ae4c2f73efebc0968003e"
+      }
+    },
+    {
+      "name": "npm ci installs the isolated Vite project from the declared cache mode",
+      "status": "passed",
+      "durationMs": 3235,
+      "evidence": {
+        "buildTools": "2.0.0",
+        "npmCache": "/private/tmp/mfe-npm-cache",
+        "networkMode": "offline"
+      }
+    }
+  ],
+  "commands": [
+    {
+      "command": "npm",
+      "args": [
+        "ci",
+        "--cache",
+        "/private/tmp/mfe-npm-cache",
+        "--no-audit",
+        "--no-fund",
+        "--offline"
+      ],
+      "cwd": "/private/tmp/mfe-vite-dev-QlwGmp/service-b-v1",
+      "startedAt": "2026-11-10T12:38:48.997Z",
+      "log": "npm-install.log",
+      "exitCode": 0,
+      "finishedAt": "2026-11-10T12:38:52.231Z"
+    }
+  ],
+  "screenshots": [],
+  "requests": [],
+  "responses": [],
+  "failedRequests": [],
+  "browserErrors": [],
+  "externalRequests": [],
+  "findings": [],
+  "originalBefore": {
+    "sha256": "cbe8a511645131c4fb31bb38f3d9246eb57f4d5f2c3a276258fa2f55aaec5b47",
+    "count": 83,
+    "files": [
+      {
+        "path": ".gitignore",
+        "sha256": "e8bc935ce727f1809c792f4c5d26c5fc75ba2b7df7fc9390c56c8892f6a6007f"
+      },
+      {
+        "path": ".nvmrc",
+        "sha256": "68ca3fba3b7e864770cb61aeb306d4bd4354b68ab4dd38450860c5d823e42a53"
+      },
+      {
+        "path": "dev/manifest.json",
+        "sha256": "b5becb848eef076088690361a7db6f4cac908cff30ecb7e77f902d253985188c"
+      },
+      {
+        "path": "dev/remotes/d_1_0_0_c6adbe1cb721/assets/_virtual_mf-localSharedImportMap___mfe_internal__mf_d_1_0_0_c6adbe1cb721__mf_owner__1-K9UFUvmk.js",
+        "sha256": "1ed75eec18d3eda7c35160115e4fbea300ca1d9db58896613f118c7fbf184043"
+      },
+      {
+        "path": "dev/remotes/d_1_0_0_c6adbe1cb721/assets/dist-CzT-8ogd.js",
+        "sha256": "650a3c3386bba6bb52a0f046781b65794293f2fc9d4960d5f915a8fa3ff617d5"
+      },
+      {
+        "path": "dev/remotes/d_1_0_0_c6adbe1cb721/assets/dist-CzT-8ogd.js.map",
+        "sha256": "7fbac1dd2610346f188aa986804cad05e8b61fd09825c3c9de1518766c55ffad"
+      },
+      {
+        "path": "dev/remotes/d_1_0_0_c6adbe1cb721/assets/hostInit-Cqd6LV7E.js",
+        "sha256": "237e115d9dbb232382fb2c13109ff58f820540f0acbd3ec77e0c7154674346ac"
+      },
+      {
+        "path": "dev/remotes/d_1_0_0_c6adbe1cb721/assets/pendingShares-mJnuvvif.js",
+        "sha256": "75fad4356c24da1745b937958692936ccf2ba3e4e73b2e35180ee42ce26cccdf"
+      },
+      {
+        "path": "dev/remotes/d_1_0_0_c6adbe1cb721/assets/src-BMVRR_2U.js",
+        "sha256": "0ddeaa9d155a4dcaa415c7eed527640d7677a7e18af69f1a2d9f65633f731583"
+      },
+      {
+        "path": "dev/remotes/d_1_0_0_c6adbe1cb721/assets/src-BMVRR_2U.js.map",
+        "sha256": "6705cd3bf56d352cc834ef3b06b432029c812220e60eb0b5b94ecaaba2808c45"
+      },
+      {
+        "path": "dev/remotes/d_1_0_0_c6adbe1cb721/assets/vite-preload-helper-D007Gmx9.js",
+        "sha256": "0587b911376d9172ef501cfc4abc33f15385f4fbd7d6ee309f398bdec03fb605"
+      },
+      {
+        "path": "dev/remotes/d_1_0_0_c6adbe1cb721/release.json",
+        "sha256": "cd656442162cb50c8d67196197229ece9468720bcfc0ef503405fa00c0f29c23"
+      },
+      {
+        "path": "dev/remotes/d_1_0_0_c6adbe1cb721/remoteEntry.js",
+        "sha256": "d6c403aba2655d28950d816598806a0db44318eca6aea2c2286341374591cbe2"
+      },
+      {
+        "path": "dev/remotes/d_1_0_0_c6adbe1cb721/remoteEntry.js.map",
+        "sha256": "6c7bc172b9769bdd6888f5543b94fb7dfb08a6954e566b28dcbf75ce0b3c5fec"
+      },
+      {
+        "path": "dev/remotes/d_1_1_0_db32a5022c3e/release.json",
+        "sha256": "10baa5d44c48bed1e4ba6b2eda0c33b92ffcff58d3369c78e600f3fa15cab185"
+      },
+      {
+        "path": "dev/remotes/d_1_1_0_db32a5022c3e/remoteEntry.js",
+        "sha256": "f825bf4c8f167ee1aeac3c42f3aafbdd4c7f2dfd44242cb994540143a2ef046c"
+      },
+      {
+        "path": "dev/remotes/d_1_1_0_db32a5022c3e/remoteEntry.js.map",
+        "sha256": "b6c28e32510121a265ae52fdd2d6f8a517175d5cbca0d89ca33ed552bdba5b06"
+      },
+      {
+        "path": "dev/remotes/d_1_1_0_db32a5022c3e/src_index_js.358b94b63b6711185136.js",
+        "sha256": "f3a33e3e225de5f8e1f6e5053a0aae2513a9c03684133d05f9cd4c64a74858ef"
+      },
+      {
+        "path": "dev/remotes/d_1_1_0_db32a5022c3e/src_index_js.358b94b63b6711185136.js.map",
+        "sha256": "5c83dd2eefea6c388cde951966c4f0ca17c4854f3dcdab586ab553788b38b113"
+      },
+      {
+        "path": "dev/remotes/platform_1_2_0_11681bf2b051/release.json",
+        "sha256": "8688eeaf0de2aafb8b0d122e11345e307acb91b3c01b6661385c01a82b6ad4d0"
+      },
+      {
+        "path": "dev/remotes/platform_1_2_0_11681bf2b051/remoteEntry.js",
+        "sha256": "8380be279f36b9f31cdbcea59631d6ad70f284d968538137a47c229aaba86ed1"
+      },
+      {
+        "path": "dev/remotes/platform_1_2_0_11681bf2b051/remoteEntry.js.map",
+        "sha256": "6463cf5bc8bb96d04c90b8ba1ead6afc79cbefd280e290031b8907284db69833"
+      },
+      {
+        "path": "dev/remotes/platform_1_2_0_11681bf2b051/src_sdk_jsx.417d6a946906e3a74913.js",
+        "sha256": "9b43cc9c4119cc7140e762bf1a2da598c527c061af32bf65bf1727e9892c1450"
+      },
+      {
+        "path": "dev/remotes/platform_1_2_0_11681bf2b051/src_sdk_jsx.417d6a946906e3a74913.js.map",
+        "sha256": "99df08e47cc723a9b1c1bf8aca6bf4643e995b9a1044fa2d6360abab811fcc29"
+      },
+      {
+        "path": "dev/remotes/platform_1_2_0_11681bf2b051/vendors-node_modules_react_index_js.7ac5078087998dbfdb10.js",
+        "sha256": "dface5bb8815f826a81cf52f9df432a7f96cbda4cee376645129745ff70fd806"
+      },
+      {
+        "path": "dev/remotes/platform_1_2_0_11681bf2b051/vendors-node_modules_react_index_js.7ac5078087998dbfdb10.js.map",
+        "sha256": "9dfe59db071c6a7127b728970af89cc3adbf669ed28cd178f7f1b3d27c77cf6c"
+      },
+      {
+        "path": "dev/remotes/platform_1_3_1_e25c8d049944/assets/_virtual_mf___mfe_internal__mf_platform_1_3_1_e25c8d049944__mf_owner__242075772864893__loadShare__react__loadShare__.js-B3vX5iHX.js",
+        "sha256": "03c817b6b3a143dcd6e2a4e01c00af56b681e854e1ab854c0cd7fe28f7bef352"
+      },
+      {
+        "path": "dev/remotes/platform_1_3_1_e25c8d049944/assets/_virtual_mf___mfe_internal__mf_platform_1_3_1_e25c8d049944__mf_owner__242075772864893__loadShare__react__loadShare__.js-B3vX5iHX.js.map",
+        "sha256": "8347a72be517d3473f0e30a164870489883d8a35a2964f3cfcd14b0849040294"
+      },
+      {
+        "path": "dev/remotes/platform_1_3_1_e25c8d049944/assets/_virtual_mf___mfe_internal__mf_platform_1_3_1_e25c8d049944__mf_owner__242075772864893__loadShare__shared-J1-L7PDQ.js",
+        "sha256": "a98a0d934741605f0394cfe04d67144b9d5dab8c281bf9bb5211fa65b12e33f4"
+      },
+      {
+        "path": "dev/remotes/platform_1_3_1_e25c8d049944/assets/_virtual_mf___mfe_internal__mf_platform_1_3_1_e25c8d049944__mf_owner__242075772864893__prebuild__react_mf_2_dom__prebuild__-Bp2t7YDH.js",
+        "sha256": "2ef2e66e1b2d7eb760e5a2acee5179201542eb814aff87b36cbba5cb8b628f30"
+      },
+      {
+        "path": "dev/remotes/platform_1_3_1_e25c8d049944/assets/_virtual_mf___mfe_internal__mf_platform_1_3_1_e25c8d049944__mf_owner__242075772864893__prebuild__react_mf_2_dom_mf_1_client__prebuild__-KVvYFSOM.js",
+        "sha256": "1be587af2f9df4bf803219fb05dd9afbaeb30bfed2c80676514b6dcfb9e14cee"
+      },
+      {
+        "path": "dev/remotes/platform_1_3_1_e25c8d049944/assets/_virtual_mf___mfe_internal__mf_platform_1_3_1_e25c8d049944__mf_owner__242075772864893__prebuild__react_mf_2_dom_mf_1_client__prebuild__-KVvYFSOM.js.map",
+        "sha256": "121b3dd379bd6edbd5085dc531143280e77ef05399fb9367496ff529662b1783"
+      },
+      {
+        "path": "dev/remotes/platform_1_3_1_e25c8d049944/assets/_virtual_mf-localSharedImportMap___mfe_internal__mf_platform_1_3_1_e25c8d049944__mf_owner__1-5YRVjoO3.js",
+        "sha256": "78ca32fafe25ada693621155ef1a7c12e7ea4c2eb71f32977df3a6d3b9b1265b"
+      },
+      {
+        "path": "dev/remotes/platform_1_3_1_e25c8d049944/assets/dist-Bo8xtUoB.js",
+        "sha256": "6009fd1328c2d0697215f6996c12e3a8dea5744a3f7faf0b829d1ffc4a539ccb"
+      },
+      {
+        "path": "dev/remotes/platform_1_3_1_e25c8d049944/assets/dist-Bo8xtUoB.js.map",
+        "sha256": "accb14db01065440ecd520f96e404dcc013209eedcb846621a2ff7b7b56c38ab"
+      },
+      {
+        "path": "dev/remotes/platform_1_3_1_e25c8d049944/assets/hostInit-DMmU90Hg.js",
+        "sha256": "70d47b5d8db5b9d8d8b7751121786688612e504fb14ae81317bd19de8674cdf2"
+      },
+      {
+        "path": "dev/remotes/platform_1_3_1_e25c8d049944/assets/pendingShares-BkydpHFJ.js",
+        "sha256": "fb2cbbb3f82ca5a31ed886c62ec7d1ab4ae8bffdc6c01a7c38a7f8e24336cbf2"
+      },
+      {
+        "path": "dev/remotes/platform_1_3_1_e25c8d049944/assets/react-dom-DARWW5In.js",
+        "sha256": "4297f4dfc2b114952e9f7845fefe41cbad1f639f70a35cc82dc9fd2935088044"
+      },
+      {
+        "path": "dev/remotes/platform_1_3_1_e25c8d049944/assets/react-dom-DARWW5In.js.map",
+        "sha256": "9ed09e7736f9ebc56072749d16d091e2731d40ec37631466a215dc8fc9705b29"
+      },
+      {
+        "path": "dev/remotes/platform_1_3_1_e25c8d049944/assets/rolldown-runtime-SbdDWaPq.js",
+        "sha256": "8cd5f72ee962aad5f620072095a0c85942cb2b613ad628b8fb4774ab0c3b12b6"
+      },
+      {
+        "path": "dev/remotes/platform_1_3_1_e25c8d049944/assets/sdk-BbXiZY3X.css",
+        "sha256": "3545bc89ff006ea2e0bda1fb2e0dbae3fdf8a3bc9f975b007c86f32aef601d76"
+      },
+      {
+        "path": "dev/remotes/platform_1_3_1_e25c8d049944/assets/sdk-ClnQiGJZ.js",
+        "sha256": "0014e47121360d0f7d051c5e3efaf7bdbaa571ee3cba3dc22e52b43652364283"
+      },
+      {
+        "path": "dev/remotes/platform_1_3_1_e25c8d049944/assets/sdk-ClnQiGJZ.js.map",
+        "sha256": "511715d7016774be62f6a9e107a8679ad6854f28793eb70fdf1ef5757fb6e3cd"
+      },
+      {
+        "path": "dev/remotes/platform_1_3_1_e25c8d049944/assets/vite-preload-helper-CtLp1C0p.js",
+        "sha256": "0587b911376d9172ef501cfc4abc33f15385f4fbd7d6ee309f398bdec03fb605"
+      },
+      {
+        "path": "dev/remotes/platform_1_3_1_e25c8d049944/release.json",
+        "sha256": "25a2f048560090a5037e57b4d1b45f2a44beee213623a05f00cc8cc12456273a"
+      },
+      {
+        "path": "dev/remotes/platform_1_3_1_e25c8d049944/remoteEntry.js",
+        "sha256": "bc7c97be9da5b09f8c70e93f5e334a7bd410ff75aa7f816e608d748cb09d0735"
+      },
+      {
+        "path": "dev/remotes/platform_1_3_1_e25c8d049944/remoteEntry.js.map",
+        "sha256": "96d54646f1c50ee40e96945edebddb9fb0a0419bbeeb1a014a354facf1fc71e5"
+      },
+      {
+        "path": "dist/assets/_virtual_mf___mfe_internal__mf_b_1_4_0_6cc8bf6c0028__loadRemote__d_mf_1_data__mf_owner__1__loadRemote__-6LDeHEEF.js",
+        "sha256": "669b27487edb7f651cd508af9ce2bdd1d79fbceb50906924cb84a93902673d38"
+      },
+      {
+        "path": "dist/assets/_virtual_mf___mfe_internal__mf_b_1_4_0_6cc8bf6c0028__loadRemote__platform_mf_1_sdk__mf_owner__1__loadRemote__-Bqk7zvGL.js",
+        "sha256": "81b8361405aea6550f49add68e7132dea7a244e5c9d4ffd6289489fe4193c874"
+      },
+      {
+        "path": "dist/assets/_virtual_mf___mfe_internal__mf_b_1_4_0_6cc8bf6c0028__mf_owner__226140563824246__loadShare__react__loadShare__.js-DgQ7VONi.js",
+        "sha256": "41ed1f9c6e1f53632bb9f2fb5da668e6ff625786b774a819a44f8c99cb5d1045"
+      },
+      {
+        "path": "dist/assets/_virtual_mf___mfe_internal__mf_b_1_4_0_6cc8bf6c0028__mf_owner__226140563824246__loadShare__react__loadShare__.js-DgQ7VONi.js.map",
+        "sha256": "52c47ac131d52924503b877e70005d79ff90086b546a18c0c378f20d81e10aae"
+      },
+      {
+        "path": "dist/assets/_virtual_mf___mfe_internal__mf_b_1_4_0_6cc8bf6c0028__mf_owner__226140563824246__loadShare__shared-B1DGyhpy.js",
+        "sha256": "69f2c241be552a3d3ac5f32e564bb1fdcbfb55ff2e88a21ac36c13cbf0d62a69"
+      },
+      {
+        "path": "dist/assets/_virtual_mf___mfe_internal__mf_b_1_4_0_6cc8bf6c0028__mf_owner__226140563824246__prebuild__react_mf_2_dom__prebuild__-C-IYZClh.js",
+        "sha256": "11f0ec555789a736902e48f01d13cc6a338616de5af544b00366debbb7e1cba3"
+      },
+      {
+        "path": "dist/assets/_virtual_mf___mfe_internal__mf_b_1_4_0_6cc8bf6c0028__mf_owner__226140563824246__prebuild__react_mf_2_dom_mf_1_client__prebuild__-CIQW_MBc.js",
+        "sha256": "5564f753ad0cf7e3fe7f279074d20bda05986ace3969d837025c5a70fd243e9f"
+      },
+      {
+        "path": "dist/assets/_virtual_mf___mfe_internal__mf_b_1_4_0_6cc8bf6c0028__mf_owner__226140563824246__prebuild__react_mf_2_dom_mf_1_client__prebuild__-CIQW_MBc.js.map",
+        "sha256": "d00df5c5e2ac11117b8843c591ca191cedb66ae918846502bd439d8ef826f31f"
+      },
+      {
+        "path": "dist/assets/_virtual_mf-localSharedImportMap___mfe_internal__mf_b_1_4_0_6cc8bf6c0028__mf_owner__1-BaCESpgK.js",
+        "sha256": "37dd474669501ad404b472f6ea59f85ff707720cbfc255c10a456335f7933358"
+      },
+      {
+        "path": "dist/assets/dist-Bo8xtUoB.js",
+        "sha256": "6009fd1328c2d0697215f6996c12e3a8dea5744a3f7faf0b829d1ffc4a539ccb"
+      },
+      {
+        "path": "dist/assets/dist-Bo8xtUoB.js.map",
+        "sha256": "accb14db01065440ecd520f96e404dcc013209eedcb846621a2ff7b7b56c38ab"
+      },
+      {
+        "path": "dist/assets/hostInit-DFPIMONH.js",
+        "sha256": "98b3679c96e53d42c795ed0b7fdfe926c86e5969a2892b01ac1b98bbc3d5cf0e"
+      },
+      {
+        "path": "dist/assets/pendingShares-B4iSuhLp.js",
+        "sha256": "b7c55920bb535746d7822e631d679a099869d62fa3f259d3a37d33e2b027a271"
+      },
+      {
+        "path": "dist/assets/react-dom-D6O4b4PL.js",
+        "sha256": "21c095702cea1f2155c65d5a6d1e3882341ef5118c813d433f359d57bdac2c48"
+      },
+      {
+        "path": "dist/assets/react-dom-D6O4b4PL.js.map",
+        "sha256": "3ef55868c75b9d510638e5b9affbdf6e55d4e8ff8038e10ba5762465f95e62a4"
+      },
+      {
+        "path": "dist/assets/rolldown-runtime-DQp2zzRu.js",
+        "sha256": "0de66bbd84494ea80eb87ec70556319b56b7fb979ebbae90d39fa97f7cd3c392"
+      },
+      {
+        "path": "dist/assets/vite-preload-helper-BVDCNeEa.js",
+        "sha256": "0587b911376d9172ef501cfc4abc33f15385f4fbd7d6ee309f398bdec03fb605"
+      },
+      {
+        "path": "dist/assets/Widget-BiiMpLC6.js",
+        "sha256": "dead180a4851328e4f908956f39baf9fad36b1e4c7b29eda45b68181108d0245"
+      },
+      {
+        "path": "dist/assets/Widget-BiiMpLC6.js.map",
+        "sha256": "a4c8690779f8fddfc52115a7a61f33da101b130e17123385a60b3ad4d3d003ee"
+      },
+      {
+        "path": "dist/assets/Widget-C3vmy5sd.css",
+        "sha256": "894929bc4e556470ceb56e798f69ed30744a340deb862d066f108d612968ad51"
+      },
+      {
+        "path": "dist/release.json",
+        "sha256": "caf18ade689e999df9de9ba1638fd753a6ac1d55cb4e8e704406c3988b3dedf8"
+      },
+      {
+        "path": "dist/remoteEntry.js",
+        "sha256": "a8883cc49a16311227bddef8e66c755e77a8b3317343967539be60ab82bbcff5"
+      },
+      {
+        "path": "dist/remoteEntry.js.map",
+        "sha256": "0c75986acd57f90718019b7c27fe9b3d92494dd13c761df13ea0b6a4dc967b8a"
+      },
+      {
+        "path": "mf.config.cjs",
+        "sha256": "44370ae706c286b53b9df84efd4da4f532f8285555d79dcf165fb29b33463e86"
+      },
+      {
+        "path": "mf.dependencies.json",
+        "sha256": "385fe49c1ab162de691fb23fe817c096a1563280a01bb761a73cbce2b12b80f5"
+      },
+      {
+        "path": "mf.dev.json",
+        "sha256": "54a20d67910f8a7ea2eef5f677891c8fd45ebc95b0f02a8c9955d08f812e4af2"
+      },
+      {
+        "path": "package-lock.json",
+        "sha256": "a7cb7f47b64c8620491035b81c3151db730c26b8b657061bb82679ffc2b2085a"
+      },
+      {
+        "path": "package.json",
+        "sha256": "aadb2e6f78d63f5ef313d8ec7b4f9ce03babfb41430e713127fa1f264fee3ec4"
+      },
+      {
+        "path": "README.md",
+        "sha256": "6d2d0a904eb3a3e27c1dc9ed535710b3695df5cc6f9e8c1aa6b4641cd8338fc9"
+      },
+      {
+        "path": "src/Widget.jsx",
+        "sha256": "ce1c141bc8e2c487a46e73eeb51d8cbead4ac1698e6d46807c7b77a760355b95"
+      },
+      {
+        "path": "src/Widget.module.css",
+        "sha256": "fb3f8e58ab1eab3771fa20417933feb54b563c14c4b7a3519e96f633926e55c2"
+      },
+      {
+        "path": "vendor/mfe-platform-build-tools-1.0.0.tgz",
+        "sha256": "345efdb8dd40fb5be4fc59c52cf6f839f1319904cbd7addcee2243ed30e3ca51"
+      },
+      {
+        "path": "vendor/mfe-platform-build-tools-1.1.0.tgz",
+        "sha256": "92989447d8cc82dc83354dc9074f00b70b9c92cb5c415f1dd07dd0909568bffe"
+      },
+      {
+        "path": "vendor/mfe-platform-build-tools-1.2.0.tgz",
+        "sha256": "fdbe79a686d2c610842b8c06b773c778e8c175e39ec300ccb42a073939896cf0"
+      },
+      {
+        "path": "vendor/mfe-platform-build-tools-1.3.0.tgz",
+        "sha256": "91f6934e8749f4b40f957e388a9d14d1e6b500b27b10c5a659081c6862f181a0"
+      },
+      {
+        "path": "vendor/mfe-platform-build-tools-2.0.0.tgz",
+        "sha256": "b96dcf0e496ab1b0ee2e82a9051b1f01d397d51721f2eff862e96947aab85094"
+      }
+    ]
+  },
+  "productPointerBefore": "{\n  \"compositionId\": \"composition_88ee38ebfe391a69f3cdb828\"\n}\n",
+  "temporaryProject": "/private/tmp/mfe-vite-dev-QlwGmp/service-b-v1",
+  "error": "Error: listen EPERM: operation not permitted 127.0.0.1:4203\n    at Server.setupListenHandle [as _listen2] (node:net:2368:21)\n    at listenInCluster (node:net:2499:12)\n    at node:net:2728:7\n    at process.processTicksAndRejections (node:internal/process/task_queues:90:21)",
+  "originalAfter": {
+    "sha256": "cbe8a511645131c4fb31bb38f3d9246eb57f4d5f2c3a276258fa2f55aaec5b47",
+    "count": 83,
+    "files": [
+      {
+        "path": ".gitignore",
+        "sha256": "e8bc935ce727f1809c792f4c5d26c5fc75ba2b7df7fc9390c56c8892f6a6007f"
+      },
+      {
+        "path": ".nvmrc",
+        "sha256": "68ca3fba3b7e864770cb61aeb306d4bd4354b68ab4dd38450860c5d823e42a53"
+      },
+      {
+        "path": "dev/manifest.json",
+        "sha256": "b5becb848eef076088690361a7db6f4cac908cff30ecb7e77f902d253985188c"
+      },
+      {
+        "path": "dev/remotes/d_1_0_0_c6adbe1cb721/assets/_virtual_mf-localSharedImportMap___mfe_internal__mf_d_1_0_0_c6adbe1cb721__mf_owner__1-K9UFUvmk.js",
+        "sha256": "1ed75eec18d3eda7c35160115e4fbea300ca1d9db58896613f118c7fbf184043"
+      },
+      {
+        "path": "dev/remotes/d_1_0_0_c6adbe1cb721/assets/dist-CzT-8ogd.js",
+        "sha256": "650a3c3386bba6bb52a0f046781b65794293f2fc9d4960d5f915a8fa3ff617d5"
+      },
+      {
+        "path": "dev/remotes/d_1_0_0_c6adbe1cb721/assets/dist-CzT-8ogd.js.map",
+        "sha256": "7fbac1dd2610346f188aa986804cad05e8b61fd09825c3c9de1518766c55ffad"
+      },
+      {
+        "path": "dev/remotes/d_1_0_0_c6adbe1cb721/assets/hostInit-Cqd6LV7E.js",
+        "sha256": "237e115d9dbb232382fb2c13109ff58f820540f0acbd3ec77e0c7154674346ac"
+      },
+      {
+        "path": "dev/remotes/d_1_0_0_c6adbe1cb721/assets/pendingShares-mJnuvvif.js",
+        "sha256": "75fad4356c24da1745b937958692936ccf2ba3e4e73b2e35180ee42ce26cccdf"
+      },
+      {
+        "path": "dev/remotes/d_1_0_0_c6adbe1cb721/assets/src-BMVRR_2U.js",
+        "sha256": "0ddeaa9d155a4dcaa415c7eed527640d7677a7e18af69f1a2d9f65633f731583"
+      },
+      {
+        "path": "dev/remotes/d_1_0_0_c6adbe1cb721/assets/src-BMVRR_2U.js.map",
+        "sha256": "6705cd3bf56d352cc834ef3b06b432029c812220e60eb0b5b94ecaaba2808c45"
+      },
+      {
+        "path": "dev/remotes/d_1_0_0_c6adbe1cb721/assets/vite-preload-helper-D007Gmx9.js",
+        "sha256": "0587b911376d9172ef501cfc4abc33f15385f4fbd7d6ee309f398bdec03fb605"
+      },
+      {
+        "path": "dev/remotes/d_1_0_0_c6adbe1cb721/release.json",
+        "sha256": "cd656442162cb50c8d67196197229ece9468720bcfc0ef503405fa00c0f29c23"
+      },
+      {
+        "path": "dev/remotes/d_1_0_0_c6adbe1cb721/remoteEntry.js",
+        "sha256": "d6c403aba2655d28950d816598806a0db44318eca6aea2c2286341374591cbe2"
+      },
+      {
+        "path": "dev/remotes/d_1_0_0_c6adbe1cb721/remoteEntry.js.map",
+        "sha256": "6c7bc172b9769bdd6888f5543b94fb7dfb08a6954e566b28dcbf75ce0b3c5fec"
+      },
+      {
+        "path": "dev/remotes/d_1_1_0_db32a5022c3e/release.json",
+        "sha256": "10baa5d44c48bed1e4ba6b2eda0c33b92ffcff58d3369c78e600f3fa15cab185"
+      },
+      {
+        "path": "dev/remotes/d_1_1_0_db32a5022c3e/remoteEntry.js",
+        "sha256": "f825bf4c8f167ee1aeac3c42f3aafbdd4c7f2dfd44242cb994540143a2ef046c"
+      },
+      {
+        "path": "dev/remotes/d_1_1_0_db32a5022c3e/remoteEntry.js.map",
+        "sha256": "b6c28e32510121a265ae52fdd2d6f8a517175d5cbca0d89ca33ed552bdba5b06"
+      },
+      {
+        "path": "dev/remotes/d_1_1_0_db32a5022c3e/src_index_js.358b94b63b6711185136.js",
+        "sha256": "f3a33e3e225de5f8e1f6e5053a0aae2513a9c03684133d05f9cd4c64a74858ef"
+      },
+      {
+        "path": "dev/remotes/d_1_1_0_db32a5022c3e/src_index_js.358b94b63b6711185136.js.map",
+        "sha256": "5c83dd2eefea6c388cde951966c4f0ca17c4854f3dcdab586ab553788b38b113"
+      },
+      {
+        "path": "dev/remotes/platform_1_2_0_11681bf2b051/release.json",
+        "sha256": "8688eeaf0de2aafb8b0d122e11345e307acb91b3c01b6661385c01a82b6ad4d0"
+      },
+      {
+        "path": "dev/remotes/platform_1_2_0_11681bf2b051/remoteEntry.js",
+        "sha256": "8380be279f36b9f31cdbcea59631d6ad70f284d968538137a47c229aaba86ed1"
+      },
+      {
+        "path": "dev/remotes/platform_1_2_0_11681bf2b051/remoteEntry.js.map",
+        "sha256": "6463cf5bc8bb96d04c90b8ba1ead6afc79cbefd280e290031b8907284db69833"
+      },
+      {
+        "path": "dev/remotes/platform_1_2_0_11681bf2b051/src_sdk_jsx.417d6a946906e3a74913.js",
+        "sha256": "9b43cc9c4119cc7140e762bf1a2da598c527c061af32bf65bf1727e9892c1450"
+      },
+      {
+        "path": "dev/remotes/platform_1_2_0_11681bf2b051/src_sdk_jsx.417d6a946906e3a74913.js.map",
+        "sha256": "99df08e47cc723a9b1c1bf8aca6bf4643e995b9a1044fa2d6360abab811fcc29"
+      },
+      {
+        "path": "dev/remotes/platform_1_2_0_11681bf2b051/vendors-node_modules_react_index_js.7ac5078087998dbfdb10.js",
+        "sha256": "dface5bb8815f826a81cf52f9df432a7f96cbda4cee376645129745ff70fd806"
+      },
+      {
+        "path": "dev/remotes/platform_1_2_0_11681bf2b051/vendors-node_modules_react_index_js.7ac5078087998dbfdb10.js.map",
+        "sha256": "9dfe59db071c6a7127b728970af89cc3adbf669ed28cd178f7f1b3d27c77cf6c"
+      },
+      {
+        "path": "dev/remotes/platform_1_3_1_e25c8d049944/assets/_virtual_mf___mfe_internal__mf_platform_1_3_1_e25c8d049944__mf_owner__242075772864893__loadShare__react__loadShare__.js-B3vX5iHX.js",
+        "sha256": "03c817b6b3a143dcd6e2a4e01c00af56b681e854e1ab854c0cd7fe28f7bef352"
+      },
+      {
+        "path": "dev/remotes/platform_1_3_1_e25c8d049944/assets/_virtual_mf___mfe_internal__mf_platform_1_3_1_e25c8d049944__mf_owner__242075772864893__loadShare__react__loadShare__.js-B3vX5iHX.js.map",
+        "sha256": "8347a72be517d3473f0e30a164870489883d8a35a2964f3cfcd14b0849040294"
+      },
+      {
+        "path": "dev/remotes/platform_1_3_1_e25c8d049944/assets/_virtual_mf___mfe_internal__mf_platform_1_3_1_e25c8d049944__mf_owner__242075772864893__loadShare__shared-J1-L7PDQ.js",
+        "sha256": "a98a0d934741605f0394cfe04d67144b9d5dab8c281bf9bb5211fa65b12e33f4"
+      },
+      {
+        "path": "dev/remotes/platform_1_3_1_e25c8d049944/assets/_virtual_mf___mfe_internal__mf_platform_1_3_1_e25c8d049944__mf_owner__242075772864893__prebuild__react_mf_2_dom__prebuild__-Bp2t7YDH.js",
+        "sha256": "2ef2e66e1b2d7eb760e5a2acee5179201542eb814aff87b36cbba5cb8b628f30"
+      },
+      {
+        "path": "dev/remotes/platform_1_3_1_e25c8d049944/assets/_virtual_mf___mfe_internal__mf_platform_1_3_1_e25c8d049944__mf_owner__242075772864893__prebuild__react_mf_2_dom_mf_1_client__prebuild__-KVvYFSOM.js",
+        "sha256": "1be587af2f9df4bf803219fb05dd9afbaeb30bfed2c80676514b6dcfb9e14cee"
+      },
+      {
+        "path": "dev/remotes/platform_1_3_1_e25c8d049944/assets/_virtual_mf___mfe_internal__mf_platform_1_3_1_e25c8d049944__mf_owner__242075772864893__prebuild__react_mf_2_dom_mf_1_client__prebuild__-KVvYFSOM.js.map",
+        "sha256": "121b3dd379bd6edbd5085dc531143280e77ef05399fb9367496ff529662b1783"
+      },
+      {
+        "path": "dev/remotes/platform_1_3_1_e25c8d049944/assets/_virtual_mf-localSharedImportMap___mfe_internal__mf_platform_1_3_1_e25c8d049944__mf_owner__1-5YRVjoO3.js",
+        "sha256": "78ca32fafe25ada693621155ef1a7c12e7ea4c2eb71f32977df3a6d3b9b1265b"
+      },
+      {
+        "path": "dev/remotes/platform_1_3_1_e25c8d049944/assets/dist-Bo8xtUoB.js",
+        "sha256": "6009fd1328c2d0697215f6996c12e3a8dea5744a3f7faf0b829d1ffc4a539ccb"
+      },
+      {
+        "path": "dev/remotes/platform_1_3_1_e25c8d049944/assets/dist-Bo8xtUoB.js.map",
+        "sha256": "accb14db01065440ecd520f96e404dcc013209eedcb846621a2ff7b7b56c38ab"
+      },
+      {
+        "path": "dev/remotes/platform_1_3_1_e25c8d049944/assets/hostInit-DMmU90Hg.js",
+        "sha256": "70d47b5d8db5b9d8d8b7751121786688612e504fb14ae81317bd19de8674cdf2"
+      },
+      {
+        "path": "dev/remotes/platform_1_3_1_e25c8d049944/assets/pendingShares-BkydpHFJ.js",
+        "sha256": "fb2cbbb3f82ca5a31ed886c62ec7d1ab4ae8bffdc6c01a7c38a7f8e24336cbf2"
+      },
+      {
+        "path": "dev/remotes/platform_1_3_1_e25c8d049944/assets/react-dom-DARWW5In.js",
+        "sha256": "4297f4dfc2b114952e9f7845fefe41cbad1f639f70a35cc82dc9fd2935088044"
+      },
+      {
+        "path": "dev/remotes/platform_1_3_1_e25c8d049944/assets/react-dom-DARWW5In.js.map",
+        "sha256": "9ed09e7736f9ebc56072749d16d091e2731d40ec37631466a215dc8fc9705b29"
+      },
+      {
+        "path": "dev/remotes/platform_1_3_1_e25c8d049944/assets/rolldown-runtime-SbdDWaPq.js",
+        "sha256": "8cd5f72ee962aad5f620072095a0c85942cb2b613ad628b8fb4774ab0c3b12b6"
+      },
+      {
+        "path": "dev/remotes/platform_1_3_1_e25c8d049944/assets/sdk-BbXiZY3X.css",
+        "sha256": "3545bc89ff006ea2e0bda1fb2e0dbae3fdf8a3bc9f975b007c86f32aef601d76"
+      },
+      {
+        "path": "dev/remotes/platform_1_3_1_e25c8d049944/assets/sdk-ClnQiGJZ.js",
+        "sha256": "0014e47121360d0f7d051c5e3efaf7bdbaa571ee3cba3dc22e52b43652364283"
+      },
+      {
+        "path": "dev/remotes/platform_1_3_1_e25c8d049944/assets/sdk-ClnQiGJZ.js.map",
+        "sha256": "511715d7016774be62f6a9e107a8679ad6854f28793eb70fdf1ef5757fb6e3cd"
+      },
+      {
+        "path": "dev/remotes/platform_1_3_1_e25c8d049944/assets/vite-preload-helper-CtLp1C0p.js",
+        "sha256": "0587b911376d9172ef501cfc4abc33f15385f4fbd7d6ee309f398bdec03fb605"
+      },
+      {
+        "path": "dev/remotes/platform_1_3_1_e25c8d049944/release.json",
+        "sha256": "25a2f048560090a5037e57b4d1b45f2a44beee213623a05f00cc8cc12456273a"
+      },
+      {
+        "path": "dev/remotes/platform_1_3_1_e25c8d049944/remoteEntry.js",
+        "sha256": "bc7c97be9da5b09f8c70e93f5e334a7bd410ff75aa7f816e608d748cb09d0735"
+      },
+      {
+        "path": "dev/remotes/platform_1_3_1_e25c8d049944/remoteEntry.js.map",
+        "sha256": "96d54646f1c50ee40e96945edebddb9fb0a0419bbeeb1a014a354facf1fc71e5"
+      },
+      {
+        "path": "dist/assets/_virtual_mf___mfe_internal__mf_b_1_4_0_6cc8bf6c0028__loadRemote__d_mf_1_data__mf_owner__1__loadRemote__-6LDeHEEF.js",
+        "sha256": "669b27487edb7f651cd508af9ce2bdd1d79fbceb50906924cb84a93902673d38"
+      },
+      {
+        "path": "dist/assets/_virtual_mf___mfe_internal__mf_b_1_4_0_6cc8bf6c0028__loadRemote__platform_mf_1_sdk__mf_owner__1__loadRemote__-Bqk7zvGL.js",
+        "sha256": "81b8361405aea6550f49add68e7132dea7a244e5c9d4ffd6289489fe4193c874"
+      },
+      {
+        "path": "dist/assets/_virtual_mf___mfe_internal__mf_b_1_4_0_6cc8bf6c0028__mf_owner__226140563824246__loadShare__react__loadShare__.js-DgQ7VONi.js",
+        "sha256": "41ed1f9c6e1f53632bb9f2fb5da668e6ff625786b774a819a44f8c99cb5d1045"
+      },
+      {
+        "path": "dist/assets/_virtual_mf___mfe_internal__mf_b_1_4_0_6cc8bf6c0028__mf_owner__226140563824246__loadShare__react__loadShare__.js-DgQ7VONi.js.map",
+        "sha256": "52c47ac131d52924503b877e70005d79ff90086b546a18c0c378f20d81e10aae"
+      },
+      {
+        "path": "dist/assets/_virtual_mf___mfe_internal__mf_b_1_4_0_6cc8bf6c0028__mf_owner__226140563824246__loadShare__shared-B1DGyhpy.js",
+        "sha256": "69f2c241be552a3d3ac5f32e564bb1fdcbfb55ff2e88a21ac36c13cbf0d62a69"
+      },
+      {
+        "path": "dist/assets/_virtual_mf___mfe_internal__mf_b_1_4_0_6cc8bf6c0028__mf_owner__226140563824246__prebuild__react_mf_2_dom__prebuild__-C-IYZClh.js",
+        "sha256": "11f0ec555789a736902e48f01d13cc6a338616de5af544b00366debbb7e1cba3"
+      },
+      {
+        "path": "dist/assets/_virtual_mf___mfe_internal__mf_b_1_4_0_6cc8bf6c0028__mf_owner__226140563824246__prebuild__react_mf_2_dom_mf_1_client__prebuild__-CIQW_MBc.js",
+        "sha256": "5564f753ad0cf7e3fe7f279074d20bda05986ace3969d837025c5a70fd243e9f"
+      },
+      {
+        "path": "dist/assets/_virtual_mf___mfe_internal__mf_b_1_4_0_6cc8bf6c0028__mf_owner__226140563824246__prebuild__react_mf_2_dom_mf_1_client__prebuild__-CIQW_MBc.js.map",
+        "sha256": "d00df5c5e2ac11117b8843c591ca191cedb66ae918846502bd439d8ef826f31f"
+      },
+      {
+        "path": "dist/assets/_virtual_mf-localSharedImportMap___mfe_internal__mf_b_1_4_0_6cc8bf6c0028__mf_owner__1-BaCESpgK.js",
+        "sha256": "37dd474669501ad404b472f6ea59f85ff707720cbfc255c10a456335f7933358"
+      },
+      {
+        "path": "dist/assets/dist-Bo8xtUoB.js",
+        "sha256": "6009fd1328c2d0697215f6996c12e3a8dea5744a3f7faf0b829d1ffc4a539ccb"
+      },
+      {
+        "path": "dist/assets/dist-Bo8xtUoB.js.map",
+        "sha256": "accb14db01065440ecd520f96e404dcc013209eedcb846621a2ff7b7b56c38ab"
+      },
+      {
+        "path": "dist/assets/hostInit-DFPIMONH.js",
+        "sha256": "98b3679c96e53d42c795ed0b7fdfe926c86e5969a2892b01ac1b98bbc3d5cf0e"
+      },
+      {
+        "path": "dist/assets/pendingShares-B4iSuhLp.js",
+        "sha256": "b7c55920bb535746d7822e631d679a099869d62fa3f259d3a37d33e2b027a271"
+      },
+      {
+        "path": "dist/assets/react-dom-D6O4b4PL.js",
+        "sha256": "21c095702cea1f2155c65d5a6d1e3882341ef5118c813d433f359d57bdac2c48"
+      },
+      {
+        "path": "dist/assets/react-dom-D6O4b4PL.js.map",
+        "sha256": "3ef55868c75b9d510638e5b9affbdf6e55d4e8ff8038e10ba5762465f95e62a4"
+      },
+      {
+        "path": "dist/assets/rolldown-runtime-DQp2zzRu.js",
+        "sha256": "0de66bbd84494ea80eb87ec70556319b56b7fb979ebbae90d39fa97f7cd3c392"
+      },
+      {
+        "path": "dist/assets/vite-preload-helper-BVDCNeEa.js",
+        "sha256": "0587b911376d9172ef501cfc4abc33f15385f4fbd7d6ee309f398bdec03fb605"
+      },
+      {
+        "path": "dist/assets/Widget-BiiMpLC6.js",
+        "sha256": "dead180a4851328e4f908956f39baf9fad36b1e4c7b29eda45b68181108d0245"
+      },
+      {
+        "path": "dist/assets/Widget-BiiMpLC6.js.map",
+        "sha256": "a4c8690779f8fddfc52115a7a61f33da101b130e17123385a60b3ad4d3d003ee"
+      },
+      {
+        "path": "dist/assets/Widget-C3vmy5sd.css",
+        "sha256": "894929bc4e556470ceb56e798f69ed30744a340deb862d066f108d612968ad51"
+      },
+      {
+        "path": "dist/release.json",
+        "sha256": "caf18ade689e999df9de9ba1638fd753a6ac1d55cb4e8e704406c3988b3dedf8"
+      },
+      {
+        "path": "dist/remoteEntry.js",
+        "sha256": "a8883cc49a16311227bddef8e66c755e77a8b3317343967539be60ab82bbcff5"
+      },
+      {
+        "path": "dist/remoteEntry.js.map",
+        "sha256": "0c75986acd57f90718019b7c27fe9b3d92494dd13c761df13ea0b6a4dc967b8a"
+      },
+      {
+        "path": "mf.config.cjs",
+        "sha256": "44370ae706c286b53b9df84efd4da4f532f8285555d79dcf165fb29b33463e86"
+      },
+      {
+        "path": "mf.dependencies.json",
+        "sha256": "385fe49c1ab162de691fb23fe817c096a1563280a01bb761a73cbce2b12b80f5"
+      },
+      {
+        "path": "mf.dev.json",
+        "sha256": "54a20d67910f8a7ea2eef5f677891c8fd45ebc95b0f02a8c9955d08f812e4af2"
+      },
+      {
+        "path": "package-lock.json",
+        "sha256": "a7cb7f47b64c8620491035b81c3151db730c26b8b657061bb82679ffc2b2085a"
+      },
+      {
+        "path": "package.json",
+        "sha256": "aadb2e6f78d63f5ef313d8ec7b4f9ce03babfb41430e713127fa1f264fee3ec4"
+      },
+      {
+        "path": "README.md",
+        "sha256": "6d2d0a904eb3a3e27c1dc9ed535710b3695df5cc6f9e8c1aa6b4641cd8338fc9"
+      },
+      {
+        "path": "src/Widget.jsx",
+        "sha256": "ce1c141bc8e2c487a46e73eeb51d8cbead4ac1698e6d46807c7b77a760355b95"
+      },
+      {
+        "path": "src/Widget.module.css",
+        "sha256": "fb3f8e58ab1eab3771fa20417933feb54b563c14c4b7a3519e96f633926e55c2"
+      },
+      {
+        "path": "vendor/mfe-platform-build-tools-1.0.0.tgz",
+        "sha256": "345efdb8dd40fb5be4fc59c52cf6f839f1319904cbd7addcee2243ed30e3ca51"
+      },
+      {
+        "path": "vendor/mfe-platform-build-tools-1.1.0.tgz",
+        "sha256": "92989447d8cc82dc83354dc9074f00b70b9c92cb5c415f1dd07dd0909568bffe"
+      },
+      {
+        "path": "vendor/mfe-platform-build-tools-1.2.0.tgz",
+        "sha256": "fdbe79a686d2c610842b8c06b773c778e8c175e39ec300ccb42a073939896cf0"
+      },
+      {
+        "path": "vendor/mfe-platform-build-tools-1.3.0.tgz",
+        "sha256": "91f6934e8749f4b40f957e388a9d14d1e6b500b27b10c5a659081c6862f181a0"
+      },
+      {
+        "path": "vendor/mfe-platform-build-tools-2.0.0.tgz",
+        "sha256": "b96dcf0e496ab1b0ee2e82a9051b1f01d397d51721f2eff862e96947aab85094"
+      }
+    ]
+  },
+  "productPointerAfter": "{\n  \"compositionId\": \"composition_88ee38ebfe391a69f3cdb828\"\n}\n",
+  "originalUnchanged": true,
+  "productPointerUnchanged": true,
+  "temporaryProjectRemoved": true,
+  "finishedAt": "2026-11-10T12:38:52.491Z"
+}

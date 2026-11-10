@@ -24,6 +24,9 @@ async function start() {
     writable: false,
     configurable: false,
   });
+  // Resolve the host's deferred SDK proxy before bootstrap performs its first
+  // React render with named imports from that proxy.
+  await import('platform/sdk');
   await import('./bootstrap');
 }
 

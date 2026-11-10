@@ -1,0 +1,38 @@
+[
+  {
+    "id": "dev-reload-condition",
+    "observation": "Removing only the invalid line restored the previous source and development composition; the overlay cleared while input, counter and cache remained. The reload comparison uses the development composition ID, not only the B artifact ID.",
+    "change": "V5 now distinguishes a changed development composition from an exact-source repair with unchanged settings and kit.",
+    "evidence": "development/report.json"
+  },
+  {
+    "id": "concrete-edit-and-reset",
+    "observation": "An unspecified title edit is hard to follow. Keeping the V5 edit through the V6 initial build would include the new title in the baseline.",
+    "change": "Added exact Car Picker before/after text, counter and memo values, and restoring the original source before the release lesson.",
+    "evidence": "development/report.json"
+  },
+  {
+    "id": "terminal-transition",
+    "observation": "V5 leaves a server running in the B folder while V6 starts at the repository root.",
+    "change": "Added Ctrl+C, cd ../.., and the roles of the server terminal and second terminal.",
+    "evidence": "release/report.json"
+  },
+  {
+    "id": "empty-store-start",
+    "observation": "Normal build initializes the supplied configuration in an empty store. Navigation and dashboard placements are initially absent.",
+    "change": "Clarified that bootstrap is not required for this starting state, and described the default screen and port override.",
+    "evidence": "release/report.json"
+  },
+  {
+    "id": "publish-is-not-activate",
+    "observation": "A new tab still loaded the old B after publication and before activation. A newly built B requires its own D binding.",
+    "change": "Added the pre-activation observation and emphasized choosing the new B and its D together.",
+    "evidence": "release/report.json"
+  },
+  {
+    "id": "rollback-shell-variable",
+    "observation": "The documented shell retains MFE_DEMO_PREVIOUS only in that shell. Reading current after activation returns the new composition.",
+    "change": "Added keeping the same terminal, printing the saved ID, and using that ID if the terminal was closed.",
+    "evidence": "release/report.json"
+  }
+]

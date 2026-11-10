@@ -1,0 +1,297 @@
+{
+  "status": "failed",
+  "root": "/private/tmp/mfe-git-clone-check.otAOJS/remote",
+  "mode": "working files and committed HEAD",
+  "node": "v24.22.1",
+  "head": "e4498f6d02a87999940f4cec08a18979b05e38d0",
+  "buildToolsVersion": "1.7.0",
+  "counts": {
+    "projects": 10,
+    "vendorPackages": 9,
+    "developmentKits": 4,
+    "developmentFiles": 66,
+    "requiredFiles": 278
+  },
+  "errors": [
+    {
+      "path": "projects/platform-build-tools/package.json",
+      "reason": "This guide requires Vite build-tools 2.0.0 with vite and @module-federation/vite; found 1.7.0. An older Webpack clone is not this guide's source revision."
+    },
+    {
+      "path": "projects/platform-build-tools/runtime/federation-plugin.mjs",
+      "reason": "Required source input is missing or unreadable: ENOENT: no such file or directory, lstat '/private/tmp/mfe-git-clone-check.otAOJS/remote/projects/platform-build-tools/runtime/federation-plugin.mjs'"
+    },
+    {
+      "path": "projects/platform-build-tools/runtime/import-module.mjs",
+      "reason": "Required source input is missing or unreadable: ENOENT: no such file or directory, lstat '/private/tmp/mfe-git-clone-check.otAOJS/remote/projects/platform-build-tools/runtime/import-module.mjs'"
+    },
+    {
+      "path": "projects/platform-admin/vendor/mfe-platform-build-tools-1.2.0.tgz",
+      "reason": "Bundled build tools must match the current Vite 2.0.0 source and dependency versions."
+    },
+    {
+      "path": "projects/platform-admin/vendor/mfe-platform-build-tools-1.2.0.tgz",
+      "reason": "Tarball is missing runtime/federation-plugin.mjs; Vite builds cannot load it."
+    },
+    {
+      "path": "projects/platform-admin/vendor/mfe-platform-build-tools-1.2.0.tgz",
+      "reason": "Tarball is missing runtime/import-module.mjs; Vite builds cannot load it."
+    },
+    {
+      "path": "projects/platform-sdk/vendor/mfe-platform-build-tools-1.2.0.tgz",
+      "reason": "Bundled build tools must match the current Vite 2.0.0 source and dependency versions."
+    },
+    {
+      "path": "projects/platform-sdk/vendor/mfe-platform-build-tools-1.2.0.tgz",
+      "reason": "Tarball is missing runtime/federation-plugin.mjs; Vite builds cannot load it."
+    },
+    {
+      "path": "projects/platform-sdk/vendor/mfe-platform-build-tools-1.2.0.tgz",
+      "reason": "Tarball is missing runtime/import-module.mjs; Vite builds cannot load it."
+    },
+    {
+      "path": "projects/service-a/vendor/mfe-platform-build-tools-1.3.0.tgz",
+      "reason": "Bundled build tools must match the current Vite 2.0.0 source and dependency versions."
+    },
+    {
+      "path": "projects/service-a/vendor/mfe-platform-build-tools-1.3.0.tgz",
+      "reason": "Tarball is missing runtime/federation-plugin.mjs; Vite builds cannot load it."
+    },
+    {
+      "path": "projects/service-a/vendor/mfe-platform-build-tools-1.3.0.tgz",
+      "reason": "Tarball is missing runtime/import-module.mjs; Vite builds cannot load it."
+    },
+    {
+      "path": "projects/service-a/dev/manifest.json",
+      "reason": "platform_1_2_0_11681bf2b051 must describe the current Vite ESM remote entry."
+    },
+    {
+      "path": "projects/service-a/dev/manifest.json",
+      "reason": "b_1_5_0_133c48011d9b must describe the current Vite ESM remote entry."
+    },
+    {
+      "path": "projects/service-a/dev/manifest.json",
+      "reason": "d_1_1_0_db32a5022c3e must describe the current Vite ESM remote entry."
+    },
+    {
+      "path": "projects/service-b-v1/vendor/mfe-platform-build-tools-1.3.0.tgz",
+      "reason": "Bundled build tools must match the current Vite 2.0.0 source and dependency versions."
+    },
+    {
+      "path": "projects/service-b-v1/vendor/mfe-platform-build-tools-1.3.0.tgz",
+      "reason": "Tarball is missing runtime/federation-plugin.mjs; Vite builds cannot load it."
+    },
+    {
+      "path": "projects/service-b-v1/vendor/mfe-platform-build-tools-1.3.0.tgz",
+      "reason": "Tarball is missing runtime/import-module.mjs; Vite builds cannot load it."
+    },
+    {
+      "path": "projects/service-b-v1/dev/manifest.json",
+      "reason": "platform_1_2_0_11681bf2b051 must describe the current Vite ESM remote entry."
+    },
+    {
+      "path": "projects/service-b-v1/dev/manifest.json",
+      "reason": "d_1_1_0_db32a5022c3e must describe the current Vite ESM remote entry."
+    },
+    {
+      "path": "projects/service-b-v2/vendor/mfe-platform-build-tools-1.3.0.tgz",
+      "reason": "Bundled build tools must match the current Vite 2.0.0 source and dependency versions."
+    },
+    {
+      "path": "projects/service-b-v2/vendor/mfe-platform-build-tools-1.3.0.tgz",
+      "reason": "Tarball is missing runtime/federation-plugin.mjs; Vite builds cannot load it."
+    },
+    {
+      "path": "projects/service-b-v2/vendor/mfe-platform-build-tools-1.3.0.tgz",
+      "reason": "Tarball is missing runtime/import-module.mjs; Vite builds cannot load it."
+    },
+    {
+      "path": "projects/service-b-v2/dev/manifest.json",
+      "reason": "platform_1_2_0_11681bf2b051 must describe the current Vite ESM remote entry."
+    },
+    {
+      "path": "projects/service-b-v2/dev/manifest.json",
+      "reason": "d_2_1_0_26a11234ca4f must describe the current Vite ESM remote entry."
+    },
+    {
+      "path": "projects/service-c/vendor/mfe-platform-build-tools-1.3.0.tgz",
+      "reason": "Bundled build tools must match the current Vite 2.0.0 source and dependency versions."
+    },
+    {
+      "path": "projects/service-c/vendor/mfe-platform-build-tools-1.3.0.tgz",
+      "reason": "Tarball is missing runtime/federation-plugin.mjs; Vite builds cannot load it."
+    },
+    {
+      "path": "projects/service-c/vendor/mfe-platform-build-tools-1.3.0.tgz",
+      "reason": "Tarball is missing runtime/import-module.mjs; Vite builds cannot load it."
+    },
+    {
+      "path": "projects/service-c/dev/manifest.json",
+      "reason": "platform_1_2_0_11681bf2b051 must describe the current Vite ESM remote entry."
+    },
+    {
+      "path": "projects/service-c/dev/manifest.json",
+      "reason": "b_2_2_0_3d53e541b07d must describe the current Vite ESM remote entry."
+    },
+    {
+      "path": "projects/service-c/dev/manifest.json",
+      "reason": "d_2_1_0_26a11234ca4f must describe the current Vite ESM remote entry."
+    },
+    {
+      "path": "projects/service-d-v1/vendor/mfe-platform-build-tools-1.2.0.tgz",
+      "reason": "Bundled build tools must match the current Vite 2.0.0 source and dependency versions."
+    },
+    {
+      "path": "projects/service-d-v1/vendor/mfe-platform-build-tools-1.2.0.tgz",
+      "reason": "Tarball is missing runtime/federation-plugin.mjs; Vite builds cannot load it."
+    },
+    {
+      "path": "projects/service-d-v1/vendor/mfe-platform-build-tools-1.2.0.tgz",
+      "reason": "Tarball is missing runtime/import-module.mjs; Vite builds cannot load it."
+    },
+    {
+      "path": "projects/service-d-v2/vendor/mfe-platform-build-tools-1.2.0.tgz",
+      "reason": "Bundled build tools must match the current Vite 2.0.0 source and dependency versions."
+    },
+    {
+      "path": "projects/service-d-v2/vendor/mfe-platform-build-tools-1.2.0.tgz",
+      "reason": "Tarball is missing runtime/federation-plugin.mjs; Vite builds cannot load it."
+    },
+    {
+      "path": "projects/service-d-v2/vendor/mfe-platform-build-tools-1.2.0.tgz",
+      "reason": "Tarball is missing runtime/import-module.mjs; Vite builds cannot load it."
+    },
+    {
+      "path": "projects/shell/vendor/mfe-platform-build-tools-1.7.0.tgz",
+      "reason": "Bundled build tools must match the current Vite 2.0.0 source and dependency versions."
+    },
+    {
+      "path": "projects/shell/vendor/mfe-platform-build-tools-1.7.0.tgz",
+      "reason": "Tarball is missing runtime/federation-plugin.mjs; Vite builds cannot load it."
+    },
+    {
+      "path": "projects/shell/vendor/mfe-platform-build-tools-1.7.0.tgz",
+      "reason": "Tarball is missing runtime/import-module.mjs; Vite builds cannot load it."
+    },
+    {
+      "path": "integration/tools/update-build-tools.cjs",
+      "reason": "Required source input is missing or unreadable: ENOENT: no such file or directory, lstat '/private/tmp/mfe-git-clone-check.otAOJS/remote/integration/tools/update-build-tools.cjs'"
+    },
+    {
+      "path": "integration/tools/check-clone.cjs",
+      "reason": "Required source input is missing or unreadable: ENOENT: no such file or directory, lstat '/private/tmp/mfe-git-clone-check.otAOJS/remote/integration/tools/check-clone.cjs'"
+    },
+    {
+      "path": "integration/tests/expose-chunk.mjs",
+      "reason": "Required source input is missing or unreadable: ENOENT: no such file or directory, lstat '/private/tmp/mfe-git-clone-check.otAOJS/remote/integration/tests/expose-chunk.mjs'"
+    },
+    {
+      "path": "docs/book/vite-runtime.html",
+      "reason": "Required source input is missing or unreadable: ENOENT: no such file or directory, lstat '/private/tmp/mfe-git-clone-check.otAOJS/remote/docs/book/vite-runtime.html'"
+    },
+    {
+      "path": "docs/book/vite-workflow.html",
+      "reason": "Required source input is missing or unreadable: ENOENT: no such file or directory, lstat '/private/tmp/mfe-git-clone-check.otAOJS/remote/docs/book/vite-workflow.html'"
+    },
+    {
+      "path": "docs/book/vite-dev-walkthrough.mjs",
+      "reason": "Required source input is missing or unreadable: ENOENT: no such file or directory, lstat '/private/tmp/mfe-git-clone-check.otAOJS/remote/docs/book/vite-dev-walkthrough.mjs'"
+    },
+    {
+      "path": "docs/book/vite-release-walkthrough.mjs",
+      "reason": "Required source input is missing or unreadable: ENOENT: no such file or directory, lstat '/private/tmp/mfe-git-clone-check.otAOJS/remote/docs/book/vite-release-walkthrough.mjs'"
+    },
+    {
+      "path": "docs/book/vite-version-walkthrough.mjs",
+      "reason": "Required source input is missing or unreadable: ENOENT: no such file or directory, lstat '/private/tmp/mfe-git-clone-check.otAOJS/remote/docs/book/vite-version-walkthrough.mjs'"
+    },
+    {
+      "path": "docs/book/summarize-vite-walkthrough.py",
+      "reason": "Required source input is missing or unreadable: ENOENT: no such file or directory, lstat '/private/tmp/mfe-git-clone-check.otAOJS/remote/docs/book/summarize-vite-walkthrough.py'"
+    },
+    {
+      "path": "docs/mfe-self-study.html",
+      "reason": "Current Vite chapter #vite-overview is missing; regenerate the guide from its complete current sources."
+    },
+    {
+      "path": "docs/mfe-self-study.html",
+      "reason": "Current Vite chapter #vite-contracts is missing; regenerate the guide from its complete current sources."
+    },
+    {
+      "path": "docs/mfe-self-study.html",
+      "reason": "Current Vite chapter #vite-loading is missing; regenerate the guide from its complete current sources."
+    },
+    {
+      "path": "docs/mfe-self-study.html",
+      "reason": "Current Vite chapter #vite-isolation is missing; regenerate the guide from its complete current sources."
+    },
+    {
+      "path": "docs/mfe-self-study.html",
+      "reason": "Current Vite chapter #vite-development is missing; regenerate the guide from its complete current sources."
+    },
+    {
+      "path": "docs/mfe-self-study.html",
+      "reason": "Current Vite chapter #vite-release is missing; regenerate the guide from its complete current sources."
+    },
+    {
+      "path": "docs/mfe-self-study.html",
+      "reason": "Current Vite chapter #vite-versioning is missing; regenerate the guide from its complete current sources."
+    },
+    {
+      "path": "docs/mfe-self-study.html",
+      "reason": "Current Vite chapter #vite-reading-map is missing; regenerate the guide from its complete current sources."
+    },
+    {
+      "path": "docs/book/vite-runtime.html",
+      "reason": "Required source input is missing or unreadable: ENOENT: no such file or directory, lstat '/private/tmp/mfe-git-clone-check.otAOJS/remote/docs/book/vite-runtime.html'"
+    },
+    {
+      "path": "docs/book/vite-workflow.html",
+      "reason": "Required source input is missing or unreadable: ENOENT: no such file or directory, lstat '/private/tmp/mfe-git-clone-check.otAOJS/remote/docs/book/vite-workflow.html'"
+    },
+    {
+      "path": "docs/book/summarize-vite-walkthrough.py",
+      "reason": "Required input is absent from HEAD; untracked or staged-only files do not reach a new clone."
+    },
+    {
+      "path": "docs/book/vite-dev-walkthrough.mjs",
+      "reason": "Required input is absent from HEAD; untracked or staged-only files do not reach a new clone."
+    },
+    {
+      "path": "docs/book/vite-release-walkthrough.mjs",
+      "reason": "Required input is absent from HEAD; untracked or staged-only files do not reach a new clone."
+    },
+    {
+      "path": "docs/book/vite-runtime.html",
+      "reason": "Required input is absent from HEAD; untracked or staged-only files do not reach a new clone."
+    },
+    {
+      "path": "docs/book/vite-version-walkthrough.mjs",
+      "reason": "Required input is absent from HEAD; untracked or staged-only files do not reach a new clone."
+    },
+    {
+      "path": "docs/book/vite-workflow.html",
+      "reason": "Required input is absent from HEAD; untracked or staged-only files do not reach a new clone."
+    },
+    {
+      "path": "integration/tests/expose-chunk.mjs",
+      "reason": "Required input is absent from HEAD; untracked or staged-only files do not reach a new clone."
+    },
+    {
+      "path": "integration/tools/check-clone.cjs",
+      "reason": "Required input is absent from HEAD; untracked or staged-only files do not reach a new clone."
+    },
+    {
+      "path": "integration/tools/update-build-tools.cjs",
+      "reason": "Required input is absent from HEAD; untracked or staged-only files do not reach a new clone."
+    },
+    {
+      "path": "projects/platform-build-tools/runtime/federation-plugin.mjs",
+      "reason": "Required input is absent from HEAD; untracked or staged-only files do not reach a new clone."
+    },
+    {
+      "path": "projects/platform-build-tools/runtime/import-module.mjs",
+      "reason": "Required input is absent from HEAD; untracked or staged-only files do not reach a new clone."
+    }
+  ]
+}

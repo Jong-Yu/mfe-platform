@@ -1,23 +1,28 @@
 // Each runtime has an immutable composition; consumer aliases are local to it.
 const moduleCaches = new WeakMap();
 const recoveryLog = [];
-const retryProtocols = new Set(['failed-modules-v1', 'failed-modules-v2']);
+const retryProtocols = new Set(['failed-modules-v1', 'failed-modules-v2', 'vite-preflight-v1']);
 const retryDelayMs = 500;
 
 function isTransientLoadError(error) {
-  // These are the actual error contracts of this platform loader and webpack.
-  // Invalid bindings, missing exposes, render failures and application errors
-  // are not automatically retried.
-  return error?.name === 'ChunkLoadError'
-    || /^Remote (unavailable|timed out): /.test(error?.message || '')
-    || /^(Module |Initialization ).+ timed out$/.test(error?.message || '');
+  // Match transport failures from both federation formats. Module evaluation,
+  // missing exposes, invalid bindings and application errors are not retried.
+  const message = error?.message || '';
+  return error?.code === 'MFE_CHUNK_LOAD'
+    || error?.name === 'ChunkLoadError'
+    || /^Remote (unavailable|timed out): /.test(message)
+    || /^(Module |Initialization |Remote ).+ timed out$/.test(message)
+    || /^(Failed to fetch dynamically imported module|error loading dynamically imported module|Importing a module script failed)(:|\.|$)/i.test(message)
+    || /^Unable to preload CSS for /.test(message)
+    || /^\[Module Federation\] Failed to load CSS asset: /.test(message);
 }
+
 export function getRemoteRecoveryLog() {
   return recoveryLog.map((entry) => ({ ...entry, removed: [...entry.removed], prepared: [...entry.prepared] }));
 }
 
 async function resetFailedBranch(runtime, artifact, scope, context, preparedFactories, visited = new Set()) {
-  if (visited.has(artifact.id) || artifact.service === 'platform') return;
+  if (!artifact || visited.has(artifact.id) || artifact.service === 'platform') return;
   visited.add(artifact.id);
   const registry = runtime.registry;
   const children = [
@@ -30,7 +35,7 @@ async function resetFailedBranch(runtime, artifact, scope, context, preparedFact
   await container.init(scope);
   const controls = (await container.get('./__mfe_retry__'))();
   if (controls.protocol !== artifact.retryProtocol) throw new Error('Unsupported remote retry protocol');
-  const failedExposes = controls.protocol === 'failed-modules-v2' ? controls.getFailedExposes() : [];
+  const failedExposes = controls.protocol === 'failed-modules-v1' ? [] : controls.getFailedExposes();
   const removed = controls.resetFailedModules();
   const record = { ...context, artifactId: artifact.id, removed, prepared: [] };
   recoveryLog.push(record);
@@ -58,15 +63,15 @@ export async function loadRemoteDependency(consumerId, alias, exposedModule, ret
     const loadOnce = async (attempt) => {
       // The caller's ID must be supplied by the service. This SDK's build ID
       // is not the consumer of the requested remote.
-      await __webpack_init_sharing__('default');
+      const scope = await runtime.initializeSharing();
       const container = await runtime.getDependencyContainer(consumerId, alias);
-      await container.init(__webpack_share_scopes__.default);
+      await container.init(scope);
       let factory;
       if (retry) {
         const target = runtime.registry.artifacts[runtime.registry.runtimeBindings[consumerId][alias]];
         if (!retryProtocols.has(target.retryProtocol)) throw new Error('This remote build does not support local retry');
         const preparedFactories = new Map();
-        await resetFailedBranch(runtime, target, __webpack_share_scopes__.default, { consumerId, alias, exposedModule, attempt }, preparedFactories);
+        await resetFailedBranch(runtime, target, scope, { consumerId, alias, exposedModule, attempt }, preparedFactories);
         // Preparing the root may already have obtained its factory. Calling
         // get again could silently retry a failed child before our delay.
         factory = preparedFactories.get(JSON.stringify([target.id, exposedModule]));

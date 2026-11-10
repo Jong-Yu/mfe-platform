@@ -8,6 +8,7 @@ import os from 'node:os';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { chromium } from 'playwright';
+import { exposeChunkPath } from './expose-chunk.mjs';
 
 const integration = fileURLToPath(new URL('../', import.meta.url));
 const projects = path.resolve(integration, '../projects');
@@ -79,10 +80,8 @@ async function failureURL(name) {
   const [service, kind] = name.split('-');
   const release = scenario.releases[{ C: 'service-c', B2: 'service-b-v2', D2: 'service-d-v2' }[service]];
   if (kind === 'entry') return new URL(release.entry, baseURL).href;
-  const files = await readdir(path.join(temporary, 'store/artifacts', release.id));
-  const chunks = files.filter((file) => file.startsWith('src_') && file.endsWith('.js'));
-  assert.equal(chunks.length, 1);
-  return new URL(`/artifacts/${release.id}/${chunks[0]}`, baseURL).href;
+  const requestPath = await exposeChunkPath(path.join(temporary, 'store'), release, service === 'D2' ? './data' : './Widget');
+  return new URL(requestPath, baseURL).href;
 }
 
 async function tab(name, composition, failure, mount = true) {

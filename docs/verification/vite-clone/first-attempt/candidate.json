@@ -1,0 +1,11 @@
+{
+  "source": "/private/tmp/mfe-git-clone-check.otAOJS/candidate",
+  "directory": "/private/tmp/mfe-git-clone-check.otAOJS/validated",
+  "commit": "8b4efb8745c7bbce36e8cddf0a050afaa4bb3cb0",
+  "branch": "codex/vite-clone-validation",
+  "initialStatus": "",
+  "noLocalOverlayAfterClone": true,
+  "noPreinstalledActiveProjects": true,
+  "bookSHA256": "0f9897a04840c62a1bb089dc77f36171208cc2ab78ace98fbdbf1f18a11154f4",
+  "preflight": "candidate-preflight.json"
+}

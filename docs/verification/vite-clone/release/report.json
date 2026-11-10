@@ -1,0 +1,1699 @@
+{
+  "status": "passed",
+  "startedAt": "2026-11-10T13:14:13.548Z",
+  "work": "/private/tmp/mfe-vite-release-HrZX9Y",
+  "node": "v24.22.1",
+  "installMode": "online",
+  "npmCache": "/private/tmp/mfe-vite-release-empty-cache-pczsW9",
+  "scope": "Configured source repository copied without prior installations or outputs, then actual development, publication, CLI/UI activation and rollback. Clone provenance, when applicable, is recorded by the caller; this script preserves the source repository.",
+  "commands": [
+    {
+      "command": "npm",
+      "args": [
+        "ci"
+      ],
+      "cwd": "/private/tmp/mfe-vite-release-HrZX9Y/integration",
+      "startedAt": "2026-11-10T13:14:13.687Z",
+      "exitCode": 0,
+      "finishedAt": "2026-11-10T13:14:14.098Z"
+    },
+    {
+      "command": "npm",
+      "args": [
+        "run",
+        "setup"
+      ],
+      "cwd": "/private/tmp/mfe-vite-release-HrZX9Y/integration",
+      "startedAt": "2026-11-10T13:14:14.098Z",
+      "exitCode": 0,
+      "finishedAt": "2026-11-10T13:14:22.813Z"
+    },
+    {
+      "command": "npm",
+      "args": [
+        "run",
+        "dev"
+      ],
+      "cwd": "/private/tmp/mfe-vite-release-HrZX9Y/projects/service-b-v1",
+      "url": "http://127.0.0.1:53692"
+    },
+    {
+      "command": "npm",
+      "args": [
+        "run",
+        "build"
+      ],
+      "cwd": "/private/tmp/mfe-vite-release-HrZX9Y/integration",
+      "startedAt": "2026-11-10T13:14:28.292Z",
+      "exitCode": 0,
+      "finishedAt": "2026-11-10T13:14:45.108Z"
+    },
+    {
+      "command": "npm",
+      "args": [
+        "start"
+      ],
+      "cwd": "/private/tmp/mfe-vite-release-HrZX9Y/integration",
+      "port": 0,
+      "url": "http://127.0.0.1:53758"
+    },
+    {
+      "command": "npm",
+      "args": [
+        "version",
+        "patch",
+        "--no-git-tag-version"
+      ],
+      "cwd": "/private/tmp/mfe-vite-release-HrZX9Y/projects/service-b-v1",
+      "startedAt": "2026-11-10T13:14:45.982Z",
+      "exitCode": 0,
+      "finishedAt": "2026-11-10T13:14:46.114Z"
+    },
+    {
+      "command": "npm",
+      "args": [
+        "run",
+        "build"
+      ],
+      "cwd": "/private/tmp/mfe-vite-release-HrZX9Y/projects/service-b-v1",
+      "startedAt": "2026-11-10T13:14:46.114Z",
+      "exitCode": 0,
+      "finishedAt": "2026-11-10T13:14:47.091Z"
+    },
+    {
+      "command": "npm",
+      "args": [
+        "run",
+        "publish",
+        "--",
+        "../projects/service-b-v1"
+      ],
+      "cwd": "/private/tmp/mfe-vite-release-HrZX9Y/integration",
+      "startedAt": "2026-11-10T13:14:47.092Z",
+      "exitCode": 0,
+      "finishedAt": "2026-11-10T13:14:47.267Z"
+    },
+    {
+      "command": "zsh",
+      "args": [
+        "-f",
+        "-c",
+        "MFE_DEMO_PREVIOUS=$(node -p 'require(\"./tools/store.cjs\").current().compositionId')\nMFE_DEMO_A=$(node -p 'require(\"./tools/store.cjs\").current().selected.A')\nMFE_DEMO_D=$(node -p 'const c=require(\"./tools/store.cjs\").current(); c.runtimeBindings[c.runtimeBindings[c.selected.A].b].d')\nMFE_DEMO_NEW_B=$(node -p 'require(\"../projects/service-b-v1/dist/release.json\").id')\n\nnpm run activate -- --bind \"${MFE_DEMO_A}:b=${MFE_DEMO_NEW_B}\" --bind \"${MFE_DEMO_NEW_B}:d=${MFE_DEMO_D}\"\nprintf \"\\nWALKTHROUGH_PREVIOUS=%s\\n\" \"$MFE_DEMO_PREVIOUS\""
+      ],
+      "cwd": "/private/tmp/mfe-vite-release-HrZX9Y/integration",
+      "startedAt": "2026-11-10T13:14:47.709Z",
+      "exitCode": 0,
+      "finishedAt": "2026-11-10T13:14:48.012Z"
+    },
+    {
+      "command": "npm",
+      "args": [
+        "run",
+        "activate",
+        "--",
+        "--bind",
+        "a_1_0_0_0321deb69c28:b=b_2_1_0_479272f66af5"
+      ],
+      "cwd": "/private/tmp/mfe-vite-release-HrZX9Y/integration",
+      "startedAt": "2026-11-10T13:14:48.636Z",
+      "exitCode": 1,
+      "finishedAt": "2026-11-10T13:14:48.790Z"
+    },
+    {
+      "command": "zsh",
+      "args": [
+        "-f",
+        "-c",
+        "npm run activate -- --composition \"$MFE_DEMO_PREVIOUS\""
+      ],
+      "cwd": "/private/tmp/mfe-vite-release-HrZX9Y/integration",
+      "startedAt": "2026-11-10T13:14:48.791Z",
+      "exitCode": 0,
+      "finishedAt": "2026-11-10T13:14:48.948Z"
+    }
+  ],
+  "checks": [
+    {
+      "name": "현재 소스·vendor·개발 키트를 복사하고 설치·빌드·저장소 결과는 제외",
+      "status": "passed",
+      "durationMs": 102
+    },
+    {
+      "name": "빈 npm 캐시에서 integration npm ci → setup 온라인 최초 설치",
+      "status": "passed",
+      "durationMs": 9735
+    },
+    {
+      "name": "첫 설치한 같은 복사본에서 B 단독 개발·수정·원문 복원",
+      "status": "passed",
+      "durationMs": 4869
+    },
+    {
+      "name": "개발 원문 복원 뒤 첫 Vite 전체 빌드·발행·기본 조합 생성",
+      "status": "passed",
+      "durationMs": 16818
+    },
+    {
+      "name": "학습서 npm start와 실제 브라우저의 기본 A/C 화면",
+      "status": "passed",
+      "durationMs": 146
+    },
+    {
+      "name": "기본 화면의 SDK·B·D 실제 MF 요청과 공유 React/Context",
+      "status": "passed",
+      "durationMs": 456
+    },
+    {
+      "name": "B만 제목 수정 → patch 버전 → 빌드 → 발행, 적용 전 조합 유지",
+      "status": "passed",
+      "durationMs": 1726
+    },
+    {
+      "name": "학습서 MFE_DEMO 변수와 --bind 두 줄 연결로 실제 활성화",
+      "status": "passed",
+      "durationMs": 338
+    },
+    {
+      "name": "새 탭만 새 B 제목·버전·실제 URL, 기존 탭 입력과 캐시 유지",
+      "status": "passed",
+      "durationMs": 471
+    },
+    {
+      "name": "허용 범위 밖 B 2.x 선택을 거절하고 현재 조합 보존",
+      "status": "passed",
+      "durationMs": 155
+    },
+    {
+      "name": "학습서 --composition 롤백 후 새 탭 복원·이미 열린 신버전 탭 유지",
+      "status": "passed",
+      "durationMs": 578
+    },
+    {
+      "name": "관리 UI에서 A의 B·D 선택 → 검사 → 변경 적용 → 이력 재검사·롤백",
+      "status": "passed",
+      "durationMs": 1177
+    },
+    {
+      "name": "다른 서비스 소스·산출물과 발행한 구버전 파일 보존",
+      "status": "passed",
+      "durationMs": 163
+    }
+  ],
+  "pages": [
+    {
+      "name": "빈 캐시 설치 후 B 단독 개발",
+      "url": "http://127.0.0.1:53692/",
+      "remoteEntries": [
+        {
+          "url": "http://127.0.0.1:53692/__dev/host/remoteEntry.js",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:53692/artifacts/platform_1_3_1_e25c8d049944/remoteEntry.js",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:53692/artifacts/b_1_4_0_6cc8bf6c0028/remoteEntry.js",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:53692/artifacts/d_1_0_0_c6adbe1cb721/remoteEntry.js",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:53692/__dev/host/remoteEntry.js",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:53692/artifacts/platform_1_3_1_e25c8d049944/remoteEntry.js",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:53692/artifacts/b_1_4_0_60bd7cd10190/remoteEntry.js",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:53692/artifacts/d_1_0_0_c6adbe1cb721/remoteEntry.js",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:53692/__dev/host/remoteEntry.js",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:53692/artifacts/platform_1_3_1_e25c8d049944/remoteEntry.js",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:53692/artifacts/b_1_4_0_6cc8bf6c0028/remoteEntry.js",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:53692/artifacts/d_1_0_0_c6adbe1cb721/remoteEntry.js",
+          "status": 200
+        }
+      ],
+      "compositionRequests": [],
+      "apiResponses": [],
+      "consoleErrors": [],
+      "pageErrors": [],
+      "failedRequests": []
+    },
+    {
+      "name": "기존 1.4.0 탭",
+      "url": "http://127.0.0.1:53758/",
+      "remoteEntries": [
+        {
+          "url": "http://127.0.0.1:53758/artifacts/shell_1_3_0_46ac9795cddf/remoteEntry.js",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:53758/artifacts/platform_1_3_1_e25c8d049944/remoteEntry.js",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:53758/artifacts/a_1_0_0_0321deb69c28/remoteEntry.js",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:53758/artifacts/b_1_4_0_6cc8bf6c0028/remoteEntry.js",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:53758/artifacts/d_1_0_0_c6adbe1cb721/remoteEntry.js",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:53758/artifacts/c_1_0_0_369b0db5dc78/remoteEntry.js",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:53758/artifacts/b_2_1_0_479272f66af5/remoteEntry.js",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:53758/artifacts/d_2_0_0_a4251bae8bc7/remoteEntry.js",
+          "status": 200
+        }
+      ],
+      "compositionRequests": [
+        {
+          "url": "http://127.0.0.1:53758/compositions/composition_88ee38ebfe391a69f3cdb828.json",
+          "status": 200
+        }
+      ],
+      "apiResponses": [
+        {
+          "url": "http://127.0.0.1:53758/api/runtime/config",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:53758/api/runtime/config",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:53758/api/runtime/usage",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:53758/api/runtime/usage",
+          "status": 200
+        }
+      ],
+      "consoleErrors": [],
+      "pageErrors": [],
+      "failedRequests": [],
+      "proof": {
+        "compositionId": "composition_88ee38ebfe391a69f3cdb828",
+        "identities": [
+          {
+            "instanceId": "A",
+            "reactMatches": true,
+            "contextMatches": true,
+            "artifactId": "b_1_4_0_6cc8bf6c0028",
+            "dependencyArtifact": "d_1_0_0_c6adbe1cb721"
+          },
+          {
+            "instanceId": "C",
+            "reactMatches": true,
+            "contextMatches": true,
+            "artifactId": "b_2_1_0_479272f66af5",
+            "dependencyArtifact": "d_2_0_0_a4251bae8bc7"
+          }
+        ],
+        "frozen": true
+      }
+    },
+    {
+      "name": "발행 후 적용 전 새 탭",
+      "url": "http://127.0.0.1:53758/",
+      "remoteEntries": [
+        {
+          "url": "http://127.0.0.1:53758/artifacts/shell_1_3_0_46ac9795cddf/remoteEntry.js",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:53758/artifacts/platform_1_3_1_e25c8d049944/remoteEntry.js",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:53758/artifacts/a_1_0_0_0321deb69c28/remoteEntry.js",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:53758/artifacts/b_1_4_0_6cc8bf6c0028/remoteEntry.js",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:53758/artifacts/d_1_0_0_c6adbe1cb721/remoteEntry.js",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:53758/artifacts/c_1_0_0_369b0db5dc78/remoteEntry.js",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:53758/artifacts/b_2_1_0_479272f66af5/remoteEntry.js",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:53758/artifacts/d_2_0_0_a4251bae8bc7/remoteEntry.js",
+          "status": 200
+        }
+      ],
+      "compositionRequests": [
+        {
+          "url": "http://127.0.0.1:53758/compositions/composition_88ee38ebfe391a69f3cdb828.json",
+          "status": 200
+        }
+      ],
+      "apiResponses": [
+        {
+          "url": "http://127.0.0.1:53758/api/runtime/config",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:53758/api/runtime/config",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:53758/api/runtime/usage",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:53758/api/runtime/usage",
+          "status": 200
+        }
+      ],
+      "consoleErrors": [],
+      "pageErrors": [],
+      "failedRequests": []
+    },
+    {
+      "name": "B 교체 후 새 탭",
+      "url": "http://127.0.0.1:53758/",
+      "remoteEntries": [
+        {
+          "url": "http://127.0.0.1:53758/artifacts/shell_1_3_0_46ac9795cddf/remoteEntry.js",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:53758/artifacts/platform_1_3_1_e25c8d049944/remoteEntry.js",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:53758/artifacts/a_1_0_0_0321deb69c28/remoteEntry.js",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:53758/artifacts/b_1_4_1_0c67243cd622/remoteEntry.js",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:53758/artifacts/d_1_0_0_c6adbe1cb721/remoteEntry.js",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:53758/artifacts/c_1_0_0_369b0db5dc78/remoteEntry.js",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:53758/artifacts/b_2_1_0_479272f66af5/remoteEntry.js",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:53758/artifacts/d_2_0_0_a4251bae8bc7/remoteEntry.js",
+          "status": 200
+        }
+      ],
+      "compositionRequests": [
+        {
+          "url": "http://127.0.0.1:53758/compositions/composition_a69a898196449eb95891e635.json",
+          "status": 200
+        }
+      ],
+      "apiResponses": [
+        {
+          "url": "http://127.0.0.1:53758/api/runtime/config",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:53758/api/runtime/config",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:53758/api/runtime/usage",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:53758/api/runtime/usage",
+          "status": 200
+        }
+      ],
+      "consoleErrors": [],
+      "pageErrors": [],
+      "failedRequests": [],
+      "proof": {
+        "compositionId": "composition_a69a898196449eb95891e635",
+        "identities": [
+          {
+            "instanceId": "A",
+            "reactMatches": true,
+            "contextMatches": true,
+            "artifactId": "b_1_4_1_0c67243cd622",
+            "dependencyArtifact": "d_1_0_0_c6adbe1cb721"
+          },
+          {
+            "instanceId": "C",
+            "reactMatches": true,
+            "contextMatches": true,
+            "artifactId": "b_2_1_0_479272f66af5",
+            "dependencyArtifact": "d_2_0_0_a4251bae8bc7"
+          }
+        ],
+        "frozen": true
+      }
+    },
+    {
+      "name": "CLI 롤백 후 새 탭",
+      "url": "http://127.0.0.1:53758/",
+      "remoteEntries": [
+        {
+          "url": "http://127.0.0.1:53758/artifacts/shell_1_3_0_46ac9795cddf/remoteEntry.js",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:53758/artifacts/platform_1_3_1_e25c8d049944/remoteEntry.js",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:53758/artifacts/a_1_0_0_0321deb69c28/remoteEntry.js",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:53758/artifacts/b_1_4_0_6cc8bf6c0028/remoteEntry.js",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:53758/artifacts/d_1_0_0_c6adbe1cb721/remoteEntry.js",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:53758/artifacts/c_1_0_0_369b0db5dc78/remoteEntry.js",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:53758/artifacts/b_2_1_0_479272f66af5/remoteEntry.js",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:53758/artifacts/d_2_0_0_a4251bae8bc7/remoteEntry.js",
+          "status": 200
+        }
+      ],
+      "compositionRequests": [
+        {
+          "url": "http://127.0.0.1:53758/compositions/composition_88ee38ebfe391a69f3cdb828.json",
+          "status": 200
+        }
+      ],
+      "apiResponses": [
+        {
+          "url": "http://127.0.0.1:53758/api/runtime/config",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:53758/api/runtime/config",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:53758/api/runtime/usage",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:53758/api/runtime/usage",
+          "status": 200
+        }
+      ],
+      "consoleErrors": [],
+      "pageErrors": [],
+      "failedRequests": [],
+      "proof": {
+        "compositionId": "composition_88ee38ebfe391a69f3cdb828",
+        "identities": [
+          {
+            "instanceId": "A",
+            "reactMatches": true,
+            "contextMatches": true,
+            "artifactId": "b_1_4_0_6cc8bf6c0028",
+            "dependencyArtifact": "d_1_0_0_c6adbe1cb721"
+          },
+          {
+            "instanceId": "C",
+            "reactMatches": true,
+            "contextMatches": true,
+            "artifactId": "b_2_1_0_479272f66af5",
+            "dependencyArtifact": "d_2_0_0_a4251bae8bc7"
+          }
+        ],
+        "frozen": true
+      }
+    },
+    {
+      "name": "관리 UI 변경과 롤백",
+      "url": "http://127.0.0.1:53758/admin",
+      "remoteEntries": [
+        {
+          "url": "http://127.0.0.1:53758/artifacts/admin_1_2_0_174445facc9b/remoteEntry.js",
+          "status": 200
+        }
+      ],
+      "compositionRequests": [],
+      "apiResponses": [
+        {
+          "url": "http://127.0.0.1:53758/api/admin/state",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:53758/api/admin/preview",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:53758/api/admin/apply",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:53758/api/admin/state",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:53758/api/admin/compositions/composition_88ee38ebfe391a69f3cdb828",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:53758/api/admin/preview",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:53758/api/admin/apply",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:53758/api/admin/state",
+          "status": 200
+        }
+      ],
+      "consoleErrors": [],
+      "pageErrors": [],
+      "failedRequests": []
+    }
+  ],
+  "findings": [
+    {
+      "kind": "setup",
+      "text": "일반 build가 빈 저장소의 기본 A/C 조합을 구성하며 bootstrap은 필요하지 않음"
+    }
+  ],
+  "cacheBefore": {
+    "path": "/private/tmp/mfe-vite-release-empty-cache-pczsW9",
+    "entries": [],
+    "verifiedEmpty": true
+  },
+  "input": {
+    "sourceRepository": "/private/tmp/mfe-git-clone-check.otAOJS/validated-node24",
+    "sourceRootOverridden": true,
+    "copiedBeforeExecution": true,
+    "outputDirectory": "/Users/jong-yu/Projects/mfe/docs/verification/vite-clone/release"
+  },
+  "bookSHA256": "4dd83f8d00dbfd68140b53fcb1a21f4e438791caf1fceb34ad4433eddb1ba25b",
+  "instructionsSHA256": "2b1ba02db45db7a6204a980961d44aad917b2ca109796f447ef298c9dba1790d",
+  "documentedBlocks": {
+    "binding": "MFE_DEMO_PREVIOUS=$(node -p 'require(\"./tools/store.cjs\").current().compositionId')\nMFE_DEMO_A=$(node -p 'require(\"./tools/store.cjs\").current().selected.A')\nMFE_DEMO_D=$(node -p 'const c=require(\"./tools/store.cjs\").current(); c.runtimeBindings[c.runtimeBindings[c.selected.A].b].d')\nMFE_DEMO_NEW_B=$(node -p 'require(\"../projects/service-b-v1/dist/release.json\").id')\n\nnpm run activate -- --bind \"${MFE_DEMO_A}:b=${MFE_DEMO_NEW_B}\" --bind \"${MFE_DEMO_NEW_B}:d=${MFE_DEMO_D}\"",
+    "rollback": "npm run activate -- --composition \"$MFE_DEMO_PREVIOUS\""
+  },
+  "networkDownloads": [
+    "npm http fetch GET 200 https://registry.npmjs.org/semver/-/semver-6.3.2.tgz 65ms (cache miss)",
+    "npm http fetch GET 200 https://registry.npmjs.org/fsevents/-/fsevents-2.3.2.tgz 65ms (cache miss)",
+    "npm http fetch GET 200 https://registry.npmjs.org/playwright/-/playwright-1.62.1.tgz 117ms (cache miss)",
+    "npm http fetch GET 200 https://registry.npmjs.org/playwright-core/-/playwright-core-1.62.1.tgz 173ms (cache miss)",
+    "npm http fetch GET 200 https://registry.npmjs.org/util-deprecate/-/util-deprecate-1.0.2.tgz 112ms (cache miss)",
+    "npm http fetch GET 200 https://registry.npmjs.org/magic-string/-/magic-string-1.4.5.tgz 126ms (cache miss)",
+    "npm http fetch GET 200 https://registry.npmjs.org/react/-/react-19.3.1.tgz 128ms (cache miss)",
+    "npm http fetch GET 200 https://registry.npmjs.org/ws/-/ws-8.21.3.tgz 194ms (cache miss)",
+    "npm http fetch GET 200 https://registry.npmjs.org/nanoid/-/nanoid-3.3.20.tgz 195ms (cache miss)",
+    "npm http fetch GET 200 https://registry.npmjs.org/picocolors/-/picocolors-1.1.1.tgz 293ms (cache miss)",
+    "npm http fetch GET 200 https://registry.npmjs.org/lightningcss/-/lightningcss-1.33.0.tgz 306ms (cache miss)",
+    "npm http fetch GET 200 https://registry.npmjs.org/tinyglobby/-/tinyglobby-0.2.17.tgz 323ms (cache miss)",
+    "npm http fetch GET 200 https://registry.npmjs.org/postcss-value-parser/-/postcss-value-parser-4.2.0.tgz 324ms (cache miss)",
+    "npm http fetch GET 200 https://registry.npmjs.org/fsevents/-/fsevents-2.3.3.tgz 323ms (cache miss)",
+    "npm http fetch GET 200 https://registry.npmjs.org/scheduler/-/scheduler-0.28.0.tgz 326ms (cache miss)",
+    "npm http fetch GET 200 https://registry.npmjs.org/react-dom/-/react-dom-19.3.1.tgz 328ms (cache miss)",
+    "npm http fetch GET 200 https://registry.npmjs.org/fdir/-/fdir-6.5.0.tgz 331ms (cache miss)",
+    "npm http fetch GET 200 https://registry.npmjs.org/icss-utils/-/icss-utils-5.1.0.tgz 333ms (cache miss)",
+    "npm http fetch GET 200 https://registry.npmjs.org/detect-libc/-/detect-libc-2.1.2.tgz 334ms (cache miss)",
+    "npm http fetch GET 200 https://registry.npmjs.org/isomorphic-ws/-/isomorphic-ws-5.0.0.tgz 335ms (cache miss)",
+    "npm http fetch GET 200 https://registry.npmjs.org/source-map-js/-/source-map-js-1.2.2.tgz 349ms (cache miss)",
+    "npm http fetch GET 200 https://registry.npmjs.org/adm-zip/-/adm-zip-0.6.1.tgz 346ms (cache miss)",
+    "npm http fetch GET 200 https://registry.npmjs.org/postcss-selector-parser/-/postcss-selector-parser-7.2.0.tgz 357ms (cache miss)",
+    "npm http fetch GET 200 https://registry.npmjs.org/@rolldown/pluginutils/-/pluginutils-1.0.1.tgz 362ms (cache miss)",
+    "npm http fetch GET 200 https://registry.npmjs.org/picomatch/-/picomatch-4.0.7.tgz 363ms (cache miss)",
+    "npm http fetch GET 200 https://registry.npmjs.org/@oxc-project/types/-/types-0.156.0.tgz 365ms (cache miss)",
+    "npm http fetch GET 200 https://registry.npmjs.org/@module-federation/third-party-dts-extractor/-/third-party-dts-extractor-2.9.3.tgz 366ms (cache miss)",
+    "npm http fetch GET 200 https://registry.npmjs.org/postcss/-/postcss-8.5.32.tgz 373ms (cache miss)",
+    "npm http fetch GET 200 https://registry.npmjs.org/@module-federation/vite/-/vite-1.23.11.tgz 376ms (cache miss)",
+    "npm http fetch GET 200 https://registry.npmjs.org/rolldown/-/rolldown-1.2.16.tgz 381ms (cache miss)",
+    "npm http fetch GET 200 https://registry.npmjs.org/@module-federation/managers/-/managers-2.9.3.tgz 383ms (cache miss)",
+    "npm http fetch GET 200 https://registry.npmjs.org/postcss-modules-local-by-default/-/postcss-modules-local-by-default-4.2.0.tgz 397ms (cache miss)",
+    "npm http fetch GET 200 https://registry.npmjs.org/@jridgewell/sourcemap-codec/-/sourcemap-codec-1.6.0.tgz 382ms (cache miss)",
+    "npm http fetch GET 200 https://registry.npmjs.org/@module-federation/sdk/-/sdk-2.9.3.tgz 423ms (cache miss)",
+    "npm http fetch GET 200 https://registry.npmjs.org/undici/-/undici-7.30.1.tgz 447ms (cache miss)",
+    "npm http fetch GET 200 https://registry.npmjs.org/@module-federation/error-codes/-/error-codes-2.9.3.tgz 606ms (cache miss)",
+    "npm http fetch GET 200 https://registry.npmjs.org/vite/-/vite-8.3.6.tgz 653ms (cache miss)",
+    "npm http fetch GET 200 https://registry.npmjs.org/@module-federation/runtime/-/runtime-2.9.3.tgz 657ms (cache miss)",
+    "npm http fetch GET 200 https://registry.npmjs.org/@rolldown/binding-darwin-arm64/-/binding-darwin-arm64-1.2.16.tgz 666ms (cache miss)",
+    "npm http fetch GET 200 https://registry.npmjs.org/@module-federation/dts-plugin/-/dts-plugin-2.9.3.tgz 669ms (cache miss)",
+    "npm http fetch GET 200 https://registry.npmjs.org/@module-federation/runtime-core/-/runtime-core-2.9.3.tgz 816ms (cache miss)",
+    "npm http fetch GET 200 https://registry.npmjs.org/typescript/-/typescript-7.0.2.tgz 834ms (cache miss)",
+    "npm http fetch GET 200 https://registry.npmjs.org/lightningcss-darwin-arm64/-/lightningcss-darwin-arm64-1.33.0.tgz 927ms (cache miss)",
+    "npm http fetch GET 200 https://registry.npmjs.org/@typescript/typescript-darwin-arm64/-/typescript-darwin-arm64-7.0.2.tgz 1705ms (cache miss)"
+  ],
+  "installedVersions": {
+    "vite": "8.3.6",
+    "@module-federation/vite": "1.23.11",
+    "react": "19.3.1",
+    "react-dom": "19.3.1"
+  },
+  "browser": "157.0.8103.39",
+  "baseline": {
+    "compositionId": "composition_88ee38ebfe391a69f3cdb828",
+    "platformVersion": "1.3.1",
+    "shell": {
+      "id": "shell_1_3_0_46ac9795cddf",
+      "name": "mf_shell_1_3_0_46ac9795cddf",
+      "service": "shell",
+      "version": "1.3.0",
+      "entry": "/artifacts/shell_1_3_0_46ac9795cddf/shell.js",
+      "dependencies": {},
+      "runtimeRequirements": {
+        "platform": ">=1.3.0 <2.0.0",
+        "react": "19.3.1",
+        "react-dom": "19.3.1"
+      },
+      "runtimeDependencies": {},
+      "kind": "shell",
+      "format": "esm",
+      "federation": "vite",
+      "retryProtocol": "vite-preflight-v1",
+      "exposedModules": [],
+      "navigationProtocol": "registered-menu-v1",
+      "dashboardProtocol": "registered-dashboard-v1",
+      "federationImports": [
+        {
+          "alias": "platform",
+          "exposedModule": "./sdk"
+        }
+      ],
+      "exposeImports": {},
+      "exposeChunks": {}
+    },
+    "applications": {
+      "A": {
+        "id": "a_1_0_0_0321deb69c28",
+        "name": "mf_a_1_0_0_0321deb69c28",
+        "service": "a",
+        "version": "1.0.0",
+        "entry": "/artifacts/a_1_0_0_0321deb69c28/remoteEntry.js",
+        "dependencies": {},
+        "runtimeRequirements": {
+          "react": "19.3.1",
+          "react-dom": "19.3.1"
+        },
+        "runtimeDependencies": {
+          "b": {
+            "service": "b",
+            "requires": ">=1.4.0 <2.0.0"
+          }
+        },
+        "kind": "remote",
+        "format": "esm",
+        "federation": "vite",
+        "retryProtocol": "vite-preflight-v1",
+        "exposedModules": [
+          "./Widget"
+        ],
+        "federationImports": [
+          {
+            "alias": "b",
+            "exposedModule": "./Widget"
+          }
+        ],
+        "exposeImports": {
+          "./Widget": [
+            {
+              "alias": "b",
+              "exposedModule": "./Widget"
+            }
+          ]
+        },
+        "exposeChunks": {
+          "./Widget": "assets/src-CmHSmqMT.js"
+        }
+      },
+      "C": {
+        "id": "c_1_0_0_369b0db5dc78",
+        "name": "mf_c_1_0_0_369b0db5dc78",
+        "service": "c",
+        "version": "1.0.0",
+        "entry": "/artifacts/c_1_0_0_369b0db5dc78/remoteEntry.js",
+        "dependencies": {},
+        "runtimeRequirements": {
+          "react": "19.3.1",
+          "react-dom": "19.3.1"
+        },
+        "runtimeDependencies": {
+          "b": {
+            "service": "b",
+            "requires": ">=2.1.0 <3.0.0"
+          }
+        },
+        "kind": "remote",
+        "format": "esm",
+        "federation": "vite",
+        "retryProtocol": "vite-preflight-v1",
+        "exposedModules": [
+          "./Widget"
+        ],
+        "federationImports": [
+          {
+            "alias": "b",
+            "exposedModule": "./Widget"
+          }
+        ],
+        "exposeImports": {
+          "./Widget": [
+            {
+              "alias": "b",
+              "exposedModule": "./Widget"
+            }
+          ]
+        },
+        "exposeChunks": {
+          "./Widget": "assets/src-1IFQyHoU.js"
+        }
+      }
+    },
+    "artifacts": {
+      "platform_1_3_1_e25c8d049944": {
+        "id": "platform_1_3_1_e25c8d049944",
+        "name": "mf_platform_1_3_1_e25c8d049944",
+        "service": "platform",
+        "version": "1.3.1",
+        "entry": "/artifacts/platform_1_3_1_e25c8d049944/remoteEntry.js",
+        "dependencies": {},
+        "runtimeRequirements": {
+          "react": "19.3.1",
+          "react-dom": "19.3.1"
+        },
+        "runtimeDependencies": {},
+        "kind": "remote",
+        "format": "esm",
+        "federation": "vite",
+        "retryProtocol": "vite-preflight-v1",
+        "exposedModules": [
+          "./sdk"
+        ],
+        "federationImports": [],
+        "exposeImports": {
+          "./sdk": []
+        },
+        "exposeChunks": {
+          "./sdk": "assets/sdk-ClnQiGJZ.js"
+        }
+      },
+      "d_1_0_0_c6adbe1cb721": {
+        "id": "d_1_0_0_c6adbe1cb721",
+        "name": "mf_d_1_0_0_c6adbe1cb721",
+        "service": "d",
+        "version": "1.0.0",
+        "entry": "/artifacts/d_1_0_0_c6adbe1cb721/remoteEntry.js",
+        "dependencies": {},
+        "runtimeRequirements": {},
+        "runtimeDependencies": {},
+        "kind": "remote",
+        "format": "esm",
+        "federation": "vite",
+        "retryProtocol": "vite-preflight-v1",
+        "exposedModules": [
+          "./data"
+        ],
+        "federationImports": [],
+        "exposeImports": {
+          "./data": []
+        },
+        "exposeChunks": {
+          "./data": "assets/src-BMVRR_2U.js"
+        }
+      },
+      "b_1_4_0_6cc8bf6c0028": {
+        "id": "b_1_4_0_6cc8bf6c0028",
+        "name": "mf_b_1_4_0_6cc8bf6c0028",
+        "service": "b",
+        "version": "1.4.0",
+        "entry": "/artifacts/b_1_4_0_6cc8bf6c0028/remoteEntry.js",
+        "dependencies": {},
+        "runtimeRequirements": {
+          "platform": ">=1.0.0 <2.0.0",
+          "react": "19.3.1",
+          "react-dom": "19.3.1"
+        },
+        "runtimeDependencies": {
+          "d": {
+            "service": "d",
+            "requires": ">=1.0.0 <2.0.0"
+          }
+        },
+        "kind": "remote",
+        "format": "esm",
+        "federation": "vite",
+        "retryProtocol": "vite-preflight-v1",
+        "exposedModules": [
+          "./Widget"
+        ],
+        "federationImports": [
+          {
+            "alias": "d",
+            "exposedModule": "./data"
+          },
+          {
+            "alias": "platform",
+            "exposedModule": "./sdk"
+          }
+        ],
+        "exposeImports": {
+          "./Widget": [
+            {
+              "alias": "d",
+              "exposedModule": "./data"
+            },
+            {
+              "alias": "platform",
+              "exposedModule": "./sdk"
+            }
+          ]
+        },
+        "exposeChunks": {
+          "./Widget": "assets/Widget-BiiMpLC6.js"
+        }
+      },
+      "a_1_0_0_0321deb69c28": {
+        "id": "a_1_0_0_0321deb69c28",
+        "name": "mf_a_1_0_0_0321deb69c28",
+        "service": "a",
+        "version": "1.0.0",
+        "entry": "/artifacts/a_1_0_0_0321deb69c28/remoteEntry.js",
+        "dependencies": {},
+        "runtimeRequirements": {
+          "react": "19.3.1",
+          "react-dom": "19.3.1"
+        },
+        "runtimeDependencies": {
+          "b": {
+            "service": "b",
+            "requires": ">=1.4.0 <2.0.0"
+          }
+        },
+        "kind": "remote",
+        "format": "esm",
+        "federation": "vite",
+        "retryProtocol": "vite-preflight-v1",
+        "exposedModules": [
+          "./Widget"
+        ],
+        "federationImports": [
+          {
+            "alias": "b",
+            "exposedModule": "./Widget"
+          }
+        ],
+        "exposeImports": {
+          "./Widget": [
+            {
+              "alias": "b",
+              "exposedModule": "./Widget"
+            }
+          ]
+        },
+        "exposeChunks": {
+          "./Widget": "assets/src-CmHSmqMT.js"
+        }
+      },
+      "d_2_0_0_a4251bae8bc7": {
+        "id": "d_2_0_0_a4251bae8bc7",
+        "name": "mf_d_2_0_0_a4251bae8bc7",
+        "service": "d",
+        "version": "2.0.0",
+        "entry": "/artifacts/d_2_0_0_a4251bae8bc7/remoteEntry.js",
+        "dependencies": {},
+        "runtimeRequirements": {},
+        "runtimeDependencies": {},
+        "kind": "remote",
+        "format": "esm",
+        "federation": "vite",
+        "retryProtocol": "vite-preflight-v1",
+        "exposedModules": [
+          "./data"
+        ],
+        "federationImports": [],
+        "exposeImports": {
+          "./data": []
+        },
+        "exposeChunks": {
+          "./data": "assets/src-CX2GwUvW.js"
+        }
+      },
+      "b_2_1_0_479272f66af5": {
+        "id": "b_2_1_0_479272f66af5",
+        "name": "mf_b_2_1_0_479272f66af5",
+        "service": "b",
+        "version": "2.1.0",
+        "entry": "/artifacts/b_2_1_0_479272f66af5/remoteEntry.js",
+        "dependencies": {},
+        "runtimeRequirements": {
+          "platform": ">=1.0.0 <2.0.0",
+          "react": "19.3.1",
+          "react-dom": "19.3.1"
+        },
+        "runtimeDependencies": {
+          "d": {
+            "service": "d",
+            "requires": ">=2.0.0 <3.0.0"
+          }
+        },
+        "kind": "remote",
+        "format": "esm",
+        "federation": "vite",
+        "retryProtocol": "vite-preflight-v1",
+        "exposedModules": [
+          "./Widget"
+        ],
+        "federationImports": [
+          {
+            "alias": "d",
+            "exposedModule": "./data"
+          },
+          {
+            "alias": "platform",
+            "exposedModule": "./sdk"
+          }
+        ],
+        "exposeImports": {
+          "./Widget": [
+            {
+              "alias": "d",
+              "exposedModule": "./data"
+            },
+            {
+              "alias": "platform",
+              "exposedModule": "./sdk"
+            }
+          ]
+        },
+        "exposeChunks": {
+          "./Widget": "assets/Widget-DpWBr3ys.js"
+        }
+      },
+      "c_1_0_0_369b0db5dc78": {
+        "id": "c_1_0_0_369b0db5dc78",
+        "name": "mf_c_1_0_0_369b0db5dc78",
+        "service": "c",
+        "version": "1.0.0",
+        "entry": "/artifacts/c_1_0_0_369b0db5dc78/remoteEntry.js",
+        "dependencies": {},
+        "runtimeRequirements": {
+          "react": "19.3.1",
+          "react-dom": "19.3.1"
+        },
+        "runtimeDependencies": {
+          "b": {
+            "service": "b",
+            "requires": ">=2.1.0 <3.0.0"
+          }
+        },
+        "kind": "remote",
+        "format": "esm",
+        "federation": "vite",
+        "retryProtocol": "vite-preflight-v1",
+        "exposedModules": [
+          "./Widget"
+        ],
+        "federationImports": [
+          {
+            "alias": "b",
+            "exposedModule": "./Widget"
+          }
+        ],
+        "exposeImports": {
+          "./Widget": [
+            {
+              "alias": "b",
+              "exposedModule": "./Widget"
+            }
+          ]
+        },
+        "exposeChunks": {
+          "./Widget": "assets/src-1IFQyHoU.js"
+        }
+      },
+      "platform": {
+        "id": "platform_1_3_1_e25c8d049944",
+        "name": "mf_platform_1_3_1_e25c8d049944",
+        "service": "platform",
+        "version": "1.3.1",
+        "entry": "/artifacts/platform_1_3_1_e25c8d049944/remoteEntry.js",
+        "dependencies": {},
+        "runtimeRequirements": {
+          "react": "19.3.1",
+          "react-dom": "19.3.1"
+        },
+        "runtimeDependencies": {},
+        "kind": "remote",
+        "format": "esm",
+        "federation": "vite",
+        "retryProtocol": "vite-preflight-v1",
+        "exposedModules": [
+          "./sdk"
+        ],
+        "federationImports": [],
+        "exposeImports": {
+          "./sdk": []
+        },
+        "exposeChunks": {
+          "./sdk": "assets/sdk-ClnQiGJZ.js"
+        }
+      }
+    },
+    "selected": {
+      "platform": "platform_1_3_1_e25c8d049944",
+      "shell": "shell_1_3_0_46ac9795cddf",
+      "A": "a_1_0_0_0321deb69c28",
+      "C": "c_1_0_0_369b0db5dc78"
+    },
+    "runtimeBindings": {
+      "a_1_0_0_0321deb69c28": {
+        "b": "b_1_4_0_6cc8bf6c0028"
+      },
+      "b_1_4_0_6cc8bf6c0028": {
+        "d": "d_1_0_0_c6adbe1cb721"
+      },
+      "b_2_1_0_479272f66af5": {
+        "d": "d_2_0_0_a4251bae8bc7"
+      },
+      "c_1_0_0_369b0db5dc78": {
+        "b": "b_2_1_0_479272f66af5"
+      }
+    }
+  },
+  "portChoice": 0,
+  "baseURL": "http://127.0.0.1:53758",
+  "upgradedB": {
+    "id": "b_1_4_1_0c67243cd622",
+    "name": "mf_b_1_4_1_0c67243cd622",
+    "service": "b",
+    "version": "1.4.1",
+    "entry": "/artifacts/b_1_4_1_0c67243cd622/remoteEntry.js",
+    "dependencies": {},
+    "runtimeRequirements": {
+      "platform": ">=1.0.0 <2.0.0",
+      "react": "19.3.1",
+      "react-dom": "19.3.1"
+    },
+    "runtimeDependencies": {
+      "d": {
+        "service": "d",
+        "requires": ">=1.0.0 <2.0.0"
+      }
+    },
+    "kind": "remote",
+    "format": "esm",
+    "federation": "vite",
+    "retryProtocol": "vite-preflight-v1",
+    "exposedModules": [
+      "./Widget"
+    ],
+    "federationImports": [
+      {
+        "alias": "d",
+        "exposedModule": "./data"
+      },
+      {
+        "alias": "platform",
+        "exposedModule": "./sdk"
+      }
+    ],
+    "exposeImports": {
+      "./Widget": [
+        {
+          "alias": "d",
+          "exposedModule": "./data"
+        },
+        {
+          "alias": "platform",
+          "exposedModule": "./sdk"
+        }
+      ]
+    },
+    "exposeChunks": {
+      "./Widget": "assets/Widget-cpgEHSEh.js"
+    }
+  },
+  "previousCompositionVariable": "composition_88ee38ebfe391a69f3cdb828",
+  "upgradedComposition": {
+    "compositionId": "composition_a69a898196449eb95891e635",
+    "platformVersion": "1.3.1",
+    "shell": {
+      "id": "shell_1_3_0_46ac9795cddf",
+      "name": "mf_shell_1_3_0_46ac9795cddf",
+      "service": "shell",
+      "version": "1.3.0",
+      "entry": "/artifacts/shell_1_3_0_46ac9795cddf/shell.js",
+      "dependencies": {},
+      "runtimeRequirements": {
+        "platform": ">=1.3.0 <2.0.0",
+        "react": "19.3.1",
+        "react-dom": "19.3.1"
+      },
+      "runtimeDependencies": {},
+      "kind": "shell",
+      "format": "esm",
+      "federation": "vite",
+      "retryProtocol": "vite-preflight-v1",
+      "exposedModules": [],
+      "navigationProtocol": "registered-menu-v1",
+      "dashboardProtocol": "registered-dashboard-v1",
+      "federationImports": [
+        {
+          "alias": "platform",
+          "exposedModule": "./sdk"
+        }
+      ],
+      "exposeImports": {},
+      "exposeChunks": {}
+    },
+    "applications": {
+      "A": {
+        "id": "a_1_0_0_0321deb69c28",
+        "name": "mf_a_1_0_0_0321deb69c28",
+        "service": "a",
+        "version": "1.0.0",
+        "entry": "/artifacts/a_1_0_0_0321deb69c28/remoteEntry.js",
+        "dependencies": {},
+        "runtimeRequirements": {
+          "react": "19.3.1",
+          "react-dom": "19.3.1"
+        },
+        "runtimeDependencies": {
+          "b": {
+            "service": "b",
+            "requires": ">=1.4.0 <2.0.0"
+          }
+        },
+        "kind": "remote",
+        "format": "esm",
+        "federation": "vite",
+        "retryProtocol": "vite-preflight-v1",
+        "exposedModules": [
+          "./Widget"
+        ],
+        "federationImports": [
+          {
+            "alias": "b",
+            "exposedModule": "./Widget"
+          }
+        ],
+        "exposeImports": {
+          "./Widget": [
+            {
+              "alias": "b",
+              "exposedModule": "./Widget"
+            }
+          ]
+        },
+        "exposeChunks": {
+          "./Widget": "assets/src-CmHSmqMT.js"
+        }
+      },
+      "C": {
+        "id": "c_1_0_0_369b0db5dc78",
+        "name": "mf_c_1_0_0_369b0db5dc78",
+        "service": "c",
+        "version": "1.0.0",
+        "entry": "/artifacts/c_1_0_0_369b0db5dc78/remoteEntry.js",
+        "dependencies": {},
+        "runtimeRequirements": {
+          "react": "19.3.1",
+          "react-dom": "19.3.1"
+        },
+        "runtimeDependencies": {
+          "b": {
+            "service": "b",
+            "requires": ">=2.1.0 <3.0.0"
+          }
+        },
+        "kind": "remote",
+        "format": "esm",
+        "federation": "vite",
+        "retryProtocol": "vite-preflight-v1",
+        "exposedModules": [
+          "./Widget"
+        ],
+        "federationImports": [
+          {
+            "alias": "b",
+            "exposedModule": "./Widget"
+          }
+        ],
+        "exposeImports": {
+          "./Widget": [
+            {
+              "alias": "b",
+              "exposedModule": "./Widget"
+            }
+          ]
+        },
+        "exposeChunks": {
+          "./Widget": "assets/src-1IFQyHoU.js"
+        }
+      }
+    },
+    "artifacts": {
+      "platform_1_3_1_e25c8d049944": {
+        "id": "platform_1_3_1_e25c8d049944",
+        "name": "mf_platform_1_3_1_e25c8d049944",
+        "service": "platform",
+        "version": "1.3.1",
+        "entry": "/artifacts/platform_1_3_1_e25c8d049944/remoteEntry.js",
+        "dependencies": {},
+        "runtimeRequirements": {
+          "react": "19.3.1",
+          "react-dom": "19.3.1"
+        },
+        "runtimeDependencies": {},
+        "kind": "remote",
+        "format": "esm",
+        "federation": "vite",
+        "retryProtocol": "vite-preflight-v1",
+        "exposedModules": [
+          "./sdk"
+        ],
+        "federationImports": [],
+        "exposeImports": {
+          "./sdk": []
+        },
+        "exposeChunks": {
+          "./sdk": "assets/sdk-ClnQiGJZ.js"
+        }
+      },
+      "d_1_0_0_c6adbe1cb721": {
+        "id": "d_1_0_0_c6adbe1cb721",
+        "name": "mf_d_1_0_0_c6adbe1cb721",
+        "service": "d",
+        "version": "1.0.0",
+        "entry": "/artifacts/d_1_0_0_c6adbe1cb721/remoteEntry.js",
+        "dependencies": {},
+        "runtimeRequirements": {},
+        "runtimeDependencies": {},
+        "kind": "remote",
+        "format": "esm",
+        "federation": "vite",
+        "retryProtocol": "vite-preflight-v1",
+        "exposedModules": [
+          "./data"
+        ],
+        "federationImports": [],
+        "exposeImports": {
+          "./data": []
+        },
+        "exposeChunks": {
+          "./data": "assets/src-BMVRR_2U.js"
+        }
+      },
+      "b_1_4_1_0c67243cd622": {
+        "id": "b_1_4_1_0c67243cd622",
+        "name": "mf_b_1_4_1_0c67243cd622",
+        "service": "b",
+        "version": "1.4.1",
+        "entry": "/artifacts/b_1_4_1_0c67243cd622/remoteEntry.js",
+        "dependencies": {},
+        "runtimeRequirements": {
+          "platform": ">=1.0.0 <2.0.0",
+          "react": "19.3.1",
+          "react-dom": "19.3.1"
+        },
+        "runtimeDependencies": {
+          "d": {
+            "service": "d",
+            "requires": ">=1.0.0 <2.0.0"
+          }
+        },
+        "kind": "remote",
+        "format": "esm",
+        "federation": "vite",
+        "retryProtocol": "vite-preflight-v1",
+        "exposedModules": [
+          "./Widget"
+        ],
+        "federationImports": [
+          {
+            "alias": "d",
+            "exposedModule": "./data"
+          },
+          {
+            "alias": "platform",
+            "exposedModule": "./sdk"
+          }
+        ],
+        "exposeImports": {
+          "./Widget": [
+            {
+              "alias": "d",
+              "exposedModule": "./data"
+            },
+            {
+              "alias": "platform",
+              "exposedModule": "./sdk"
+            }
+          ]
+        },
+        "exposeChunks": {
+          "./Widget": "assets/Widget-cpgEHSEh.js"
+        }
+      },
+      "a_1_0_0_0321deb69c28": {
+        "id": "a_1_0_0_0321deb69c28",
+        "name": "mf_a_1_0_0_0321deb69c28",
+        "service": "a",
+        "version": "1.0.0",
+        "entry": "/artifacts/a_1_0_0_0321deb69c28/remoteEntry.js",
+        "dependencies": {},
+        "runtimeRequirements": {
+          "react": "19.3.1",
+          "react-dom": "19.3.1"
+        },
+        "runtimeDependencies": {
+          "b": {
+            "service": "b",
+            "requires": ">=1.4.0 <2.0.0"
+          }
+        },
+        "kind": "remote",
+        "format": "esm",
+        "federation": "vite",
+        "retryProtocol": "vite-preflight-v1",
+        "exposedModules": [
+          "./Widget"
+        ],
+        "federationImports": [
+          {
+            "alias": "b",
+            "exposedModule": "./Widget"
+          }
+        ],
+        "exposeImports": {
+          "./Widget": [
+            {
+              "alias": "b",
+              "exposedModule": "./Widget"
+            }
+          ]
+        },
+        "exposeChunks": {
+          "./Widget": "assets/src-CmHSmqMT.js"
+        }
+      },
+      "d_2_0_0_a4251bae8bc7": {
+        "id": "d_2_0_0_a4251bae8bc7",
+        "name": "mf_d_2_0_0_a4251bae8bc7",
+        "service": "d",
+        "version": "2.0.0",
+        "entry": "/artifacts/d_2_0_0_a4251bae8bc7/remoteEntry.js",
+        "dependencies": {},
+        "runtimeRequirements": {},
+        "runtimeDependencies": {},
+        "kind": "remote",
+        "format": "esm",
+        "federation": "vite",
+        "retryProtocol": "vite-preflight-v1",
+        "exposedModules": [
+          "./data"
+        ],
+        "federationImports": [],
+        "exposeImports": {
+          "./data": []
+        },
+        "exposeChunks": {
+          "./data": "assets/src-CX2GwUvW.js"
+        }
+      },
+      "b_2_1_0_479272f66af5": {
+        "id": "b_2_1_0_479272f66af5",
+        "name": "mf_b_2_1_0_479272f66af5",
+        "service": "b",
+        "version": "2.1.0",
+        "entry": "/artifacts/b_2_1_0_479272f66af5/remoteEntry.js",
+        "dependencies": {},
+        "runtimeRequirements": {
+          "platform": ">=1.0.0 <2.0.0",
+          "react": "19.3.1",
+          "react-dom": "19.3.1"
+        },
+        "runtimeDependencies": {
+          "d": {
+            "service": "d",
+            "requires": ">=2.0.0 <3.0.0"
+          }
+        },
+        "kind": "remote",
+        "format": "esm",
+        "federation": "vite",
+        "retryProtocol": "vite-preflight-v1",
+        "exposedModules": [
+          "./Widget"
+        ],
+        "federationImports": [
+          {
+            "alias": "d",
+            "exposedModule": "./data"
+          },
+          {
+            "alias": "platform",
+            "exposedModule": "./sdk"
+          }
+        ],
+        "exposeImports": {
+          "./Widget": [
+            {
+              "alias": "d",
+              "exposedModule": "./data"
+            },
+            {
+              "alias": "platform",
+              "exposedModule": "./sdk"
+            }
+          ]
+        },
+        "exposeChunks": {
+          "./Widget": "assets/Widget-DpWBr3ys.js"
+        }
+      },
+      "c_1_0_0_369b0db5dc78": {
+        "id": "c_1_0_0_369b0db5dc78",
+        "name": "mf_c_1_0_0_369b0db5dc78",
+        "service": "c",
+        "version": "1.0.0",
+        "entry": "/artifacts/c_1_0_0_369b0db5dc78/remoteEntry.js",
+        "dependencies": {},
+        "runtimeRequirements": {
+          "react": "19.3.1",
+          "react-dom": "19.3.1"
+        },
+        "runtimeDependencies": {
+          "b": {
+            "service": "b",
+            "requires": ">=2.1.0 <3.0.0"
+          }
+        },
+        "kind": "remote",
+        "format": "esm",
+        "federation": "vite",
+        "retryProtocol": "vite-preflight-v1",
+        "exposedModules": [
+          "./Widget"
+        ],
+        "federationImports": [
+          {
+            "alias": "b",
+            "exposedModule": "./Widget"
+          }
+        ],
+        "exposeImports": {
+          "./Widget": [
+            {
+              "alias": "b",
+              "exposedModule": "./Widget"
+            }
+          ]
+        },
+        "exposeChunks": {
+          "./Widget": "assets/src-1IFQyHoU.js"
+        }
+      },
+      "platform": {
+        "id": "platform_1_3_1_e25c8d049944",
+        "name": "mf_platform_1_3_1_e25c8d049944",
+        "service": "platform",
+        "version": "1.3.1",
+        "entry": "/artifacts/platform_1_3_1_e25c8d049944/remoteEntry.js",
+        "dependencies": {},
+        "runtimeRequirements": {
+          "react": "19.3.1",
+          "react-dom": "19.3.1"
+        },
+        "runtimeDependencies": {},
+        "kind": "remote",
+        "format": "esm",
+        "federation": "vite",
+        "retryProtocol": "vite-preflight-v1",
+        "exposedModules": [
+          "./sdk"
+        ],
+        "federationImports": [],
+        "exposeImports": {
+          "./sdk": []
+        },
+        "exposeChunks": {
+          "./sdk": "assets/sdk-ClnQiGJZ.js"
+        }
+      }
+    },
+    "selected": {
+      "platform": "platform_1_3_1_e25c8d049944",
+      "shell": "shell_1_3_0_46ac9795cddf",
+      "A": "a_1_0_0_0321deb69c28",
+      "C": "c_1_0_0_369b0db5dc78"
+    },
+    "runtimeBindings": {
+      "a_1_0_0_0321deb69c28": {
+        "b": "b_1_4_1_0c67243cd622"
+      },
+      "b_1_4_1_0c67243cd622": {
+        "d": "d_1_0_0_c6adbe1cb721"
+      },
+      "b_2_1_0_479272f66af5": {
+        "d": "d_2_0_0_a4251bae8bc7"
+      },
+      "c_1_0_0_369b0db5dc78": {
+        "b": "b_2_1_0_479272f66af5"
+      }
+    }
+  },
+  "adminApiEvidence": [
+    {
+      "url": "http://127.0.0.1:53758/api/admin/state",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:53758/api/admin/preview",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:53758/api/admin/apply",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:53758/api/admin/state",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:53758/api/admin/compositions/composition_88ee38ebfe391a69f3cdb828",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:53758/api/admin/preview",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:53758/api/admin/apply",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:53758/api/admin/state",
+      "status": 200
+    }
+  ],
+  "consumerFingerprints": {
+    "shell": {
+      "files": 50,
+      "sha256": "4bd46f9dcba5d1cbf74a1f3324296bd435af5e4251214fca17959797fcea1bfc"
+    },
+    "platform-sdk": {
+      "files": 37,
+      "sha256": "2596fff2d301fed7ac373eb7406af587002bdbec24ca8724ae901be74abf8c8b"
+    },
+    "service-a": {
+      "files": 112,
+      "sha256": "0c1e8ce848695f407cf181af2d58b6ec0369a12995829f1f416fcde5d18193fb"
+    },
+    "service-c": {
+      "files": 112,
+      "sha256": "10d3ae5ae5507028fcc881666ee312cd0edc955ca0d0f6ecc0a052998e9ed969"
+    },
+    "service-b-v2": {
+      "files": 83,
+      "sha256": "ac78aec2c525bbef9e21da00602bcc57d2b8c54f09014db436463872d76fe25a"
+    },
+    "service-d-v1": {
+      "files": 23,
+      "sha256": "3059f30e2d2bcb58c6c64071bd75b8a19be1a00665ec03454164cb8b5a08a81c"
+    },
+    "service-d-v2": {
+      "files": 23,
+      "sha256": "89c28890fc547ad6142c67d96f121c6f8f34b90c83a3ea5108c224b920150f83"
+    }
+  },
+  "baselineArtifactFingerprint": {
+    "files": 185,
+    "sha256": "d403a75d472eec48daee715564eb0cf1cd40eccd468e853db995d009828bb8b5"
+  },
+  "originalPreserved": true,
+  "cacheAfterEntries": [
+    "_cacache",
+    "_logs",
+    "_update-notifier-last-checked"
+  ],
+  "cacheWasReusedFromPriorRun": false,
+  "originalProjects": {
+    "files": 401,
+    "sha256": "307f5360a72241f6aab038fe717fd3a14f0f25951c30b1e20da410ba63aad8fd"
+  },
+  "finishedAt": "2026-11-10T13:14:50.967Z"
+}

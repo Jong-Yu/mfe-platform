@@ -369,7 +369,8 @@ try {
     assert.deepEqual(session.record.pageErrors, []);
     assert.equal(session.record.failedRequests.length, 1);
     assert.equal(session.record.failedRequests[0].url, failedURL);
-    for (const error of session.record.consoleErrors) assert(/Remote unavailable|Failed to load resource/.test(error), error);
+    for (const error of session.record.consoleErrors) assert(/Remote unavailable|Failed to load resource/.test(error)
+      || (/Failed to fetch dynamically imported module|error loading dynamically imported module|Importing a module script failed/i.test(error) && error.includes(failedURL)), error);
     session.record.expectedFailure = true;
   });
   await check('all original project bytes remain unchanged with zero B/A/C/Shell/SDK builds; retain only tested D outputs', async () => {

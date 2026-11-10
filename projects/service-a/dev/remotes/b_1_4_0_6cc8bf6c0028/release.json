@@ -1,0 +1,51 @@
+{
+  "id": "b_1_4_0_6cc8bf6c0028",
+  "name": "mf_b_1_4_0_6cc8bf6c0028",
+  "service": "b",
+  "version": "1.4.0",
+  "entry": "/artifacts/b_1_4_0_6cc8bf6c0028/remoteEntry.js",
+  "dependencies": {},
+  "runtimeRequirements": {
+    "platform": ">=1.0.0 <2.0.0",
+    "react": "19.3.1",
+    "react-dom": "19.3.1"
+  },
+  "runtimeDependencies": {
+    "d": {
+      "service": "d",
+      "requires": ">=1.0.0 <2.0.0"
+    }
+  },
+  "kind": "remote",
+  "format": "esm",
+  "federation": "vite",
+  "retryProtocol": "vite-preflight-v1",
+  "exposedModules": [
+    "./Widget"
+  ],
+  "federationImports": [
+    {
+      "alias": "d",
+      "exposedModule": "./data"
+    },
+    {
+      "alias": "platform",
+      "exposedModule": "./sdk"
+    }
+  ],
+  "exposeImports": {
+    "./Widget": [
+      {
+        "alias": "d",
+        "exposedModule": "./data"
+      },
+      {
+        "alias": "platform",
+        "exposedModule": "./sdk"
+      }
+    ]
+  },
+  "exposeChunks": {
+    "./Widget": "assets/Widget-BiiMpLC6.js"
+  }
+}

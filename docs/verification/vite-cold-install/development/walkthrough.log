@@ -1,0 +1,13 @@
+2026-11-10T12:50:39.883Z PASS copy one B service with its published dev kit and no sibling sources
+2026-11-10T12:50:39.884Z RUN npm ci --cache /private/tmp/mfe-vite-dev-empty-cache-zqsbs3 --no-audit --no-fund --registry=https://registry.npmjs.org/ --offline=false --prefer-online --loglevel=http (cwd /private/tmp/mfe-vite-dev-KyCfgg/service-b-v1)
+2026-11-10T12:50:40.864Z PASS npm ci installs the isolated Vite project from the declared cache mode
+2026-11-10T12:50:40.868Z RUN npm run dev (cwd /private/tmp/mfe-vite-dev-KyCfgg/service-b-v1)
+2026-11-10T12:50:43.380Z PASS the standalone development page loads SDK 1.3.1, B 1.4.0 and D 1.0.0 through actual MF requests
+2026-11-10T12:50:43.543Z PASS counter, input and cache can be used on the rendered service
+2026-11-10T12:50:44.376Z PASS saving the copied source rebuilds B and performs a full reload that resets state
+2026-11-10T12:50:55.351Z PASS a syntax error keeps the previous successful screen, counter, input and cache
+2026-11-10T12:50:55.677Z PASS removing only the invalid line restores the successful source and clears the overlay without discarding state
+2026-11-10T12:50:56.509Z PASS restore the original Car Picker source and confirm the original development build before stopping
+2026-11-10T12:50:56.510Z PASS the walkthrough needs no other service server and reports no browser runtime exception
+2026-11-10T12:50:56.607Z PASS the development server stops and the original service and product pointer are unchanged
+2026-11-10T12:50:56.808Z RESULT passed: 10/10 checks; original unchanged=true

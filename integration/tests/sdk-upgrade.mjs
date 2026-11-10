@@ -23,6 +23,7 @@ const report = {
   pages: [],
 };
 const originalStoreEnvironment = process.env.MFE_ARTIFACT_STORE;
+const sourceStorePaths = [...new Set([path.join(repositoryRoot, 'artifact-store'), ...(originalStoreEnvironment ? [path.resolve(originalStoreEnvironment)] : [])])];
 let temporaryDirectory;
 let sdkTemporaryDirectory;
 let browser;
@@ -228,6 +229,7 @@ async function metadataFixture(directory, originalRelease, changes) {
 
 try {
   const sourceFingerprints = await originalFingerprints();
+  const sourceStorePointers = Object.fromEntries(await Promise.all(sourceStorePaths.map(async (directory) => [directory, await readFile(path.join(directory, 'current.json'), 'utf8')])));
   temporaryDirectory = await mkdtemp(path.join(os.tmpdir(), 'mfe-sdk-upgrade-store-'));
   const storeDirectory = path.join(temporaryDirectory, 'store');
   process.env.MFE_ARTIFACT_STORE = storeDirectory;
@@ -242,7 +244,11 @@ try {
   const releases = {};
 
   await check('publish the existing eight builds into a separate store with their baseline SDK', async () => {
-    for (const name of projectNames) releases[name] = publish(path.join(projectsDirectory, name));
+    for (const name of projectNames) {
+      releases[name] = publish(path.join(projectsDirectory, name));
+      assert.equal(releases[name].format, 'esm', `${name} must use the current Vite build`);
+      assert.equal(releases[name].federation, 'vite');
+    }
     baselineVersion = releases['platform-sdk'].version;
     assert.match(baselineVersion, /^\d+\.\d+\.\d+$/, 'The upgrade proof uses stable SDK releases');
     const [major, minor] = baselineVersion.split('.').map(Number);
@@ -314,6 +320,8 @@ try {
     report.sdkBuild = await run('npm', ['run', 'build'], sdkDirectory);
     upgradedRelease = await readJSON(path.join(sdkDirectory, 'dist/release.json'));
     assert.equal(upgradedRelease.version, upgradedVersion);
+    assert.equal(upgradedRelease.format, 'esm');
+    assert.equal(upgradedRelease.federation, 'vite');
     assert.notEqual(upgradedRelease.id, releases['platform-sdk'].id);
     assert.equal(upgradedRelease.runtimeRequirements.platform, undefined, 'The SDK does not require another SDK artifact');
     assert.deepEqual(upgradedRelease.dependencies, releases['platform-sdk'].dependencies);
@@ -331,6 +339,7 @@ try {
     assert.notEqual(upgradedRegistry.compositionId, baselineRegistry.compositionId);
     assert.deepEqual(upgradedRegistry.applications, baselineRegistry.applications);
     assert.deepEqual(upgradedRegistry.shell, baselineRegistry.shell);
+    assert.deepEqual(upgradedRegistry.runtimeBindings, baselineRegistry.runtimeBindings);
     assert.deepEqual(upgradedRegistry.selected, { ...baselineRegistry.selected, platform: upgradedRelease.id });
     report.upgradedComposition = upgradedRegistry;
   });
@@ -448,6 +457,10 @@ try {
   await check('all original Shell/A/B/C/D sources, configurations and built bytes remain unchanged', async () => {
     const after = await originalFingerprints();
     assert.deepEqual(after, sourceFingerprints);
+    for (const [directory, pointer] of Object.entries(sourceStorePointers)) {
+      assert.equal(await readFile(path.join(directory, 'current.json'), 'utf8'), pointer, `Original composition pointer changed: ${directory}`);
+    }
+    report.originalStorePointersUnchanged = Object.keys(sourceStorePointers);
     report.originalProjectFingerprints = after;
     report.originalProjectCount = projectNames.length;
     report.consumerBuildsExecuted = 0;

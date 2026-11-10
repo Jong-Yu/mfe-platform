@@ -1,0 +1,58 @@
+{
+  "status": "running",
+  "startedAt": "2026-11-10T13:06:53.648Z",
+  "work": "/private/tmp/mfe-vite-release-8T5so2",
+  "node": "v16.14.0",
+  "installMode": "online",
+  "npmCache": "/private/tmp/mfe-vite-release-empty-cache-o0Ls3e",
+  "scope": "Configured source repository copied without prior installations or outputs, then actual development, publication, CLI/UI activation and rollback. Clone provenance, when applicable, is recorded by the caller; this script preserves the source repository.",
+  "commands": [
+    {
+      "command": "npm",
+      "args": [
+        "ci"
+      ],
+      "cwd": "/private/tmp/mfe-vite-release-8T5so2/integration",
+      "startedAt": "2026-11-10T13:06:53.954Z",
+      "exitCode": 0,
+      "finishedAt": "2026-11-10T13:06:55.420Z"
+    },
+    {
+      "command": "npm",
+      "args": [
+        "run",
+        "setup"
+      ],
+      "cwd": "/private/tmp/mfe-vite-release-8T5so2/integration",
+      "startedAt": "2026-11-10T13:06:55.421Z",
+      "exitCode": 0,
+      "finishedAt": "2026-11-10T13:07:12.605Z"
+    }
+  ],
+  "checks": [
+    {
+      "name": "현재 소스·vendor·개발 키트를 복사하고 설치·빌드·저장소 결과는 제외",
+      "status": "passed",
+      "durationMs": 135
+    }
+  ],
+  "pages": [],
+  "findings": [],
+  "cacheBefore": {
+    "path": "/private/tmp/mfe-vite-release-empty-cache-o0Ls3e",
+    "entries": [],
+    "verifiedEmpty": true
+  },
+  "input": {
+    "sourceRepository": "/private/tmp/mfe-git-clone-check.otAOJS/validated",
+    "sourceRootOverridden": true,
+    "copiedBeforeExecution": true,
+    "outputDirectory": "/Users/jong-yu/Projects/mfe/docs/verification/vite-clone/release"
+  },
+  "bookSHA256": "0f9897a04840c62a1bb089dc77f36171208cc2ab78ace98fbdbf1f18a11154f4",
+  "instructionsSHA256": "3e24c8ad4e537556cd9c9da127389f3cc23aa19bd6b786c6cbd35086bb54b8f7",
+  "documentedBlocks": {
+    "binding": "MFE_DEMO_PREVIOUS=$(node -p 'require(\"./tools/store.cjs\").current().compositionId')\nMFE_DEMO_A=$(node -p 'require(\"./tools/store.cjs\").current().selected.A')\nMFE_DEMO_D=$(node -p 'const c=require(\"./tools/store.cjs\").current(); c.runtimeBindings[c.runtimeBindings[c.selected.A].b].d')\nMFE_DEMO_NEW_B=$(node -p 'require(\"../projects/service-b-v1/dist/release.json\").id')\n\nnpm run activate -- --bind \"${MFE_DEMO_A}:b=${MFE_DEMO_NEW_B}\" --bind \"${MFE_DEMO_NEW_B}:d=${MFE_DEMO_D}\"",
+    "rollback": "npm run activate -- --composition \"$MFE_DEMO_PREVIOUS\""
+  }
+}

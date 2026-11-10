@@ -46,8 +46,9 @@ async function startServer(){const child=launch([process.execPath,'tools/serve.c
   const require=createRequire(import.meta.url),store=require('../tools/store.cjs'),life=require('../tools/lifecycle.cjs');
   const baseline=store.current();
   const sdk=store.publish(path.join(root,'projects/platform-sdk')),shell=store.publish(path.join(root,'projects/shell'));
-  store.selectAdmin(store.publish(path.join(root,'projects/platform-admin')).id);
-  const toolFile='mfe-platform-build-tools-1.7.0.tgz';
+  const adminRelease=store.publish(path.join(root,'projects/platform-admin'));
+  store.selectAdmin(adminRelease.id);
+  const toolFile=`mfe-platform-build-tools-${json(path.join(root,'projects/platform-build-tools/package.json')).version}.tgz`;
   const paths=Object.fromEntries(['A','C'].map(role=>{const b=baseline.runtimeBindings[baseline.selected[role]].b;return[role,baseline.artifacts[baseline.runtimeBindings[b].d]];}));
   async function prepare(name,source){
     const dir=path.join(temporary,name);fs.cpSync(source,dir,{recursive:true,filter:file=>!['node_modules','dist','.mfe-dev'].includes(path.basename(file))});
@@ -101,7 +102,10 @@ async function startServer(){const child=launch([process.execPath,'tools/serve.c
     await add(0,oldItem);const options=await admin.getByTestId('dashboard-widget-0').locator('option').allTextContents();assert(!options.some(s=>s.includes('helper')));
     const catalogIds=await admin.getByTestId('dashboard-artifact-0').locator('option').evaluateAll(nodes=>nodes.map(n=>n.value));assert(!catalogIds.includes(baseline.runtimeBindings[baseline.selected.A].b));assert(await admin.getByTestId('apply').isDisabled());await preview();single=await apply();
     assert.deepEqual(single.dashboard,[oldItem]);assert.equal(single.runtimeBindings[shell.id]['dashboard/car-old'],b1.id);
-    assert(!adminRequests.some(request=>request.includes('/remoteEntry.js')));assert.equal(await oldEmpty.getByTestId('dashboard-tile-car-old').count(),0);
+    const adminEntries=adminRequests.map(request=>new URL(request)).filter(request=>request.pathname.endsWith('/remoteEntry.js'));
+    if(adminRelease.format==='esm')assert(adminEntries.length>0,'Vite Admin initializes its own federation container');
+    assert(adminEntries.every(request=>request.origin===url&&request.pathname===`/artifacts/${adminRelease.id}/remoteEntry.js`),'Admin must load only its own bootstrap and no SDK/business containers');
+    assert.equal(await oldEmpty.getByTestId('dashboard-tile-car-old').count(),0);
   });
   const oldSingle=await open();const widget=(page,id)=>page.getByTestId(`widget-dashboard-${id}`);
   await widget(oldSingle,'car-old').getByTestId('input').fill('이전 탭 입력');await widget(oldSingle,'car-old').getByTestId('increment').click();
@@ -146,10 +150,12 @@ async function startServer(){const child=launch([process.execPath,'tools/serve.c
     await currentProduct.screenshot({path:path.join(output,'dashboard-mobile.png'),fullPage:true});
   });
   for(const failure of ['B entry','D entry'])await check(`${failure} failure is isolated; retry recovers B 2.1 widgets without resetting B 1.4`,async()=>{
-    const tab=await context.newPage();currentPage=tab;const failed=url+(failure==='B entry'?b2.entry:paths.C.entry);await tab.route(failed,r=>r.fulfill({status:503,contentType:'text/javascript',body:'unavailable'}));await tab.goto(url+'/');
+    const tab=await context.newPage();currentPage=tab;const failed=url+(failure==='B entry'?b2.entry:paths.C.entry);
+    const matchesFailedFile=candidate=>{const normalized=new URL(candidate);normalized.searchParams.delete('mfe_retry');return normalized.href===failed;};
+    await tab.route(matchesFailedFile,r=>r.fulfill({status:503,contentType:'text/javascript',body:'unavailable'}));await tab.goto(url+'/');
     await tab.getByTestId('remote-error-dashboard-car-new').waitFor();await tab.getByTestId('remote-error-dashboard-totals').waitFor();await widget(tab,'car-old').getByTestId('input').fill('실패 중 보존');await widget(tab,'car-old').getByTestId('increment').click();
     const marker=await tab.evaluate(()=>window.__dashboardProof=crypto.randomUUID());await tab.getByTestId('retry-dashboard-car-new').click();await tab.getByTestId('remote-error-dashboard-car-new').waitFor();
-    await tab.unroute(failed);await tab.getByTestId('retry-dashboard-car-new').click();await widget(tab,'car-new').waitFor();await tab.getByTestId('retry-dashboard-totals').click();await tab.getByTestId('summary-dashboard-totals').waitFor();
+    await tab.unroute(matchesFailedFile);await tab.getByTestId('retry-dashboard-car-new').click();await widget(tab,'car-new').waitFor();await tab.getByTestId('retry-dashboard-totals').click();await tab.getByTestId('summary-dashboard-totals').waitFor();
     assert.equal(await tab.evaluate(()=>window.__dashboardProof),marker);assert.equal(await widget(tab,'car-old').getByTestId('count').innerText(),'1');assert.equal(await widget(tab,'car-old').getByTestId('input').inputValue(),'실패 중 보존');await tab.close();
   });
   async function state(){return await(await fetch(url+'/api/admin/state')).json();}

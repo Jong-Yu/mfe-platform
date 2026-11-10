@@ -5,6 +5,8 @@ async function start() {
   if (!response.ok) throw new Error(`개발 조합을 불러오지 못했습니다 (${response.status}).`);
   const snapshot = deepFreeze(await response.json());
   Object.defineProperty(globalThis, '__MFE_RUNTIME__', { value: createRuntime(snapshot, { bootURL: globalThis.__MFE_DEV_BOOT__ }) });
+  // The SDK proxy must be ready before the preview bootstrap renders providers.
+  await import('platform/sdk');
   await import('./bootstrap');
 }
 start().catch(error => {

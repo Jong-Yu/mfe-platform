@@ -9,7 +9,8 @@ const require=createRequire(path.join(root,'examples/20-user-subscriptions/integ
 const {chromium}=require('playwright');
 const output=path.join(root,'docs/verification/self-study');fs.mkdirSync(output,{recursive:true});
 const book=path.join(root,'docs/mfe-self-study.html');
-const report={status:'running',startedAt:new Date().toISOString(),scope:'Document browser QA only. The separate 20-example execution and 205 feature checks are recorded in ../walkthrough/report.json.',checks:[]};
+const report={status:'running',startedAt:new Date().toISOString(),scope:'Current Vite learning-book browser QA only: navigation, source links, search, responsive layout, print and standalone offline reading. This command does not run product tests. Fresh local-candidate Git clone evidence and the unchanged older upstream revision are in ../vite-clone/report.json. Earlier working-copy empty-cache and prepared-cache runs are in ../vite-cold-install/report.json and ../vite-walkthrough/report.json. Historical Webpack 20-example execution and 205 feature checks are recorded separately in ../walkthrough/report.json.',checks:[]};
+const currentChapters=['vite-overview','vite-contracts','vite-loading','vite-isolation','vite-development','vite-release','vite-versioning','vite-reading-map'];
 let browser;
 const temp=fs.mkdtempSync(path.join(os.tmpdir(),'mfe-book-alone-'));
 async function check(name,fn){await fn();report.checks.push({name,status:'passed'});console.log('PASS',name);}
@@ -19,17 +20,30 @@ try{
  const page=await context.newPage();const errors=[],requests=[];
  page.on('pageerror',e=>errors.push(e.message));page.on('request',r=>requests.push(r.url()));
  await page.goto(pathToFileURL(book).href);
- await check('20개 실습·4개 상세 문서·12개 개념 장과 해설 수록',async()=>{
+ await check('현재 Vite 상세 8장·20개 보존 실습·4개 부록·기초 개념 수록',async()=>{
   assert.equal(await page.locator('article.lab').count(),20);
   assert.equal(await page.locator('details.archive').count(),4);
-  assert.equal(await page.locator('.chapter').count(),19);
+  assert.equal(await page.locator('.chapter').count(),27);
+  assert.deepEqual(await page.locator('.chapter.current-vite').evaluateAll(xs=>xs.map(x=>x.id)),currentChapters);
   assert.equal(await page.locator('details.answer').count(),33);
   assert.equal(await page.locator('.reference').count(),24);
+ });
+ await check('현재 구현을 먼저 읽고 보존 실습으로 이동하는 학습 경로',async()=>{
+  assert.equal(await page.locator('.cover .primary').getAttribute('href'),'#vite-overview');
+  const order=await page.locator('.chapter, article.lab').evaluateAll(xs=>xs.map(x=>x.id));
+  assert(order.indexOf('loading')<order.indexOf('vite-overview'));
+  assert(order.indexOf('vite-reading-map')<order.indexOf('versions'));
+  assert(order.indexOf('architecture')<order.indexOf('first-run'));
+  for(const id of currentChapters)assert.equal(await page.locator(`.toc a[href="#${id}"]`).count(),1);
+  assert.match(await page.locator('#first-run').textContent(),/Webpack/);
+  assert.match(await page.locator('#lab-01 > .scope').textContent(),/보존/);
+  assert.match(await page.locator('#references').textContent(),/과거 Webpack/);
  });
  await check('권장 학습 순서와 이전·다음 예제 이동 일치',async()=>{
   const expected=[1,2,3,4,12,10,11,18,19,13,14,15,16,17,5,6,7,8,9,20];
   assert.deepEqual(await page.locator('article.lab').evaluateAll(xs=>xs.map(x=>Number(x.id.slice(4)))),expected);
   assert.equal(await page.locator('#lab-12 .lab-navigation a').last().getAttribute('href'),'#lab-10');
+  assert.equal(await page.locator('#lab-01 .lab-navigation a').last().getAttribute('href'),'#lab-02');
   assert.equal(await page.locator('#test-preparation').count(),1);
   assert.match(await page.locator('#lab-05 .lab-guidance').textContent(),/다시 ‘조합 검사’/);
   assert.match(await page.locator('#lab-10 .lab-guidance').textContent(),/내 OTA 화면 수정/);
@@ -47,6 +61,21 @@ try{
   report.localLinks=links.files.length;
  });
  await page.screenshot({path:path.join(output,'desktop-cover.png')});
+ await check('현재 MF 연결 과정 검색·목차 이동과 전체 구조 화면',async()=>{
+  await page.locator('#search').fill('mfe.invalid');
+  const result=page.locator('#search-results a[href="#vite-loading"]');
+  assert.equal(await result.count(),1);
+  await result.click();
+  assert.equal(new URL(page.url()).hash,'#vite-loading');
+  await page.locator('#search').fill('');
+  await page.locator('.toc a[href="#vite-overview"]').click();
+  await page.evaluate(()=>document.querySelector('#vite-overview').scrollIntoView({behavior:'instant'}));
+  await page.screenshot({path:path.join(output,'desktop-vite-overview.png')});
+  await page.evaluate(()=>document.querySelector('#vite-cold-install-evidence').scrollIntoView({behavior:'instant'}));
+  await page.screenshot({path:path.join(output,'desktop-vite-cold-install.png')});
+  await page.evaluate(()=>document.querySelector('#vite-clone-evidence').scrollIntoView({behavior:'instant'}));
+  await page.screenshot({path:path.join(output,'desktop-vite-clone.png')});
+ });
  await check('단어 검색에서 접힌 상세 부록까지 찾아 이동',async()=>{
   await page.locator('#search').fill('outbox_jobs');
   const result=page.locator('#search-results a').filter({hasText:'상세: DB 상세 설계'});
@@ -67,22 +96,35 @@ try{
   assert.equal(await page.locator('#lab-20-reference').getAttribute('open'),'');
   await page.locator('#lab-20-reference > summary').click();
  });
+ await check('상세 모두 펼치기가 현재 설명과 보존 부록에 함께 적용',async()=>{
+  await page.locator('#expand').click();
+  assert.equal(await page.locator('main details:not([open])').count(),0);
+  assert.equal(await page.locator('#vite-contracts details[open]').count()>0,true);
+  await page.locator('#expand').click();
+  assert.equal(await page.locator('main details[open]').count(),0);
+ });
  await check('학습 체크 저장 후 새로 열어 복원',async()=>{
+  await page.locator('#start > details').first().locator('summary').click();
   await page.locator('[data-progress="foundation"]').check();
   await page.reload();
   assert.equal(await page.locator('[data-progress="foundation"]').isChecked(),true);
   assert.match(await page.locator('#progress-label').textContent(),/1 \/ 6/);
+  await page.locator('#start > details').first().locator('summary').click();
   await page.locator('[data-progress="foundation"]').uncheck();
  });
  await check('390px 화면에서 본문·예제·상세 문서 넘침 없음',async()=>{
   await page.setViewportSize({width:390,height:844});await page.reload();
   await page.evaluate(()=>window.scrollTo(0,0));
   await page.screenshot({path:path.join(output,'mobile-cover.png')});
-  for(const id of ['roles','isolation','lab-11','lab-19','lab-20','reader-review','ref-database']){
+  for(const id of [...currentChapters,'roles','isolation','lab-11','lab-19','lab-20','reader-review','ref-database']){
    await page.evaluate(id=>{const e=document.getElementById(id);if(e.tagName==='DETAILS')e.open=true;e.scrollIntoView({behavior:'instant'});},id);
    const widths=await page.evaluate(()=>({w:innerWidth,s:document.documentElement.scrollWidth}));
    assert(widths.s<=widths.w+1,JSON.stringify({id,...widths}));
   }
+  await page.evaluate(()=>document.querySelector('#vite-loading').scrollIntoView({behavior:'instant'}));
+  await page.screenshot({path:path.join(output,'mobile-vite-loading.png')});
+  await page.evaluate(()=>document.querySelector('#vite-development').scrollIntoView({behavior:'instant'}));
+  await page.screenshot({path:path.join(output,'mobile-vite-first-install.png')});
   await page.evaluate(()=>{document.querySelector('#ref-database').open=false;document.querySelector('#lab-20').scrollIntoView({behavior:'instant'});});
   await page.waitForFunction(()=>Math.abs(document.querySelector('#lab-20').getBoundingClientRect().top)<200);
   await page.screenshot({path:path.join(output,'mobile-lab20.png')});
@@ -95,6 +137,7 @@ try{
   await page.emulateMedia({media:'print'});
   assert.equal(await page.locator('.sidebar').isVisible(),false);
   assert.equal(await page.locator('#roles').isVisible(),true);
+  assert.equal(await page.locator('#vite-loading').isVisible(),true);
   await page.emulateMedia({media:'screen'});
   await page.evaluate(()=>window.dispatchEvent(new Event('afterprint')));
   assert.equal(await page.locator('details[open]').count(),before);
@@ -110,6 +153,7 @@ try{
   const p=await isolated.newPage(),network=[];p.on('request',r=>network.push(r.url()));p.on('pageerror',e=>errors.push(e.message));
   await p.goto(pathToFileURL(standalone).href);
   assert.equal(await p.locator('.lab').count(),20);
+  assert.equal(await p.locator('.current-vite').count(),8);
   await p.locator('#lab-20-reference > summary').click();
   await p.locator('#lab-20-reference img').first().scrollIntoViewIfNeeded();
   await p.evaluate(()=>document.querySelectorAll('#lab-20-reference img').forEach(x=>x.loading='eager'));
@@ -122,6 +166,7 @@ try{
   const c=await browser.newContext({javaScriptEnabled:false});const p=await c.newPage();
   await p.goto(pathToFileURL(book).href);
   assert.equal(await p.locator('#basics').isVisible(),true);
+  assert.equal(await p.locator('#vite-loading').isVisible(),true);
   await p.locator('#lab-20-reference > summary').click();
   assert.equal(await p.locator('#lab-20-reference .reference-body').isVisible(),true);
   await c.close();

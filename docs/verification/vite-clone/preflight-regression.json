@@ -1,0 +1,283 @@
+{
+  "status": "passed",
+  "recordedAt": "2026-11-10T13:12:26.284429+00:00",
+  "scope": "Pre-install clone-input validator regression checks only; no npm installation or product server was run. All mutations and Git setup were confined to the temporary fixture. Original source changes were limited to the requested validator and this report.",
+  "priorExecution": {
+    "provenance": "The nine completed cases were printed by the earlier Python fixture runner. This section records that observed output; raw stdout/stderr files and per-case times were not retained. No unexecuted case is represented.",
+    "fixture": "/private/tmp/mfe-clone-check-fixture-ydd87cds",
+    "testedScriptSHA256": "a24afffe9233570c3ac9b178d37095ff0f2549c2c8cdf828ff8be8337b7e3a5e",
+    "cases": [
+      {
+        "case": "complete source with no installs",
+        "command": [
+          "node",
+          "/Users/jong-yu/Projects/mfe/integration/tools/check-clone.cjs",
+          "--root",
+          "/private/tmp/mfe-clone-check-fixture-ydd87cds",
+          "--json"
+        ],
+        "exitCode": 0,
+        "errorCount": 0,
+        "expectedReasonSubstring": null,
+        "assertionsPassed": true,
+        "requiredFiles": 384,
+        "vendorPackages": 9,
+        "developmentFiles": 174,
+        "stderr": ""
+      },
+      {
+        "case": "missing local vendor",
+        "command": [
+          "node",
+          "/Users/jong-yu/Projects/mfe/integration/tools/check-clone.cjs",
+          "--root",
+          "/private/tmp/mfe-clone-check-fixture-ydd87cds",
+          "--json"
+        ],
+        "exitCode": 1,
+        "errorCount": 1,
+        "expectedReasonSubstring": "missing or unreadable",
+        "assertionsPassed": true,
+        "requiredFiles": 384,
+        "vendorPackages": 8,
+        "developmentFiles": 174,
+        "stderr": ""
+      },
+      {
+        "case": "vendor lock integrity mismatch",
+        "command": [
+          "node",
+          "/Users/jong-yu/Projects/mfe/integration/tools/check-clone.cjs",
+          "--root",
+          "/private/tmp/mfe-clone-check-fixture-ydd87cds",
+          "--json"
+        ],
+        "exitCode": 1,
+        "errorCount": 1,
+        "expectedReasonSubstring": "SHA-512",
+        "assertionsPassed": true,
+        "requiredFiles": 384,
+        "vendorPackages": 9,
+        "developmentFiles": 174,
+        "stderr": ""
+      },
+      {
+        "case": "missing development asset",
+        "command": [
+          "node",
+          "/Users/jong-yu/Projects/mfe/integration/tools/check-clone.cjs",
+          "--root",
+          "/private/tmp/mfe-clone-check-fixture-ydd87cds",
+          "--json"
+        ],
+        "exitCode": 1,
+        "errorCount": 1,
+        "expectedReasonSubstring": "missing or unreadable",
+        "assertionsPassed": true,
+        "requiredFiles": 384,
+        "vendorPackages": 9,
+        "developmentFiles": 174,
+        "stderr": ""
+      },
+      {
+        "case": "modified development asset",
+        "command": [
+          "node",
+          "/Users/jong-yu/Projects/mfe/integration/tools/check-clone.cjs",
+          "--root",
+          "/private/tmp/mfe-clone-check-fixture-ydd87cds",
+          "--json"
+        ],
+        "exitCode": 1,
+        "errorCount": 1,
+        "expectedReasonSubstring": "SHA-256",
+        "assertionsPassed": true,
+        "requiredFiles": 384,
+        "vendorPackages": 9,
+        "developmentFiles": 174,
+        "stderr": ""
+      },
+      {
+        "case": "older Webpack source revision",
+        "command": [
+          "node",
+          "/Users/jong-yu/Projects/mfe/integration/tools/check-clone.cjs",
+          "--root",
+          "/private/tmp/mfe-clone-check-fixture-ydd87cds",
+          "--json"
+        ],
+        "exitCode": 1,
+        "errorCount": 1,
+        "expectedReasonSubstring": "older Webpack clone",
+        "assertionsPassed": true,
+        "requiredFiles": 384,
+        "vendorPackages": 9,
+        "developmentFiles": 174,
+        "stderr": ""
+      },
+      {
+        "case": "matching committed source",
+        "command": [
+          "node",
+          "/Users/jong-yu/Projects/mfe/integration/tools/check-clone.cjs",
+          "--root",
+          "/private/tmp/mfe-clone-check-fixture-ydd87cds",
+          "--json",
+          "--git"
+        ],
+        "exitCode": 0,
+        "errorCount": 0,
+        "expectedReasonSubstring": null,
+        "assertionsPassed": true,
+        "requiredFiles": 384,
+        "vendorPackages": 9,
+        "developmentFiles": 174,
+        "stderr": ""
+      },
+      {
+        "case": "working vendor absent from HEAD",
+        "command": [
+          "node",
+          "/Users/jong-yu/Projects/mfe/integration/tools/check-clone.cjs",
+          "--root",
+          "/private/tmp/mfe-clone-check-fixture-ydd87cds",
+          "--json",
+          "--git"
+        ],
+        "exitCode": 1,
+        "errorCount": 1,
+        "expectedReasonSubstring": "absent from HEAD",
+        "assertionsPassed": true,
+        "requiredFiles": 384,
+        "vendorPackages": 9,
+        "developmentFiles": 174,
+        "stderr": ""
+      },
+      {
+        "case": "modified file differs from HEAD",
+        "command": [
+          "node",
+          "/Users/jong-yu/Projects/mfe/integration/tools/check-clone.cjs",
+          "--root",
+          "/private/tmp/mfe-clone-check-fixture-ydd87cds",
+          "--json",
+          "--git"
+        ],
+        "exitCode": 1,
+        "errorCount": 2,
+        "expectedReasonSubstring": "differs from HEAD",
+        "assertionsPassed": true,
+        "requiredFiles": 384,
+        "vendorPackages": 9,
+        "developmentFiles": 174,
+        "stderr": ""
+      }
+    ]
+  },
+  "nodeSelectionUpdate": {
+    "scriptSHA256": "47b258f8e50e9dbcce6548911b6eb4b3537c7c7fb5926a14f0fbf844b04f90f7",
+    "baseline": {
+      "case": "current working inputs with root .nvmrc 24",
+      "command": [
+        "node",
+        "/Users/jong-yu/Projects/mfe/integration/tools/check-clone.cjs",
+        "--json"
+      ],
+      "exitCode": 0,
+      "elapsedMs": 285,
+      "expectedReasonSubstring": null,
+      "assertionsPassed": true,
+      "stderr": "",
+      "report": {
+        "status": "passed",
+        "root": "/Users/jong-yu/Projects/mfe",
+        "mode": "working files",
+        "node": "v24.22.1",
+        "head": null,
+        "buildToolsVersion": "2.0.0",
+        "counts": {
+          "projects": 10,
+          "vendorPackages": 9,
+          "developmentKits": 4,
+          "developmentFiles": 174,
+          "requiredFiles": 385
+        },
+        "errors": []
+      }
+    },
+    "cases": [
+      {
+        "case": "root .nvmrc value must be 24",
+        "command": [
+          "node",
+          "/Users/jong-yu/Projects/mfe/integration/tools/check-clone.cjs",
+          "--root",
+          "/private/tmp/mfe-clone-check-fixture-ydd87cds",
+          "--json"
+        ],
+        "exitCode": 1,
+        "elapsedMs": 260,
+        "expectedReasonSubstring": "root .nvmrc to select Node 24",
+        "assertionsPassed": true,
+        "stderr": "",
+        "report": {
+          "status": "failed",
+          "root": "/private/tmp/mfe-clone-check-fixture-ydd87cds",
+          "mode": "working files",
+          "node": "v24.22.1",
+          "head": null,
+          "buildToolsVersion": "2.0.0",
+          "counts": {
+            "projects": 10,
+            "vendorPackages": 9,
+            "developmentKits": 4,
+            "developmentFiles": 174,
+            "requiredFiles": 385
+          },
+          "errors": [
+            {
+              "path": ".nvmrc",
+              "reason": "The current learning guide requires root .nvmrc to select Node 24; run nvm use in each new shell."
+            }
+          ]
+        }
+      },
+      {
+        "case": "explicit Node 16 rejects before input inspection",
+        "command": [
+          "/usr/local/bin/node",
+          "/Users/jong-yu/Projects/mfe/integration/tools/check-clone.cjs",
+          "--json"
+        ],
+        "exitCode": 1,
+        "elapsedMs": 165,
+        "expectedReasonSubstring": "Select Node 24 in this shell",
+        "assertionsPassed": true,
+        "stderr": "",
+        "report": {
+          "status": "failed",
+          "root": "/Users/jong-yu/Projects/mfe",
+          "mode": "working files",
+          "node": "v16.14.0",
+          "head": null,
+          "buildToolsVersion": null,
+          "counts": {
+            "projects": 0,
+            "vendorPackages": 0,
+            "developmentKits": 0,
+            "developmentFiles": 0,
+            "requiredFiles": 0
+          },
+          "errors": [
+            {
+              "path": "Node.js",
+              "reason": "Node >=22.12 is required; running v16.14.0. Select Node 24 in this shell (nvm use); .nvmrc does not select Node automatically."
+            }
+          ]
+        }
+      }
+    ]
+  },
+  "regressionCases": 11,
+  "passedRegressionCases": 11
+}

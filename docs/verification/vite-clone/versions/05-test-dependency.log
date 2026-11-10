@@ -1,0 +1,17 @@
+
+> mfe-integration-verification@1.0.0 test:dependency
+> node tests/dependency-upgrade.mjs
+
+PASS prepare existing builds with two levels of runtime bindings and no D pins in B
+PASS an existing tab mounts only A with original B and D before any selection change
+PASS install and build only isolated D 1.x and D 2.x copies with visible behavior changes
+PASS change only the A-path B-to-D binding through the public CLI without changing A/C/B/Shell/SDK
+PASS new tabs execute the new D result through unchanged B while the other D remains original
+PASS change the C-path D independently and execute both new D containers in both loading orders
+PASS an older tab lazily mounts C after both changes but still loads its original D snapshot
+PASS D swaps preserve B state/cache/CSS/portal isolation and duplicate mount cleanup
+PASS rollback restores nested D bindings for new tabs while all existing tabs keep their full graphs
+PASS missing, wrong-service, unsupported-major, SDK/React-incompatible and cyclic D graphs cannot be activated
+PASS a missing selected D fails only its consuming path without falling back or preventing the other B/D from running
+PASS all original project bytes remain unchanged with zero B/A/C/Shell/SDK builds; retain only tested D outputs
+Nested D runtime verification passed: 12/12. Report: /private/tmp/mfe-vite-versions-DiUHAT/integration/artifacts/verification/dependency-upgrade.json

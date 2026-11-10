@@ -1,0 +1,26 @@
+[
+  {
+    "id": "upstream-revision",
+    "observation": "The actual GitHub clone is e4498f6 with Webpack build-tools 1.7.0 and the older learning book. The local Vite migration was not committed upstream.",
+    "change": "Added clone revision and pre-install checks, and kept upstream failure separate from the complete local candidate commit cloned for verification.",
+    "evidence": "upstream.json"
+  },
+  {
+    "id": "uncommitted-deliverables",
+    "observation": "Nine Vite build-tool tarballs and 174 development-kit files referenced by current manifests were present locally but absent from the original Git commit.",
+    "change": "Included the complete source, vendor and development-kit inputs in the temporary candidate commit. Added a no-install preflight that verifies lock integrity, kit checksums and exact HEAD file contents.",
+    "evidence": "candidate-preflight.json"
+  },
+  {
+    "id": "node-selection",
+    "observation": "The first clone shell selected Node 16.14.0 even though Node 24 was installed. Playwright and Vite could not run; the first attempt is preserved and is not counted as passing.",
+    "change": "Documented selecting Node in the current shell and each new terminal before preflight/npm. Retried with the already installed Node 24.22.1 and newly empty caches; Node installation itself was not tested.",
+    "evidence": "first-attempt/failure.json"
+  },
+  {
+    "id": "missing-input-guard",
+    "observation": "Missing or altered tarballs, kit files, .nvmrc and uncommitted inputs now produce explicit failures before npm installation.",
+    "change": "Added check-clone.cjs with --git/--root/--json and recorded normal and failure-case checks.",
+    "evidence": "preflight-regression.json"
+  }
+]

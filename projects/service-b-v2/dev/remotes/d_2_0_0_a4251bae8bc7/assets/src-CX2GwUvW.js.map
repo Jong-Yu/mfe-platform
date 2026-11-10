@@ -1,0 +1,1 @@
+{"version":3,"file":"src-CX2GwUvW.js","names":[],"sources":["../../src/index.js"],"sourcesContent":["export const version = __SERVICE_VERSION__;\nexport const artifactId = __ARTIFACT_ID__;\nexport function describe() { return `D ${version}`; }\n"],"mappings":";AAAA,IAAa,UAAA;AACb,IAAa,aAAA;AACb,SAAgB,WAAW;CAAE,OAAO,KAAK;AAAW"}

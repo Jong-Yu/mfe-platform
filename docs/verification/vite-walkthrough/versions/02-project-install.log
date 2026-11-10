@@ -1,0 +1,29 @@
+
+> mfe-integration-verification@1.0.0 setup
+> node tools/setup.cjs
+
+
+added 42 packages in 479ms
+
+added 38 packages in 446ms
+
+added 42 packages in 515ms
+
+added 42 packages in 472ms
+
+added 42 packages in 464ms
+
+added 42 packages in 474ms
+
+added 42 packages in 460ms
+
+added 39 packages in 457ms
+
+added 39 packages in 475ms
+
+added 42 packages in 493ms
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.2
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.2
+npm notice To update run: npm install -g npm@12.2.2
+npm notice

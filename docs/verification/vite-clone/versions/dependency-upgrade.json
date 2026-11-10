@@ -1,0 +1,3119 @@
+{
+  "startedAt": "2026-11-10T13:14:47.890Z",
+  "status": "passed",
+  "checks": [
+    {
+      "name": "prepare existing builds with two levels of runtime bindings and no D pins in B",
+      "status": "passed",
+      "durationMs": 61
+    },
+    {
+      "name": "an existing tab mounts only A with original B and D before any selection change",
+      "status": "passed",
+      "durationMs": 206
+    },
+    {
+      "name": "install and build only isolated D 1.x and D 2.x copies with visible behavior changes",
+      "status": "passed",
+      "durationMs": 4111
+    },
+    {
+      "name": "change only the A-path B-to-D binding through the public CLI without changing A/C/B/Shell/SDK",
+      "status": "passed",
+      "durationMs": 50
+    },
+    {
+      "name": "new tabs execute the new D result through unchanged B while the other D remains original",
+      "status": "passed",
+      "durationMs": 36
+    },
+    {
+      "name": "change the C-path D independently and execute both new D containers in both loading orders",
+      "status": "passed",
+      "durationMs": 2104
+    },
+    {
+      "name": "an older tab lazily mounts C after both changes but still loads its original D snapshot",
+      "status": "passed",
+      "durationMs": 142
+    },
+    {
+      "name": "D swaps preserve B state/cache/CSS/portal isolation and duplicate mount cleanup",
+      "status": "passed",
+      "durationMs": 459
+    },
+    {
+      "name": "rollback restores nested D bindings for new tabs while all existing tabs keep their full graphs",
+      "status": "passed",
+      "durationMs": 862
+    },
+    {
+      "name": "missing, wrong-service, unsupported-major, SDK/React-incompatible and cyclic D graphs cannot be activated",
+      "status": "passed",
+      "durationMs": 13
+    },
+    {
+      "name": "a missing selected D fails only its consuming path without falling back or preventing the other B/D from running",
+      "status": "passed",
+      "durationMs": 839
+    },
+    {
+      "name": "all original project bytes remain unchanged with zero B/A/C/Shell/SDK builds; retain only tested D outputs",
+      "status": "passed",
+      "durationMs": 57
+    }
+  ],
+  "pages": [
+    {
+      "name": "existing-tab-before-D-change",
+      "remoteEntries": [
+        {
+          "url": "http://127.0.0.1:53770/artifacts/shell_1_3_0_46ac9795cddf/remoteEntry.js",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:53770/artifacts/platform_1_3_1_e25c8d049944/remoteEntry.js",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:53770/artifacts/a_1_0_0_0321deb69c28/remoteEntry.js",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:53770/artifacts/b_1_4_0_6cc8bf6c0028/remoteEntry.js",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:53770/artifacts/d_1_0_0_c6adbe1cb721/remoteEntry.js",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:53770/artifacts/c_1_0_0_369b0db5dc78/remoteEntry.js",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:53770/artifacts/b_2_1_0_479272f66af5/remoteEntry.js",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:53770/artifacts/d_2_0_0_a4251bae8bc7/remoteEntry.js",
+          "status": 200
+        }
+      ],
+      "requests": [
+        "http://127.0.0.1:53770/?empty=1",
+        "http://127.0.0.1:53770/artifacts/shell_1_3_0_46ac9795cddf/assets/bootstrap-OdD1Lhy9.css",
+        "http://127.0.0.1:53770/runtime-lease.js",
+        "http://127.0.0.1:53770/runtime-usage.js",
+        "http://127.0.0.1:53770/artifacts/shell_1_3_0_46ac9795cddf/shell.js",
+        "http://127.0.0.1:53770/artifacts/shell_1_3_0_46ac9795cddf/assets/import-module-DeeNAblr.js",
+        "http://127.0.0.1:53770/artifacts/shell_1_3_0_46ac9795cddf/assets/vite-preload-helper-Cv7PuoXI.js",
+        "http://127.0.0.1:53770/api/runtime/config",
+        "http://127.0.0.1:53770/artifacts/shell_1_3_0_46ac9795cddf/assets/hostInit-C2f0n5H5.js",
+        "http://127.0.0.1:53770/artifacts/shell_1_3_0_46ac9795cddf/remoteEntry.js",
+        "http://127.0.0.1:53770/artifacts/shell_1_3_0_46ac9795cddf/assets/dist-Bo8xtUoB.js",
+        "http://127.0.0.1:53770/artifacts/shell_1_3_0_46ac9795cddf/assets/_virtual_mf-localSharedImportMap___mfe_internal__mf_shell_1_3_0_46ac9795cddf__mf_owner__1-sG_et4NI.js",
+        "http://127.0.0.1:53770/artifacts/shell_1_3_0_46ac9795cddf/assets/_virtual_mf___mfe_internal__mf_shell_1_3_0_46ac9795cddf__mf_owner__165577377313482__loadShare__react__loadShare__.js-C3dpZGwB.js",
+        "http://127.0.0.1:53770/artifacts/shell_1_3_0_46ac9795cddf/assets/rolldown-runtime-DQp2zzRu.js",
+        "http://127.0.0.1:53770/artifacts/shell_1_3_0_46ac9795cddf/assets/_virtual_mf___mfe_internal__mf_shell_1_3_0_46ac9795cddf__mf_owner__165577377313482__prebuild__react_mf_2_dom_mf_1_client__prebuild__-DfBkG7Mg.js",
+        "http://127.0.0.1:53770/artifacts/shell_1_3_0_46ac9795cddf/assets/react-dom-DrOk3jpZ.js",
+        "http://127.0.0.1:53770/artifacts/shell_1_3_0_46ac9795cddf/assets/pendingShares-Bb4FnSwh.js",
+        "http://127.0.0.1:53770/artifacts/shell_1_3_0_46ac9795cddf/assets/src-LfY5aFQi.js",
+        "http://127.0.0.1:53770/compositions/composition_88ee38ebfe391a69f3cdb828.json",
+        "http://127.0.0.1:53770/api/runtime/config",
+        "http://127.0.0.1:53770/api/runtime/usage",
+        "http://127.0.0.1:53770/artifacts/shell_1_3_0_46ac9795cddf/assets/_virtual_mf___mfe_internal__mf_shell_1_3_0_46ac9795cddf__loadRemote__platform_mf_1_sdk__mf_owner__1__loadRemote__-Duvavig8.js",
+        "http://127.0.0.1:53770/artifacts/platform_1_3_1_e25c8d049944/remoteEntry.js",
+        "http://127.0.0.1:53770/artifacts/platform_1_3_1_e25c8d049944/assets/dist-Bo8xtUoB.js",
+        "http://127.0.0.1:53770/artifacts/platform_1_3_1_e25c8d049944/assets/vite-preload-helper-CtLp1C0p.js",
+        "http://127.0.0.1:53770/artifacts/platform_1_3_1_e25c8d049944/assets/_virtual_mf-localSharedImportMap___mfe_internal__mf_platform_1_3_1_e25c8d049944__mf_owner__1-5YRVjoO3.js",
+        "http://127.0.0.1:53770/artifacts/shell_1_3_0_46ac9795cddf/assets/_virtual_mf___mfe_internal__mf_shell_1_3_0_46ac9795cddf__mf_owner__165577377313482__prebuild__react_mf_2_dom__prebuild__-Bo9hxsTX.js",
+        "http://127.0.0.1:53770/artifacts/platform_1_3_1_e25c8d049944/assets/sdk-BbXiZY3X.css",
+        "http://127.0.0.1:53770/artifacts/platform_1_3_1_e25c8d049944/assets/sdk-ClnQiGJZ.js",
+        "http://127.0.0.1:53770/artifacts/platform_1_3_1_e25c8d049944/assets/_virtual_mf___mfe_internal__mf_platform_1_3_1_e25c8d049944__mf_owner__242075772864893__loadShare__react__loadShare__.js-B3vX5iHX.js",
+        "http://127.0.0.1:53770/artifacts/platform_1_3_1_e25c8d049944/assets/rolldown-runtime-SbdDWaPq.js",
+        "http://127.0.0.1:53770/artifacts/shell_1_3_0_46ac9795cddf/assets/bootstrap-Cs4gh1MW.js",
+        "http://127.0.0.1:53770/artifacts/shell_1_3_0_46ac9795cddf/assets/_virtual_mf___mfe_internal__mf_shell_1_3_0_46ac9795cddf__mf_owner__165577377313482__loadShare__react_mf_2_dom_mf_1_client__loadShare__.js-DGXkM6s5.js",
+        "http://127.0.0.1:53770/artifacts/a_1_0_0_0321deb69c28/remoteEntry.js",
+        "http://127.0.0.1:53770/artifacts/a_1_0_0_0321deb69c28/assets/dist-Bo8xtUoB.js",
+        "http://127.0.0.1:53770/artifacts/a_1_0_0_0321deb69c28/assets/vite-preload-helper-DotLz9Zn.js",
+        "http://127.0.0.1:53770/artifacts/a_1_0_0_0321deb69c28/assets/_virtual_mf-localSharedImportMap___mfe_internal__mf_a_1_0_0_0321deb69c28__mf_owner__1-CxwundFr.js",
+        "http://127.0.0.1:53770/artifacts/b_1_4_0_6cc8bf6c0028/remoteEntry.js",
+        "http://127.0.0.1:53770/artifacts/b_1_4_0_6cc8bf6c0028/assets/dist-Bo8xtUoB.js",
+        "http://127.0.0.1:53770/artifacts/b_1_4_0_6cc8bf6c0028/assets/vite-preload-helper-BVDCNeEa.js",
+        "http://127.0.0.1:53770/artifacts/b_1_4_0_6cc8bf6c0028/assets/_virtual_mf-localSharedImportMap___mfe_internal__mf_b_1_4_0_6cc8bf6c0028__mf_owner__1-BaCESpgK.js",
+        "http://127.0.0.1:53770/artifacts/d_1_0_0_c6adbe1cb721/remoteEntry.js",
+        "http://127.0.0.1:53770/artifacts/d_1_0_0_c6adbe1cb721/assets/dist-CzT-8ogd.js",
+        "http://127.0.0.1:53770/artifacts/d_1_0_0_c6adbe1cb721/assets/vite-preload-helper-D007Gmx9.js",
+        "http://127.0.0.1:53770/artifacts/d_1_0_0_c6adbe1cb721/assets/_virtual_mf-localSharedImportMap___mfe_internal__mf_d_1_0_0_c6adbe1cb721__mf_owner__1-K9UFUvmk.js",
+        "http://127.0.0.1:53770/artifacts/d_1_0_0_c6adbe1cb721/assets/src-BMVRR_2U.js",
+        "http://127.0.0.1:53770/artifacts/b_1_4_0_6cc8bf6c0028/assets/Widget-C3vmy5sd.css",
+        "http://127.0.0.1:53770/artifacts/b_1_4_0_6cc8bf6c0028/assets/_virtual_mf___mfe_internal__mf_b_1_4_0_6cc8bf6c0028__loadRemote__d_mf_1_data__mf_owner__1__loadRemote__-6LDeHEEF.js",
+        "http://127.0.0.1:53770/artifacts/b_1_4_0_6cc8bf6c0028/assets/_virtual_mf___mfe_internal__mf_b_1_4_0_6cc8bf6c0028__loadRemote__platform_mf_1_sdk__mf_owner__1__loadRemote__-Bqk7zvGL.js",
+        "http://127.0.0.1:53770/artifacts/b_1_4_0_6cc8bf6c0028/assets/rolldown-runtime-DQp2zzRu.js",
+        "http://127.0.0.1:53770/artifacts/b_1_4_0_6cc8bf6c0028/assets/hostInit-DFPIMONH.js",
+        "http://127.0.0.1:53770/artifacts/b_1_4_0_6cc8bf6c0028/assets/Widget-BiiMpLC6.js",
+        "http://127.0.0.1:53770/artifacts/b_1_4_0_6cc8bf6c0028/assets/_virtual_mf___mfe_internal__mf_b_1_4_0_6cc8bf6c0028__mf_owner__226140563824246__loadShare__react__loadShare__.js-DgQ7VONi.js",
+        "http://127.0.0.1:53770/artifacts/b_1_4_0_6cc8bf6c0028/assets/_virtual_mf___mfe_internal__mf_b_1_4_0_6cc8bf6c0028__mf_owner__226140563824246__loadShare__shared-B1DGyhpy.js",
+        "http://127.0.0.1:53770/artifacts/a_1_0_0_0321deb69c28/assets/_virtual_mf___mfe_internal__mf_a_1_0_0_0321deb69c28__loadRemote__b_mf_1_Widget__mf_owner__1__loadRemote__-Dre8sHXW.js",
+        "http://127.0.0.1:53770/artifacts/a_1_0_0_0321deb69c28/assets/rolldown-runtime-DQp2zzRu.js",
+        "http://127.0.0.1:53770/artifacts/a_1_0_0_0321deb69c28/assets/hostInit-C2CqsWuv.js",
+        "http://127.0.0.1:53770/artifacts/a_1_0_0_0321deb69c28/assets/src-CmHSmqMT.js",
+        "http://127.0.0.1:53770/artifacts/a_1_0_0_0321deb69c28/assets/_virtual_mf___mfe_internal__mf_a_1_0_0_0321deb69c28__mf_owner__70423062643256__loadShare__react__loadShare__.js-CciXi4sv.js",
+        "http://127.0.0.1:53770/api/runtime/usage",
+        "http://127.0.0.1:53770/artifacts/c_1_0_0_369b0db5dc78/remoteEntry.js",
+        "http://127.0.0.1:53770/artifacts/c_1_0_0_369b0db5dc78/assets/dist-Bo8xtUoB.js",
+        "http://127.0.0.1:53770/artifacts/c_1_0_0_369b0db5dc78/assets/vite-preload-helper-Dywvt3ca.js",
+        "http://127.0.0.1:53770/artifacts/c_1_0_0_369b0db5dc78/assets/_virtual_mf-localSharedImportMap___mfe_internal__mf_c_1_0_0_369b0db5dc78__mf_owner__1-CIqn5Mh-.js",
+        "http://127.0.0.1:53770/artifacts/b_2_1_0_479272f66af5/remoteEntry.js",
+        "http://127.0.0.1:53770/artifacts/b_2_1_0_479272f66af5/assets/dist-Bo8xtUoB.js",
+        "http://127.0.0.1:53770/artifacts/b_2_1_0_479272f66af5/assets/vite-preload-helper-MNh0XIOp.js",
+        "http://127.0.0.1:53770/artifacts/b_2_1_0_479272f66af5/assets/_virtual_mf-localSharedImportMap___mfe_internal__mf_b_2_1_0_479272f66af5__mf_owner__1-kmQ5k4LN.js",
+        "http://127.0.0.1:53770/artifacts/d_2_0_0_a4251bae8bc7/remoteEntry.js",
+        "http://127.0.0.1:53770/artifacts/d_2_0_0_a4251bae8bc7/assets/dist-CzT-8ogd.js",
+        "http://127.0.0.1:53770/artifacts/d_2_0_0_a4251bae8bc7/assets/vite-preload-helper-Bdil_hx7.js",
+        "http://127.0.0.1:53770/artifacts/d_2_0_0_a4251bae8bc7/assets/_virtual_mf-localSharedImportMap___mfe_internal__mf_d_2_0_0_a4251bae8bc7__mf_owner__1-CC1gJ7XN.js",
+        "http://127.0.0.1:53770/artifacts/d_2_0_0_a4251bae8bc7/assets/src-CX2GwUvW.js",
+        "http://127.0.0.1:53770/artifacts/b_2_1_0_479272f66af5/assets/Widget-EPjutS18.css",
+        "http://127.0.0.1:53770/artifacts/b_2_1_0_479272f66af5/assets/_virtual_mf___mfe_internal__mf_b_2_1_0_479272f66af5__loadRemote__d_mf_1_data__mf_owner__1__loadRemote__-k3NJ0iS_.js",
+        "http://127.0.0.1:53770/artifacts/b_2_1_0_479272f66af5/assets/_virtual_mf___mfe_internal__mf_b_2_1_0_479272f66af5__loadRemote__platform_mf_1_sdk__mf_owner__1__loadRemote__-Bajl1dHW.js",
+        "http://127.0.0.1:53770/artifacts/b_2_1_0_479272f66af5/assets/rolldown-runtime-DQp2zzRu.js",
+        "http://127.0.0.1:53770/artifacts/b_2_1_0_479272f66af5/assets/hostInit-GZpl63UA.js",
+        "http://127.0.0.1:53770/artifacts/b_2_1_0_479272f66af5/assets/Widget-DpWBr3ys.js",
+        "http://127.0.0.1:53770/artifacts/b_2_1_0_479272f66af5/assets/_virtual_mf___mfe_internal__mf_b_2_1_0_479272f66af5__mf_owner__123185571438837__loadShare__react__loadShare__.js-CJqcos9T.js",
+        "http://127.0.0.1:53770/artifacts/b_2_1_0_479272f66af5/assets/_virtual_mf___mfe_internal__mf_b_2_1_0_479272f66af5__mf_owner__123185571438837__loadShare__shared-fhLrJplx.js",
+        "http://127.0.0.1:53770/artifacts/c_1_0_0_369b0db5dc78/assets/_virtual_mf___mfe_internal__mf_c_1_0_0_369b0db5dc78__loadRemote__b_mf_1_Widget__mf_owner__1__loadRemote__-D1VIc6nr.js",
+        "http://127.0.0.1:53770/artifacts/c_1_0_0_369b0db5dc78/assets/rolldown-runtime-DQp2zzRu.js",
+        "http://127.0.0.1:53770/artifacts/c_1_0_0_369b0db5dc78/assets/hostInit-KHbPpwpA.js",
+        "http://127.0.0.1:53770/artifacts/c_1_0_0_369b0db5dc78/assets/src-1IFQyHoU.js",
+        "http://127.0.0.1:53770/artifacts/c_1_0_0_369b0db5dc78/assets/_virtual_mf___mfe_internal__mf_c_1_0_0_369b0db5dc78__mf_owner__201462083670529__loadShare__react__loadShare__.js-BzwimyJr.js"
+      ],
+      "bootRequests": [
+        "http://127.0.0.1:53770/compositions/composition_88ee38ebfe391a69f3cdb828.json"
+      ],
+      "consoleErrors": [],
+      "pageErrors": [],
+      "failedRequests": [],
+      "proof": {
+        "identities": [
+          {
+            "instanceId": "A",
+            "reactMatches": true,
+            "contextMatches": true,
+            "artifactId": "b_1_4_0_6cc8bf6c0028",
+            "dependencyArtifact": "d_1_0_0_c6adbe1cb721"
+          },
+          {
+            "instanceId": "C",
+            "reactMatches": true,
+            "contextMatches": true,
+            "artifactId": "b_2_1_0_479272f66af5",
+            "dependencyArtifact": "d_2_0_0_a4251bae8bc7"
+          }
+        ],
+        "snapshot": {
+          "activeInstances": [
+            {
+              "instanceId": "A",
+              "artifactId": "b_1_4_0_6cc8bf6c0028",
+              "count": 1,
+              "eventCount": 0,
+              "cacheSize": 1
+            },
+            {
+              "instanceId": "C",
+              "artifactId": "b_2_1_0_479272f66af5",
+              "count": 0,
+              "eventCount": 0,
+              "cacheSize": 0
+            }
+          ],
+          "activeSubscriptions": 2,
+          "eventCounts": {
+            "A": 0,
+            "C": 0
+          },
+          "platformVersion": "1.3.1"
+        },
+        "diagnostics": {
+          "compositionId": "composition_88ee38ebfe391a69f3cdb828",
+          "platformArtifactId": "platform_1_3_1_e25c8d049944",
+          "runtimeBindings": {
+            "a_1_0_0_0321deb69c28": {
+              "b": "b_1_4_0_6cc8bf6c0028"
+            },
+            "b_1_4_0_6cc8bf6c0028": {
+              "d": "d_1_0_0_c6adbe1cb721"
+            },
+            "b_2_1_0_479272f66af5": {
+              "d": "d_2_0_0_a4251bae8bc7"
+            },
+            "c_1_0_0_369b0db5dc78": {
+              "b": "b_2_1_0_479272f66af5"
+            }
+          },
+          "bootURL": "/compositions/composition_88ee38ebfe391a69f3cdb828.json",
+          "containers": [
+            {
+              "id": "platform_1_3_1_e25c8d049944",
+              "name": "mf_platform_1_3_1_e25c8d049944",
+              "entry": "/artifacts/platform_1_3_1_e25c8d049944/remoteEntry.js",
+              "format": "esm",
+              "status": "initialized",
+              "loadAttempts": 1,
+              "loadCount": 1,
+              "initCalls": 5,
+              "initCount": 1,
+              "lastError": null
+            },
+            {
+              "id": "a_1_0_0_0321deb69c28",
+              "name": "mf_a_1_0_0_0321deb69c28",
+              "entry": "/artifacts/a_1_0_0_0321deb69c28/remoteEntry.js",
+              "format": "esm",
+              "status": "initialized",
+              "loadAttempts": 1,
+              "loadCount": 1,
+              "initCalls": 1,
+              "initCount": 1,
+              "lastError": null
+            },
+            {
+              "id": "b_1_4_0_6cc8bf6c0028",
+              "name": "mf_b_1_4_0_6cc8bf6c0028",
+              "entry": "/artifacts/b_1_4_0_6cc8bf6c0028/remoteEntry.js",
+              "format": "esm",
+              "status": "initialized",
+              "loadAttempts": 1,
+              "loadCount": 1,
+              "initCalls": 2,
+              "initCount": 1,
+              "lastError": null
+            },
+            {
+              "id": "d_1_0_0_c6adbe1cb721",
+              "name": "mf_d_1_0_0_c6adbe1cb721",
+              "entry": "/artifacts/d_1_0_0_c6adbe1cb721/remoteEntry.js",
+              "format": "esm",
+              "status": "initialized",
+              "loadAttempts": 1,
+              "loadCount": 1,
+              "initCalls": 2,
+              "initCount": 1,
+              "lastError": null
+            },
+            {
+              "id": "c_1_0_0_369b0db5dc78",
+              "name": "mf_c_1_0_0_369b0db5dc78",
+              "entry": "/artifacts/c_1_0_0_369b0db5dc78/remoteEntry.js",
+              "format": "esm",
+              "status": "initialized",
+              "loadAttempts": 1,
+              "loadCount": 1,
+              "initCalls": 1,
+              "initCount": 1,
+              "lastError": null
+            },
+            {
+              "id": "b_2_1_0_479272f66af5",
+              "name": "mf_b_2_1_0_479272f66af5",
+              "entry": "/artifacts/b_2_1_0_479272f66af5/remoteEntry.js",
+              "format": "esm",
+              "status": "initialized",
+              "loadAttempts": 1,
+              "loadCount": 1,
+              "initCalls": 2,
+              "initCount": 1,
+              "lastError": null
+            },
+            {
+              "id": "d_2_0_0_a4251bae8bc7",
+              "name": "mf_d_2_0_0_a4251bae8bc7",
+              "entry": "/artifacts/d_2_0_0_a4251bae8bc7/remoteEntry.js",
+              "format": "esm",
+              "status": "initialized",
+              "loadAttempts": 1,
+              "loadCount": 1,
+              "initCalls": 2,
+              "initCount": 1,
+              "lastError": null
+            }
+          ],
+          "loadedContainerIds": [
+            "platform_1_3_1_e25c8d049944",
+            "a_1_0_0_0321deb69c28",
+            "b_1_4_0_6cc8bf6c0028",
+            "d_1_0_0_c6adbe1cb721",
+            "c_1_0_0_369b0db5dc78",
+            "b_2_1_0_479272f66af5",
+            "d_2_0_0_a4251bae8bc7"
+          ]
+        },
+        "frozen": true
+      }
+    },
+    {
+      "name": "new-tab-one-D-updated",
+      "remoteEntries": [
+        {
+          "url": "http://127.0.0.1:53770/artifacts/shell_1_3_0_46ac9795cddf/remoteEntry.js",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:53770/artifacts/platform_1_3_1_e25c8d049944/remoteEntry.js",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:53770/artifacts/a_1_0_0_0321deb69c28/remoteEntry.js",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:53770/artifacts/b_1_4_0_6cc8bf6c0028/remoteEntry.js",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:53770/artifacts/d_1_1_0_8b17c3717038/remoteEntry.js",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:53770/artifacts/c_1_0_0_369b0db5dc78/remoteEntry.js",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:53770/artifacts/b_2_1_0_479272f66af5/remoteEntry.js",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:53770/artifacts/d_2_0_0_a4251bae8bc7/remoteEntry.js",
+          "status": 200
+        }
+      ],
+      "requests": [
+        "http://127.0.0.1:53770/?order=ac",
+        "http://127.0.0.1:53770/artifacts/shell_1_3_0_46ac9795cddf/assets/bootstrap-OdD1Lhy9.css",
+        "http://127.0.0.1:53770/runtime-lease.js",
+        "http://127.0.0.1:53770/runtime-usage.js",
+        "http://127.0.0.1:53770/artifacts/shell_1_3_0_46ac9795cddf/shell.js",
+        "http://127.0.0.1:53770/artifacts/shell_1_3_0_46ac9795cddf/assets/import-module-DeeNAblr.js",
+        "http://127.0.0.1:53770/artifacts/shell_1_3_0_46ac9795cddf/assets/vite-preload-helper-Cv7PuoXI.js",
+        "http://127.0.0.1:53770/api/runtime/config",
+        "http://127.0.0.1:53770/artifacts/shell_1_3_0_46ac9795cddf/assets/hostInit-C2f0n5H5.js",
+        "http://127.0.0.1:53770/artifacts/shell_1_3_0_46ac9795cddf/remoteEntry.js",
+        "http://127.0.0.1:53770/artifacts/shell_1_3_0_46ac9795cddf/assets/dist-Bo8xtUoB.js",
+        "http://127.0.0.1:53770/artifacts/shell_1_3_0_46ac9795cddf/assets/_virtual_mf-localSharedImportMap___mfe_internal__mf_shell_1_3_0_46ac9795cddf__mf_owner__1-sG_et4NI.js",
+        "http://127.0.0.1:53770/artifacts/shell_1_3_0_46ac9795cddf/assets/_virtual_mf___mfe_internal__mf_shell_1_3_0_46ac9795cddf__mf_owner__165577377313482__loadShare__react__loadShare__.js-C3dpZGwB.js",
+        "http://127.0.0.1:53770/artifacts/shell_1_3_0_46ac9795cddf/assets/rolldown-runtime-DQp2zzRu.js",
+        "http://127.0.0.1:53770/artifacts/shell_1_3_0_46ac9795cddf/assets/_virtual_mf___mfe_internal__mf_shell_1_3_0_46ac9795cddf__mf_owner__165577377313482__prebuild__react_mf_2_dom_mf_1_client__prebuild__-DfBkG7Mg.js",
+        "http://127.0.0.1:53770/artifacts/shell_1_3_0_46ac9795cddf/assets/react-dom-DrOk3jpZ.js",
+        "http://127.0.0.1:53770/artifacts/shell_1_3_0_46ac9795cddf/assets/pendingShares-Bb4FnSwh.js",
+        "http://127.0.0.1:53770/artifacts/shell_1_3_0_46ac9795cddf/assets/src-LfY5aFQi.js",
+        "http://127.0.0.1:53770/compositions/composition_48146f7fa949a2da550c4f52.json",
+        "http://127.0.0.1:53770/api/runtime/config",
+        "http://127.0.0.1:53770/api/runtime/usage",
+        "http://127.0.0.1:53770/artifacts/shell_1_3_0_46ac9795cddf/assets/_virtual_mf___mfe_internal__mf_shell_1_3_0_46ac9795cddf__loadRemote__platform_mf_1_sdk__mf_owner__1__loadRemote__-Duvavig8.js",
+        "http://127.0.0.1:53770/artifacts/platform_1_3_1_e25c8d049944/remoteEntry.js",
+        "http://127.0.0.1:53770/artifacts/platform_1_3_1_e25c8d049944/assets/dist-Bo8xtUoB.js",
+        "http://127.0.0.1:53770/artifacts/platform_1_3_1_e25c8d049944/assets/vite-preload-helper-CtLp1C0p.js",
+        "http://127.0.0.1:53770/artifacts/platform_1_3_1_e25c8d049944/assets/_virtual_mf-localSharedImportMap___mfe_internal__mf_platform_1_3_1_e25c8d049944__mf_owner__1-5YRVjoO3.js",
+        "http://127.0.0.1:53770/artifacts/shell_1_3_0_46ac9795cddf/assets/_virtual_mf___mfe_internal__mf_shell_1_3_0_46ac9795cddf__mf_owner__165577377313482__prebuild__react_mf_2_dom__prebuild__-Bo9hxsTX.js",
+        "http://127.0.0.1:53770/artifacts/platform_1_3_1_e25c8d049944/assets/sdk-BbXiZY3X.css",
+        "http://127.0.0.1:53770/artifacts/platform_1_3_1_e25c8d049944/assets/sdk-ClnQiGJZ.js",
+        "http://127.0.0.1:53770/artifacts/platform_1_3_1_e25c8d049944/assets/_virtual_mf___mfe_internal__mf_platform_1_3_1_e25c8d049944__mf_owner__242075772864893__loadShare__react__loadShare__.js-B3vX5iHX.js",
+        "http://127.0.0.1:53770/artifacts/platform_1_3_1_e25c8d049944/assets/rolldown-runtime-SbdDWaPq.js",
+        "http://127.0.0.1:53770/artifacts/shell_1_3_0_46ac9795cddf/assets/bootstrap-Cs4gh1MW.js",
+        "http://127.0.0.1:53770/artifacts/shell_1_3_0_46ac9795cddf/assets/_virtual_mf___mfe_internal__mf_shell_1_3_0_46ac9795cddf__mf_owner__165577377313482__loadShare__react_mf_2_dom_mf_1_client__loadShare__.js-DGXkM6s5.js",
+        "http://127.0.0.1:53770/artifacts/a_1_0_0_0321deb69c28/remoteEntry.js",
+        "http://127.0.0.1:53770/artifacts/a_1_0_0_0321deb69c28/assets/dist-Bo8xtUoB.js",
+        "http://127.0.0.1:53770/artifacts/a_1_0_0_0321deb69c28/assets/vite-preload-helper-DotLz9Zn.js",
+        "http://127.0.0.1:53770/artifacts/a_1_0_0_0321deb69c28/assets/_virtual_mf-localSharedImportMap___mfe_internal__mf_a_1_0_0_0321deb69c28__mf_owner__1-CxwundFr.js",
+        "http://127.0.0.1:53770/artifacts/b_1_4_0_6cc8bf6c0028/remoteEntry.js",
+        "http://127.0.0.1:53770/artifacts/b_1_4_0_6cc8bf6c0028/assets/dist-Bo8xtUoB.js",
+        "http://127.0.0.1:53770/artifacts/b_1_4_0_6cc8bf6c0028/assets/vite-preload-helper-BVDCNeEa.js",
+        "http://127.0.0.1:53770/artifacts/b_1_4_0_6cc8bf6c0028/assets/_virtual_mf-localSharedImportMap___mfe_internal__mf_b_1_4_0_6cc8bf6c0028__mf_owner__1-BaCESpgK.js",
+        "http://127.0.0.1:53770/artifacts/d_1_1_0_8b17c3717038/remoteEntry.js",
+        "http://127.0.0.1:53770/artifacts/d_1_1_0_8b17c3717038/assets/dist-CzT-8ogd.js",
+        "http://127.0.0.1:53770/artifacts/d_1_1_0_8b17c3717038/assets/vite-preload-helper-DuzaVUar.js",
+        "http://127.0.0.1:53770/artifacts/d_1_1_0_8b17c3717038/assets/_virtual_mf-localSharedImportMap___mfe_internal__mf_d_1_1_0_8b17c3717038__mf_owner__1-BgiyUzOq.js",
+        "http://127.0.0.1:53770/artifacts/d_1_1_0_8b17c3717038/assets/src-Co8_kQOY.js",
+        "http://127.0.0.1:53770/artifacts/b_1_4_0_6cc8bf6c0028/assets/Widget-C3vmy5sd.css",
+        "http://127.0.0.1:53770/artifacts/b_1_4_0_6cc8bf6c0028/assets/_virtual_mf___mfe_internal__mf_b_1_4_0_6cc8bf6c0028__loadRemote__d_mf_1_data__mf_owner__1__loadRemote__-6LDeHEEF.js",
+        "http://127.0.0.1:53770/artifacts/b_1_4_0_6cc8bf6c0028/assets/_virtual_mf___mfe_internal__mf_b_1_4_0_6cc8bf6c0028__loadRemote__platform_mf_1_sdk__mf_owner__1__loadRemote__-Bqk7zvGL.js",
+        "http://127.0.0.1:53770/artifacts/b_1_4_0_6cc8bf6c0028/assets/rolldown-runtime-DQp2zzRu.js",
+        "http://127.0.0.1:53770/artifacts/b_1_4_0_6cc8bf6c0028/assets/hostInit-DFPIMONH.js",
+        "http://127.0.0.1:53770/artifacts/b_1_4_0_6cc8bf6c0028/assets/Widget-BiiMpLC6.js",
+        "http://127.0.0.1:53770/artifacts/b_1_4_0_6cc8bf6c0028/assets/_virtual_mf___mfe_internal__mf_b_1_4_0_6cc8bf6c0028__mf_owner__226140563824246__loadShare__react__loadShare__.js-DgQ7VONi.js",
+        "http://127.0.0.1:53770/artifacts/b_1_4_0_6cc8bf6c0028/assets/_virtual_mf___mfe_internal__mf_b_1_4_0_6cc8bf6c0028__mf_owner__226140563824246__loadShare__shared-B1DGyhpy.js",
+        "http://127.0.0.1:53770/artifacts/a_1_0_0_0321deb69c28/assets/_virtual_mf___mfe_internal__mf_a_1_0_0_0321deb69c28__loadRemote__b_mf_1_Widget__mf_owner__1__loadRemote__-Dre8sHXW.js",
+        "http://127.0.0.1:53770/artifacts/a_1_0_0_0321deb69c28/assets/rolldown-runtime-DQp2zzRu.js",
+        "http://127.0.0.1:53770/artifacts/a_1_0_0_0321deb69c28/assets/hostInit-C2CqsWuv.js",
+        "http://127.0.0.1:53770/artifacts/a_1_0_0_0321deb69c28/assets/src-CmHSmqMT.js",
+        "http://127.0.0.1:53770/artifacts/a_1_0_0_0321deb69c28/assets/_virtual_mf___mfe_internal__mf_a_1_0_0_0321deb69c28__mf_owner__70423062643256__loadShare__react__loadShare__.js-CciXi4sv.js",
+        "http://127.0.0.1:53770/artifacts/c_1_0_0_369b0db5dc78/remoteEntry.js",
+        "http://127.0.0.1:53770/artifacts/c_1_0_0_369b0db5dc78/assets/dist-Bo8xtUoB.js",
+        "http://127.0.0.1:53770/artifacts/c_1_0_0_369b0db5dc78/assets/vite-preload-helper-Dywvt3ca.js",
+        "http://127.0.0.1:53770/artifacts/c_1_0_0_369b0db5dc78/assets/_virtual_mf-localSharedImportMap___mfe_internal__mf_c_1_0_0_369b0db5dc78__mf_owner__1-CIqn5Mh-.js",
+        "http://127.0.0.1:53770/artifacts/b_2_1_0_479272f66af5/remoteEntry.js",
+        "http://127.0.0.1:53770/artifacts/b_2_1_0_479272f66af5/assets/dist-Bo8xtUoB.js",
+        "http://127.0.0.1:53770/artifacts/b_2_1_0_479272f66af5/assets/vite-preload-helper-MNh0XIOp.js",
+        "http://127.0.0.1:53770/artifacts/b_2_1_0_479272f66af5/assets/_virtual_mf-localSharedImportMap___mfe_internal__mf_b_2_1_0_479272f66af5__mf_owner__1-kmQ5k4LN.js",
+        "http://127.0.0.1:53770/artifacts/d_2_0_0_a4251bae8bc7/remoteEntry.js",
+        "http://127.0.0.1:53770/artifacts/d_2_0_0_a4251bae8bc7/assets/dist-CzT-8ogd.js",
+        "http://127.0.0.1:53770/artifacts/d_2_0_0_a4251bae8bc7/assets/vite-preload-helper-Bdil_hx7.js",
+        "http://127.0.0.1:53770/artifacts/d_2_0_0_a4251bae8bc7/assets/_virtual_mf-localSharedImportMap___mfe_internal__mf_d_2_0_0_a4251bae8bc7__mf_owner__1-CC1gJ7XN.js",
+        "http://127.0.0.1:53770/artifacts/d_2_0_0_a4251bae8bc7/assets/src-CX2GwUvW.js",
+        "http://127.0.0.1:53770/artifacts/b_2_1_0_479272f66af5/assets/Widget-EPjutS18.css",
+        "http://127.0.0.1:53770/artifacts/b_2_1_0_479272f66af5/assets/_virtual_mf___mfe_internal__mf_b_2_1_0_479272f66af5__loadRemote__d_mf_1_data__mf_owner__1__loadRemote__-k3NJ0iS_.js",
+        "http://127.0.0.1:53770/artifacts/b_2_1_0_479272f66af5/assets/_virtual_mf___mfe_internal__mf_b_2_1_0_479272f66af5__loadRemote__platform_mf_1_sdk__mf_owner__1__loadRemote__-Bajl1dHW.js",
+        "http://127.0.0.1:53770/artifacts/b_2_1_0_479272f66af5/assets/rolldown-runtime-DQp2zzRu.js",
+        "http://127.0.0.1:53770/artifacts/b_2_1_0_479272f66af5/assets/hostInit-GZpl63UA.js",
+        "http://127.0.0.1:53770/artifacts/b_2_1_0_479272f66af5/assets/Widget-DpWBr3ys.js",
+        "http://127.0.0.1:53770/artifacts/b_2_1_0_479272f66af5/assets/_virtual_mf___mfe_internal__mf_b_2_1_0_479272f66af5__mf_owner__123185571438837__loadShare__react__loadShare__.js-CJqcos9T.js",
+        "http://127.0.0.1:53770/artifacts/b_2_1_0_479272f66af5/assets/_virtual_mf___mfe_internal__mf_b_2_1_0_479272f66af5__mf_owner__123185571438837__loadShare__shared-fhLrJplx.js",
+        "http://127.0.0.1:53770/artifacts/c_1_0_0_369b0db5dc78/assets/_virtual_mf___mfe_internal__mf_c_1_0_0_369b0db5dc78__loadRemote__b_mf_1_Widget__mf_owner__1__loadRemote__-D1VIc6nr.js",
+        "http://127.0.0.1:53770/artifacts/c_1_0_0_369b0db5dc78/assets/rolldown-runtime-DQp2zzRu.js",
+        "http://127.0.0.1:53770/artifacts/c_1_0_0_369b0db5dc78/assets/hostInit-KHbPpwpA.js",
+        "http://127.0.0.1:53770/artifacts/c_1_0_0_369b0db5dc78/assets/src-1IFQyHoU.js",
+        "http://127.0.0.1:53770/artifacts/c_1_0_0_369b0db5dc78/assets/_virtual_mf___mfe_internal__mf_c_1_0_0_369b0db5dc78__mf_owner__201462083670529__loadShare__react__loadShare__.js-BzwimyJr.js",
+        "http://127.0.0.1:53770/api/runtime/usage"
+      ],
+      "bootRequests": [
+        "http://127.0.0.1:53770/compositions/composition_48146f7fa949a2da550c4f52.json"
+      ],
+      "consoleErrors": [],
+      "pageErrors": [],
+      "failedRequests": [],
+      "proof": {
+        "identities": [
+          {
+            "instanceId": "A",
+            "reactMatches": true,
+            "contextMatches": true,
+            "artifactId": "b_1_4_0_6cc8bf6c0028",
+            "dependencyArtifact": "d_1_1_0_8b17c3717038"
+          },
+          {
+            "instanceId": "C",
+            "reactMatches": true,
+            "contextMatches": true,
+            "artifactId": "b_2_1_0_479272f66af5",
+            "dependencyArtifact": "d_2_0_0_a4251bae8bc7"
+          }
+        ],
+        "snapshot": {
+          "activeInstances": [
+            {
+              "instanceId": "A",
+              "artifactId": "b_1_4_0_6cc8bf6c0028",
+              "count": 0,
+              "eventCount": 0,
+              "cacheSize": 0
+            },
+            {
+              "instanceId": "C",
+              "artifactId": "b_2_1_0_479272f66af5",
+              "count": 0,
+              "eventCount": 0,
+              "cacheSize": 0
+            }
+          ],
+          "activeSubscriptions": 2,
+          "eventCounts": {
+            "A": 0,
+            "C": 0
+          },
+          "platformVersion": "1.3.1"
+        },
+        "diagnostics": {
+          "compositionId": "composition_48146f7fa949a2da550c4f52",
+          "platformArtifactId": "platform_1_3_1_e25c8d049944",
+          "runtimeBindings": {
+            "a_1_0_0_0321deb69c28": {
+              "b": "b_1_4_0_6cc8bf6c0028"
+            },
+            "b_1_4_0_6cc8bf6c0028": {
+              "d": "d_1_1_0_8b17c3717038"
+            },
+            "b_2_1_0_479272f66af5": {
+              "d": "d_2_0_0_a4251bae8bc7"
+            },
+            "c_1_0_0_369b0db5dc78": {
+              "b": "b_2_1_0_479272f66af5"
+            }
+          },
+          "bootURL": "/compositions/composition_48146f7fa949a2da550c4f52.json",
+          "containers": [
+            {
+              "id": "platform_1_3_1_e25c8d049944",
+              "name": "mf_platform_1_3_1_e25c8d049944",
+              "entry": "/artifacts/platform_1_3_1_e25c8d049944/remoteEntry.js",
+              "format": "esm",
+              "status": "initialized",
+              "loadAttempts": 1,
+              "loadCount": 1,
+              "initCalls": 5,
+              "initCount": 1,
+              "lastError": null
+            },
+            {
+              "id": "a_1_0_0_0321deb69c28",
+              "name": "mf_a_1_0_0_0321deb69c28",
+              "entry": "/artifacts/a_1_0_0_0321deb69c28/remoteEntry.js",
+              "format": "esm",
+              "status": "initialized",
+              "loadAttempts": 1,
+              "loadCount": 1,
+              "initCalls": 1,
+              "initCount": 1,
+              "lastError": null
+            },
+            {
+              "id": "b_1_4_0_6cc8bf6c0028",
+              "name": "mf_b_1_4_0_6cc8bf6c0028",
+              "entry": "/artifacts/b_1_4_0_6cc8bf6c0028/remoteEntry.js",
+              "format": "esm",
+              "status": "initialized",
+              "loadAttempts": 1,
+              "loadCount": 1,
+              "initCalls": 2,
+              "initCount": 1,
+              "lastError": null
+            },
+            {
+              "id": "d_1_1_0_8b17c3717038",
+              "name": "mf_d_1_1_0_8b17c3717038",
+              "entry": "/artifacts/d_1_1_0_8b17c3717038/remoteEntry.js",
+              "format": "esm",
+              "status": "initialized",
+              "loadAttempts": 1,
+              "loadCount": 1,
+              "initCalls": 2,
+              "initCount": 1,
+              "lastError": null
+            },
+            {
+              "id": "c_1_0_0_369b0db5dc78",
+              "name": "mf_c_1_0_0_369b0db5dc78",
+              "entry": "/artifacts/c_1_0_0_369b0db5dc78/remoteEntry.js",
+              "format": "esm",
+              "status": "initialized",
+              "loadAttempts": 1,
+              "loadCount": 1,
+              "initCalls": 1,
+              "initCount": 1,
+              "lastError": null
+            },
+            {
+              "id": "b_2_1_0_479272f66af5",
+              "name": "mf_b_2_1_0_479272f66af5",
+              "entry": "/artifacts/b_2_1_0_479272f66af5/remoteEntry.js",
+              "format": "esm",
+              "status": "initialized",
+              "loadAttempts": 1,
+              "loadCount": 1,
+              "initCalls": 2,
+              "initCount": 1,
+              "lastError": null
+            },
+            {
+              "id": "d_2_0_0_a4251bae8bc7",
+              "name": "mf_d_2_0_0_a4251bae8bc7",
+              "entry": "/artifacts/d_2_0_0_a4251bae8bc7/remoteEntry.js",
+              "format": "esm",
+              "status": "initialized",
+              "loadAttempts": 1,
+              "loadCount": 1,
+              "initCalls": 2,
+              "initCount": 1,
+              "lastError": null
+            }
+          ],
+          "loadedContainerIds": [
+            "platform_1_3_1_e25c8d049944",
+            "a_1_0_0_0321deb69c28",
+            "b_1_4_0_6cc8bf6c0028",
+            "d_1_1_0_8b17c3717038",
+            "c_1_0_0_369b0db5dc78",
+            "b_2_1_0_479272f66af5",
+            "d_2_0_0_a4251bae8bc7"
+          ]
+        },
+        "frozen": true
+      }
+    },
+    {
+      "name": "both-new-D-ac",
+      "remoteEntries": [
+        {
+          "url": "http://127.0.0.1:53770/artifacts/shell_1_3_0_46ac9795cddf/remoteEntry.js",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:53770/artifacts/platform_1_3_1_e25c8d049944/remoteEntry.js",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:53770/artifacts/a_1_0_0_0321deb69c28/remoteEntry.js",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:53770/artifacts/b_1_4_0_6cc8bf6c0028/remoteEntry.js",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:53770/artifacts/d_1_1_0_8b17c3717038/remoteEntry.js",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:53770/artifacts/c_1_0_0_369b0db5dc78/remoteEntry.js",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:53770/artifacts/b_2_1_0_479272f66af5/remoteEntry.js",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:53770/artifacts/d_2_1_0_fdd4ea2ac446/remoteEntry.js",
+          "status": 200
+        }
+      ],
+      "requests": [
+        "http://127.0.0.1:53770/?order=ac",
+        "http://127.0.0.1:53770/artifacts/shell_1_3_0_46ac9795cddf/assets/bootstrap-OdD1Lhy9.css",
+        "http://127.0.0.1:53770/runtime-lease.js",
+        "http://127.0.0.1:53770/runtime-usage.js",
+        "http://127.0.0.1:53770/artifacts/shell_1_3_0_46ac9795cddf/shell.js",
+        "http://127.0.0.1:53770/artifacts/shell_1_3_0_46ac9795cddf/assets/import-module-DeeNAblr.js",
+        "http://127.0.0.1:53770/artifacts/shell_1_3_0_46ac9795cddf/assets/vite-preload-helper-Cv7PuoXI.js",
+        "http://127.0.0.1:53770/api/runtime/config",
+        "http://127.0.0.1:53770/artifacts/shell_1_3_0_46ac9795cddf/assets/hostInit-C2f0n5H5.js",
+        "http://127.0.0.1:53770/artifacts/shell_1_3_0_46ac9795cddf/remoteEntry.js",
+        "http://127.0.0.1:53770/artifacts/shell_1_3_0_46ac9795cddf/assets/dist-Bo8xtUoB.js",
+        "http://127.0.0.1:53770/artifacts/shell_1_3_0_46ac9795cddf/assets/_virtual_mf-localSharedImportMap___mfe_internal__mf_shell_1_3_0_46ac9795cddf__mf_owner__1-sG_et4NI.js",
+        "http://127.0.0.1:53770/artifacts/shell_1_3_0_46ac9795cddf/assets/_virtual_mf___mfe_internal__mf_shell_1_3_0_46ac9795cddf__mf_owner__165577377313482__loadShare__react__loadShare__.js-C3dpZGwB.js",
+        "http://127.0.0.1:53770/artifacts/shell_1_3_0_46ac9795cddf/assets/rolldown-runtime-DQp2zzRu.js",
+        "http://127.0.0.1:53770/artifacts/shell_1_3_0_46ac9795cddf/assets/_virtual_mf___mfe_internal__mf_shell_1_3_0_46ac9795cddf__mf_owner__165577377313482__prebuild__react_mf_2_dom_mf_1_client__prebuild__-DfBkG7Mg.js",
+        "http://127.0.0.1:53770/artifacts/shell_1_3_0_46ac9795cddf/assets/react-dom-DrOk3jpZ.js",
+        "http://127.0.0.1:53770/artifacts/shell_1_3_0_46ac9795cddf/assets/pendingShares-Bb4FnSwh.js",
+        "http://127.0.0.1:53770/artifacts/shell_1_3_0_46ac9795cddf/assets/src-LfY5aFQi.js",
+        "http://127.0.0.1:53770/compositions/composition_3b1ed0555ce8d93d32d5e738.json",
+        "http://127.0.0.1:53770/api/runtime/config",
+        "http://127.0.0.1:53770/api/runtime/usage",
+        "http://127.0.0.1:53770/artifacts/shell_1_3_0_46ac9795cddf/assets/_virtual_mf___mfe_internal__mf_shell_1_3_0_46ac9795cddf__loadRemote__platform_mf_1_sdk__mf_owner__1__loadRemote__-Duvavig8.js",
+        "http://127.0.0.1:53770/artifacts/platform_1_3_1_e25c8d049944/remoteEntry.js",
+        "http://127.0.0.1:53770/artifacts/platform_1_3_1_e25c8d049944/assets/dist-Bo8xtUoB.js",
+        "http://127.0.0.1:53770/artifacts/platform_1_3_1_e25c8d049944/assets/vite-preload-helper-CtLp1C0p.js",
+        "http://127.0.0.1:53770/artifacts/platform_1_3_1_e25c8d049944/assets/_virtual_mf-localSharedImportMap___mfe_internal__mf_platform_1_3_1_e25c8d049944__mf_owner__1-5YRVjoO3.js",
+        "http://127.0.0.1:53770/artifacts/shell_1_3_0_46ac9795cddf/assets/_virtual_mf___mfe_internal__mf_shell_1_3_0_46ac9795cddf__mf_owner__165577377313482__prebuild__react_mf_2_dom__prebuild__-Bo9hxsTX.js",
+        "http://127.0.0.1:53770/artifacts/platform_1_3_1_e25c8d049944/assets/sdk-BbXiZY3X.css",
+        "http://127.0.0.1:53770/artifacts/platform_1_3_1_e25c8d049944/assets/sdk-ClnQiGJZ.js",
+        "http://127.0.0.1:53770/artifacts/platform_1_3_1_e25c8d049944/assets/_virtual_mf___mfe_internal__mf_platform_1_3_1_e25c8d049944__mf_owner__242075772864893__loadShare__react__loadShare__.js-B3vX5iHX.js",
+        "http://127.0.0.1:53770/artifacts/platform_1_3_1_e25c8d049944/assets/rolldown-runtime-SbdDWaPq.js",
+        "http://127.0.0.1:53770/artifacts/shell_1_3_0_46ac9795cddf/assets/bootstrap-Cs4gh1MW.js",
+        "http://127.0.0.1:53770/artifacts/shell_1_3_0_46ac9795cddf/assets/_virtual_mf___mfe_internal__mf_shell_1_3_0_46ac9795cddf__mf_owner__165577377313482__loadShare__react_mf_2_dom_mf_1_client__loadShare__.js-DGXkM6s5.js",
+        "http://127.0.0.1:53770/artifacts/a_1_0_0_0321deb69c28/remoteEntry.js",
+        "http://127.0.0.1:53770/artifacts/a_1_0_0_0321deb69c28/assets/dist-Bo8xtUoB.js",
+        "http://127.0.0.1:53770/artifacts/a_1_0_0_0321deb69c28/assets/vite-preload-helper-DotLz9Zn.js",
+        "http://127.0.0.1:53770/artifacts/a_1_0_0_0321deb69c28/assets/_virtual_mf-localSharedImportMap___mfe_internal__mf_a_1_0_0_0321deb69c28__mf_owner__1-CxwundFr.js",
+        "http://127.0.0.1:53770/artifacts/b_1_4_0_6cc8bf6c0028/remoteEntry.js",
+        "http://127.0.0.1:53770/artifacts/b_1_4_0_6cc8bf6c0028/assets/dist-Bo8xtUoB.js",
+        "http://127.0.0.1:53770/artifacts/b_1_4_0_6cc8bf6c0028/assets/vite-preload-helper-BVDCNeEa.js",
+        "http://127.0.0.1:53770/artifacts/b_1_4_0_6cc8bf6c0028/assets/_virtual_mf-localSharedImportMap___mfe_internal__mf_b_1_4_0_6cc8bf6c0028__mf_owner__1-BaCESpgK.js",
+        "http://127.0.0.1:53770/artifacts/d_1_1_0_8b17c3717038/remoteEntry.js",
+        "http://127.0.0.1:53770/artifacts/d_1_1_0_8b17c3717038/assets/dist-CzT-8ogd.js",
+        "http://127.0.0.1:53770/artifacts/d_1_1_0_8b17c3717038/assets/vite-preload-helper-DuzaVUar.js",
+        "http://127.0.0.1:53770/artifacts/d_1_1_0_8b17c3717038/assets/_virtual_mf-localSharedImportMap___mfe_internal__mf_d_1_1_0_8b17c3717038__mf_owner__1-BgiyUzOq.js",
+        "http://127.0.0.1:53770/artifacts/d_1_1_0_8b17c3717038/assets/src-Co8_kQOY.js",
+        "http://127.0.0.1:53770/artifacts/b_1_4_0_6cc8bf6c0028/assets/Widget-C3vmy5sd.css",
+        "http://127.0.0.1:53770/artifacts/b_1_4_0_6cc8bf6c0028/assets/_virtual_mf___mfe_internal__mf_b_1_4_0_6cc8bf6c0028__loadRemote__d_mf_1_data__mf_owner__1__loadRemote__-6LDeHEEF.js",
+        "http://127.0.0.1:53770/artifacts/b_1_4_0_6cc8bf6c0028/assets/_virtual_mf___mfe_internal__mf_b_1_4_0_6cc8bf6c0028__loadRemote__platform_mf_1_sdk__mf_owner__1__loadRemote__-Bqk7zvGL.js",
+        "http://127.0.0.1:53770/artifacts/b_1_4_0_6cc8bf6c0028/assets/rolldown-runtime-DQp2zzRu.js",
+        "http://127.0.0.1:53770/artifacts/b_1_4_0_6cc8bf6c0028/assets/hostInit-DFPIMONH.js",
+        "http://127.0.0.1:53770/artifacts/b_1_4_0_6cc8bf6c0028/assets/Widget-BiiMpLC6.js",
+        "http://127.0.0.1:53770/artifacts/b_1_4_0_6cc8bf6c0028/assets/_virtual_mf___mfe_internal__mf_b_1_4_0_6cc8bf6c0028__mf_owner__226140563824246__loadShare__react__loadShare__.js-DgQ7VONi.js",
+        "http://127.0.0.1:53770/artifacts/b_1_4_0_6cc8bf6c0028/assets/_virtual_mf___mfe_internal__mf_b_1_4_0_6cc8bf6c0028__mf_owner__226140563824246__loadShare__shared-B1DGyhpy.js",
+        "http://127.0.0.1:53770/artifacts/a_1_0_0_0321deb69c28/assets/_virtual_mf___mfe_internal__mf_a_1_0_0_0321deb69c28__loadRemote__b_mf_1_Widget__mf_owner__1__loadRemote__-Dre8sHXW.js",
+        "http://127.0.0.1:53770/artifacts/a_1_0_0_0321deb69c28/assets/rolldown-runtime-DQp2zzRu.js",
+        "http://127.0.0.1:53770/artifacts/a_1_0_0_0321deb69c28/assets/hostInit-C2CqsWuv.js",
+        "http://127.0.0.1:53770/artifacts/a_1_0_0_0321deb69c28/assets/src-CmHSmqMT.js",
+        "http://127.0.0.1:53770/artifacts/a_1_0_0_0321deb69c28/assets/_virtual_mf___mfe_internal__mf_a_1_0_0_0321deb69c28__mf_owner__70423062643256__loadShare__react__loadShare__.js-CciXi4sv.js",
+        "http://127.0.0.1:53770/artifacts/c_1_0_0_369b0db5dc78/remoteEntry.js",
+        "http://127.0.0.1:53770/artifacts/c_1_0_0_369b0db5dc78/assets/dist-Bo8xtUoB.js",
+        "http://127.0.0.1:53770/artifacts/c_1_0_0_369b0db5dc78/assets/vite-preload-helper-Dywvt3ca.js",
+        "http://127.0.0.1:53770/artifacts/c_1_0_0_369b0db5dc78/assets/_virtual_mf-localSharedImportMap___mfe_internal__mf_c_1_0_0_369b0db5dc78__mf_owner__1-CIqn5Mh-.js",
+        "http://127.0.0.1:53770/artifacts/b_2_1_0_479272f66af5/remoteEntry.js",
+        "http://127.0.0.1:53770/artifacts/b_2_1_0_479272f66af5/assets/dist-Bo8xtUoB.js",
+        "http://127.0.0.1:53770/artifacts/b_2_1_0_479272f66af5/assets/vite-preload-helper-MNh0XIOp.js",
+        "http://127.0.0.1:53770/artifacts/b_2_1_0_479272f66af5/assets/_virtual_mf-localSharedImportMap___mfe_internal__mf_b_2_1_0_479272f66af5__mf_owner__1-kmQ5k4LN.js",
+        "http://127.0.0.1:53770/artifacts/d_2_1_0_fdd4ea2ac446/remoteEntry.js",
+        "http://127.0.0.1:53770/artifacts/d_2_1_0_fdd4ea2ac446/assets/dist-CzT-8ogd.js",
+        "http://127.0.0.1:53770/artifacts/d_2_1_0_fdd4ea2ac446/assets/vite-preload-helper-D3Pi011h.js",
+        "http://127.0.0.1:53770/artifacts/d_2_1_0_fdd4ea2ac446/assets/_virtual_mf-localSharedImportMap___mfe_internal__mf_d_2_1_0_fdd4ea2ac446__mf_owner__1-DgfV_SLU.js",
+        "http://127.0.0.1:53770/artifacts/d_2_1_0_fdd4ea2ac446/assets/src-ngvGPvrC.js",
+        "http://127.0.0.1:53770/artifacts/b_2_1_0_479272f66af5/assets/Widget-EPjutS18.css",
+        "http://127.0.0.1:53770/artifacts/b_2_1_0_479272f66af5/assets/_virtual_mf___mfe_internal__mf_b_2_1_0_479272f66af5__loadRemote__d_mf_1_data__mf_owner__1__loadRemote__-k3NJ0iS_.js",
+        "http://127.0.0.1:53770/artifacts/b_2_1_0_479272f66af5/assets/_virtual_mf___mfe_internal__mf_b_2_1_0_479272f66af5__loadRemote__platform_mf_1_sdk__mf_owner__1__loadRemote__-Bajl1dHW.js",
+        "http://127.0.0.1:53770/artifacts/b_2_1_0_479272f66af5/assets/rolldown-runtime-DQp2zzRu.js",
+        "http://127.0.0.1:53770/artifacts/b_2_1_0_479272f66af5/assets/hostInit-GZpl63UA.js",
+        "http://127.0.0.1:53770/artifacts/b_2_1_0_479272f66af5/assets/Widget-DpWBr3ys.js",
+        "http://127.0.0.1:53770/artifacts/b_2_1_0_479272f66af5/assets/_virtual_mf___mfe_internal__mf_b_2_1_0_479272f66af5__mf_owner__123185571438837__loadShare__react__loadShare__.js-CJqcos9T.js",
+        "http://127.0.0.1:53770/artifacts/b_2_1_0_479272f66af5/assets/_virtual_mf___mfe_internal__mf_b_2_1_0_479272f66af5__mf_owner__123185571438837__loadShare__shared-fhLrJplx.js",
+        "http://127.0.0.1:53770/artifacts/c_1_0_0_369b0db5dc78/assets/_virtual_mf___mfe_internal__mf_c_1_0_0_369b0db5dc78__loadRemote__b_mf_1_Widget__mf_owner__1__loadRemote__-D1VIc6nr.js",
+        "http://127.0.0.1:53770/artifacts/c_1_0_0_369b0db5dc78/assets/rolldown-runtime-DQp2zzRu.js",
+        "http://127.0.0.1:53770/artifacts/c_1_0_0_369b0db5dc78/assets/hostInit-KHbPpwpA.js",
+        "http://127.0.0.1:53770/artifacts/c_1_0_0_369b0db5dc78/assets/src-1IFQyHoU.js",
+        "http://127.0.0.1:53770/artifacts/c_1_0_0_369b0db5dc78/assets/_virtual_mf___mfe_internal__mf_c_1_0_0_369b0db5dc78__mf_owner__201462083670529__loadShare__react__loadShare__.js-BzwimyJr.js",
+        "http://127.0.0.1:53770/api/runtime/usage"
+      ],
+      "bootRequests": [
+        "http://127.0.0.1:53770/compositions/composition_3b1ed0555ce8d93d32d5e738.json"
+      ],
+      "consoleErrors": [],
+      "pageErrors": [],
+      "failedRequests": [],
+      "proof": {
+        "identities": [
+          {
+            "instanceId": "A",
+            "reactMatches": true,
+            "contextMatches": true,
+            "artifactId": "b_1_4_0_6cc8bf6c0028",
+            "dependencyArtifact": "d_1_1_0_8b17c3717038"
+          },
+          {
+            "instanceId": "C",
+            "reactMatches": true,
+            "contextMatches": true,
+            "artifactId": "b_2_1_0_479272f66af5",
+            "dependencyArtifact": "d_2_1_0_fdd4ea2ac446"
+          }
+        ],
+        "snapshot": {
+          "activeInstances": [
+            {
+              "instanceId": "A",
+              "artifactId": "b_1_4_0_6cc8bf6c0028",
+              "count": 0,
+              "eventCount": 0,
+              "cacheSize": 0
+            },
+            {
+              "instanceId": "C",
+              "artifactId": "b_2_1_0_479272f66af5",
+              "count": 0,
+              "eventCount": 0,
+              "cacheSize": 0
+            }
+          ],
+          "activeSubscriptions": 2,
+          "eventCounts": {
+            "A": 0,
+            "C": 0
+          },
+          "platformVersion": "1.3.1"
+        },
+        "diagnostics": {
+          "compositionId": "composition_3b1ed0555ce8d93d32d5e738",
+          "platformArtifactId": "platform_1_3_1_e25c8d049944",
+          "runtimeBindings": {
+            "a_1_0_0_0321deb69c28": {
+              "b": "b_1_4_0_6cc8bf6c0028"
+            },
+            "b_1_4_0_6cc8bf6c0028": {
+              "d": "d_1_1_0_8b17c3717038"
+            },
+            "b_2_1_0_479272f66af5": {
+              "d": "d_2_1_0_fdd4ea2ac446"
+            },
+            "c_1_0_0_369b0db5dc78": {
+              "b": "b_2_1_0_479272f66af5"
+            }
+          },
+          "bootURL": "/compositions/composition_3b1ed0555ce8d93d32d5e738.json",
+          "containers": [
+            {
+              "id": "platform_1_3_1_e25c8d049944",
+              "name": "mf_platform_1_3_1_e25c8d049944",
+              "entry": "/artifacts/platform_1_3_1_e25c8d049944/remoteEntry.js",
+              "format": "esm",
+              "status": "initialized",
+              "loadAttempts": 1,
+              "loadCount": 1,
+              "initCalls": 5,
+              "initCount": 1,
+              "lastError": null
+            },
+            {
+              "id": "a_1_0_0_0321deb69c28",
+              "name": "mf_a_1_0_0_0321deb69c28",
+              "entry": "/artifacts/a_1_0_0_0321deb69c28/remoteEntry.js",
+              "format": "esm",
+              "status": "initialized",
+              "loadAttempts": 1,
+              "loadCount": 1,
+              "initCalls": 1,
+              "initCount": 1,
+              "lastError": null
+            },
+            {
+              "id": "b_1_4_0_6cc8bf6c0028",
+              "name": "mf_b_1_4_0_6cc8bf6c0028",
+              "entry": "/artifacts/b_1_4_0_6cc8bf6c0028/remoteEntry.js",
+              "format": "esm",
+              "status": "initialized",
+              "loadAttempts": 1,
+              "loadCount": 1,
+              "initCalls": 2,
+              "initCount": 1,
+              "lastError": null
+            },
+            {
+              "id": "d_1_1_0_8b17c3717038",
+              "name": "mf_d_1_1_0_8b17c3717038",
+              "entry": "/artifacts/d_1_1_0_8b17c3717038/remoteEntry.js",
+              "format": "esm",
+              "status": "initialized",
+              "loadAttempts": 1,
+              "loadCount": 1,
+              "initCalls": 2,
+              "initCount": 1,
+              "lastError": null
+            },
+            {
+              "id": "c_1_0_0_369b0db5dc78",
+              "name": "mf_c_1_0_0_369b0db5dc78",
+              "entry": "/artifacts/c_1_0_0_369b0db5dc78/remoteEntry.js",
+              "format": "esm",
+              "status": "initialized",
+              "loadAttempts": 1,
+              "loadCount": 1,
+              "initCalls": 1,
+              "initCount": 1,
+              "lastError": null
+            },
+            {
+              "id": "b_2_1_0_479272f66af5",
+              "name": "mf_b_2_1_0_479272f66af5",
+              "entry": "/artifacts/b_2_1_0_479272f66af5/remoteEntry.js",
+              "format": "esm",
+              "status": "initialized",
+              "loadAttempts": 1,
+              "loadCount": 1,
+              "initCalls": 2,
+              "initCount": 1,
+              "lastError": null
+            },
+            {
+              "id": "d_2_1_0_fdd4ea2ac446",
+              "name": "mf_d_2_1_0_fdd4ea2ac446",
+              "entry": "/artifacts/d_2_1_0_fdd4ea2ac446/remoteEntry.js",
+              "format": "esm",
+              "status": "initialized",
+              "loadAttempts": 1,
+              "loadCount": 1,
+              "initCalls": 2,
+              "initCount": 1,
+              "lastError": null
+            }
+          ],
+          "loadedContainerIds": [
+            "platform_1_3_1_e25c8d049944",
+            "a_1_0_0_0321deb69c28",
+            "b_1_4_0_6cc8bf6c0028",
+            "d_1_1_0_8b17c3717038",
+            "c_1_0_0_369b0db5dc78",
+            "b_2_1_0_479272f66af5",
+            "d_2_1_0_fdd4ea2ac446"
+          ]
+        },
+        "frozen": true
+      }
+    },
+    {
+      "name": "both-new-D-ca",
+      "remoteEntries": [
+        {
+          "url": "http://127.0.0.1:53770/artifacts/shell_1_3_0_46ac9795cddf/remoteEntry.js",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:53770/artifacts/platform_1_3_1_e25c8d049944/remoteEntry.js",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:53770/artifacts/c_1_0_0_369b0db5dc78/remoteEntry.js",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:53770/artifacts/b_2_1_0_479272f66af5/remoteEntry.js",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:53770/artifacts/d_2_1_0_fdd4ea2ac446/remoteEntry.js",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:53770/artifacts/a_1_0_0_0321deb69c28/remoteEntry.js",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:53770/artifacts/b_1_4_0_6cc8bf6c0028/remoteEntry.js",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:53770/artifacts/d_1_1_0_8b17c3717038/remoteEntry.js",
+          "status": 200
+        }
+      ],
+      "requests": [
+        "http://127.0.0.1:53770/?order=ca",
+        "http://127.0.0.1:53770/artifacts/shell_1_3_0_46ac9795cddf/assets/bootstrap-OdD1Lhy9.css",
+        "http://127.0.0.1:53770/runtime-lease.js",
+        "http://127.0.0.1:53770/runtime-usage.js",
+        "http://127.0.0.1:53770/artifacts/shell_1_3_0_46ac9795cddf/shell.js",
+        "http://127.0.0.1:53770/artifacts/shell_1_3_0_46ac9795cddf/assets/import-module-DeeNAblr.js",
+        "http://127.0.0.1:53770/artifacts/shell_1_3_0_46ac9795cddf/assets/vite-preload-helper-Cv7PuoXI.js",
+        "http://127.0.0.1:53770/api/runtime/config",
+        "http://127.0.0.1:53770/artifacts/shell_1_3_0_46ac9795cddf/assets/hostInit-C2f0n5H5.js",
+        "http://127.0.0.1:53770/artifacts/shell_1_3_0_46ac9795cddf/remoteEntry.js",
+        "http://127.0.0.1:53770/artifacts/shell_1_3_0_46ac9795cddf/assets/dist-Bo8xtUoB.js",
+        "http://127.0.0.1:53770/artifacts/shell_1_3_0_46ac9795cddf/assets/_virtual_mf-localSharedImportMap___mfe_internal__mf_shell_1_3_0_46ac9795cddf__mf_owner__1-sG_et4NI.js",
+        "http://127.0.0.1:53770/artifacts/shell_1_3_0_46ac9795cddf/assets/_virtual_mf___mfe_internal__mf_shell_1_3_0_46ac9795cddf__mf_owner__165577377313482__loadShare__react__loadShare__.js-C3dpZGwB.js",
+        "http://127.0.0.1:53770/artifacts/shell_1_3_0_46ac9795cddf/assets/rolldown-runtime-DQp2zzRu.js",
+        "http://127.0.0.1:53770/artifacts/shell_1_3_0_46ac9795cddf/assets/_virtual_mf___mfe_internal__mf_shell_1_3_0_46ac9795cddf__mf_owner__165577377313482__prebuild__react_mf_2_dom_mf_1_client__prebuild__-DfBkG7Mg.js",
+        "http://127.0.0.1:53770/artifacts/shell_1_3_0_46ac9795cddf/assets/react-dom-DrOk3jpZ.js",
+        "http://127.0.0.1:53770/artifacts/shell_1_3_0_46ac9795cddf/assets/pendingShares-Bb4FnSwh.js",
+        "http://127.0.0.1:53770/artifacts/shell_1_3_0_46ac9795cddf/assets/src-LfY5aFQi.js",
+        "http://127.0.0.1:53770/compositions/composition_3b1ed0555ce8d93d32d5e738.json",
+        "http://127.0.0.1:53770/api/runtime/config",
+        "http://127.0.0.1:53770/api/runtime/usage",
+        "http://127.0.0.1:53770/artifacts/shell_1_3_0_46ac9795cddf/assets/_virtual_mf___mfe_internal__mf_shell_1_3_0_46ac9795cddf__loadRemote__platform_mf_1_sdk__mf_owner__1__loadRemote__-Duvavig8.js",
+        "http://127.0.0.1:53770/artifacts/platform_1_3_1_e25c8d049944/remoteEntry.js",
+        "http://127.0.0.1:53770/artifacts/platform_1_3_1_e25c8d049944/assets/dist-Bo8xtUoB.js",
+        "http://127.0.0.1:53770/artifacts/platform_1_3_1_e25c8d049944/assets/vite-preload-helper-CtLp1C0p.js",
+        "http://127.0.0.1:53770/artifacts/platform_1_3_1_e25c8d049944/assets/_virtual_mf-localSharedImportMap___mfe_internal__mf_platform_1_3_1_e25c8d049944__mf_owner__1-5YRVjoO3.js",
+        "http://127.0.0.1:53770/artifacts/shell_1_3_0_46ac9795cddf/assets/_virtual_mf___mfe_internal__mf_shell_1_3_0_46ac9795cddf__mf_owner__165577377313482__prebuild__react_mf_2_dom__prebuild__-Bo9hxsTX.js",
+        "http://127.0.0.1:53770/artifacts/platform_1_3_1_e25c8d049944/assets/sdk-BbXiZY3X.css",
+        "http://127.0.0.1:53770/artifacts/platform_1_3_1_e25c8d049944/assets/sdk-ClnQiGJZ.js",
+        "http://127.0.0.1:53770/artifacts/platform_1_3_1_e25c8d049944/assets/_virtual_mf___mfe_internal__mf_platform_1_3_1_e25c8d049944__mf_owner__242075772864893__loadShare__react__loadShare__.js-B3vX5iHX.js",
+        "http://127.0.0.1:53770/artifacts/platform_1_3_1_e25c8d049944/assets/rolldown-runtime-SbdDWaPq.js",
+        "http://127.0.0.1:53770/artifacts/shell_1_3_0_46ac9795cddf/assets/bootstrap-Cs4gh1MW.js",
+        "http://127.0.0.1:53770/artifacts/shell_1_3_0_46ac9795cddf/assets/_virtual_mf___mfe_internal__mf_shell_1_3_0_46ac9795cddf__mf_owner__165577377313482__loadShare__react_mf_2_dom_mf_1_client__loadShare__.js-DGXkM6s5.js",
+        "http://127.0.0.1:53770/artifacts/c_1_0_0_369b0db5dc78/remoteEntry.js",
+        "http://127.0.0.1:53770/artifacts/c_1_0_0_369b0db5dc78/assets/dist-Bo8xtUoB.js",
+        "http://127.0.0.1:53770/artifacts/c_1_0_0_369b0db5dc78/assets/vite-preload-helper-Dywvt3ca.js",
+        "http://127.0.0.1:53770/artifacts/c_1_0_0_369b0db5dc78/assets/_virtual_mf-localSharedImportMap___mfe_internal__mf_c_1_0_0_369b0db5dc78__mf_owner__1-CIqn5Mh-.js",
+        "http://127.0.0.1:53770/artifacts/b_2_1_0_479272f66af5/remoteEntry.js",
+        "http://127.0.0.1:53770/artifacts/b_2_1_0_479272f66af5/assets/dist-Bo8xtUoB.js",
+        "http://127.0.0.1:53770/artifacts/b_2_1_0_479272f66af5/assets/vite-preload-helper-MNh0XIOp.js",
+        "http://127.0.0.1:53770/artifacts/b_2_1_0_479272f66af5/assets/_virtual_mf-localSharedImportMap___mfe_internal__mf_b_2_1_0_479272f66af5__mf_owner__1-kmQ5k4LN.js",
+        "http://127.0.0.1:53770/artifacts/d_2_1_0_fdd4ea2ac446/remoteEntry.js",
+        "http://127.0.0.1:53770/artifacts/d_2_1_0_fdd4ea2ac446/assets/dist-CzT-8ogd.js",
+        "http://127.0.0.1:53770/artifacts/d_2_1_0_fdd4ea2ac446/assets/vite-preload-helper-D3Pi011h.js",
+        "http://127.0.0.1:53770/artifacts/d_2_1_0_fdd4ea2ac446/assets/_virtual_mf-localSharedImportMap___mfe_internal__mf_d_2_1_0_fdd4ea2ac446__mf_owner__1-DgfV_SLU.js",
+        "http://127.0.0.1:53770/artifacts/d_2_1_0_fdd4ea2ac446/assets/src-ngvGPvrC.js",
+        "http://127.0.0.1:53770/artifacts/b_2_1_0_479272f66af5/assets/Widget-EPjutS18.css",
+        "http://127.0.0.1:53770/artifacts/b_2_1_0_479272f66af5/assets/_virtual_mf___mfe_internal__mf_b_2_1_0_479272f66af5__loadRemote__d_mf_1_data__mf_owner__1__loadRemote__-k3NJ0iS_.js",
+        "http://127.0.0.1:53770/artifacts/b_2_1_0_479272f66af5/assets/_virtual_mf___mfe_internal__mf_b_2_1_0_479272f66af5__loadRemote__platform_mf_1_sdk__mf_owner__1__loadRemote__-Bajl1dHW.js",
+        "http://127.0.0.1:53770/artifacts/b_2_1_0_479272f66af5/assets/rolldown-runtime-DQp2zzRu.js",
+        "http://127.0.0.1:53770/artifacts/b_2_1_0_479272f66af5/assets/hostInit-GZpl63UA.js",
+        "http://127.0.0.1:53770/artifacts/b_2_1_0_479272f66af5/assets/Widget-DpWBr3ys.js",
+        "http://127.0.0.1:53770/artifacts/b_2_1_0_479272f66af5/assets/_virtual_mf___mfe_internal__mf_b_2_1_0_479272f66af5__mf_owner__123185571438837__loadShare__react__loadShare__.js-CJqcos9T.js",
+        "http://127.0.0.1:53770/artifacts/b_2_1_0_479272f66af5/assets/_virtual_mf___mfe_internal__mf_b_2_1_0_479272f66af5__mf_owner__123185571438837__loadShare__shared-fhLrJplx.js",
+        "http://127.0.0.1:53770/artifacts/c_1_0_0_369b0db5dc78/assets/_virtual_mf___mfe_internal__mf_c_1_0_0_369b0db5dc78__loadRemote__b_mf_1_Widget__mf_owner__1__loadRemote__-D1VIc6nr.js",
+        "http://127.0.0.1:53770/artifacts/c_1_0_0_369b0db5dc78/assets/rolldown-runtime-DQp2zzRu.js",
+        "http://127.0.0.1:53770/artifacts/c_1_0_0_369b0db5dc78/assets/hostInit-KHbPpwpA.js",
+        "http://127.0.0.1:53770/artifacts/c_1_0_0_369b0db5dc78/assets/src-1IFQyHoU.js",
+        "http://127.0.0.1:53770/artifacts/c_1_0_0_369b0db5dc78/assets/_virtual_mf___mfe_internal__mf_c_1_0_0_369b0db5dc78__mf_owner__201462083670529__loadShare__react__loadShare__.js-BzwimyJr.js",
+        "http://127.0.0.1:53770/artifacts/a_1_0_0_0321deb69c28/remoteEntry.js",
+        "http://127.0.0.1:53770/artifacts/a_1_0_0_0321deb69c28/assets/dist-Bo8xtUoB.js",
+        "http://127.0.0.1:53770/artifacts/a_1_0_0_0321deb69c28/assets/vite-preload-helper-DotLz9Zn.js",
+        "http://127.0.0.1:53770/artifacts/a_1_0_0_0321deb69c28/assets/_virtual_mf-localSharedImportMap___mfe_internal__mf_a_1_0_0_0321deb69c28__mf_owner__1-CxwundFr.js",
+        "http://127.0.0.1:53770/artifacts/b_1_4_0_6cc8bf6c0028/remoteEntry.js",
+        "http://127.0.0.1:53770/artifacts/b_1_4_0_6cc8bf6c0028/assets/dist-Bo8xtUoB.js",
+        "http://127.0.0.1:53770/artifacts/b_1_4_0_6cc8bf6c0028/assets/vite-preload-helper-BVDCNeEa.js",
+        "http://127.0.0.1:53770/artifacts/b_1_4_0_6cc8bf6c0028/assets/_virtual_mf-localSharedImportMap___mfe_internal__mf_b_1_4_0_6cc8bf6c0028__mf_owner__1-BaCESpgK.js",
+        "http://127.0.0.1:53770/artifacts/d_1_1_0_8b17c3717038/remoteEntry.js",
+        "http://127.0.0.1:53770/artifacts/d_1_1_0_8b17c3717038/assets/dist-CzT-8ogd.js",
+        "http://127.0.0.1:53770/artifacts/d_1_1_0_8b17c3717038/assets/vite-preload-helper-DuzaVUar.js",
+        "http://127.0.0.1:53770/artifacts/d_1_1_0_8b17c3717038/assets/_virtual_mf-localSharedImportMap___mfe_internal__mf_d_1_1_0_8b17c3717038__mf_owner__1-BgiyUzOq.js",
+        "http://127.0.0.1:53770/artifacts/d_1_1_0_8b17c3717038/assets/src-Co8_kQOY.js",
+        "http://127.0.0.1:53770/artifacts/b_1_4_0_6cc8bf6c0028/assets/Widget-C3vmy5sd.css",
+        "http://127.0.0.1:53770/artifacts/b_1_4_0_6cc8bf6c0028/assets/_virtual_mf___mfe_internal__mf_b_1_4_0_6cc8bf6c0028__loadRemote__d_mf_1_data__mf_owner__1__loadRemote__-6LDeHEEF.js",
+        "http://127.0.0.1:53770/artifacts/b_1_4_0_6cc8bf6c0028/assets/_virtual_mf___mfe_internal__mf_b_1_4_0_6cc8bf6c0028__loadRemote__platform_mf_1_sdk__mf_owner__1__loadRemote__-Bqk7zvGL.js",
+        "http://127.0.0.1:53770/artifacts/b_1_4_0_6cc8bf6c0028/assets/rolldown-runtime-DQp2zzRu.js",
+        "http://127.0.0.1:53770/artifacts/b_1_4_0_6cc8bf6c0028/assets/hostInit-DFPIMONH.js",
+        "http://127.0.0.1:53770/artifacts/b_1_4_0_6cc8bf6c0028/assets/Widget-BiiMpLC6.js",
+        "http://127.0.0.1:53770/artifacts/b_1_4_0_6cc8bf6c0028/assets/_virtual_mf___mfe_internal__mf_b_1_4_0_6cc8bf6c0028__mf_owner__226140563824246__loadShare__react__loadShare__.js-DgQ7VONi.js",
+        "http://127.0.0.1:53770/artifacts/b_1_4_0_6cc8bf6c0028/assets/_virtual_mf___mfe_internal__mf_b_1_4_0_6cc8bf6c0028__mf_owner__226140563824246__loadShare__shared-B1DGyhpy.js",
+        "http://127.0.0.1:53770/artifacts/a_1_0_0_0321deb69c28/assets/_virtual_mf___mfe_internal__mf_a_1_0_0_0321deb69c28__loadRemote__b_mf_1_Widget__mf_owner__1__loadRemote__-Dre8sHXW.js",
+        "http://127.0.0.1:53770/artifacts/a_1_0_0_0321deb69c28/assets/rolldown-runtime-DQp2zzRu.js",
+        "http://127.0.0.1:53770/artifacts/a_1_0_0_0321deb69c28/assets/hostInit-C2CqsWuv.js",
+        "http://127.0.0.1:53770/artifacts/a_1_0_0_0321deb69c28/assets/src-CmHSmqMT.js",
+        "http://127.0.0.1:53770/artifacts/a_1_0_0_0321deb69c28/assets/_virtual_mf___mfe_internal__mf_a_1_0_0_0321deb69c28__mf_owner__70423062643256__loadShare__react__loadShare__.js-CciXi4sv.js",
+        "http://127.0.0.1:53770/api/runtime/usage"
+      ],
+      "bootRequests": [
+        "http://127.0.0.1:53770/compositions/composition_3b1ed0555ce8d93d32d5e738.json"
+      ],
+      "consoleErrors": [],
+      "pageErrors": [],
+      "failedRequests": [],
+      "proof": {
+        "identities": [
+          {
+            "instanceId": "C",
+            "reactMatches": true,
+            "contextMatches": true,
+            "artifactId": "b_2_1_0_479272f66af5",
+            "dependencyArtifact": "d_2_1_0_fdd4ea2ac446"
+          },
+          {
+            "instanceId": "A",
+            "reactMatches": true,
+            "contextMatches": true,
+            "artifactId": "b_1_4_0_6cc8bf6c0028",
+            "dependencyArtifact": "d_1_1_0_8b17c3717038"
+          }
+        ],
+        "snapshot": {
+          "activeInstances": [
+            {
+              "instanceId": "C",
+              "artifactId": "b_2_1_0_479272f66af5",
+              "count": 0,
+              "eventCount": 0,
+              "cacheSize": 0
+            },
+            {
+              "instanceId": "A",
+              "artifactId": "b_1_4_0_6cc8bf6c0028",
+              "count": 0,
+              "eventCount": 0,
+              "cacheSize": 0
+            }
+          ],
+          "activeSubscriptions": 2,
+          "eventCounts": {
+            "C": 0,
+            "A": 0
+          },
+          "platformVersion": "1.3.1"
+        },
+        "diagnostics": {
+          "compositionId": "composition_3b1ed0555ce8d93d32d5e738",
+          "platformArtifactId": "platform_1_3_1_e25c8d049944",
+          "runtimeBindings": {
+            "a_1_0_0_0321deb69c28": {
+              "b": "b_1_4_0_6cc8bf6c0028"
+            },
+            "b_1_4_0_6cc8bf6c0028": {
+              "d": "d_1_1_0_8b17c3717038"
+            },
+            "b_2_1_0_479272f66af5": {
+              "d": "d_2_1_0_fdd4ea2ac446"
+            },
+            "c_1_0_0_369b0db5dc78": {
+              "b": "b_2_1_0_479272f66af5"
+            }
+          },
+          "bootURL": "/compositions/composition_3b1ed0555ce8d93d32d5e738.json",
+          "containers": [
+            {
+              "id": "platform_1_3_1_e25c8d049944",
+              "name": "mf_platform_1_3_1_e25c8d049944",
+              "entry": "/artifacts/platform_1_3_1_e25c8d049944/remoteEntry.js",
+              "format": "esm",
+              "status": "initialized",
+              "loadAttempts": 1,
+              "loadCount": 1,
+              "initCalls": 5,
+              "initCount": 1,
+              "lastError": null
+            },
+            {
+              "id": "c_1_0_0_369b0db5dc78",
+              "name": "mf_c_1_0_0_369b0db5dc78",
+              "entry": "/artifacts/c_1_0_0_369b0db5dc78/remoteEntry.js",
+              "format": "esm",
+              "status": "initialized",
+              "loadAttempts": 1,
+              "loadCount": 1,
+              "initCalls": 1,
+              "initCount": 1,
+              "lastError": null
+            },
+            {
+              "id": "b_2_1_0_479272f66af5",
+              "name": "mf_b_2_1_0_479272f66af5",
+              "entry": "/artifacts/b_2_1_0_479272f66af5/remoteEntry.js",
+              "format": "esm",
+              "status": "initialized",
+              "loadAttempts": 1,
+              "loadCount": 1,
+              "initCalls": 2,
+              "initCount": 1,
+              "lastError": null
+            },
+            {
+              "id": "d_2_1_0_fdd4ea2ac446",
+              "name": "mf_d_2_1_0_fdd4ea2ac446",
+              "entry": "/artifacts/d_2_1_0_fdd4ea2ac446/remoteEntry.js",
+              "format": "esm",
+              "status": "initialized",
+              "loadAttempts": 1,
+              "loadCount": 1,
+              "initCalls": 2,
+              "initCount": 1,
+              "lastError": null
+            },
+            {
+              "id": "a_1_0_0_0321deb69c28",
+              "name": "mf_a_1_0_0_0321deb69c28",
+              "entry": "/artifacts/a_1_0_0_0321deb69c28/remoteEntry.js",
+              "format": "esm",
+              "status": "initialized",
+              "loadAttempts": 1,
+              "loadCount": 1,
+              "initCalls": 1,
+              "initCount": 1,
+              "lastError": null
+            },
+            {
+              "id": "b_1_4_0_6cc8bf6c0028",
+              "name": "mf_b_1_4_0_6cc8bf6c0028",
+              "entry": "/artifacts/b_1_4_0_6cc8bf6c0028/remoteEntry.js",
+              "format": "esm",
+              "status": "initialized",
+              "loadAttempts": 1,
+              "loadCount": 1,
+              "initCalls": 2,
+              "initCount": 1,
+              "lastError": null
+            },
+            {
+              "id": "d_1_1_0_8b17c3717038",
+              "name": "mf_d_1_1_0_8b17c3717038",
+              "entry": "/artifacts/d_1_1_0_8b17c3717038/remoteEntry.js",
+              "format": "esm",
+              "status": "initialized",
+              "loadAttempts": 1,
+              "loadCount": 1,
+              "initCalls": 2,
+              "initCount": 1,
+              "lastError": null
+            }
+          ],
+          "loadedContainerIds": [
+            "platform_1_3_1_e25c8d049944",
+            "c_1_0_0_369b0db5dc78",
+            "b_2_1_0_479272f66af5",
+            "d_2_1_0_fdd4ea2ac446",
+            "a_1_0_0_0321deb69c28",
+            "b_1_4_0_6cc8bf6c0028",
+            "d_1_1_0_8b17c3717038"
+          ]
+        },
+        "frozen": true
+      }
+    },
+    {
+      "name": "new-tab-after-D-rollback",
+      "remoteEntries": [
+        {
+          "url": "http://127.0.0.1:53770/artifacts/shell_1_3_0_46ac9795cddf/remoteEntry.js",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:53770/artifacts/platform_1_3_1_e25c8d049944/remoteEntry.js",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:53770/artifacts/c_1_0_0_369b0db5dc78/remoteEntry.js",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:53770/artifacts/b_2_1_0_479272f66af5/remoteEntry.js",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:53770/artifacts/d_2_0_0_a4251bae8bc7/remoteEntry.js",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:53770/artifacts/a_1_0_0_0321deb69c28/remoteEntry.js",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:53770/artifacts/b_1_4_0_6cc8bf6c0028/remoteEntry.js",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:53770/artifacts/d_1_0_0_c6adbe1cb721/remoteEntry.js",
+          "status": 200
+        }
+      ],
+      "requests": [
+        "http://127.0.0.1:53770/?order=ca",
+        "http://127.0.0.1:53770/artifacts/shell_1_3_0_46ac9795cddf/assets/bootstrap-OdD1Lhy9.css",
+        "http://127.0.0.1:53770/runtime-lease.js",
+        "http://127.0.0.1:53770/runtime-usage.js",
+        "http://127.0.0.1:53770/artifacts/shell_1_3_0_46ac9795cddf/shell.js",
+        "http://127.0.0.1:53770/artifacts/shell_1_3_0_46ac9795cddf/assets/import-module-DeeNAblr.js",
+        "http://127.0.0.1:53770/artifacts/shell_1_3_0_46ac9795cddf/assets/vite-preload-helper-Cv7PuoXI.js",
+        "http://127.0.0.1:53770/api/runtime/config",
+        "http://127.0.0.1:53770/artifacts/shell_1_3_0_46ac9795cddf/assets/hostInit-C2f0n5H5.js",
+        "http://127.0.0.1:53770/artifacts/shell_1_3_0_46ac9795cddf/remoteEntry.js",
+        "http://127.0.0.1:53770/artifacts/shell_1_3_0_46ac9795cddf/assets/dist-Bo8xtUoB.js",
+        "http://127.0.0.1:53770/artifacts/shell_1_3_0_46ac9795cddf/assets/_virtual_mf-localSharedImportMap___mfe_internal__mf_shell_1_3_0_46ac9795cddf__mf_owner__1-sG_et4NI.js",
+        "http://127.0.0.1:53770/artifacts/shell_1_3_0_46ac9795cddf/assets/_virtual_mf___mfe_internal__mf_shell_1_3_0_46ac9795cddf__mf_owner__165577377313482__loadShare__react__loadShare__.js-C3dpZGwB.js",
+        "http://127.0.0.1:53770/artifacts/shell_1_3_0_46ac9795cddf/assets/rolldown-runtime-DQp2zzRu.js",
+        "http://127.0.0.1:53770/artifacts/shell_1_3_0_46ac9795cddf/assets/_virtual_mf___mfe_internal__mf_shell_1_3_0_46ac9795cddf__mf_owner__165577377313482__prebuild__react_mf_2_dom_mf_1_client__prebuild__-DfBkG7Mg.js",
+        "http://127.0.0.1:53770/artifacts/shell_1_3_0_46ac9795cddf/assets/react-dom-DrOk3jpZ.js",
+        "http://127.0.0.1:53770/artifacts/shell_1_3_0_46ac9795cddf/assets/pendingShares-Bb4FnSwh.js",
+        "http://127.0.0.1:53770/artifacts/shell_1_3_0_46ac9795cddf/assets/src-LfY5aFQi.js",
+        "http://127.0.0.1:53770/compositions/composition_88ee38ebfe391a69f3cdb828.json",
+        "http://127.0.0.1:53770/api/runtime/config",
+        "http://127.0.0.1:53770/api/runtime/usage",
+        "http://127.0.0.1:53770/artifacts/shell_1_3_0_46ac9795cddf/assets/_virtual_mf___mfe_internal__mf_shell_1_3_0_46ac9795cddf__loadRemote__platform_mf_1_sdk__mf_owner__1__loadRemote__-Duvavig8.js",
+        "http://127.0.0.1:53770/artifacts/platform_1_3_1_e25c8d049944/remoteEntry.js",
+        "http://127.0.0.1:53770/artifacts/platform_1_3_1_e25c8d049944/assets/dist-Bo8xtUoB.js",
+        "http://127.0.0.1:53770/artifacts/platform_1_3_1_e25c8d049944/assets/vite-preload-helper-CtLp1C0p.js",
+        "http://127.0.0.1:53770/artifacts/platform_1_3_1_e25c8d049944/assets/_virtual_mf-localSharedImportMap___mfe_internal__mf_platform_1_3_1_e25c8d049944__mf_owner__1-5YRVjoO3.js",
+        "http://127.0.0.1:53770/artifacts/shell_1_3_0_46ac9795cddf/assets/_virtual_mf___mfe_internal__mf_shell_1_3_0_46ac9795cddf__mf_owner__165577377313482__prebuild__react_mf_2_dom__prebuild__-Bo9hxsTX.js",
+        "http://127.0.0.1:53770/artifacts/platform_1_3_1_e25c8d049944/assets/sdk-BbXiZY3X.css",
+        "http://127.0.0.1:53770/artifacts/platform_1_3_1_e25c8d049944/assets/sdk-ClnQiGJZ.js",
+        "http://127.0.0.1:53770/artifacts/platform_1_3_1_e25c8d049944/assets/_virtual_mf___mfe_internal__mf_platform_1_3_1_e25c8d049944__mf_owner__242075772864893__loadShare__react__loadShare__.js-B3vX5iHX.js",
+        "http://127.0.0.1:53770/artifacts/platform_1_3_1_e25c8d049944/assets/rolldown-runtime-SbdDWaPq.js",
+        "http://127.0.0.1:53770/artifacts/shell_1_3_0_46ac9795cddf/assets/bootstrap-Cs4gh1MW.js",
+        "http://127.0.0.1:53770/artifacts/shell_1_3_0_46ac9795cddf/assets/_virtual_mf___mfe_internal__mf_shell_1_3_0_46ac9795cddf__mf_owner__165577377313482__loadShare__react_mf_2_dom_mf_1_client__loadShare__.js-DGXkM6s5.js",
+        "http://127.0.0.1:53770/artifacts/c_1_0_0_369b0db5dc78/remoteEntry.js",
+        "http://127.0.0.1:53770/artifacts/c_1_0_0_369b0db5dc78/assets/dist-Bo8xtUoB.js",
+        "http://127.0.0.1:53770/artifacts/c_1_0_0_369b0db5dc78/assets/vite-preload-helper-Dywvt3ca.js",
+        "http://127.0.0.1:53770/artifacts/c_1_0_0_369b0db5dc78/assets/_virtual_mf-localSharedImportMap___mfe_internal__mf_c_1_0_0_369b0db5dc78__mf_owner__1-CIqn5Mh-.js",
+        "http://127.0.0.1:53770/artifacts/b_2_1_0_479272f66af5/remoteEntry.js",
+        "http://127.0.0.1:53770/artifacts/b_2_1_0_479272f66af5/assets/dist-Bo8xtUoB.js",
+        "http://127.0.0.1:53770/artifacts/b_2_1_0_479272f66af5/assets/vite-preload-helper-MNh0XIOp.js",
+        "http://127.0.0.1:53770/artifacts/b_2_1_0_479272f66af5/assets/_virtual_mf-localSharedImportMap___mfe_internal__mf_b_2_1_0_479272f66af5__mf_owner__1-kmQ5k4LN.js",
+        "http://127.0.0.1:53770/artifacts/d_2_0_0_a4251bae8bc7/remoteEntry.js",
+        "http://127.0.0.1:53770/artifacts/d_2_0_0_a4251bae8bc7/assets/dist-CzT-8ogd.js",
+        "http://127.0.0.1:53770/artifacts/d_2_0_0_a4251bae8bc7/assets/vite-preload-helper-Bdil_hx7.js",
+        "http://127.0.0.1:53770/artifacts/d_2_0_0_a4251bae8bc7/assets/_virtual_mf-localSharedImportMap___mfe_internal__mf_d_2_0_0_a4251bae8bc7__mf_owner__1-CC1gJ7XN.js",
+        "http://127.0.0.1:53770/artifacts/d_2_0_0_a4251bae8bc7/assets/src-CX2GwUvW.js",
+        "http://127.0.0.1:53770/artifacts/b_2_1_0_479272f66af5/assets/Widget-EPjutS18.css",
+        "http://127.0.0.1:53770/artifacts/b_2_1_0_479272f66af5/assets/_virtual_mf___mfe_internal__mf_b_2_1_0_479272f66af5__loadRemote__d_mf_1_data__mf_owner__1__loadRemote__-k3NJ0iS_.js",
+        "http://127.0.0.1:53770/artifacts/b_2_1_0_479272f66af5/assets/_virtual_mf___mfe_internal__mf_b_2_1_0_479272f66af5__loadRemote__platform_mf_1_sdk__mf_owner__1__loadRemote__-Bajl1dHW.js",
+        "http://127.0.0.1:53770/artifacts/b_2_1_0_479272f66af5/assets/rolldown-runtime-DQp2zzRu.js",
+        "http://127.0.0.1:53770/artifacts/b_2_1_0_479272f66af5/assets/hostInit-GZpl63UA.js",
+        "http://127.0.0.1:53770/artifacts/b_2_1_0_479272f66af5/assets/Widget-DpWBr3ys.js",
+        "http://127.0.0.1:53770/artifacts/b_2_1_0_479272f66af5/assets/_virtual_mf___mfe_internal__mf_b_2_1_0_479272f66af5__mf_owner__123185571438837__loadShare__react__loadShare__.js-CJqcos9T.js",
+        "http://127.0.0.1:53770/artifacts/b_2_1_0_479272f66af5/assets/_virtual_mf___mfe_internal__mf_b_2_1_0_479272f66af5__mf_owner__123185571438837__loadShare__shared-fhLrJplx.js",
+        "http://127.0.0.1:53770/artifacts/c_1_0_0_369b0db5dc78/assets/_virtual_mf___mfe_internal__mf_c_1_0_0_369b0db5dc78__loadRemote__b_mf_1_Widget__mf_owner__1__loadRemote__-D1VIc6nr.js",
+        "http://127.0.0.1:53770/artifacts/c_1_0_0_369b0db5dc78/assets/rolldown-runtime-DQp2zzRu.js",
+        "http://127.0.0.1:53770/artifacts/c_1_0_0_369b0db5dc78/assets/hostInit-KHbPpwpA.js",
+        "http://127.0.0.1:53770/artifacts/c_1_0_0_369b0db5dc78/assets/src-1IFQyHoU.js",
+        "http://127.0.0.1:53770/artifacts/c_1_0_0_369b0db5dc78/assets/_virtual_mf___mfe_internal__mf_c_1_0_0_369b0db5dc78__mf_owner__201462083670529__loadShare__react__loadShare__.js-BzwimyJr.js",
+        "http://127.0.0.1:53770/artifacts/a_1_0_0_0321deb69c28/remoteEntry.js",
+        "http://127.0.0.1:53770/artifacts/a_1_0_0_0321deb69c28/assets/dist-Bo8xtUoB.js",
+        "http://127.0.0.1:53770/artifacts/a_1_0_0_0321deb69c28/assets/vite-preload-helper-DotLz9Zn.js",
+        "http://127.0.0.1:53770/artifacts/a_1_0_0_0321deb69c28/assets/_virtual_mf-localSharedImportMap___mfe_internal__mf_a_1_0_0_0321deb69c28__mf_owner__1-CxwundFr.js",
+        "http://127.0.0.1:53770/artifacts/b_1_4_0_6cc8bf6c0028/remoteEntry.js",
+        "http://127.0.0.1:53770/artifacts/b_1_4_0_6cc8bf6c0028/assets/dist-Bo8xtUoB.js",
+        "http://127.0.0.1:53770/artifacts/b_1_4_0_6cc8bf6c0028/assets/vite-preload-helper-BVDCNeEa.js",
+        "http://127.0.0.1:53770/artifacts/b_1_4_0_6cc8bf6c0028/assets/_virtual_mf-localSharedImportMap___mfe_internal__mf_b_1_4_0_6cc8bf6c0028__mf_owner__1-BaCESpgK.js",
+        "http://127.0.0.1:53770/artifacts/d_1_0_0_c6adbe1cb721/remoteEntry.js",
+        "http://127.0.0.1:53770/artifacts/d_1_0_0_c6adbe1cb721/assets/dist-CzT-8ogd.js",
+        "http://127.0.0.1:53770/artifacts/d_1_0_0_c6adbe1cb721/assets/vite-preload-helper-D007Gmx9.js",
+        "http://127.0.0.1:53770/artifacts/d_1_0_0_c6adbe1cb721/assets/_virtual_mf-localSharedImportMap___mfe_internal__mf_d_1_0_0_c6adbe1cb721__mf_owner__1-K9UFUvmk.js",
+        "http://127.0.0.1:53770/artifacts/d_1_0_0_c6adbe1cb721/assets/src-BMVRR_2U.js",
+        "http://127.0.0.1:53770/artifacts/b_1_4_0_6cc8bf6c0028/assets/Widget-C3vmy5sd.css",
+        "http://127.0.0.1:53770/artifacts/b_1_4_0_6cc8bf6c0028/assets/_virtual_mf___mfe_internal__mf_b_1_4_0_6cc8bf6c0028__loadRemote__d_mf_1_data__mf_owner__1__loadRemote__-6LDeHEEF.js",
+        "http://127.0.0.1:53770/artifacts/b_1_4_0_6cc8bf6c0028/assets/_virtual_mf___mfe_internal__mf_b_1_4_0_6cc8bf6c0028__loadRemote__platform_mf_1_sdk__mf_owner__1__loadRemote__-Bqk7zvGL.js",
+        "http://127.0.0.1:53770/artifacts/b_1_4_0_6cc8bf6c0028/assets/rolldown-runtime-DQp2zzRu.js",
+        "http://127.0.0.1:53770/artifacts/b_1_4_0_6cc8bf6c0028/assets/hostInit-DFPIMONH.js",
+        "http://127.0.0.1:53770/artifacts/b_1_4_0_6cc8bf6c0028/assets/Widget-BiiMpLC6.js",
+        "http://127.0.0.1:53770/artifacts/b_1_4_0_6cc8bf6c0028/assets/_virtual_mf___mfe_internal__mf_b_1_4_0_6cc8bf6c0028__mf_owner__226140563824246__loadShare__react__loadShare__.js-DgQ7VONi.js",
+        "http://127.0.0.1:53770/artifacts/b_1_4_0_6cc8bf6c0028/assets/_virtual_mf___mfe_internal__mf_b_1_4_0_6cc8bf6c0028__mf_owner__226140563824246__loadShare__shared-B1DGyhpy.js",
+        "http://127.0.0.1:53770/artifacts/a_1_0_0_0321deb69c28/assets/_virtual_mf___mfe_internal__mf_a_1_0_0_0321deb69c28__loadRemote__b_mf_1_Widget__mf_owner__1__loadRemote__-Dre8sHXW.js",
+        "http://127.0.0.1:53770/artifacts/a_1_0_0_0321deb69c28/assets/rolldown-runtime-DQp2zzRu.js",
+        "http://127.0.0.1:53770/artifacts/a_1_0_0_0321deb69c28/assets/hostInit-C2CqsWuv.js",
+        "http://127.0.0.1:53770/artifacts/a_1_0_0_0321deb69c28/assets/src-CmHSmqMT.js",
+        "http://127.0.0.1:53770/artifacts/a_1_0_0_0321deb69c28/assets/_virtual_mf___mfe_internal__mf_a_1_0_0_0321deb69c28__mf_owner__70423062643256__loadShare__react__loadShare__.js-CciXi4sv.js",
+        "http://127.0.0.1:53770/api/runtime/usage"
+      ],
+      "bootRequests": [
+        "http://127.0.0.1:53770/compositions/composition_88ee38ebfe391a69f3cdb828.json"
+      ],
+      "consoleErrors": [],
+      "pageErrors": [],
+      "failedRequests": [],
+      "proof": {
+        "identities": [
+          {
+            "instanceId": "C",
+            "reactMatches": true,
+            "contextMatches": true,
+            "artifactId": "b_2_1_0_479272f66af5",
+            "dependencyArtifact": "d_2_0_0_a4251bae8bc7"
+          },
+          {
+            "instanceId": "A",
+            "reactMatches": true,
+            "contextMatches": true,
+            "artifactId": "b_1_4_0_6cc8bf6c0028",
+            "dependencyArtifact": "d_1_0_0_c6adbe1cb721"
+          }
+        ],
+        "snapshot": {
+          "activeInstances": [
+            {
+              "instanceId": "C",
+              "artifactId": "b_2_1_0_479272f66af5",
+              "count": 0,
+              "eventCount": 0,
+              "cacheSize": 0
+            },
+            {
+              "instanceId": "A",
+              "artifactId": "b_1_4_0_6cc8bf6c0028",
+              "count": 0,
+              "eventCount": 0,
+              "cacheSize": 0
+            }
+          ],
+          "activeSubscriptions": 2,
+          "eventCounts": {
+            "C": 0,
+            "A": 0
+          },
+          "platformVersion": "1.3.1"
+        },
+        "diagnostics": {
+          "compositionId": "composition_88ee38ebfe391a69f3cdb828",
+          "platformArtifactId": "platform_1_3_1_e25c8d049944",
+          "runtimeBindings": {
+            "a_1_0_0_0321deb69c28": {
+              "b": "b_1_4_0_6cc8bf6c0028"
+            },
+            "b_1_4_0_6cc8bf6c0028": {
+              "d": "d_1_0_0_c6adbe1cb721"
+            },
+            "b_2_1_0_479272f66af5": {
+              "d": "d_2_0_0_a4251bae8bc7"
+            },
+            "c_1_0_0_369b0db5dc78": {
+              "b": "b_2_1_0_479272f66af5"
+            }
+          },
+          "bootURL": "/compositions/composition_88ee38ebfe391a69f3cdb828.json",
+          "containers": [
+            {
+              "id": "platform_1_3_1_e25c8d049944",
+              "name": "mf_platform_1_3_1_e25c8d049944",
+              "entry": "/artifacts/platform_1_3_1_e25c8d049944/remoteEntry.js",
+              "format": "esm",
+              "status": "initialized",
+              "loadAttempts": 1,
+              "loadCount": 1,
+              "initCalls": 5,
+              "initCount": 1,
+              "lastError": null
+            },
+            {
+              "id": "c_1_0_0_369b0db5dc78",
+              "name": "mf_c_1_0_0_369b0db5dc78",
+              "entry": "/artifacts/c_1_0_0_369b0db5dc78/remoteEntry.js",
+              "format": "esm",
+              "status": "initialized",
+              "loadAttempts": 1,
+              "loadCount": 1,
+              "initCalls": 1,
+              "initCount": 1,
+              "lastError": null
+            },
+            {
+              "id": "b_2_1_0_479272f66af5",
+              "name": "mf_b_2_1_0_479272f66af5",
+              "entry": "/artifacts/b_2_1_0_479272f66af5/remoteEntry.js",
+              "format": "esm",
+              "status": "initialized",
+              "loadAttempts": 1,
+              "loadCount": 1,
+              "initCalls": 2,
+              "initCount": 1,
+              "lastError": null
+            },
+            {
+              "id": "d_2_0_0_a4251bae8bc7",
+              "name": "mf_d_2_0_0_a4251bae8bc7",
+              "entry": "/artifacts/d_2_0_0_a4251bae8bc7/remoteEntry.js",
+              "format": "esm",
+              "status": "initialized",
+              "loadAttempts": 1,
+              "loadCount": 1,
+              "initCalls": 2,
+              "initCount": 1,
+              "lastError": null
+            },
+            {
+              "id": "a_1_0_0_0321deb69c28",
+              "name": "mf_a_1_0_0_0321deb69c28",
+              "entry": "/artifacts/a_1_0_0_0321deb69c28/remoteEntry.js",
+              "format": "esm",
+              "status": "initialized",
+              "loadAttempts": 1,
+              "loadCount": 1,
+              "initCalls": 1,
+              "initCount": 1,
+              "lastError": null
+            },
+            {
+              "id": "b_1_4_0_6cc8bf6c0028",
+              "name": "mf_b_1_4_0_6cc8bf6c0028",
+              "entry": "/artifacts/b_1_4_0_6cc8bf6c0028/remoteEntry.js",
+              "format": "esm",
+              "status": "initialized",
+              "loadAttempts": 1,
+              "loadCount": 1,
+              "initCalls": 2,
+              "initCount": 1,
+              "lastError": null
+            },
+            {
+              "id": "d_1_0_0_c6adbe1cb721",
+              "name": "mf_d_1_0_0_c6adbe1cb721",
+              "entry": "/artifacts/d_1_0_0_c6adbe1cb721/remoteEntry.js",
+              "format": "esm",
+              "status": "initialized",
+              "loadAttempts": 1,
+              "loadCount": 1,
+              "initCalls": 2,
+              "initCount": 1,
+              "lastError": null
+            }
+          ],
+          "loadedContainerIds": [
+            "platform_1_3_1_e25c8d049944",
+            "c_1_0_0_369b0db5dc78",
+            "b_2_1_0_479272f66af5",
+            "d_2_0_0_a4251bae8bc7",
+            "a_1_0_0_0321deb69c28",
+            "b_1_4_0_6cc8bf6c0028",
+            "d_1_0_0_c6adbe1cb721"
+          ]
+        },
+        "frozen": true
+      }
+    },
+    {
+      "name": "selected-D-request-failure",
+      "remoteEntries": [
+        {
+          "url": "http://127.0.0.1:53770/artifacts/shell_1_3_0_46ac9795cddf/remoteEntry.js",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:53770/artifacts/platform_1_3_1_e25c8d049944/remoteEntry.js",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:53770/artifacts/a_1_0_0_0321deb69c28/remoteEntry.js",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:53770/artifacts/b_1_4_0_6cc8bf6c0028/remoteEntry.js",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:53770/artifacts/c_1_0_0_369b0db5dc78/remoteEntry.js",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:53770/artifacts/b_2_1_0_479272f66af5/remoteEntry.js",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:53770/artifacts/d_2_1_0_fdd4ea2ac446/remoteEntry.js",
+          "status": 200
+        }
+      ],
+      "requests": [
+        "http://127.0.0.1:53770/?order=ac",
+        "http://127.0.0.1:53770/artifacts/shell_1_3_0_46ac9795cddf/assets/bootstrap-OdD1Lhy9.css",
+        "http://127.0.0.1:53770/runtime-lease.js",
+        "http://127.0.0.1:53770/artifacts/shell_1_3_0_46ac9795cddf/shell.js",
+        "http://127.0.0.1:53770/runtime-usage.js",
+        "http://127.0.0.1:53770/artifacts/shell_1_3_0_46ac9795cddf/assets/import-module-DeeNAblr.js",
+        "http://127.0.0.1:53770/artifacts/shell_1_3_0_46ac9795cddf/assets/vite-preload-helper-Cv7PuoXI.js",
+        "http://127.0.0.1:53770/api/runtime/config",
+        "http://127.0.0.1:53770/artifacts/shell_1_3_0_46ac9795cddf/assets/hostInit-C2f0n5H5.js",
+        "http://127.0.0.1:53770/artifacts/shell_1_3_0_46ac9795cddf/remoteEntry.js",
+        "http://127.0.0.1:53770/artifacts/shell_1_3_0_46ac9795cddf/assets/dist-Bo8xtUoB.js",
+        "http://127.0.0.1:53770/artifacts/shell_1_3_0_46ac9795cddf/assets/_virtual_mf-localSharedImportMap___mfe_internal__mf_shell_1_3_0_46ac9795cddf__mf_owner__1-sG_et4NI.js",
+        "http://127.0.0.1:53770/artifacts/shell_1_3_0_46ac9795cddf/assets/_virtual_mf___mfe_internal__mf_shell_1_3_0_46ac9795cddf__mf_owner__165577377313482__loadShare__react__loadShare__.js-C3dpZGwB.js",
+        "http://127.0.0.1:53770/artifacts/shell_1_3_0_46ac9795cddf/assets/rolldown-runtime-DQp2zzRu.js",
+        "http://127.0.0.1:53770/artifacts/shell_1_3_0_46ac9795cddf/assets/_virtual_mf___mfe_internal__mf_shell_1_3_0_46ac9795cddf__mf_owner__165577377313482__prebuild__react_mf_2_dom_mf_1_client__prebuild__-DfBkG7Mg.js",
+        "http://127.0.0.1:53770/artifacts/shell_1_3_0_46ac9795cddf/assets/react-dom-DrOk3jpZ.js",
+        "http://127.0.0.1:53770/artifacts/shell_1_3_0_46ac9795cddf/assets/pendingShares-Bb4FnSwh.js",
+        "http://127.0.0.1:53770/artifacts/shell_1_3_0_46ac9795cddf/assets/src-LfY5aFQi.js",
+        "http://127.0.0.1:53770/compositions/composition_3b1ed0555ce8d93d32d5e738.json",
+        "http://127.0.0.1:53770/api/runtime/config",
+        "http://127.0.0.1:53770/api/runtime/usage",
+        "http://127.0.0.1:53770/artifacts/shell_1_3_0_46ac9795cddf/assets/_virtual_mf___mfe_internal__mf_shell_1_3_0_46ac9795cddf__loadRemote__platform_mf_1_sdk__mf_owner__1__loadRemote__-Duvavig8.js",
+        "http://127.0.0.1:53770/artifacts/platform_1_3_1_e25c8d049944/remoteEntry.js",
+        "http://127.0.0.1:53770/artifacts/platform_1_3_1_e25c8d049944/assets/dist-Bo8xtUoB.js",
+        "http://127.0.0.1:53770/artifacts/platform_1_3_1_e25c8d049944/assets/vite-preload-helper-CtLp1C0p.js",
+        "http://127.0.0.1:53770/artifacts/platform_1_3_1_e25c8d049944/assets/_virtual_mf-localSharedImportMap___mfe_internal__mf_platform_1_3_1_e25c8d049944__mf_owner__1-5YRVjoO3.js",
+        "http://127.0.0.1:53770/artifacts/shell_1_3_0_46ac9795cddf/assets/_virtual_mf___mfe_internal__mf_shell_1_3_0_46ac9795cddf__mf_owner__165577377313482__prebuild__react_mf_2_dom__prebuild__-Bo9hxsTX.js",
+        "http://127.0.0.1:53770/artifacts/platform_1_3_1_e25c8d049944/assets/sdk-BbXiZY3X.css",
+        "http://127.0.0.1:53770/artifacts/platform_1_3_1_e25c8d049944/assets/sdk-ClnQiGJZ.js",
+        "http://127.0.0.1:53770/artifacts/platform_1_3_1_e25c8d049944/assets/_virtual_mf___mfe_internal__mf_platform_1_3_1_e25c8d049944__mf_owner__242075772864893__loadShare__react__loadShare__.js-B3vX5iHX.js",
+        "http://127.0.0.1:53770/artifacts/platform_1_3_1_e25c8d049944/assets/rolldown-runtime-SbdDWaPq.js",
+        "http://127.0.0.1:53770/artifacts/shell_1_3_0_46ac9795cddf/assets/bootstrap-Cs4gh1MW.js",
+        "http://127.0.0.1:53770/artifacts/shell_1_3_0_46ac9795cddf/assets/_virtual_mf___mfe_internal__mf_shell_1_3_0_46ac9795cddf__mf_owner__165577377313482__loadShare__react_mf_2_dom_mf_1_client__loadShare__.js-DGXkM6s5.js",
+        "http://127.0.0.1:53770/artifacts/a_1_0_0_0321deb69c28/remoteEntry.js",
+        "http://127.0.0.1:53770/artifacts/a_1_0_0_0321deb69c28/assets/dist-Bo8xtUoB.js",
+        "http://127.0.0.1:53770/artifacts/a_1_0_0_0321deb69c28/assets/vite-preload-helper-DotLz9Zn.js",
+        "http://127.0.0.1:53770/artifacts/a_1_0_0_0321deb69c28/assets/_virtual_mf-localSharedImportMap___mfe_internal__mf_a_1_0_0_0321deb69c28__mf_owner__1-CxwundFr.js",
+        "http://127.0.0.1:53770/artifacts/b_1_4_0_6cc8bf6c0028/remoteEntry.js",
+        "http://127.0.0.1:53770/artifacts/b_1_4_0_6cc8bf6c0028/assets/dist-Bo8xtUoB.js",
+        "http://127.0.0.1:53770/artifacts/b_1_4_0_6cc8bf6c0028/assets/vite-preload-helper-BVDCNeEa.js",
+        "http://127.0.0.1:53770/artifacts/b_1_4_0_6cc8bf6c0028/assets/_virtual_mf-localSharedImportMap___mfe_internal__mf_b_1_4_0_6cc8bf6c0028__mf_owner__1-BaCESpgK.js",
+        "http://127.0.0.1:53770/artifacts/d_1_1_0_8b17c3717038/remoteEntry.js",
+        "http://127.0.0.1:53770/artifacts/c_1_0_0_369b0db5dc78/remoteEntry.js",
+        "http://127.0.0.1:53770/artifacts/c_1_0_0_369b0db5dc78/assets/dist-Bo8xtUoB.js",
+        "http://127.0.0.1:53770/artifacts/c_1_0_0_369b0db5dc78/assets/vite-preload-helper-Dywvt3ca.js",
+        "http://127.0.0.1:53770/artifacts/c_1_0_0_369b0db5dc78/assets/_virtual_mf-localSharedImportMap___mfe_internal__mf_c_1_0_0_369b0db5dc78__mf_owner__1-CIqn5Mh-.js",
+        "http://127.0.0.1:53770/artifacts/b_2_1_0_479272f66af5/remoteEntry.js",
+        "http://127.0.0.1:53770/artifacts/b_2_1_0_479272f66af5/assets/dist-Bo8xtUoB.js",
+        "http://127.0.0.1:53770/artifacts/b_2_1_0_479272f66af5/assets/vite-preload-helper-MNh0XIOp.js",
+        "http://127.0.0.1:53770/artifacts/b_2_1_0_479272f66af5/assets/_virtual_mf-localSharedImportMap___mfe_internal__mf_b_2_1_0_479272f66af5__mf_owner__1-kmQ5k4LN.js",
+        "http://127.0.0.1:53770/artifacts/d_2_1_0_fdd4ea2ac446/remoteEntry.js",
+        "http://127.0.0.1:53770/artifacts/d_2_1_0_fdd4ea2ac446/assets/dist-CzT-8ogd.js",
+        "http://127.0.0.1:53770/artifacts/d_2_1_0_fdd4ea2ac446/assets/vite-preload-helper-D3Pi011h.js",
+        "http://127.0.0.1:53770/artifacts/d_2_1_0_fdd4ea2ac446/assets/_virtual_mf-localSharedImportMap___mfe_internal__mf_d_2_1_0_fdd4ea2ac446__mf_owner__1-DgfV_SLU.js",
+        "http://127.0.0.1:53770/artifacts/d_2_1_0_fdd4ea2ac446/assets/src-ngvGPvrC.js",
+        "http://127.0.0.1:53770/artifacts/b_2_1_0_479272f66af5/assets/Widget-EPjutS18.css",
+        "http://127.0.0.1:53770/artifacts/b_2_1_0_479272f66af5/assets/_virtual_mf___mfe_internal__mf_b_2_1_0_479272f66af5__loadRemote__d_mf_1_data__mf_owner__1__loadRemote__-k3NJ0iS_.js",
+        "http://127.0.0.1:53770/artifacts/b_2_1_0_479272f66af5/assets/_virtual_mf___mfe_internal__mf_b_2_1_0_479272f66af5__loadRemote__platform_mf_1_sdk__mf_owner__1__loadRemote__-Bajl1dHW.js",
+        "http://127.0.0.1:53770/artifacts/b_2_1_0_479272f66af5/assets/rolldown-runtime-DQp2zzRu.js",
+        "http://127.0.0.1:53770/artifacts/b_2_1_0_479272f66af5/assets/hostInit-GZpl63UA.js",
+        "http://127.0.0.1:53770/artifacts/b_2_1_0_479272f66af5/assets/Widget-DpWBr3ys.js",
+        "http://127.0.0.1:53770/artifacts/b_2_1_0_479272f66af5/assets/_virtual_mf___mfe_internal__mf_b_2_1_0_479272f66af5__mf_owner__123185571438837__loadShare__react__loadShare__.js-CJqcos9T.js",
+        "http://127.0.0.1:53770/artifacts/b_2_1_0_479272f66af5/assets/_virtual_mf___mfe_internal__mf_b_2_1_0_479272f66af5__mf_owner__123185571438837__loadShare__shared-fhLrJplx.js",
+        "http://127.0.0.1:53770/artifacts/c_1_0_0_369b0db5dc78/assets/_virtual_mf___mfe_internal__mf_c_1_0_0_369b0db5dc78__loadRemote__b_mf_1_Widget__mf_owner__1__loadRemote__-D1VIc6nr.js",
+        "http://127.0.0.1:53770/artifacts/c_1_0_0_369b0db5dc78/assets/rolldown-runtime-DQp2zzRu.js",
+        "http://127.0.0.1:53770/artifacts/c_1_0_0_369b0db5dc78/assets/hostInit-KHbPpwpA.js",
+        "http://127.0.0.1:53770/artifacts/c_1_0_0_369b0db5dc78/assets/src-1IFQyHoU.js",
+        "http://127.0.0.1:53770/artifacts/c_1_0_0_369b0db5dc78/assets/_virtual_mf___mfe_internal__mf_c_1_0_0_369b0db5dc78__mf_owner__201462083670529__loadShare__react__loadShare__.js-BzwimyJr.js"
+      ],
+      "bootRequests": [
+        "http://127.0.0.1:53770/compositions/composition_3b1ed0555ce8d93d32d5e738.json"
+      ],
+      "consoleErrors": [
+        "Failed to load resource: net::ERR_FAILED",
+        "TypeError: Failed to fetch dynamically imported module: http://127.0.0.1:53770/artifacts/d_1_1_0_8b17c3717038/remoteEntry.js"
+      ],
+      "pageErrors": [],
+      "failedRequests": [
+        {
+          "url": "http://127.0.0.1:53770/artifacts/d_1_1_0_8b17c3717038/remoteEntry.js",
+          "error": "net::ERR_FAILED"
+        }
+      ],
+      "expectedFailure": true
+    }
+  ],
+  "consumerBuildsExecuted": 0,
+  "evidenceScope": "After the one-time runtime migration, only two isolated D checkouts are built. All original project source/configuration/output bytes are compared. Real browser tabs keep A/C and B identities unchanged while B 1.x and B 2.x select different D releases using one SDK. Invalid graph probes are metadata-only.",
+  "baselineComposition": {
+    "compositionId": "composition_88ee38ebfe391a69f3cdb828",
+    "platformVersion": "1.3.1",
+    "shell": {
+      "id": "shell_1_3_0_46ac9795cddf",
+      "name": "mf_shell_1_3_0_46ac9795cddf",
+      "service": "shell",
+      "version": "1.3.0",
+      "entry": "/artifacts/shell_1_3_0_46ac9795cddf/shell.js",
+      "dependencies": {},
+      "runtimeRequirements": {
+        "platform": ">=1.3.0 <2.0.0",
+        "react": "19.3.1",
+        "react-dom": "19.3.1"
+      },
+      "runtimeDependencies": {},
+      "kind": "shell",
+      "format": "esm",
+      "federation": "vite",
+      "retryProtocol": "vite-preflight-v1",
+      "exposedModules": [],
+      "navigationProtocol": "registered-menu-v1",
+      "dashboardProtocol": "registered-dashboard-v1",
+      "federationImports": [
+        {
+          "alias": "platform",
+          "exposedModule": "./sdk"
+        }
+      ],
+      "exposeImports": {},
+      "exposeChunks": {}
+    },
+    "applications": {
+      "A": {
+        "id": "a_1_0_0_0321deb69c28",
+        "name": "mf_a_1_0_0_0321deb69c28",
+        "service": "a",
+        "version": "1.0.0",
+        "entry": "/artifacts/a_1_0_0_0321deb69c28/remoteEntry.js",
+        "dependencies": {},
+        "runtimeRequirements": {
+          "react": "19.3.1",
+          "react-dom": "19.3.1"
+        },
+        "runtimeDependencies": {
+          "b": {
+            "service": "b",
+            "requires": ">=1.4.0 <2.0.0"
+          }
+        },
+        "kind": "remote",
+        "format": "esm",
+        "federation": "vite",
+        "retryProtocol": "vite-preflight-v1",
+        "exposedModules": [
+          "./Widget"
+        ],
+        "federationImports": [
+          {
+            "alias": "b",
+            "exposedModule": "./Widget"
+          }
+        ],
+        "exposeImports": {
+          "./Widget": [
+            {
+              "alias": "b",
+              "exposedModule": "./Widget"
+            }
+          ]
+        },
+        "exposeChunks": {
+          "./Widget": "assets/src-CmHSmqMT.js"
+        }
+      },
+      "C": {
+        "id": "c_1_0_0_369b0db5dc78",
+        "name": "mf_c_1_0_0_369b0db5dc78",
+        "service": "c",
+        "version": "1.0.0",
+        "entry": "/artifacts/c_1_0_0_369b0db5dc78/remoteEntry.js",
+        "dependencies": {},
+        "runtimeRequirements": {
+          "react": "19.3.1",
+          "react-dom": "19.3.1"
+        },
+        "runtimeDependencies": {
+          "b": {
+            "service": "b",
+            "requires": ">=2.1.0 <3.0.0"
+          }
+        },
+        "kind": "remote",
+        "format": "esm",
+        "federation": "vite",
+        "retryProtocol": "vite-preflight-v1",
+        "exposedModules": [
+          "./Widget"
+        ],
+        "federationImports": [
+          {
+            "alias": "b",
+            "exposedModule": "./Widget"
+          }
+        ],
+        "exposeImports": {
+          "./Widget": [
+            {
+              "alias": "b",
+              "exposedModule": "./Widget"
+            }
+          ]
+        },
+        "exposeChunks": {
+          "./Widget": "assets/src-1IFQyHoU.js"
+        }
+      }
+    },
+    "artifacts": {
+      "platform_1_3_1_e25c8d049944": {
+        "id": "platform_1_3_1_e25c8d049944",
+        "name": "mf_platform_1_3_1_e25c8d049944",
+        "service": "platform",
+        "version": "1.3.1",
+        "entry": "/artifacts/platform_1_3_1_e25c8d049944/remoteEntry.js",
+        "dependencies": {},
+        "runtimeRequirements": {
+          "react": "19.3.1",
+          "react-dom": "19.3.1"
+        },
+        "runtimeDependencies": {},
+        "kind": "remote",
+        "format": "esm",
+        "federation": "vite",
+        "retryProtocol": "vite-preflight-v1",
+        "exposedModules": [
+          "./sdk"
+        ],
+        "federationImports": [],
+        "exposeImports": {
+          "./sdk": []
+        },
+        "exposeChunks": {
+          "./sdk": "assets/sdk-ClnQiGJZ.js"
+        }
+      },
+      "d_1_0_0_c6adbe1cb721": {
+        "id": "d_1_0_0_c6adbe1cb721",
+        "name": "mf_d_1_0_0_c6adbe1cb721",
+        "service": "d",
+        "version": "1.0.0",
+        "entry": "/artifacts/d_1_0_0_c6adbe1cb721/remoteEntry.js",
+        "dependencies": {},
+        "runtimeRequirements": {},
+        "runtimeDependencies": {},
+        "kind": "remote",
+        "format": "esm",
+        "federation": "vite",
+        "retryProtocol": "vite-preflight-v1",
+        "exposedModules": [
+          "./data"
+        ],
+        "federationImports": [],
+        "exposeImports": {
+          "./data": []
+        },
+        "exposeChunks": {
+          "./data": "assets/src-BMVRR_2U.js"
+        }
+      },
+      "b_1_4_0_6cc8bf6c0028": {
+        "id": "b_1_4_0_6cc8bf6c0028",
+        "name": "mf_b_1_4_0_6cc8bf6c0028",
+        "service": "b",
+        "version": "1.4.0",
+        "entry": "/artifacts/b_1_4_0_6cc8bf6c0028/remoteEntry.js",
+        "dependencies": {},
+        "runtimeRequirements": {
+          "platform": ">=1.0.0 <2.0.0",
+          "react": "19.3.1",
+          "react-dom": "19.3.1"
+        },
+        "runtimeDependencies": {
+          "d": {
+            "service": "d",
+            "requires": ">=1.0.0 <2.0.0"
+          }
+        },
+        "kind": "remote",
+        "format": "esm",
+        "federation": "vite",
+        "retryProtocol": "vite-preflight-v1",
+        "exposedModules": [
+          "./Widget"
+        ],
+        "federationImports": [
+          {
+            "alias": "d",
+            "exposedModule": "./data"
+          },
+          {
+            "alias": "platform",
+            "exposedModule": "./sdk"
+          }
+        ],
+        "exposeImports": {
+          "./Widget": [
+            {
+              "alias": "d",
+              "exposedModule": "./data"
+            },
+            {
+              "alias": "platform",
+              "exposedModule": "./sdk"
+            }
+          ]
+        },
+        "exposeChunks": {
+          "./Widget": "assets/Widget-BiiMpLC6.js"
+        }
+      },
+      "a_1_0_0_0321deb69c28": {
+        "id": "a_1_0_0_0321deb69c28",
+        "name": "mf_a_1_0_0_0321deb69c28",
+        "service": "a",
+        "version": "1.0.0",
+        "entry": "/artifacts/a_1_0_0_0321deb69c28/remoteEntry.js",
+        "dependencies": {},
+        "runtimeRequirements": {
+          "react": "19.3.1",
+          "react-dom": "19.3.1"
+        },
+        "runtimeDependencies": {
+          "b": {
+            "service": "b",
+            "requires": ">=1.4.0 <2.0.0"
+          }
+        },
+        "kind": "remote",
+        "format": "esm",
+        "federation": "vite",
+        "retryProtocol": "vite-preflight-v1",
+        "exposedModules": [
+          "./Widget"
+        ],
+        "federationImports": [
+          {
+            "alias": "b",
+            "exposedModule": "./Widget"
+          }
+        ],
+        "exposeImports": {
+          "./Widget": [
+            {
+              "alias": "b",
+              "exposedModule": "./Widget"
+            }
+          ]
+        },
+        "exposeChunks": {
+          "./Widget": "assets/src-CmHSmqMT.js"
+        }
+      },
+      "d_2_0_0_a4251bae8bc7": {
+        "id": "d_2_0_0_a4251bae8bc7",
+        "name": "mf_d_2_0_0_a4251bae8bc7",
+        "service": "d",
+        "version": "2.0.0",
+        "entry": "/artifacts/d_2_0_0_a4251bae8bc7/remoteEntry.js",
+        "dependencies": {},
+        "runtimeRequirements": {},
+        "runtimeDependencies": {},
+        "kind": "remote",
+        "format": "esm",
+        "federation": "vite",
+        "retryProtocol": "vite-preflight-v1",
+        "exposedModules": [
+          "./data"
+        ],
+        "federationImports": [],
+        "exposeImports": {
+          "./data": []
+        },
+        "exposeChunks": {
+          "./data": "assets/src-CX2GwUvW.js"
+        }
+      },
+      "b_2_1_0_479272f66af5": {
+        "id": "b_2_1_0_479272f66af5",
+        "name": "mf_b_2_1_0_479272f66af5",
+        "service": "b",
+        "version": "2.1.0",
+        "entry": "/artifacts/b_2_1_0_479272f66af5/remoteEntry.js",
+        "dependencies": {},
+        "runtimeRequirements": {
+          "platform": ">=1.0.0 <2.0.0",
+          "react": "19.3.1",
+          "react-dom": "19.3.1"
+        },
+        "runtimeDependencies": {
+          "d": {
+            "service": "d",
+            "requires": ">=2.0.0 <3.0.0"
+          }
+        },
+        "kind": "remote",
+        "format": "esm",
+        "federation": "vite",
+        "retryProtocol": "vite-preflight-v1",
+        "exposedModules": [
+          "./Widget"
+        ],
+        "federationImports": [
+          {
+            "alias": "d",
+            "exposedModule": "./data"
+          },
+          {
+            "alias": "platform",
+            "exposedModule": "./sdk"
+          }
+        ],
+        "exposeImports": {
+          "./Widget": [
+            {
+              "alias": "d",
+              "exposedModule": "./data"
+            },
+            {
+              "alias": "platform",
+              "exposedModule": "./sdk"
+            }
+          ]
+        },
+        "exposeChunks": {
+          "./Widget": "assets/Widget-DpWBr3ys.js"
+        }
+      },
+      "c_1_0_0_369b0db5dc78": {
+        "id": "c_1_0_0_369b0db5dc78",
+        "name": "mf_c_1_0_0_369b0db5dc78",
+        "service": "c",
+        "version": "1.0.0",
+        "entry": "/artifacts/c_1_0_0_369b0db5dc78/remoteEntry.js",
+        "dependencies": {},
+        "runtimeRequirements": {
+          "react": "19.3.1",
+          "react-dom": "19.3.1"
+        },
+        "runtimeDependencies": {
+          "b": {
+            "service": "b",
+            "requires": ">=2.1.0 <3.0.0"
+          }
+        },
+        "kind": "remote",
+        "format": "esm",
+        "federation": "vite",
+        "retryProtocol": "vite-preflight-v1",
+        "exposedModules": [
+          "./Widget"
+        ],
+        "federationImports": [
+          {
+            "alias": "b",
+            "exposedModule": "./Widget"
+          }
+        ],
+        "exposeImports": {
+          "./Widget": [
+            {
+              "alias": "b",
+              "exposedModule": "./Widget"
+            }
+          ]
+        },
+        "exposeChunks": {
+          "./Widget": "assets/src-1IFQyHoU.js"
+        }
+      },
+      "platform": {
+        "id": "platform_1_3_1_e25c8d049944",
+        "name": "mf_platform_1_3_1_e25c8d049944",
+        "service": "platform",
+        "version": "1.3.1",
+        "entry": "/artifacts/platform_1_3_1_e25c8d049944/remoteEntry.js",
+        "dependencies": {},
+        "runtimeRequirements": {
+          "react": "19.3.1",
+          "react-dom": "19.3.1"
+        },
+        "runtimeDependencies": {},
+        "kind": "remote",
+        "format": "esm",
+        "federation": "vite",
+        "retryProtocol": "vite-preflight-v1",
+        "exposedModules": [
+          "./sdk"
+        ],
+        "federationImports": [],
+        "exposeImports": {
+          "./sdk": []
+        },
+        "exposeChunks": {
+          "./sdk": "assets/sdk-ClnQiGJZ.js"
+        }
+      }
+    },
+    "selected": {
+      "platform": "platform_1_3_1_e25c8d049944",
+      "shell": "shell_1_3_0_46ac9795cddf",
+      "A": "a_1_0_0_0321deb69c28",
+      "C": "c_1_0_0_369b0db5dc78"
+    },
+    "runtimeBindings": {
+      "a_1_0_0_0321deb69c28": {
+        "b": "b_1_4_0_6cc8bf6c0028"
+      },
+      "b_1_4_0_6cc8bf6c0028": {
+        "d": "d_1_0_0_c6adbe1cb721"
+      },
+      "b_2_1_0_479272f66af5": {
+        "d": "d_2_0_0_a4251bae8bc7"
+      },
+      "c_1_0_0_369b0db5dc78": {
+        "b": "b_2_1_0_479272f66af5"
+      }
+    }
+  },
+  "beforeFingerprints": {
+    "platform-sdk": {
+      "files": 37,
+      "sha256": "2596fff2d301fed7ac373eb7406af587002bdbec24ca8724ae901be74abf8c8b"
+    },
+    "service-d-v1": {
+      "files": 23,
+      "sha256": "3059f30e2d2bcb58c6c64071bd75b8a19be1a00665ec03454164cb8b5a08a81c"
+    },
+    "service-d-v2": {
+      "files": 23,
+      "sha256": "89c28890fc547ad6142c67d96f121c6f8f34b90c83a3ea5108c224b920150f83"
+    },
+    "service-b-v1": {
+      "files": 83,
+      "sha256": "cbe8a511645131c4fb31bb38f3d9246eb57f4d5f2c3a276258fa2f55aaec5b47"
+    },
+    "service-b-v2": {
+      "files": 83,
+      "sha256": "ac78aec2c525bbef9e21da00602bcc57d2b8c54f09014db436463872d76fe25a"
+    },
+    "service-a": {
+      "files": 112,
+      "sha256": "0c1e8ce848695f407cf181af2d58b6ec0369a12995829f1f416fcde5d18193fb"
+    },
+    "service-c": {
+      "files": 112,
+      "sha256": "10d3ae5ae5507028fcc881666ee312cd0edc955ca0d0f6ecc0a052998e9ed969"
+    },
+    "shell": {
+      "files": 50,
+      "sha256": "dc3538834852a8c99c4883bbb0f6016035be45ed8aa08214d9781fa69aab75d8"
+    }
+  },
+  "browserVersion": "157.0.8103.39",
+  "builds": [
+    {
+      "command": "npm",
+      "args": [
+        "run",
+        "build"
+      ],
+      "exitCode": 0
+    },
+    {
+      "command": "npm",
+      "args": [
+        "run",
+        "build"
+      ],
+      "exitCode": 0
+    }
+  ],
+  "upgradedD": {
+    "service-d-v1": {
+      "id": "d_1_1_0_8b17c3717038",
+      "name": "mf_d_1_1_0_8b17c3717038",
+      "service": "d",
+      "version": "1.1.0",
+      "entry": "/artifacts/d_1_1_0_8b17c3717038/remoteEntry.js",
+      "dependencies": {},
+      "runtimeRequirements": {},
+      "runtimeDependencies": {},
+      "kind": "remote",
+      "format": "esm",
+      "federation": "vite",
+      "retryProtocol": "vite-preflight-v1",
+      "exposedModules": [
+        "./data"
+      ],
+      "federationImports": [],
+      "exposeImports": {
+        "./data": []
+      },
+      "exposeChunks": {
+        "./data": "assets/src-Co8_kQOY.js"
+      }
+    },
+    "service-d-v2": {
+      "id": "d_2_1_0_fdd4ea2ac446",
+      "name": "mf_d_2_1_0_fdd4ea2ac446",
+      "service": "d",
+      "version": "2.1.0",
+      "entry": "/artifacts/d_2_1_0_fdd4ea2ac446/remoteEntry.js",
+      "dependencies": {},
+      "runtimeRequirements": {},
+      "runtimeDependencies": {},
+      "kind": "remote",
+      "format": "esm",
+      "federation": "vite",
+      "retryProtocol": "vite-preflight-v1",
+      "exposedModules": [
+        "./data"
+      ],
+      "federationImports": [],
+      "exposeImports": {
+        "./data": []
+      },
+      "exposeChunks": {
+        "./data": "assets/src-ngvGPvrC.js"
+      }
+    }
+  },
+  "versionTransitions": {
+    "service-d-v1": {
+      "from": "1.0.0",
+      "to": "1.1.0"
+    },
+    "service-d-v2": {
+      "from": "2.0.0",
+      "to": "2.1.0"
+    }
+  },
+  "activationCommand": {
+    "command": "/Users/jong-yu/.nvm/versions/node/v24.22.1/bin/node",
+    "args": [
+      "tools/activate.cjs",
+      "--bind",
+      "b_1_4_0_6cc8bf6c0028:d=d_1_1_0_8b17c3717038"
+    ],
+    "exitCode": 0
+  },
+  "firstChangeComposition": {
+    "compositionId": "composition_48146f7fa949a2da550c4f52",
+    "platformVersion": "1.3.1",
+    "shell": {
+      "id": "shell_1_3_0_46ac9795cddf",
+      "name": "mf_shell_1_3_0_46ac9795cddf",
+      "service": "shell",
+      "version": "1.3.0",
+      "entry": "/artifacts/shell_1_3_0_46ac9795cddf/shell.js",
+      "dependencies": {},
+      "runtimeRequirements": {
+        "platform": ">=1.3.0 <2.0.0",
+        "react": "19.3.1",
+        "react-dom": "19.3.1"
+      },
+      "runtimeDependencies": {},
+      "kind": "shell",
+      "format": "esm",
+      "federation": "vite",
+      "retryProtocol": "vite-preflight-v1",
+      "exposedModules": [],
+      "navigationProtocol": "registered-menu-v1",
+      "dashboardProtocol": "registered-dashboard-v1",
+      "federationImports": [
+        {
+          "alias": "platform",
+          "exposedModule": "./sdk"
+        }
+      ],
+      "exposeImports": {},
+      "exposeChunks": {}
+    },
+    "applications": {
+      "A": {
+        "id": "a_1_0_0_0321deb69c28",
+        "name": "mf_a_1_0_0_0321deb69c28",
+        "service": "a",
+        "version": "1.0.0",
+        "entry": "/artifacts/a_1_0_0_0321deb69c28/remoteEntry.js",
+        "dependencies": {},
+        "runtimeRequirements": {
+          "react": "19.3.1",
+          "react-dom": "19.3.1"
+        },
+        "runtimeDependencies": {
+          "b": {
+            "service": "b",
+            "requires": ">=1.4.0 <2.0.0"
+          }
+        },
+        "kind": "remote",
+        "format": "esm",
+        "federation": "vite",
+        "retryProtocol": "vite-preflight-v1",
+        "exposedModules": [
+          "./Widget"
+        ],
+        "federationImports": [
+          {
+            "alias": "b",
+            "exposedModule": "./Widget"
+          }
+        ],
+        "exposeImports": {
+          "./Widget": [
+            {
+              "alias": "b",
+              "exposedModule": "./Widget"
+            }
+          ]
+        },
+        "exposeChunks": {
+          "./Widget": "assets/src-CmHSmqMT.js"
+        }
+      },
+      "C": {
+        "id": "c_1_0_0_369b0db5dc78",
+        "name": "mf_c_1_0_0_369b0db5dc78",
+        "service": "c",
+        "version": "1.0.0",
+        "entry": "/artifacts/c_1_0_0_369b0db5dc78/remoteEntry.js",
+        "dependencies": {},
+        "runtimeRequirements": {
+          "react": "19.3.1",
+          "react-dom": "19.3.1"
+        },
+        "runtimeDependencies": {
+          "b": {
+            "service": "b",
+            "requires": ">=2.1.0 <3.0.0"
+          }
+        },
+        "kind": "remote",
+        "format": "esm",
+        "federation": "vite",
+        "retryProtocol": "vite-preflight-v1",
+        "exposedModules": [
+          "./Widget"
+        ],
+        "federationImports": [
+          {
+            "alias": "b",
+            "exposedModule": "./Widget"
+          }
+        ],
+        "exposeImports": {
+          "./Widget": [
+            {
+              "alias": "b",
+              "exposedModule": "./Widget"
+            }
+          ]
+        },
+        "exposeChunks": {
+          "./Widget": "assets/src-1IFQyHoU.js"
+        }
+      }
+    },
+    "artifacts": {
+      "platform_1_3_1_e25c8d049944": {
+        "id": "platform_1_3_1_e25c8d049944",
+        "name": "mf_platform_1_3_1_e25c8d049944",
+        "service": "platform",
+        "version": "1.3.1",
+        "entry": "/artifacts/platform_1_3_1_e25c8d049944/remoteEntry.js",
+        "dependencies": {},
+        "runtimeRequirements": {
+          "react": "19.3.1",
+          "react-dom": "19.3.1"
+        },
+        "runtimeDependencies": {},
+        "kind": "remote",
+        "format": "esm",
+        "federation": "vite",
+        "retryProtocol": "vite-preflight-v1",
+        "exposedModules": [
+          "./sdk"
+        ],
+        "federationImports": [],
+        "exposeImports": {
+          "./sdk": []
+        },
+        "exposeChunks": {
+          "./sdk": "assets/sdk-ClnQiGJZ.js"
+        }
+      },
+      "d_1_1_0_8b17c3717038": {
+        "id": "d_1_1_0_8b17c3717038",
+        "name": "mf_d_1_1_0_8b17c3717038",
+        "service": "d",
+        "version": "1.1.0",
+        "entry": "/artifacts/d_1_1_0_8b17c3717038/remoteEntry.js",
+        "dependencies": {},
+        "runtimeRequirements": {},
+        "runtimeDependencies": {},
+        "kind": "remote",
+        "format": "esm",
+        "federation": "vite",
+        "retryProtocol": "vite-preflight-v1",
+        "exposedModules": [
+          "./data"
+        ],
+        "federationImports": [],
+        "exposeImports": {
+          "./data": []
+        },
+        "exposeChunks": {
+          "./data": "assets/src-Co8_kQOY.js"
+        }
+      },
+      "b_1_4_0_6cc8bf6c0028": {
+        "id": "b_1_4_0_6cc8bf6c0028",
+        "name": "mf_b_1_4_0_6cc8bf6c0028",
+        "service": "b",
+        "version": "1.4.0",
+        "entry": "/artifacts/b_1_4_0_6cc8bf6c0028/remoteEntry.js",
+        "dependencies": {},
+        "runtimeRequirements": {
+          "platform": ">=1.0.0 <2.0.0",
+          "react": "19.3.1",
+          "react-dom": "19.3.1"
+        },
+        "runtimeDependencies": {
+          "d": {
+            "service": "d",
+            "requires": ">=1.0.0 <2.0.0"
+          }
+        },
+        "kind": "remote",
+        "format": "esm",
+        "federation": "vite",
+        "retryProtocol": "vite-preflight-v1",
+        "exposedModules": [
+          "./Widget"
+        ],
+        "federationImports": [
+          {
+            "alias": "d",
+            "exposedModule": "./data"
+          },
+          {
+            "alias": "platform",
+            "exposedModule": "./sdk"
+          }
+        ],
+        "exposeImports": {
+          "./Widget": [
+            {
+              "alias": "d",
+              "exposedModule": "./data"
+            },
+            {
+              "alias": "platform",
+              "exposedModule": "./sdk"
+            }
+          ]
+        },
+        "exposeChunks": {
+          "./Widget": "assets/Widget-BiiMpLC6.js"
+        }
+      },
+      "a_1_0_0_0321deb69c28": {
+        "id": "a_1_0_0_0321deb69c28",
+        "name": "mf_a_1_0_0_0321deb69c28",
+        "service": "a",
+        "version": "1.0.0",
+        "entry": "/artifacts/a_1_0_0_0321deb69c28/remoteEntry.js",
+        "dependencies": {},
+        "runtimeRequirements": {
+          "react": "19.3.1",
+          "react-dom": "19.3.1"
+        },
+        "runtimeDependencies": {
+          "b": {
+            "service": "b",
+            "requires": ">=1.4.0 <2.0.0"
+          }
+        },
+        "kind": "remote",
+        "format": "esm",
+        "federation": "vite",
+        "retryProtocol": "vite-preflight-v1",
+        "exposedModules": [
+          "./Widget"
+        ],
+        "federationImports": [
+          {
+            "alias": "b",
+            "exposedModule": "./Widget"
+          }
+        ],
+        "exposeImports": {
+          "./Widget": [
+            {
+              "alias": "b",
+              "exposedModule": "./Widget"
+            }
+          ]
+        },
+        "exposeChunks": {
+          "./Widget": "assets/src-CmHSmqMT.js"
+        }
+      },
+      "d_2_0_0_a4251bae8bc7": {
+        "id": "d_2_0_0_a4251bae8bc7",
+        "name": "mf_d_2_0_0_a4251bae8bc7",
+        "service": "d",
+        "version": "2.0.0",
+        "entry": "/artifacts/d_2_0_0_a4251bae8bc7/remoteEntry.js",
+        "dependencies": {},
+        "runtimeRequirements": {},
+        "runtimeDependencies": {},
+        "kind": "remote",
+        "format": "esm",
+        "federation": "vite",
+        "retryProtocol": "vite-preflight-v1",
+        "exposedModules": [
+          "./data"
+        ],
+        "federationImports": [],
+        "exposeImports": {
+          "./data": []
+        },
+        "exposeChunks": {
+          "./data": "assets/src-CX2GwUvW.js"
+        }
+      },
+      "b_2_1_0_479272f66af5": {
+        "id": "b_2_1_0_479272f66af5",
+        "name": "mf_b_2_1_0_479272f66af5",
+        "service": "b",
+        "version": "2.1.0",
+        "entry": "/artifacts/b_2_1_0_479272f66af5/remoteEntry.js",
+        "dependencies": {},
+        "runtimeRequirements": {
+          "platform": ">=1.0.0 <2.0.0",
+          "react": "19.3.1",
+          "react-dom": "19.3.1"
+        },
+        "runtimeDependencies": {
+          "d": {
+            "service": "d",
+            "requires": ">=2.0.0 <3.0.0"
+          }
+        },
+        "kind": "remote",
+        "format": "esm",
+        "federation": "vite",
+        "retryProtocol": "vite-preflight-v1",
+        "exposedModules": [
+          "./Widget"
+        ],
+        "federationImports": [
+          {
+            "alias": "d",
+            "exposedModule": "./data"
+          },
+          {
+            "alias": "platform",
+            "exposedModule": "./sdk"
+          }
+        ],
+        "exposeImports": {
+          "./Widget": [
+            {
+              "alias": "d",
+              "exposedModule": "./data"
+            },
+            {
+              "alias": "platform",
+              "exposedModule": "./sdk"
+            }
+          ]
+        },
+        "exposeChunks": {
+          "./Widget": "assets/Widget-DpWBr3ys.js"
+        }
+      },
+      "c_1_0_0_369b0db5dc78": {
+        "id": "c_1_0_0_369b0db5dc78",
+        "name": "mf_c_1_0_0_369b0db5dc78",
+        "service": "c",
+        "version": "1.0.0",
+        "entry": "/artifacts/c_1_0_0_369b0db5dc78/remoteEntry.js",
+        "dependencies": {},
+        "runtimeRequirements": {
+          "react": "19.3.1",
+          "react-dom": "19.3.1"
+        },
+        "runtimeDependencies": {
+          "b": {
+            "service": "b",
+            "requires": ">=2.1.0 <3.0.0"
+          }
+        },
+        "kind": "remote",
+        "format": "esm",
+        "federation": "vite",
+        "retryProtocol": "vite-preflight-v1",
+        "exposedModules": [
+          "./Widget"
+        ],
+        "federationImports": [
+          {
+            "alias": "b",
+            "exposedModule": "./Widget"
+          }
+        ],
+        "exposeImports": {
+          "./Widget": [
+            {
+              "alias": "b",
+              "exposedModule": "./Widget"
+            }
+          ]
+        },
+        "exposeChunks": {
+          "./Widget": "assets/src-1IFQyHoU.js"
+        }
+      },
+      "platform": {
+        "id": "platform_1_3_1_e25c8d049944",
+        "name": "mf_platform_1_3_1_e25c8d049944",
+        "service": "platform",
+        "version": "1.3.1",
+        "entry": "/artifacts/platform_1_3_1_e25c8d049944/remoteEntry.js",
+        "dependencies": {},
+        "runtimeRequirements": {
+          "react": "19.3.1",
+          "react-dom": "19.3.1"
+        },
+        "runtimeDependencies": {},
+        "kind": "remote",
+        "format": "esm",
+        "federation": "vite",
+        "retryProtocol": "vite-preflight-v1",
+        "exposedModules": [
+          "./sdk"
+        ],
+        "federationImports": [],
+        "exposeImports": {
+          "./sdk": []
+        },
+        "exposeChunks": {
+          "./sdk": "assets/sdk-ClnQiGJZ.js"
+        }
+      }
+    },
+    "selected": {
+      "platform": "platform_1_3_1_e25c8d049944",
+      "shell": "shell_1_3_0_46ac9795cddf",
+      "A": "a_1_0_0_0321deb69c28",
+      "C": "c_1_0_0_369b0db5dc78"
+    },
+    "runtimeBindings": {
+      "a_1_0_0_0321deb69c28": {
+        "b": "b_1_4_0_6cc8bf6c0028"
+      },
+      "b_1_4_0_6cc8bf6c0028": {
+        "d": "d_1_1_0_8b17c3717038"
+      },
+      "b_2_1_0_479272f66af5": {
+        "d": "d_2_0_0_a4251bae8bc7"
+      },
+      "c_1_0_0_369b0db5dc78": {
+        "b": "b_2_1_0_479272f66af5"
+      }
+    }
+  },
+  "upgradedComposition": {
+    "compositionId": "composition_3b1ed0555ce8d93d32d5e738",
+    "platformVersion": "1.3.1",
+    "shell": {
+      "id": "shell_1_3_0_46ac9795cddf",
+      "name": "mf_shell_1_3_0_46ac9795cddf",
+      "service": "shell",
+      "version": "1.3.0",
+      "entry": "/artifacts/shell_1_3_0_46ac9795cddf/shell.js",
+      "dependencies": {},
+      "runtimeRequirements": {
+        "platform": ">=1.3.0 <2.0.0",
+        "react": "19.3.1",
+        "react-dom": "19.3.1"
+      },
+      "runtimeDependencies": {},
+      "kind": "shell",
+      "format": "esm",
+      "federation": "vite",
+      "retryProtocol": "vite-preflight-v1",
+      "exposedModules": [],
+      "navigationProtocol": "registered-menu-v1",
+      "dashboardProtocol": "registered-dashboard-v1",
+      "federationImports": [
+        {
+          "alias": "platform",
+          "exposedModule": "./sdk"
+        }
+      ],
+      "exposeImports": {},
+      "exposeChunks": {}
+    },
+    "applications": {
+      "A": {
+        "id": "a_1_0_0_0321deb69c28",
+        "name": "mf_a_1_0_0_0321deb69c28",
+        "service": "a",
+        "version": "1.0.0",
+        "entry": "/artifacts/a_1_0_0_0321deb69c28/remoteEntry.js",
+        "dependencies": {},
+        "runtimeRequirements": {
+          "react": "19.3.1",
+          "react-dom": "19.3.1"
+        },
+        "runtimeDependencies": {
+          "b": {
+            "service": "b",
+            "requires": ">=1.4.0 <2.0.0"
+          }
+        },
+        "kind": "remote",
+        "format": "esm",
+        "federation": "vite",
+        "retryProtocol": "vite-preflight-v1",
+        "exposedModules": [
+          "./Widget"
+        ],
+        "federationImports": [
+          {
+            "alias": "b",
+            "exposedModule": "./Widget"
+          }
+        ],
+        "exposeImports": {
+          "./Widget": [
+            {
+              "alias": "b",
+              "exposedModule": "./Widget"
+            }
+          ]
+        },
+        "exposeChunks": {
+          "./Widget": "assets/src-CmHSmqMT.js"
+        }
+      },
+      "C": {
+        "id": "c_1_0_0_369b0db5dc78",
+        "name": "mf_c_1_0_0_369b0db5dc78",
+        "service": "c",
+        "version": "1.0.0",
+        "entry": "/artifacts/c_1_0_0_369b0db5dc78/remoteEntry.js",
+        "dependencies": {},
+        "runtimeRequirements": {
+          "react": "19.3.1",
+          "react-dom": "19.3.1"
+        },
+        "runtimeDependencies": {
+          "b": {
+            "service": "b",
+            "requires": ">=2.1.0 <3.0.0"
+          }
+        },
+        "kind": "remote",
+        "format": "esm",
+        "federation": "vite",
+        "retryProtocol": "vite-preflight-v1",
+        "exposedModules": [
+          "./Widget"
+        ],
+        "federationImports": [
+          {
+            "alias": "b",
+            "exposedModule": "./Widget"
+          }
+        ],
+        "exposeImports": {
+          "./Widget": [
+            {
+              "alias": "b",
+              "exposedModule": "./Widget"
+            }
+          ]
+        },
+        "exposeChunks": {
+          "./Widget": "assets/src-1IFQyHoU.js"
+        }
+      }
+    },
+    "artifacts": {
+      "platform_1_3_1_e25c8d049944": {
+        "id": "platform_1_3_1_e25c8d049944",
+        "name": "mf_platform_1_3_1_e25c8d049944",
+        "service": "platform",
+        "version": "1.3.1",
+        "entry": "/artifacts/platform_1_3_1_e25c8d049944/remoteEntry.js",
+        "dependencies": {},
+        "runtimeRequirements": {
+          "react": "19.3.1",
+          "react-dom": "19.3.1"
+        },
+        "runtimeDependencies": {},
+        "kind": "remote",
+        "format": "esm",
+        "federation": "vite",
+        "retryProtocol": "vite-preflight-v1",
+        "exposedModules": [
+          "./sdk"
+        ],
+        "federationImports": [],
+        "exposeImports": {
+          "./sdk": []
+        },
+        "exposeChunks": {
+          "./sdk": "assets/sdk-ClnQiGJZ.js"
+        }
+      },
+      "d_1_1_0_8b17c3717038": {
+        "id": "d_1_1_0_8b17c3717038",
+        "name": "mf_d_1_1_0_8b17c3717038",
+        "service": "d",
+        "version": "1.1.0",
+        "entry": "/artifacts/d_1_1_0_8b17c3717038/remoteEntry.js",
+        "dependencies": {},
+        "runtimeRequirements": {},
+        "runtimeDependencies": {},
+        "kind": "remote",
+        "format": "esm",
+        "federation": "vite",
+        "retryProtocol": "vite-preflight-v1",
+        "exposedModules": [
+          "./data"
+        ],
+        "federationImports": [],
+        "exposeImports": {
+          "./data": []
+        },
+        "exposeChunks": {
+          "./data": "assets/src-Co8_kQOY.js"
+        }
+      },
+      "b_1_4_0_6cc8bf6c0028": {
+        "id": "b_1_4_0_6cc8bf6c0028",
+        "name": "mf_b_1_4_0_6cc8bf6c0028",
+        "service": "b",
+        "version": "1.4.0",
+        "entry": "/artifacts/b_1_4_0_6cc8bf6c0028/remoteEntry.js",
+        "dependencies": {},
+        "runtimeRequirements": {
+          "platform": ">=1.0.0 <2.0.0",
+          "react": "19.3.1",
+          "react-dom": "19.3.1"
+        },
+        "runtimeDependencies": {
+          "d": {
+            "service": "d",
+            "requires": ">=1.0.0 <2.0.0"
+          }
+        },
+        "kind": "remote",
+        "format": "esm",
+        "federation": "vite",
+        "retryProtocol": "vite-preflight-v1",
+        "exposedModules": [
+          "./Widget"
+        ],
+        "federationImports": [
+          {
+            "alias": "d",
+            "exposedModule": "./data"
+          },
+          {
+            "alias": "platform",
+            "exposedModule": "./sdk"
+          }
+        ],
+        "exposeImports": {
+          "./Widget": [
+            {
+              "alias": "d",
+              "exposedModule": "./data"
+            },
+            {
+              "alias": "platform",
+              "exposedModule": "./sdk"
+            }
+          ]
+        },
+        "exposeChunks": {
+          "./Widget": "assets/Widget-BiiMpLC6.js"
+        }
+      },
+      "a_1_0_0_0321deb69c28": {
+        "id": "a_1_0_0_0321deb69c28",
+        "name": "mf_a_1_0_0_0321deb69c28",
+        "service": "a",
+        "version": "1.0.0",
+        "entry": "/artifacts/a_1_0_0_0321deb69c28/remoteEntry.js",
+        "dependencies": {},
+        "runtimeRequirements": {
+          "react": "19.3.1",
+          "react-dom": "19.3.1"
+        },
+        "runtimeDependencies": {
+          "b": {
+            "service": "b",
+            "requires": ">=1.4.0 <2.0.0"
+          }
+        },
+        "kind": "remote",
+        "format": "esm",
+        "federation": "vite",
+        "retryProtocol": "vite-preflight-v1",
+        "exposedModules": [
+          "./Widget"
+        ],
+        "federationImports": [
+          {
+            "alias": "b",
+            "exposedModule": "./Widget"
+          }
+        ],
+        "exposeImports": {
+          "./Widget": [
+            {
+              "alias": "b",
+              "exposedModule": "./Widget"
+            }
+          ]
+        },
+        "exposeChunks": {
+          "./Widget": "assets/src-CmHSmqMT.js"
+        }
+      },
+      "d_2_1_0_fdd4ea2ac446": {
+        "id": "d_2_1_0_fdd4ea2ac446",
+        "name": "mf_d_2_1_0_fdd4ea2ac446",
+        "service": "d",
+        "version": "2.1.0",
+        "entry": "/artifacts/d_2_1_0_fdd4ea2ac446/remoteEntry.js",
+        "dependencies": {},
+        "runtimeRequirements": {},
+        "runtimeDependencies": {},
+        "kind": "remote",
+        "format": "esm",
+        "federation": "vite",
+        "retryProtocol": "vite-preflight-v1",
+        "exposedModules": [
+          "./data"
+        ],
+        "federationImports": [],
+        "exposeImports": {
+          "./data": []
+        },
+        "exposeChunks": {
+          "./data": "assets/src-ngvGPvrC.js"
+        }
+      },
+      "b_2_1_0_479272f66af5": {
+        "id": "b_2_1_0_479272f66af5",
+        "name": "mf_b_2_1_0_479272f66af5",
+        "service": "b",
+        "version": "2.1.0",
+        "entry": "/artifacts/b_2_1_0_479272f66af5/remoteEntry.js",
+        "dependencies": {},
+        "runtimeRequirements": {
+          "platform": ">=1.0.0 <2.0.0",
+          "react": "19.3.1",
+          "react-dom": "19.3.1"
+        },
+        "runtimeDependencies": {
+          "d": {
+            "service": "d",
+            "requires": ">=2.0.0 <3.0.0"
+          }
+        },
+        "kind": "remote",
+        "format": "esm",
+        "federation": "vite",
+        "retryProtocol": "vite-preflight-v1",
+        "exposedModules": [
+          "./Widget"
+        ],
+        "federationImports": [
+          {
+            "alias": "d",
+            "exposedModule": "./data"
+          },
+          {
+            "alias": "platform",
+            "exposedModule": "./sdk"
+          }
+        ],
+        "exposeImports": {
+          "./Widget": [
+            {
+              "alias": "d",
+              "exposedModule": "./data"
+            },
+            {
+              "alias": "platform",
+              "exposedModule": "./sdk"
+            }
+          ]
+        },
+        "exposeChunks": {
+          "./Widget": "assets/Widget-DpWBr3ys.js"
+        }
+      },
+      "c_1_0_0_369b0db5dc78": {
+        "id": "c_1_0_0_369b0db5dc78",
+        "name": "mf_c_1_0_0_369b0db5dc78",
+        "service": "c",
+        "version": "1.0.0",
+        "entry": "/artifacts/c_1_0_0_369b0db5dc78/remoteEntry.js",
+        "dependencies": {},
+        "runtimeRequirements": {
+          "react": "19.3.1",
+          "react-dom": "19.3.1"
+        },
+        "runtimeDependencies": {
+          "b": {
+            "service": "b",
+            "requires": ">=2.1.0 <3.0.0"
+          }
+        },
+        "kind": "remote",
+        "format": "esm",
+        "federation": "vite",
+        "retryProtocol": "vite-preflight-v1",
+        "exposedModules": [
+          "./Widget"
+        ],
+        "federationImports": [
+          {
+            "alias": "b",
+            "exposedModule": "./Widget"
+          }
+        ],
+        "exposeImports": {
+          "./Widget": [
+            {
+              "alias": "b",
+              "exposedModule": "./Widget"
+            }
+          ]
+        },
+        "exposeChunks": {
+          "./Widget": "assets/src-1IFQyHoU.js"
+        }
+      },
+      "platform": {
+        "id": "platform_1_3_1_e25c8d049944",
+        "name": "mf_platform_1_3_1_e25c8d049944",
+        "service": "platform",
+        "version": "1.3.1",
+        "entry": "/artifacts/platform_1_3_1_e25c8d049944/remoteEntry.js",
+        "dependencies": {},
+        "runtimeRequirements": {
+          "react": "19.3.1",
+          "react-dom": "19.3.1"
+        },
+        "runtimeDependencies": {},
+        "kind": "remote",
+        "format": "esm",
+        "federation": "vite",
+        "retryProtocol": "vite-preflight-v1",
+        "exposedModules": [
+          "./sdk"
+        ],
+        "federationImports": [],
+        "exposeImports": {
+          "./sdk": []
+        },
+        "exposeChunks": {
+          "./sdk": "assets/sdk-ClnQiGJZ.js"
+        }
+      }
+    },
+    "selected": {
+      "platform": "platform_1_3_1_e25c8d049944",
+      "shell": "shell_1_3_0_46ac9795cddf",
+      "A": "a_1_0_0_0321deb69c28",
+      "C": "c_1_0_0_369b0db5dc78"
+    },
+    "runtimeBindings": {
+      "a_1_0_0_0321deb69c28": {
+        "b": "b_1_4_0_6cc8bf6c0028"
+      },
+      "b_1_4_0_6cc8bf6c0028": {
+        "d": "d_1_1_0_8b17c3717038"
+      },
+      "b_2_1_0_479272f66af5": {
+        "d": "d_2_1_0_fdd4ea2ac446"
+      },
+      "c_1_0_0_369b0db5dc78": {
+        "b": "b_2_1_0_479272f66af5"
+      }
+    }
+  },
+  "rejections": [
+    {
+      "label": "missing nested binding",
+      "message": "Missing runtime binding: b_1_4_0_6cc8bf6c0028:d",
+      "executedInBrowser": false
+    },
+    {
+      "label": "unknown alias",
+      "message": "Undeclared runtime binding: b_1_4_0_6cc8bf6c0028:absent",
+      "executedInBrowser": false
+    },
+    {
+      "label": "unpublished D",
+      "message": "Artifact is not published: d_unpublished",
+      "executedInBrowser": false
+    },
+    {
+      "label": "wrong service",
+      "message": "Wrong runtime service: b_1_4_0_6cc8bf6c0028:d requires d",
+      "executedInBrowser": false
+    },
+    {
+      "label": "D 2.x outside B 1.x supported range",
+      "message": "Incompatible runtime dependency: b_1_4_0_6cc8bf6c0028:d requires >=1.0.0 <2.0.0, selected 2.1.0",
+      "executedInBrowser": false
+    },
+    {
+      "label": "metadata sdk",
+      "message": "Incompatible platform SDK: d_runtime_metadata_sdk requires >=9.0.0, selected 1.3.1",
+      "executedInBrowser": false
+    },
+    {
+      "label": "metadata react",
+      "message": "Incompatible react: d_runtime_metadata_react requires 18.3.1, SDK requires 19.3.1",
+      "executedInBrowser": false
+    },
+    {
+      "label": "metadata cycle",
+      "message": "Dependency cycle: b_1_4_0_6cc8bf6c0028",
+      "executedInBrowser": false
+    }
+  ],
+  "afterFingerprints": {
+    "platform-sdk": {
+      "files": 37,
+      "sha256": "2596fff2d301fed7ac373eb7406af587002bdbec24ca8724ae901be74abf8c8b"
+    },
+    "service-d-v1": {
+      "files": 23,
+      "sha256": "3059f30e2d2bcb58c6c64071bd75b8a19be1a00665ec03454164cb8b5a08a81c"
+    },
+    "service-d-v2": {
+      "files": 23,
+      "sha256": "89c28890fc547ad6142c67d96f121c6f8f34b90c83a3ea5108c224b920150f83"
+    },
+    "service-b-v1": {
+      "files": 83,
+      "sha256": "cbe8a511645131c4fb31bb38f3d9246eb57f4d5f2c3a276258fa2f55aaec5b47"
+    },
+    "service-b-v2": {
+      "files": 83,
+      "sha256": "ac78aec2c525bbef9e21da00602bcc57d2b8c54f09014db436463872d76fe25a"
+    },
+    "service-a": {
+      "files": 112,
+      "sha256": "0c1e8ce848695f407cf181af2d58b6ec0369a12995829f1f416fcde5d18193fb"
+    },
+    "service-c": {
+      "files": 112,
+      "sha256": "10d3ae5ae5507028fcc881666ee312cd0edc955ca0d0f6ecc0a052998e9ed969"
+    },
+    "shell": {
+      "files": 50,
+      "sha256": "dc3538834852a8c99c4883bbb0f6016035be45ed8aa08214d9781fa69aab75d8"
+    }
+  },
+  "retainedReleases": {
+    "service-d-v1": "/private/tmp/mfe-vite-versions-DiUHAT/integration/artifacts/runtime-d-releases/d_1_1_0_8b17c3717038",
+    "service-d-v2": "/private/tmp/mfe-vite-versions-DiUHAT/integration/artifacts/runtime-d-releases/d_2_1_0_fdd4ea2ac446"
+  },
+  "finishedAt": "2026-11-10T13:14:59.205Z",
+  "passedChecks": 12
+}

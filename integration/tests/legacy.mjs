@@ -55,19 +55,49 @@ try {
   const { deleteReleaseFiles } = require('../tools/retirement.cjs');
   const releases = {};
   for (const name of ['platform-sdk', 'shell', 'service-a', 'service-c', 'service-b-v1', 'service-b-v2', 'service-d-v1', 'service-d-v2']) releases[name] = publish(path.join(root, 'projects', name));
-  const dProof = JSON.parse(await readFile(path.join(output, 'dependency-upgrade.json'), 'utf8'));
-  const bProof = JSON.parse(await readFile(path.join(output, 'business-upgrade.json'), 'utf8'));
-  const sdkProof = JSON.parse(await readFile(path.join(output, 'sdk-upgrade.json'), 'utf8'));
-  const targetDirectory = dProof.retainedReleases['service-d-v1'];
-  const target = publish(targetDirectory), alternate = releases['service-d-v1'];
-  const newB = publish(bProof.retainedReleases['service-b-v1']), newSDK = publish(sdkProof.retainedRelease);
   const bA = releases['service-b-v1'].id, bC = releases['service-b-v2'].id;
   const legacyProject=path.join(temporary,'historical-shell');
   await cp(path.join(sourceStore,'artifacts','shell_1_0_0_a79c427e3f86'),path.join(legacyProject,'dist'),{recursive:true});
   const legacyShell=publish(legacyProject);
-  const initial = activate({ platform: releases['platform-sdk'].id, shell: legacyShell.id, A: releases['service-a'].id, C: releases['service-c'].id }, {
-    [releases['service-a'].id]: { b: bA }, [releases['service-c'].id]: { b: bC }, [bA]: { d: target.id }, [bC]: { d: releases['service-d-v2'].id },
-  });
+  // A pre-lease Webpack host needs its actual retained Webpack cohort. Do not
+  // pair that unchanged host with newly compiled native ESM consumers. Search
+  // historical snapshots rather than relying on the live pointer staying old.
+  const semver=require('semver');
+  const historicalCatalog=JSON.parse(await readFile(path.join(sourceStore,'catalog.json'),'utf8'));
+  const historicalCandidates=[];
+  for(const filename of await readdir(path.join(sourceStore,'compositions'))){
+    if(!filename.endsWith('.json'))continue;
+    const snapshot=JSON.parse(await readFile(path.join(sourceStore,'compositions',filename),'utf8'));
+    const selected=snapshot.selected;
+    if(!selected?.platform||!selected.A||!selected.C||historicalCatalog[selected.shell]?.format==='esm')continue;
+    const sdk=historicalCatalog[selected.platform];
+    const oldBA=snapshot.runtimeBindings?.[selected.A]?.b;
+    const oldBC=snapshot.runtimeBindings?.[selected.C]?.b;
+    const oldD=snapshot.runtimeBindings?.[oldBA]?.d;
+    if(!sdk||!oldBA||!oldBC||!oldD||!historicalCatalog[oldD]?.version.startsWith('1.'))continue;
+    if(!semver.satisfies(sdk.version,legacyShell.runtimeRequirements.platform))continue;
+    const graph=new Map();
+    function retained(id){
+      if(graph.has(id))return true;
+      const artifact=historicalCatalog[id];
+      if(!artifact||artifact.format==='esm'||!fs.existsSync(path.join(sourceStore,'artifacts',id,'release.json')))return false;
+      graph.set(id,artifact);
+      return [...Object.values(artifact.dependencies||{}),...Object.keys(artifact.runtimeDependencies||{}).map(alias=>snapshot.runtimeBindings?.[id]?.[alias])].every(retained);
+    }
+    if(![selected.platform,selected.A,selected.C].every(retained))continue;
+    historicalCandidates.push({snapshot,graph,sdk,target:historicalCatalog[oldD]});
+  }
+  historicalCandidates.sort((a,b)=>semver.rcompare(a.target.version,b.target.version)||semver.rcompare(a.sdk.version,b.sdk.version)||a.snapshot.compositionId.localeCompare(b.snapshot.compositionId));
+  const historical=historicalCandidates[0];
+  assert(historical,'Retain a complete compatible Webpack SDK/A/C/B/D snapshot for the unchanged historical Shell');
+  for(const artifact of historical.graph.values()){
+    const checkout=path.join(temporary,'historical-cohort',artifact.id);
+    await cp(path.join(sourceStore,'artifacts',artifact.id),path.join(checkout,'dist'),{recursive:true});
+    publish(checkout);
+  }
+  const target=historical.target,alternate=releases['service-d-v1'],legacySDK=historical.sdk;
+  const initial=activate({...historical.snapshot.selected,shell:legacyShell.id},historical.snapshot.runtimeBindings,{replaceBindings:true});
+  report.historicalCohort={compositionId:historical.snapshot.compositionId,artifactIds:[...historical.graph.keys()],target:target.id,sdk:legacySDK.id};
   selectAdmin(publish(path.join(root, 'projects/platform-admin')).id);
   const targetPath = path.join(process.env.MFE_ARTIFACT_STORE, 'artifacts', target.id);
   const targetHash = await fingerprint(targetPath);
@@ -132,7 +162,9 @@ try {
     report.historicalShell=legacyShell.id;report.telemetryHash=createHash('sha256').update(oldTracker).digest('hex');
   });
   await check('UI installs a same-origin bridge that controls an already-open unchanged legacy tab',async()=>{
-    middle=activate({shell:releases.shell.id});
+    middle=activate({platform:releases['platform-sdk'].id,shell:releases.shell.id,A:releases['service-a'].id,C:releases['service-c'].id},{
+      [releases['service-a'].id]:{b:bA},[releases['service-c'].id]:{b:bC},[bA]:{d:target.id},[bC]:{d:releases['service-d-v2'].id},
+    },{replaceBindings:true});
     await openTarget();await openLegacy();
     await page.getByTestId('install-transition-bridge').click();await page.getByTestId('transition-bridge-status').waitFor();
     await old.waitForFunction(()=>navigator.serviceWorker.controller?.scriptURL.endsWith('/transition-worker.js'));
@@ -230,12 +262,12 @@ try {
   });
   await check('legacy reference cleanup requires a fence and grace period and only releases the selected artifact',async()=>{
     assert.equal((await post('sessions/release-legacy',await legacyBody(lostId))).status,409);
-    assert.equal((await post('sessions/release-legacy',await legacyBody(lostId,releases['platform-sdk'].id))).status,409);
+    assert.equal((await post('sessions/release-legacy',await legacyBody(lostId,legacySDK.id))).status,409);
     seedPolicy(target.id,{accessRevokedAt:aged});
     await openTarget();await openLegacy();await page.getByTestId(`prepare-legacy-release-${lostId}`).click();await confirmForm(lostId);
     assert(session(lostId).legacyReleases[target.id]);assert.equal(session(lostId).releasedAt,undefined);
     assert.equal((await item()).sessions.find(s=>s.id===lostId).status,'released');
-    assert.equal((await item(releases['platform-sdk'].id)).sessions.find(s=>s.id===lostId).status,'unknown');
+    assert.equal((await item(legacySDK.id)).sessions.find(s=>s.id===lostId).status,'unknown');
     assert((await item()).deletion.blockers.some(b=>b.code==='UNKNOWN_TABS'),'Second old tab still protects target');
     const stale=await legacyBody(isolatedId);await pulse(isolatedId);assert.equal((await post('sessions/release-legacy',stale)).status,409);
     assert.equal((await post('sessions/release-legacy',await legacyBody(isolatedId))).status,200);
@@ -246,7 +278,7 @@ try {
     const response=await pulse(lostId);assert.equal(response.status,200);assert.equal(response.body.transitionURL,'/legacy-transition');
     assert.equal(session(lostId).legacyReleases[target.id].releasedAt,released);
     assert.equal((await item()).sessions.find(s=>s.id===lostId).status,'released');
-    assert.equal((await item(releases['platform-sdk'].id)).sessions.find(s=>s.id===lostId).status,'recent');
+    assert.equal((await item(legacySDK.id)).sessions.find(s=>s.id===lostId).status,'recent');
   });
   await check('after explicit reference cleanup and retention, actual removal keeps the access fence',async()=>{
     updateMetadata('usage.json',data=>{data.startedAt=aged;for(const s of Object.values(data.sessions)){s.lastSeenAt=aged;if(s.releasedAt)s.releasedAt=aged;if(s.closedAt)s.closedAt=aged;for(const r of Object.values(s.legacyReleases||{}))r.releasedAt=aged;}return data;});

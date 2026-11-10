@@ -1,27 +1,40 @@
 {
   "schemaVersion": 1,
-  "platform": "platform_1_2_0_11681bf2b051",
+  "platform": "platform_1_3_1_e25c8d049944",
   "artifacts": {
-    "platform_1_2_0_11681bf2b051": {
-      "id": "platform_1_2_0_11681bf2b051",
-      "name": "mf_platform_1_2_0_11681bf2b051",
+    "platform_1_3_1_e25c8d049944": {
+      "id": "platform_1_3_1_e25c8d049944",
+      "name": "mf_platform_1_3_1_e25c8d049944",
       "service": "platform",
-      "version": "1.2.0",
-      "entry": "/artifacts/platform_1_2_0_11681bf2b051/remoteEntry.js",
+      "version": "1.3.1",
+      "entry": "/artifacts/platform_1_3_1_e25c8d049944/remoteEntry.js",
       "dependencies": {},
       "runtimeRequirements": {
         "react": "19.3.1",
         "react-dom": "19.3.1"
       },
       "runtimeDependencies": {},
-      "kind": "remote"
+      "kind": "remote",
+      "format": "esm",
+      "federation": "vite",
+      "retryProtocol": "vite-preflight-v1",
+      "exposedModules": [
+        "./sdk"
+      ],
+      "federationImports": [],
+      "exposeImports": {
+        "./sdk": []
+      },
+      "exposeChunks": {
+        "./sdk": "assets/sdk-ClnQiGJZ.js"
+      }
     },
-    "b_2_2_0_3d53e541b07d": {
-      "id": "b_2_2_0_3d53e541b07d",
-      "name": "mf_b_2_2_0_3d53e541b07d",
+    "b_2_1_0_479272f66af5": {
+      "id": "b_2_1_0_479272f66af5",
+      "name": "mf_b_2_1_0_479272f66af5",
       "service": "b",
-      "version": "2.2.0",
-      "entry": "/artifacts/b_2_2_0_3d53e541b07d/remoteEntry.js",
+      "version": "2.1.0",
+      "entry": "/artifacts/b_2_1_0_479272f66af5/remoteEntry.js",
       "dependencies": {},
       "runtimeRequirements": {
         "platform": ">=1.0.0 <2.0.0",
@@ -34,55 +47,133 @@
           "requires": ">=2.0.0 <3.0.0"
         }
       },
-      "kind": "remote"
+      "kind": "remote",
+      "format": "esm",
+      "federation": "vite",
+      "retryProtocol": "vite-preflight-v1",
+      "exposedModules": [
+        "./Widget"
+      ],
+      "federationImports": [
+        {
+          "alias": "d",
+          "exposedModule": "./data"
+        },
+        {
+          "alias": "platform",
+          "exposedModule": "./sdk"
+        }
+      ],
+      "exposeImports": {
+        "./Widget": [
+          {
+            "alias": "d",
+            "exposedModule": "./data"
+          },
+          {
+            "alias": "platform",
+            "exposedModule": "./sdk"
+          }
+        ]
+      },
+      "exposeChunks": {
+        "./Widget": "assets/Widget-DpWBr3ys.js"
+      }
     },
-    "d_2_1_0_26a11234ca4f": {
-      "id": "d_2_1_0_26a11234ca4f",
-      "name": "mf_d_2_1_0_26a11234ca4f",
+    "d_2_0_0_a4251bae8bc7": {
+      "id": "d_2_0_0_a4251bae8bc7",
+      "name": "mf_d_2_0_0_a4251bae8bc7",
       "service": "d",
-      "version": "2.1.0",
-      "entry": "/artifacts/d_2_1_0_26a11234ca4f/remoteEntry.js",
+      "version": "2.0.0",
+      "entry": "/artifacts/d_2_0_0_a4251bae8bc7/remoteEntry.js",
       "dependencies": {},
       "runtimeRequirements": {},
       "runtimeDependencies": {},
-      "kind": "remote"
+      "kind": "remote",
+      "format": "esm",
+      "federation": "vite",
+      "retryProtocol": "vite-preflight-v1",
+      "exposedModules": [
+        "./data"
+      ],
+      "federationImports": [],
+      "exposeImports": {
+        "./data": []
+      },
+      "exposeChunks": {
+        "./data": "assets/src-CX2GwUvW.js"
+      }
     }
   },
   "runtimeBindings": {
-    "b_2_2_0_3d53e541b07d": {
-      "d": "d_2_1_0_26a11234ca4f"
+    "b_2_1_0_479272f66af5": {
+      "d": "d_2_0_0_a4251bae8bc7"
     }
   },
   "localBindings": {
-    "b": "b_2_2_0_3d53e541b07d"
+    "b": "b_2_1_0_479272f66af5"
   },
   "files": {
-    "platform_1_2_0_11681bf2b051": {
-      "release.json": "8688eeaf0de2aafb8b0d122e11345e307acb91b3c01b6661385c01a82b6ad4d0",
-      "remoteEntry.js": "8380be279f36b9f31cdbcea59631d6ad70f284d968538137a47c229aaba86ed1",
-      "remoteEntry.js.map": "6463cf5bc8bb96d04c90b8ba1ead6afc79cbefd280e290031b8907284db69833",
-      "src_sdk_jsx.417d6a946906e3a74913.js": "9b43cc9c4119cc7140e762bf1a2da598c527c061af32bf65bf1727e9892c1450",
-      "src_sdk_jsx.417d6a946906e3a74913.js.map": "99df08e47cc723a9b1c1bf8aca6bf4643e995b9a1044fa2d6360abab811fcc29",
-      "vendors-node_modules_react_index_js.7ac5078087998dbfdb10.js": "dface5bb8815f826a81cf52f9df432a7f96cbda4cee376645129745ff70fd806",
-      "vendors-node_modules_react_index_js.7ac5078087998dbfdb10.js.map": "9dfe59db071c6a7127b728970af89cc3adbf669ed28cd178f7f1b3d27c77cf6c"
+    "platform_1_3_1_e25c8d049944": {
+      "assets/_virtual_mf-localSharedImportMap___mfe_internal__mf_platform_1_3_1_e25c8d049944__mf_owner__1-5YRVjoO3.js": "78ca32fafe25ada693621155ef1a7c12e7ea4c2eb71f32977df3a6d3b9b1265b",
+      "assets/_virtual_mf___mfe_internal__mf_platform_1_3_1_e25c8d049944__mf_owner__242075772864893__loadShare__react__loadShare__.js-B3vX5iHX.js": "03c817b6b3a143dcd6e2a4e01c00af56b681e854e1ab854c0cd7fe28f7bef352",
+      "assets/_virtual_mf___mfe_internal__mf_platform_1_3_1_e25c8d049944__mf_owner__242075772864893__loadShare__react__loadShare__.js-B3vX5iHX.js.map": "8347a72be517d3473f0e30a164870489883d8a35a2964f3cfcd14b0849040294",
+      "assets/_virtual_mf___mfe_internal__mf_platform_1_3_1_e25c8d049944__mf_owner__242075772864893__loadShare__shared-J1-L7PDQ.js": "a98a0d934741605f0394cfe04d67144b9d5dab8c281bf9bb5211fa65b12e33f4",
+      "assets/_virtual_mf___mfe_internal__mf_platform_1_3_1_e25c8d049944__mf_owner__242075772864893__prebuild__react_mf_2_dom__prebuild__-Bp2t7YDH.js": "2ef2e66e1b2d7eb760e5a2acee5179201542eb814aff87b36cbba5cb8b628f30",
+      "assets/_virtual_mf___mfe_internal__mf_platform_1_3_1_e25c8d049944__mf_owner__242075772864893__prebuild__react_mf_2_dom_mf_1_client__prebuild__-KVvYFSOM.js": "1be587af2f9df4bf803219fb05dd9afbaeb30bfed2c80676514b6dcfb9e14cee",
+      "assets/_virtual_mf___mfe_internal__mf_platform_1_3_1_e25c8d049944__mf_owner__242075772864893__prebuild__react_mf_2_dom_mf_1_client__prebuild__-KVvYFSOM.js.map": "121b3dd379bd6edbd5085dc531143280e77ef05399fb9367496ff529662b1783",
+      "assets/dist-Bo8xtUoB.js": "6009fd1328c2d0697215f6996c12e3a8dea5744a3f7faf0b829d1ffc4a539ccb",
+      "assets/dist-Bo8xtUoB.js.map": "accb14db01065440ecd520f96e404dcc013209eedcb846621a2ff7b7b56c38ab",
+      "assets/hostInit-DMmU90Hg.js": "70d47b5d8db5b9d8d8b7751121786688612e504fb14ae81317bd19de8674cdf2",
+      "assets/pendingShares-BkydpHFJ.js": "fb2cbbb3f82ca5a31ed886c62ec7d1ab4ae8bffdc6c01a7c38a7f8e24336cbf2",
+      "assets/react-dom-DARWW5In.js": "4297f4dfc2b114952e9f7845fefe41cbad1f639f70a35cc82dc9fd2935088044",
+      "assets/react-dom-DARWW5In.js.map": "9ed09e7736f9ebc56072749d16d091e2731d40ec37631466a215dc8fc9705b29",
+      "assets/rolldown-runtime-SbdDWaPq.js": "8cd5f72ee962aad5f620072095a0c85942cb2b613ad628b8fb4774ab0c3b12b6",
+      "assets/sdk-BbXiZY3X.css": "3545bc89ff006ea2e0bda1fb2e0dbae3fdf8a3bc9f975b007c86f32aef601d76",
+      "assets/sdk-ClnQiGJZ.js": "0014e47121360d0f7d051c5e3efaf7bdbaa571ee3cba3dc22e52b43652364283",
+      "assets/sdk-ClnQiGJZ.js.map": "511715d7016774be62f6a9e107a8679ad6854f28793eb70fdf1ef5757fb6e3cd",
+      "assets/vite-preload-helper-CtLp1C0p.js": "0587b911376d9172ef501cfc4abc33f15385f4fbd7d6ee309f398bdec03fb605",
+      "release.json": "25a2f048560090a5037e57b4d1b45f2a44beee213623a05f00cc8cc12456273a",
+      "remoteEntry.js": "bc7c97be9da5b09f8c70e93f5e334a7bd410ff75aa7f816e608d748cb09d0735",
+      "remoteEntry.js.map": "96d54646f1c50ee40e96945edebddb9fb0a0419bbeeb1a014a354facf1fc71e5"
     },
-    "b_2_2_0_3d53e541b07d": {
-      "release.json": "9a987836f17af99526c1b8fbaa2d93bcc9cb2c98249eabdc634d2d0d4f879d13",
-      "remoteEntry.js": "2839432f0b9aef4fd2416226811249989649e490c1fc227d82e0ec6cdb77dbea",
-      "remoteEntry.js.map": "e69919ee45011e77e8f9e7704bd4e0a9e9f5e76b444adbabb9e3962a9104b6da",
-      "src_Widget_jsx.f53c5e78fb1ab4f9977b.js": "e4d9b5b461b6f34e6432ca4d6dcff671803f3e968d827020b9a6fa1470e29f5e",
-      "src_Widget_jsx.f53c5e78fb1ab4f9977b.js.map": "f2a7d852845804cc47066162b46d2bad2908b011846f44321771d2bb4979c11b",
-      "vendors-node_modules_react-dom_index_js.9658740f50e8c4a77e78.js": "b1db2b0d473922733e3e5877c079ac4d86159f2960f5009295b4b416025ad6b2",
-      "vendors-node_modules_react-dom_index_js.9658740f50e8c4a77e78.js.map": "acdf22f4f0c7a67c25f584c3601fc41c991ba7a7a3c15fda18324436c8f564e8",
-      "vendors-node_modules_react_index_js.f5120d30d31249449ee4.js": "dff73fb6cd70aa5581e794a18345b8f5ea98017b355021f4416ca6b63f007528",
-      "vendors-node_modules_react_index_js.f5120d30d31249449ee4.js.map": "cb6e639ae827312747fe7f317c113c93a8a996249c841340e696b9dbe6b34a70"
+    "b_2_1_0_479272f66af5": {
+      "assets/Widget-DpWBr3ys.js": "5ea86c770e2527ef6cbe1690cc972b076137747a1014972d4195963c2de46a1c",
+      "assets/Widget-DpWBr3ys.js.map": "84c9839001c81b15a79ea4772fe6b91599e1a32d1884d16f76bbf33ceea4e374",
+      "assets/Widget-EPjutS18.css": "48880b59f97ad33f30757dc0d6ce501ffe38f26a2ac200cede5107af3cb59246",
+      "assets/_virtual_mf-localSharedImportMap___mfe_internal__mf_b_2_1_0_479272f66af5__mf_owner__1-kmQ5k4LN.js": "57d2bd710f85c10416cdabe37fca006a8a74709da009f0be3d355d91e16090d7",
+      "assets/_virtual_mf___mfe_internal__mf_b_2_1_0_479272f66af5__loadRemote__d_mf_1_data__mf_owner__1__loadRemote__-k3NJ0iS_.js": "67d68f50dfc6d73593c8ecd5f7c16cd9dcaafcfebc8879db7febc6e3846c570e",
+      "assets/_virtual_mf___mfe_internal__mf_b_2_1_0_479272f66af5__loadRemote__platform_mf_1_sdk__mf_owner__1__loadRemote__-Bajl1dHW.js": "d982fcc535fa9e4cc59dca400938615f2f11f80fd223b970a38900d3d7e6724b",
+      "assets/_virtual_mf___mfe_internal__mf_b_2_1_0_479272f66af5__mf_owner__123185571438837__loadShare__react__loadShare__.js-CJqcos9T.js": "c8ada3fd90bc43c58664d6180b9b98b31f2162c677ce68ae67e1b4c0d844aa35",
+      "assets/_virtual_mf___mfe_internal__mf_b_2_1_0_479272f66af5__mf_owner__123185571438837__loadShare__react__loadShare__.js-CJqcos9T.js.map": "a880afc2eb74101f4823e8149150bf9b3d5aa3334cf3e782a979c5cf8b2ebd4f",
+      "assets/_virtual_mf___mfe_internal__mf_b_2_1_0_479272f66af5__mf_owner__123185571438837__loadShare__shared-fhLrJplx.js": "0530ad714d31aa8b6f98f1068fff22c59fa41c3735d5ec86fa5d947d63a4d42a",
+      "assets/_virtual_mf___mfe_internal__mf_b_2_1_0_479272f66af5__mf_owner__123185571438837__prebuild__react_mf_2_dom__prebuild__-CdK084Rg.js": "6c854a8e5f5d47fb54a7a91198dc47b956e894eb72f01654b9c3d4ca910903ef",
+      "assets/_virtual_mf___mfe_internal__mf_b_2_1_0_479272f66af5__mf_owner__123185571438837__prebuild__react_mf_2_dom_mf_1_client__prebuild__-BYX9Yly4.js": "4dc09a7423b445f468fdd3d3e0e8ada5d1fad0f0915b5925cbba464014fe6cc4",
+      "assets/_virtual_mf___mfe_internal__mf_b_2_1_0_479272f66af5__mf_owner__123185571438837__prebuild__react_mf_2_dom_mf_1_client__prebuild__-BYX9Yly4.js.map": "ba678bd24803c95836214eaf043b5857654f1bd07749a28a74016ec189c64d7b",
+      "assets/dist-Bo8xtUoB.js": "6009fd1328c2d0697215f6996c12e3a8dea5744a3f7faf0b829d1ffc4a539ccb",
+      "assets/dist-Bo8xtUoB.js.map": "accb14db01065440ecd520f96e404dcc013209eedcb846621a2ff7b7b56c38ab",
+      "assets/hostInit-GZpl63UA.js": "666a0e2f894845cb7a7b889d4ea3611e0815dfbdc7c07aa59638c55a0f447b96",
+      "assets/pendingShares-bOJ_aVXR.js": "8175ac59207c957478aef7073ad190d160299f8c2da2d4a13e71f3fdada71d2b",
+      "assets/react-dom-DeOToieo.js": "12fe3663327d043dd71704b58a17855f89fc87babb6bb9f9a99c976c29f362af",
+      "assets/react-dom-DeOToieo.js.map": "88bbfd3fa5a0f79689f95f12a85248a89b82d9eb7f14115349eeb2f1ee45e5f6",
+      "assets/rolldown-runtime-DQp2zzRu.js": "0de66bbd84494ea80eb87ec70556319b56b7fb979ebbae90d39fa97f7cd3c392",
+      "assets/vite-preload-helper-MNh0XIOp.js": "0587b911376d9172ef501cfc4abc33f15385f4fbd7d6ee309f398bdec03fb605",
+      "release.json": "77f9c678965565bc82a38b6e8c406ca704225c787bea597d915148bcffc5f3b6",
+      "remoteEntry.js": "e7fc600cbbba4e62aa46c9c79f699dfc8dbfcaec16f112304a391dc19f232cbd",
+      "remoteEntry.js.map": "72f85700160f1987dee9fe71c73d2104b7d9cac789d9ed6692816bc642a072ec"
     },
-    "d_2_1_0_26a11234ca4f": {
-      "release.json": "b3077677cd38fb0b0b954b420702b9157229ed3f57489f8c485cd7b9119b77e8",
-      "remoteEntry.js": "bd0ea9eff40353af7e807b277489def6826e1d0df0e3db8ccd4161fe9625f825",
-      "remoteEntry.js.map": "1551fb4689ee94711d8a6a6c9392164cd7a8050d4c23e310c7eb9ee54f18dae0",
-      "src_index_js.923312edab5bfa2926e4.js": "014a66183f3867c88b9283e91c2362eafbd2b8f017f2aaeb8495bf384466e075",
-      "src_index_js.923312edab5bfa2926e4.js.map": "de355f5107d5686e00e64851fa470aa090d9a17c8fef062d23f5269d54dac6d0"
+    "d_2_0_0_a4251bae8bc7": {
+      "assets/_virtual_mf-localSharedImportMap___mfe_internal__mf_d_2_0_0_a4251bae8bc7__mf_owner__1-CC1gJ7XN.js": "4094e79c21565c2409845855522f7dbf3c07c540294a9412d34ca60d9c6895a0",
+      "assets/dist-CzT-8ogd.js": "650a3c3386bba6bb52a0f046781b65794293f2fc9d4960d5f915a8fa3ff617d5",
+      "assets/dist-CzT-8ogd.js.map": "7fbac1dd2610346f188aa986804cad05e8b61fd09825c3c9de1518766c55ffad",
+      "assets/hostInit-BY8p2eXE.js": "ca1932a8b99fe26cf393f6205785c8b2e8564f1180d3d93ba5f60f0f5d371726",
+      "assets/pendingShares-DqWpTPAN.js": "fbaeb4ffcdb465085bea9b0cca6d5fcf7cf555a3286824726f42711673b103e0",
+      "assets/src-CX2GwUvW.js": "d3a3738ef0b85043b876a6af30df2c21ddd76454c73a279644cc67dc43aac1b6",
+      "assets/src-CX2GwUvW.js.map": "f28d198c0e1473aaf9384f492647a0e4d097fa4825ff9fea666f48a4a614dbf4",
+      "assets/vite-preload-helper-Bdil_hx7.js": "0587b911376d9172ef501cfc4abc33f15385f4fbd7d6ee309f398bdec03fb605",
+      "release.json": "80331a236c131bf2d94e5bb6dc0b06bef0f613f8a8c659acae03a9d120ee53fc",
+      "remoteEntry.js": "94c855a23f691b99e440cd6b03a48c6572af0a17730f7626f2f8d7370355021a",
+      "remoteEntry.js.map": "da39f0b1675d1dd26dc89282203d75ac873f554f14b720f7a1b00699d760b8e3"
     }
   }
 }

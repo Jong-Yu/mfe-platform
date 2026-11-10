@@ -1,10 +1,14 @@
 {
   "status": "passed",
-  "startedAt": "2026-11-08T12:04:12.814Z",
-  "scope": "Document browser QA only. The separate 20-example execution and 205 feature checks are recorded in ../walkthrough/report.json.",
+  "startedAt": "2026-11-10T13:19:34.667Z",
+  "scope": "Current Vite learning-book browser QA only: navigation, source links, search, responsive layout, print and standalone offline reading. This command does not run product tests. Fresh local-candidate Git clone evidence and the unchanged older upstream revision are in ../vite-clone/report.json. Earlier working-copy empty-cache and prepared-cache runs are in ../vite-cold-install/report.json and ../vite-walkthrough/report.json. Historical Webpack 20-example execution and 205 feature checks are recorded separately in ../walkthrough/report.json.",
   "checks": [
     {
-      "name": "20개 실습·4개 상세 문서·12개 개념 장과 해설 수록",
+      "name": "현재 Vite 상세 8장·20개 보존 실습·4개 부록·기초 개념 수록",
+      "status": "passed"
+    },
+    {
+      "name": "현재 구현을 먼저 읽고 보존 실습으로 이동하는 학습 경로",
       "status": "passed"
     },
     {
@@ -16,11 +20,19 @@
       "status": "passed"
     },
     {
+      "name": "현재 MF 연결 과정 검색·목차 이동과 전체 구조 화면",
+      "status": "passed"
+    },
+    {
       "name": "단어 검색에서 접힌 상세 부록까지 찾아 이동",
       "status": "passed"
     },
     {
       "name": "목차에서 본문·예제·해설로 이동",
+      "status": "passed"
+    },
+    {
+      "name": "상세 모두 펼치기가 현재 설명과 보존 부록에 함께 적용",
       "status": "passed"
     },
     {
@@ -48,6 +60,6 @@
       "status": "passed"
     }
   ],
-  "localLinks": 747,
-  "finishedAt": "2026-11-08T12:04:19.782Z"
+  "localLinks": 931,
+  "finishedAt": "2026-11-10T13:19:41.867Z"
 }

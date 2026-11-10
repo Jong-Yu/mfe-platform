@@ -1,0 +1,24 @@
+{
+  "id": "d_2_0_0_a4251bae8bc7",
+  "name": "mf_d_2_0_0_a4251bae8bc7",
+  "service": "d",
+  "version": "2.0.0",
+  "entry": "/artifacts/d_2_0_0_a4251bae8bc7/remoteEntry.js",
+  "dependencies": {},
+  "runtimeRequirements": {},
+  "runtimeDependencies": {},
+  "kind": "remote",
+  "format": "esm",
+  "federation": "vite",
+  "retryProtocol": "vite-preflight-v1",
+  "exposedModules": [
+    "./data"
+  ],
+  "federationImports": [],
+  "exposeImports": {
+    "./data": []
+  },
+  "exposeChunks": {
+    "./data": "assets/src-CX2GwUvW.js"
+  }
+}

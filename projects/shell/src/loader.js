@@ -4,9 +4,10 @@ export function loadRemote(artifact, exposedModule) {
   const key = `${artifact.id}:${exposedModule}`;
   if (!modules.has(key)) {
     const pending = (async () => {
-      await __webpack_init_sharing__('default');
-      const container = await globalThis.__MFE_RUNTIME__.getArtifactContainer(artifact);
-      await container.init(__webpack_share_scopes__.default);
+      const runtime = globalThis.__MFE_RUNTIME__;
+      const scope = await runtime.initializeSharing();
+      const container = await runtime.getArtifactContainer(artifact);
+      await container.init(scope);
       const factory = await container.get(exposedModule);
       return factory();
     })();

@@ -1,0 +1,14 @@
+{
+  "source": "/private/tmp/mfe-git-clone-check.otAOJS/candidate",
+  "directory": "/private/tmp/mfe-git-clone-check.otAOJS/validated-node24",
+  "commit": "319fa9a1a3ffa683beb15eade95be3893455b44f",
+  "branch": "codex/vite-clone-validation",
+  "initialStatus": "",
+  "noLocalOverlayAfterClone": true,
+  "noPreinstalledActiveProjects": true,
+  "bookSHA256": "4dd83f8d00dbfd68140b53fcb1a21f4e438791caf1fceb34ad4433eddb1ba25b",
+  "node": "v24.22.1",
+  "npm": "11.19.1",
+  "preflight": "candidate-preflight.json",
+  "runtimeSelection": "Existing nvm installation: nvm use selected .nvmrc=24 in this same shell; Node itself was not installed during verification."
+}

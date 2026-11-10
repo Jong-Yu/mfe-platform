@@ -2,7 +2,7 @@
   const $ = s => document.querySelector(s);
   const all = s => [...document.querySelectorAll(s)];
   const progressBoxes = all('[data-progress]');
-  const key = 'mfe-self-study-progress-v1';
+  const key = 'mfe-self-study-progress-v2-vite';
   let saved = {};
   try { saved = JSON.parse(localStorage.getItem(key) || '{}'); } catch (_) {}
   progressBoxes.forEach(box => { box.checked = saved[box.dataset.progress] === true; });
@@ -61,7 +61,7 @@
   let expanded = false;
   $('#expand').addEventListener('click', () => {
     expanded = !expanded;
-    all('.print-expand').forEach(x => x.open = expanded);
+    all('main details').forEach(x => x.open = expanded);
     $('#expand').textContent = expanded ? '상세 자료 모두 접기' : '상세 자료 모두 펼치기';
   });
   let printState = [];

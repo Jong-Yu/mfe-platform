@@ -1,0 +1,10 @@
+{
+  "status": "failed-environment",
+  "candidateCommit": "8b4efb8745c7bbce36e8cddf0a050afaa4bb3cb0",
+  "node": "v16.14.0",
+  "npm": "11.9.0",
+  "nodePath": "/usr/local/bin/node",
+  "cause": "The fresh clone shell selected an older installed Node; .nvmrc does not automatically select a runtime. The earlier preflight ran through Node 24 in the original working shell. Playwright exited before the release harness could finalize its raw report, and the version build failed. These runs are not counted as passing.",
+  "fix": "Explicitly select the already installed Node 24 in the shell, recheck node/npm and run the preflight in that same shell before retrying from new empty caches.",
+  "nodeInstallationTested": false
+}

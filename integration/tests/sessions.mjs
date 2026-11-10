@@ -96,12 +96,18 @@ try {
   const cleanupBody = (id) => ({sessionId:id, expectedSequence:session(id).sequence, expectedLeaseExpiresAt:session(id).leaseExpiresAt, confirmationId:id, reason:'임시 저장소에서 만료된 탭 정리 검증'});
   const editSession = (id, changes) => updateMetadata('usage.json', data => { Object.assign(data.sessions[id], changes); return data; });
   const oldTime = new Date(Date.now() - 26 * 3600000).toISOString();
+  function isProductRemoteRequest(request) {
+    const url = new URL(request);
+    const ownShellBootstrap = url.origin === baseURL && url.pathname === `/artifacts/${initial.selected.shell}/remoteEntry.js`;
+    return url.pathname.endsWith('/remoteEntry.js') && !ownShellBootstrap;
+  }
 
   await check('Shell acquires a renewable lease before requesting SDK or service remotes', async () => {
     const events = [];
-    old.on('request', req => {if (req.url().endsWith('/api/runtime/usage')) events.push(JSON.parse(req.postData()).event); else if (req.url().endsWith('/remoteEntry.js')) events.push('remote');});
+    old.on('request', req => {if (req.url().endsWith('/api/runtime/usage')) events.push(JSON.parse(req.postData()).event); else if (isProductRemoteRequest(req.url())) events.push('remote');});
     await old.goto(baseURL + '/?empty=1', {waitUntil:'networkidle'});
     await old.getByTestId('add-a').click(); await old.getByTestId('widget-A').getByTestId('dependency').waitFor();
+    assert(events.includes('open') && events.includes('remote'));
     assert(events.indexOf('open') < events.indexOf('remote'));
     staleId = await old.evaluate(() => __MFE_TAB_GUARD__.diagnostics().sessionId);
     assert.equal(session(staleId).protocol, 'lease-v1');
@@ -112,7 +118,7 @@ try {
   });
   await check('a failed initial lease never boots service remotes', async () => {
     const offline = await context.newPage(); let remotes = 0;
-    offline.on('request', req => {if(req.url().endsWith('/remoteEntry.js')) remotes++;});
+    offline.on('request', req => {if(isProductRemoteRequest(req.url())) remotes++;});
     await offline.route('**/api/runtime/usage', route => route.abort());
     await offline.goto(baseURL, {waitUntil:'networkidle'});
     await offline.getByTestId('lease-notice').waitFor(); assert.equal(remotes, 0);

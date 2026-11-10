@@ -1,0 +1,16 @@
+{
+  "status": "passed",
+  "root": "/private/tmp/mfe-git-clone-check.otAOJS/validated",
+  "mode": "working files and committed HEAD",
+  "node": "v24.22.1",
+  "head": "8b4efb8745c7bbce36e8cddf0a050afaa4bb3cb0",
+  "buildToolsVersion": "2.0.0",
+  "counts": {
+    "projects": 10,
+    "vendorPackages": 9,
+    "developmentKits": 4,
+    "developmentFiles": 174,
+    "requiredFiles": 384
+  },
+  "errors": []
+}

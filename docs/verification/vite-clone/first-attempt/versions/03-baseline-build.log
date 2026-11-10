@@ -1,0 +1,11 @@
+npm warn cli npm v11.9.0 does not support Node.js v16.14.0. This version of npm supports the following node versions: `^20.17.0 || >=22.9.0`. You can find the latest version at https://nodejs.org/.
+
+> mfe-integration-verification@1.0.0 build
+> node tools/build-fixtures.cjs && node tools/build-admin.cjs
+
+npm warn cli npm v11.9.0 does not support Node.js v16.14.0. This version of npm supports the following node versions: `^20.17.0 || >=22.9.0`. You can find the latest version at https://nodejs.org/.
+
+> @mfe/platform-sdk@1.3.1 build
+> mfe-build
+
+mfe-build: request for './chunks/node.js' is not in cache

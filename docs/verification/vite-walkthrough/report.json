@@ -1,0 +1,52 @@
+{
+  "status": "passed",
+  "date": "2026-11-10",
+  "scope": "Current working-tree copies without prior installations, build outputs or product stores. Actual Vite development, publication, activation and rollback; not a fresh Git clone, empty-cache network installation, full product suite or the historical 205 Webpack checks.",
+  "environment": {
+    "node": "v24.22.1",
+    "chrome": "157.0.8103.39",
+    "platform": "darwin",
+    "installation": "Prepared npm cache, offline npm ci/setup"
+  },
+  "parts": [
+    {
+      "name": "V5 development and error recovery",
+      "checks": 10,
+      "passed": 10,
+      "status": "passed",
+      "report": "development/report.json"
+    },
+    {
+      "name": "V6 B release, CLI/UI activation and rollback",
+      "checks": 11,
+      "passed": 11,
+      "status": "passed",
+      "report": "release/report.json"
+    },
+    {
+      "name": "V7 SDK and D replacement and rollback",
+      "checks": 22,
+      "passed": 22,
+      "status": "passed",
+      "report": "versions/report.json"
+    }
+  ],
+  "checks": 43,
+  "passed": 43,
+  "originalPreserved": true,
+  "findings": "findings.json",
+  "productCodeChanged": false,
+  "scripts": [
+    "../../book/vite-dev-walkthrough.mjs",
+    "../../book/vite-release-walkthrough.mjs",
+    "../../book/vite-version-walkthrough.mjs"
+  ],
+  "earlyAttempts": [
+    {
+      "report": "release/first-pass-report.json",
+      "kind": "verification harness assumption",
+      "explanation": "The build succeeded. A harness assertion incorrectly distinguished omitted navigation from an empty navigation list; the assertion was corrected before a fresh complete run."
+    }
+  ],
+  "updatedBookSHA256": "1e109e498104fafa3a8c659b46c176efb459722fa07a78afa68b5a7a829d3c56"
+}

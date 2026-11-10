@@ -19,7 +19,7 @@
 
 공통 React Context, 인스턴스별 캐시·구독·Portal 수명주기를 `platform/sdk` MF 모듈로 제공합니다. 런타임 SDK는 npm 라이브러리가 아니라 별도 빌드·배포하는 Remote입니다.
 
-Node.js 22.9 이상이 필요하며 24를 권장합니다. 이 디렉터리에서 실행합니다.
+Node.js 22.12 이상이 필요하며 24를 권장합니다. 이 디렉터리에서 실행합니다.
 
 ```sh
 npm ci
@@ -67,9 +67,11 @@ mf.dependencies.json에 SDK `>=1.3.0 <2.0.0`과 대상 c의 runtime 요구 범�
 
 네트워크 요청은 같은 소비자·별칭·공개 모듈끼리 공유하고 화면 상태는 각 instanceId별입니다. A와 C의 동일한 b 별칭은 다른 버전을 선택할 수 있습니다. 재시도 중 제거된 영역은 응답이 도착해도 다시 마운트하지 않습니다. 자동 폴링·새로고침·최신 버전 전환은 하지 않습니다.
 
-하위 C/B의 일시적 파일 실패를 복구하려면 빌드 도구 1.5.0의 `failed-modules-v2` 지원이 필요합니다. SDK가 공통 UI를 제공해도 구형 번들의 실패 캐시를 무조건 복구하는 것은 아닙니다. v1 캐시 정리도 인식하지만 D까지 포함한 경로는 v2로 검증했습니다. SDK 자체 로딩 실패·임의 코드 결함·업무 API·이벤트 핸들러 오류는 별도 처리 영역입니다.
+현재 프로젝트는 빌드 도구 2.0.0의 Vite Federation을 사용합니다. `release.json`의 `format: "esm"`, `retryProtocol: "vite-preflight-v1"`, `exposeChunks`, `federationImports`·`exposeImports`로 공개 모듈과 의존 파일을 식별합니다. 런타임은 필요한 파일을 미리 확인한 뒤 네이티브 ES 모듈을 평가하고, 일시적인 파일 오류에는 같은 고정 조합의 실패한 영역을 다시 준비합니다. SDK 진단의 `removed`·`prepared`는 `./Widget`, `./data` 같은 공개 모듈 이름을 사용합니다. SDK 자체 로딩 실패·임의 코드 결함·업무 API·이벤트 핸들러 오류는 별도 처리 영역입니다.
 
-최초 공통화는 SDK 1.3.0과 이를 사용하는 A의 코드 변경·빌드가 필요합니다. 이미 v2를 지원하는 C/B까지 동시에 다시 빌드해야 하는 것은 아닙니다. 이후 호환 SDK 개선은 중앙 선택 정책을 따릅니다. 중첩 준비 도구는 재현성을 위해 A/C/B 독립 복사본을 새로 설치·빌드합니다. 실제 SDK는 npm으로 서비스에 포함하지 않고 MF로 로드합니다.
+이전 Webpack 배포물의 `failed-modules-v1/v2` 복구 경로도 구분해 처리합니다. Vite 배포물에는 Webpack의 모듈 캐시 정리 규칙을 적용하지 않습니다. 과거 빌드 도구 1.5.0의 `failed-modules-v2`와 31개·18개 통과 기록은 아래의 도입 이력이며 현재 Vite 전환 검증 결과를 뜻하지 않습니다. [현재 빌드·복구 계약](../platform-build-tools/README.md).
+
+최초 공통화는 SDK 1.3.0과 이를 사용하는 A의 코드 변경·빌드가 필요했습니다. 당시 이미 `failed-modules-v2`를 지원한 C/B의 재빌드는 요구하지 않았습니다. Vite 컴파일러로의 최초 전환에서는 SDK·소비자·Shell을 새 도구로 빌드하며, 이후 호환 SDK 개선은 중앙 선택 정책을 따릅니다. 중첩 준비 도구는 재현성을 위해 A/C/B 독립 복사본을 새로 설치·빌드합니다. 실제 SDK는 npm으로 서비스에 포함하지 않고 MF로 로드합니다.
 
 `integration`의 `npm run test:nested`로 기존 C/B/D 파일 실패·복구, A 상태 유지와 SDK 소비자별 별칭·props·호출 대상 변경까지 31개를 검증했습니다. [HTML 사용 설명](../../docs/mfe-runtime-operations.html#sdk-remote-region).
 ## SDK 1.3.1: 서비스 재빌드 없이 재시도 정책 교체

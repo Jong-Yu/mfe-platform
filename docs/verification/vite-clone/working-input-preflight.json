@@ -1,0 +1,16 @@
+{
+  "status": "passed",
+  "root": "/Users/jong-yu/Projects/mfe",
+  "mode": "working files",
+  "node": "v24.22.1",
+  "head": null,
+  "buildToolsVersion": "2.0.0",
+  "counts": {
+    "projects": 10,
+    "vendorPackages": 9,
+    "developmentKits": 4,
+    "developmentFiles": 174,
+    "requiredFiles": 384
+  },
+  "errors": []
+}

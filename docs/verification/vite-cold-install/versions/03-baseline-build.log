@@ -1,0 +1,60 @@
+
+> mfe-integration-verification@1.0.0 build
+> node tools/build-fixtures.cjs && node tools/build-admin.cjs
+
+
+> @mfe/platform-sdk@1.3.1 build
+> mfe-build
+
+Built platform@1.3.1 with Vite Federation: platform_1_3_1_e25c8d049944
+Release metadata: /private/tmp/mfe-vite-versions-b9bvpI/projects/platform-sdk/dist/release.json
+
+> @mfe/service-d-v1@1.0.0 build
+> mfe-build
+
+Built d@1.0.0 with Vite Federation: d_1_0_0_c6adbe1cb721
+Release metadata: /private/tmp/mfe-vite-versions-b9bvpI/projects/service-d-v1/dist/release.json
+
+> @mfe/service-d-v2@2.0.0 build
+> mfe-build
+
+Built d@2.0.0 with Vite Federation: d_2_0_0_a4251bae8bc7
+Release metadata: /private/tmp/mfe-vite-versions-b9bvpI/projects/service-d-v2/dist/release.json
+
+> @mfe/service-b-v1@1.4.0 build
+> mfe-build
+
+Built b@1.4.0 with Vite Federation: b_1_4_0_6cc8bf6c0028
+Release metadata: /private/tmp/mfe-vite-versions-b9bvpI/projects/service-b-v1/dist/release.json
+
+> @mfe/service-b-v2@2.1.0 build
+> mfe-build
+
+Built b@2.1.0 with Vite Federation: b_2_1_0_479272f66af5
+Release metadata: /private/tmp/mfe-vite-versions-b9bvpI/projects/service-b-v2/dist/release.json
+
+> @mfe/service-a@1.0.0 build
+> mfe-build
+
+Built a@1.0.0 with Vite Federation: a_1_0_0_0321deb69c28
+Release metadata: /private/tmp/mfe-vite-versions-b9bvpI/projects/service-a/dist/release.json
+
+> @mfe/service-c@1.0.0 build
+> mfe-build
+
+Built c@1.0.0 with Vite Federation: c_1_0_0_369b0db5dc78
+Release metadata: /private/tmp/mfe-vite-versions-b9bvpI/projects/service-c/dist/release.json
+
+> @mfe/shell@1.3.0 build
+> mfe-build
+
+Built shell@1.3.0 with Vite Federation: shell_1_3_0_46ac9795cddf
+Release metadata: /private/tmp/mfe-vite-versions-b9bvpI/projects/shell/dist/release.json
+Published independent builds. Existing consumer dependency selections were preserved.
+
+> @mfe/platform-admin@1.2.0 build
+> mfe-build
+
+Built admin@1.2.0 with Vite Federation: admin_1_2_0_174445facc9b
+Release metadata: /private/tmp/mfe-vite-versions-b9bvpI/projects/platform-admin/dist/release.json
+Management UI published: admin_1_2_0_174445facc9b. Application composition unchanged.

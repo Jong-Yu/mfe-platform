@@ -4,9 +4,9 @@ import { PlatformProvider, DevLayout, PageContainer, ReactIdentity, getRuntimeSn
 
 const runtime = globalThis.__MFE_RUNTIME__;
 const registry = runtime.registry;
-await __webpack_init_sharing__('default');
+const scope = await runtime.initializeSharing();
 const container = await runtime.getArtifactContainer(registry.local);
-await container.init(__webpack_share_scopes__.default);
+await container.init(scope);
 const module = (await container.get(registry.dev.module))();
 const Component = module.default;
 if (typeof Component !== 'function' && typeof Component !== 'object') throw new Error('개발 모듈에는 React default export가 필요합니다.');

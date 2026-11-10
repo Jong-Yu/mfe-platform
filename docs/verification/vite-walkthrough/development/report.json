@@ -1,0 +1,2756 @@
+{
+  "status": "passed",
+  "startedAt": "2026-11-10T12:40:56.756Z",
+  "scope": "Current Vite guide V5: isolated B source copy, actual npm installation, service development server and fresh Chrome UI. Product sources, dist, dev kits and active composition are not changed.",
+  "limitations": [
+    "This run uses a prepared npm cache unless online mode is explicitly selected; it does not prove a first-ever network installation.",
+    "Playwright comes from the original integration installation only as a test harness; the copied service has no sibling source or server dependency.",
+    "This script checks development only. Build/publication/activation/rollback are covered by the separate release walkthrough."
+  ],
+  "environment": {
+    "node": "v24.22.1",
+    "platform": "darwin",
+    "installMode": "offline",
+    "cache": "/private/tmp/mfe-npm-cache",
+    "browserExecutable": "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome",
+    "browserVersion": "157.0.8103.39"
+  },
+  "checks": [
+    {
+      "name": "copy one B service with its published dev kit and no sibling sources",
+      "status": "passed",
+      "durationMs": 23,
+      "evidence": {
+        "isolatedParentEntries": [
+          "service-b-v1"
+        ],
+        "kitPlatform": "platform_1_3_1_e25c8d049944",
+        "copiedFingerprint": "58b4dcbc09c21250244aac6286375c307d3479a9955ae4c2f73efebc0968003e"
+      }
+    },
+    {
+      "name": "npm ci installs the isolated Vite project from the declared cache mode",
+      "status": "passed",
+      "durationMs": 580,
+      "evidence": {
+        "buildTools": "2.0.0",
+        "npmCache": "/private/tmp/mfe-npm-cache",
+        "networkMode": "offline"
+      }
+    },
+    {
+      "name": "the standalone development page loads SDK 1.3.1, B 1.4.0 and D 1.0.0 through actual MF requests",
+      "status": "passed",
+      "durationMs": 299,
+      "evidence": {
+        "local": {
+          "id": "b_1_4_0_6cc8bf6c0028",
+          "name": "mf_b_1_4_0_6cc8bf6c0028",
+          "service": "b",
+          "version": "1.4.0",
+          "entry": "/artifacts/b_1_4_0_6cc8bf6c0028/remoteEntry.js",
+          "dependencies": {},
+          "runtimeRequirements": {
+            "platform": ">=1.0.0 <2.0.0",
+            "react": "19.3.1",
+            "react-dom": "19.3.1"
+          },
+          "runtimeDependencies": {
+            "d": {
+              "service": "d",
+              "requires": ">=1.0.0 <2.0.0"
+            }
+          },
+          "kind": "remote",
+          "format": "esm",
+          "federation": "vite",
+          "retryProtocol": "vite-preflight-v1",
+          "exposedModules": [
+            "./Widget"
+          ],
+          "federationImports": [
+            {
+              "alias": "d",
+              "exposedModule": "./data"
+            },
+            {
+              "alias": "platform",
+              "exposedModule": "./sdk"
+            }
+          ],
+          "exposeImports": {
+            "./Widget": [
+              {
+                "alias": "d",
+                "exposedModule": "./data"
+              },
+              {
+                "alias": "platform",
+                "exposedModule": "./sdk"
+              }
+            ]
+          },
+          "exposeChunks": {
+            "./Widget": "assets/Widget-BiiMpLC6.js"
+          }
+        },
+        "platform": {
+          "id": "platform_1_3_1_e25c8d049944",
+          "name": "mf_platform_1_3_1_e25c8d049944",
+          "service": "platform",
+          "version": "1.3.1",
+          "entry": "/artifacts/platform_1_3_1_e25c8d049944/remoteEntry.js",
+          "dependencies": {},
+          "runtimeRequirements": {
+            "react": "19.3.1",
+            "react-dom": "19.3.1"
+          },
+          "runtimeDependencies": {},
+          "kind": "remote",
+          "format": "esm",
+          "federation": "vite",
+          "retryProtocol": "vite-preflight-v1",
+          "exposedModules": [
+            "./sdk"
+          ],
+          "federationImports": [],
+          "exposeImports": {
+            "./sdk": []
+          },
+          "exposeChunks": {
+            "./sdk": "assets/sdk-ClnQiGJZ.js"
+          }
+        },
+        "d": "d_1_0_0_c6adbe1cb721",
+        "sdkReactMatchesHost": true,
+        "serviceReactMatchesSDK": true,
+        "serviceContextMatchesSDK": true,
+        "identity": {
+          "version": "1.4.0",
+          "artifactId": "b_1_4_0_6cc8bf6c0028",
+          "dependencyVersion": "1.0.0",
+          "dependencyArtifact": "d_1_0_0_c6adbe1cb721"
+        },
+        "diagnostics": {
+          "compositionId": "dev_4a170d16f20457a04ae180cf",
+          "platformArtifactId": "platform_1_3_1_e25c8d049944",
+          "runtimeBindings": {
+            "b_1_4_0_6cc8bf6c0028": {
+              "d": "d_1_0_0_c6adbe1cb721"
+            }
+          },
+          "bootURL": "/__dev/snapshots/dev_4a170d16f20457a04ae180cf.json",
+          "containers": [
+            {
+              "id": "platform_1_3_1_e25c8d049944",
+              "name": "mf_platform_1_3_1_e25c8d049944",
+              "entry": "/artifacts/platform_1_3_1_e25c8d049944/remoteEntry.js",
+              "format": "esm",
+              "status": "initialized",
+              "loadAttempts": 1,
+              "loadCount": 1,
+              "initCalls": 4,
+              "initCount": 1,
+              "lastError": null
+            },
+            {
+              "id": "b_1_4_0_6cc8bf6c0028",
+              "name": "mf_b_1_4_0_6cc8bf6c0028",
+              "entry": "/artifacts/b_1_4_0_6cc8bf6c0028/remoteEntry.js",
+              "format": "esm",
+              "status": "initialized",
+              "loadAttempts": 1,
+              "loadCount": 1,
+              "initCalls": 1,
+              "initCount": 1,
+              "lastError": null
+            },
+            {
+              "id": "d_1_0_0_c6adbe1cb721",
+              "name": "mf_d_1_0_0_c6adbe1cb721",
+              "entry": "/artifacts/d_1_0_0_c6adbe1cb721/remoteEntry.js",
+              "format": "esm",
+              "status": "initialized",
+              "loadAttempts": 1,
+              "loadCount": 1,
+              "initCalls": 2,
+              "initCount": 1,
+              "lastError": null
+            }
+          ],
+          "loadedContainerIds": [
+            "platform_1_3_1_e25c8d049944",
+            "b_1_4_0_6cc8bf6c0028",
+            "d_1_0_0_c6adbe1cb721"
+          ]
+        }
+      }
+    },
+    {
+      "name": "counter, input and cache can be used on the rendered service",
+      "status": "passed",
+      "durationMs": 173,
+      "evidence": {
+        "heading": "Car Picker",
+        "count": "2",
+        "input": "화면 입력은 별도",
+        "cache": "저장 전 상태 확인",
+        "localId": "b_1_4_0_6cc8bf6c0028",
+        "navigations": 1
+      }
+    },
+    {
+      "name": "saving the copied source rebuilds B and performs a full reload that resets state",
+      "status": "passed",
+      "durationMs": 832,
+      "evidence": {
+        "heading": "Car Picker · Vite 실습",
+        "count": "0",
+        "input": "",
+        "cache": "",
+        "localId": "b_1_4_0_60bd7cd10190",
+        "navigations": 2,
+        "kitUnchanged": true,
+        "productDistCreated": false
+      }
+    },
+    {
+      "name": "a syntax error keeps the previous successful screen, counter, input and cache",
+      "status": "passed",
+      "durationMs": 10957,
+      "evidence": {
+        "heading": "Car Picker · Vite 실습",
+        "count": "1",
+        "input": "오류 중에도 유지할 메모",
+        "cache": "오류 중에도 유지할 메모",
+        "localId": "b_1_4_0_60bd7cd10190",
+        "navigations": 2,
+        "overlay": "빌드 오류 — 마지막 성공 화면을 유지합니다.\nBuild failed with 1 error:\n\n\u001b[31m[builtin:vite-transform] \u001b[0mUnexpected token\n    \u001b[38;5;246m╭\u001b[0m\u001b[38;5;246m─\u001b[0m\u001b[38;5;246m[\u001b[0m src/Widget.jsx:61:8 \u001b[38;5;246m]\u001b[0m\n    \u001b[38;5;246m│\u001b[0m\n \u001b[38;5;246m61 │\u001b[0m \u001b[38;5;249me\u001b[0m\u001b[38;5;249mx\u001b[0m\u001b[38;5;249mp\u001b[0m\u001b[38;5;249mo\u001b[0m\u001b[38;5;249mr\u001b[0m\u001b[38;5;249mt\u001b[0m\u001b[38;5;249m \u001b[0m!\u001b[38;5;249m!\u001b[0m\u001b[38;5;249m!\u001b[0m\u001b[38;5;249m \u001b[0m\u001b[38;5;249mi\u001b[0m\u001b[38;5;249mn\u001b[0m\u001b[38;5;249mv\u001b[0m\u001b[38;5;249ma\u001b[0m\u001b[38;5;249ml\u001b[0m\u001b[38;5;249mi\u001b[0m\u001b[38;5;249md\u001b[0m\u001b[38;5;249m \u001b[0m\u001b[38;5;249ms\u001b[0m\u001b[38;5;249my\u001b[0m\u001b[38;5;249mn\u001b[0m\u001b[38;5;249mt\u001b[0m\u001b[38;5;249ma\u001b[0m\u001b[38;5;249mx\u001b[0m\n \u001b[38;5;240m   │\u001b[0m        ┬  \n \u001b[38;5;240m   │\u001b[0m        ╰── \n\u001b[38;5;246m────╯\u001b[0m\n"
+      }
+    },
+    {
+      "name": "removing only the invalid line restores the successful source and clears the overlay without discarding state",
+      "status": "passed",
+      "durationMs": 325,
+      "evidence": {
+        "heading": "Car Picker · Vite 실습",
+        "count": "1",
+        "input": "오류 중에도 유지할 메모",
+        "cache": "오류 중에도 유지할 메모",
+        "localId": "b_1_4_0_60bd7cd10190",
+        "navigations": 2
+      }
+    },
+    {
+      "name": "restore the original Car Picker source and confirm the original development build before stopping",
+      "status": "passed",
+      "durationMs": 834,
+      "evidence": {
+        "heading": "Car Picker",
+        "count": "0",
+        "input": "",
+        "cache": "",
+        "localId": "b_1_4_0_6cc8bf6c0028",
+        "navigations": 3,
+        "sourceMatchesOriginal": true,
+        "sourceSHA256": "ce1c141bc8e2c487a46e73eeb51d8cbead4ac1698e6d46807c7b77a760355b95"
+      }
+    },
+    {
+      "name": "the walkthrough needs no other service server and reports no browser runtime exception",
+      "status": "passed",
+      "durationMs": 1,
+      "evidence": {
+        "pageRequests": 141,
+        "httpOrigins": [
+          "http://127.0.0.1:4203"
+        ],
+        "expectedFailure": "One deliberately invalid copied JSX build; UI remained available."
+      }
+    },
+    {
+      "name": "the development server stops and the original service and product pointer are unchanged",
+      "status": "passed",
+      "durationMs": 10,
+      "evidence": {
+        "originalSHA256": "cbe8a511645131c4fb31bb38f3d9246eb57f4d5f2c3a276258fa2f55aaec5b47",
+        "originalFiles": 83,
+        "serverExitCode": null,
+        "serverSignal": "SIGTERM",
+        "productPointerUnchanged": true
+      }
+    }
+  ],
+  "commands": [
+    {
+      "command": "npm",
+      "args": [
+        "ci",
+        "--cache",
+        "/private/tmp/mfe-npm-cache",
+        "--no-audit",
+        "--no-fund",
+        "--offline"
+      ],
+      "cwd": "/private/tmp/mfe-vite-dev-Njrh1H/service-b-v1",
+      "startedAt": "2026-11-10T12:40:56.798Z",
+      "log": "npm-install.log",
+      "exitCode": 0,
+      "finishedAt": "2026-11-10T12:40:57.378Z"
+    },
+    {
+      "command": "npm",
+      "args": [
+        "run",
+        "dev"
+      ],
+      "cwd": "/private/tmp/mfe-vite-dev-Njrh1H/service-b-v1",
+      "env": {},
+      "startedAt": "2026-11-10T12:40:57.381Z",
+      "log": "dev-server.log",
+      "exitCode": null,
+      "signal": "SIGTERM",
+      "finishedAt": "2026-11-10T12:41:13.406Z"
+    }
+  ],
+  "screenshots": [
+    "screenshots/01-initial-sdk-service-dependency.png",
+    "screenshots/02-counter-input-cache.png",
+    "screenshots/03-saved-source-full-reload.png",
+    "screenshots/04-syntax-error-preserves-screen.png",
+    "screenshots/05-repaired-source.png",
+    "screenshots/06-original-source-restored.png"
+  ],
+  "requests": [
+    {
+      "at": "2026-11-10T12:40:59.903Z",
+      "url": "http://127.0.0.1:4203/",
+      "type": "document",
+      "method": "GET"
+    },
+    {
+      "at": "2026-11-10T12:40:59.913Z",
+      "url": "http://127.0.0.1:4203/__dev/host/host.js",
+      "type": "script",
+      "method": "GET"
+    },
+    {
+      "at": "2026-11-10T12:40:59.931Z",
+      "url": "http://127.0.0.1:4203/__dev/host/assets/import-module-DeeNAblr.js",
+      "type": "script",
+      "method": "GET"
+    },
+    {
+      "at": "2026-11-10T12:40:59.931Z",
+      "url": "http://127.0.0.1:4203/__dev/host/assets/vite-preload-helper-BzD9YtjY.js",
+      "type": "script",
+      "method": "GET"
+    },
+    {
+      "at": "2026-11-10T12:40:59.938Z",
+      "url": "http://127.0.0.1:4203/__dev/host/assets/hostInit-8OnpgmEB.js",
+      "type": "script",
+      "method": "GET"
+    },
+    {
+      "at": "2026-11-10T12:40:59.946Z",
+      "url": "http://127.0.0.1:4203/__dev/host/remoteEntry.js",
+      "type": "script",
+      "method": "GET"
+    },
+    {
+      "at": "2026-11-10T12:40:59.948Z",
+      "url": "http://127.0.0.1:4203/__dev/host/assets/dist-Bo8xtUoB.js",
+      "type": "script",
+      "method": "GET"
+    },
+    {
+      "at": "2026-11-10T12:40:59.952Z",
+      "url": "http://127.0.0.1:4203/__dev/host/assets/_virtual_mf-localSharedImportMap___mfe_internal__mfe_development_host__mf_owner__2-BSNdvrfF.js",
+      "type": "script",
+      "method": "GET"
+    },
+    {
+      "at": "2026-11-10T12:40:59.957Z",
+      "url": "http://127.0.0.1:4203/__dev/host/assets/_virtual_mf___mfe_internal__mfe_development_host__mf_owner__246695962837441__prebuild__react__prebuild__-CybhxOV4.js",
+      "type": "script",
+      "method": "GET"
+    },
+    {
+      "at": "2026-11-10T12:40:59.959Z",
+      "url": "http://127.0.0.1:4203/__dev/host/assets/_virtual_mf___mfe_internal__mfe_development_host__mf_owner__246695962837441__loadShare__react__loadShare__.js-glqflLJ5.js",
+      "type": "script",
+      "method": "GET"
+    },
+    {
+      "at": "2026-11-10T12:40:59.961Z",
+      "url": "http://127.0.0.1:4203/__dev/host/assets/rolldown-runtime-DQp2zzRu.js",
+      "type": "script",
+      "method": "GET"
+    },
+    {
+      "at": "2026-11-10T12:40:59.964Z",
+      "url": "http://127.0.0.1:4203/__dev/host/assets/_virtual_mf___mfe_internal__mfe_development_host__mf_owner__246695962837441__prebuild__react_mf_2_dom_mf_1_client__prebuild__-D2bwhWp6.js",
+      "type": "script",
+      "method": "GET"
+    },
+    {
+      "at": "2026-11-10T12:40:59.975Z",
+      "url": "http://127.0.0.1:4203/__dev/host/assets/react-dom-CNH_Zc-s.js",
+      "type": "script",
+      "method": "GET"
+    },
+    {
+      "at": "2026-11-10T12:40:59.996Z",
+      "url": "http://127.0.0.1:4203/__dev/host/assets/pendingShares-DZJGQvyk.js",
+      "type": "script",
+      "method": "GET"
+    },
+    {
+      "at": "2026-11-10T12:40:59.998Z",
+      "url": "http://127.0.0.1:4203/__dev/host/assets/browser-Pp4hwWdL.js",
+      "type": "script",
+      "method": "GET"
+    },
+    {
+      "at": "2026-11-10T12:41:00.000Z",
+      "url": "http://127.0.0.1:4203/__dev/snapshots/dev_4a170d16f20457a04ae180cf.json",
+      "type": "fetch",
+      "method": "GET"
+    },
+    {
+      "at": "2026-11-10T12:41:00.002Z",
+      "url": "http://127.0.0.1:4203/__dev/host/assets/_virtual_mf___mfe_internal__mfe_development_host__loadRemote__platform_mf_1_sdk__mf_owner__2__loadRemote__-BNKyQABX.js",
+      "type": "script",
+      "method": "GET"
+    },
+    {
+      "at": "2026-11-10T12:41:00.003Z",
+      "url": "http://127.0.0.1:4203/__dev/host/assets/_virtual_mf___mfe_internal__mfe_development_host__loadRemote__platform_mf_1_sdk__mf_owner__2__loadRemote__-_A6bHztr.js",
+      "type": "script",
+      "method": "GET"
+    },
+    {
+      "at": "2026-11-10T12:41:00.006Z",
+      "url": "http://127.0.0.1:4203/artifacts/platform_1_3_1_e25c8d049944/remoteEntry.js",
+      "type": "script",
+      "method": "GET"
+    },
+    {
+      "at": "2026-11-10T12:41:00.008Z",
+      "url": "http://127.0.0.1:4203/artifacts/platform_1_3_1_e25c8d049944/assets/dist-Bo8xtUoB.js",
+      "type": "script",
+      "method": "GET"
+    },
+    {
+      "at": "2026-11-10T12:41:00.009Z",
+      "url": "http://127.0.0.1:4203/artifacts/platform_1_3_1_e25c8d049944/assets/vite-preload-helper-CtLp1C0p.js",
+      "type": "script",
+      "method": "GET"
+    },
+    {
+      "at": "2026-11-10T12:41:00.012Z",
+      "url": "http://127.0.0.1:4203/artifacts/platform_1_3_1_e25c8d049944/assets/_virtual_mf-localSharedImportMap___mfe_internal__mf_platform_1_3_1_e25c8d049944__mf_owner__1-5YRVjoO3.js",
+      "type": "script",
+      "method": "GET"
+    },
+    {
+      "at": "2026-11-10T12:41:00.016Z",
+      "url": "http://127.0.0.1:4203/__dev/host/assets/_virtual_mf___mfe_internal__mfe_development_host__mf_owner__246695962837441__prebuild__react_mf_2_dom__prebuild__-x7nOhOSU.js",
+      "type": "script",
+      "method": "GET"
+    },
+    {
+      "at": "2026-11-10T12:41:00.019Z",
+      "url": "http://127.0.0.1:4203/artifacts/platform_1_3_1_e25c8d049944/assets/sdk-BbXiZY3X.css",
+      "type": "stylesheet",
+      "method": "GET"
+    },
+    {
+      "at": "2026-11-10T12:41:00.021Z",
+      "url": "http://127.0.0.1:4203/artifacts/platform_1_3_1_e25c8d049944/assets/sdk-ClnQiGJZ.js",
+      "type": "script",
+      "method": "GET"
+    },
+    {
+      "at": "2026-11-10T12:41:00.023Z",
+      "url": "http://127.0.0.1:4203/artifacts/platform_1_3_1_e25c8d049944/assets/_virtual_mf___mfe_internal__mf_platform_1_3_1_e25c8d049944__mf_owner__242075772864893__loadShare__react__loadShare__.js-B3vX5iHX.js",
+      "type": "script",
+      "method": "GET"
+    },
+    {
+      "at": "2026-11-10T12:41:00.025Z",
+      "url": "http://127.0.0.1:4203/artifacts/platform_1_3_1_e25c8d049944/assets/rolldown-runtime-SbdDWaPq.js",
+      "type": "script",
+      "method": "GET"
+    },
+    {
+      "at": "2026-11-10T12:41:00.028Z",
+      "url": "http://127.0.0.1:4203/__dev/host/assets/bootstrap-DjnWaNup.js",
+      "type": "script",
+      "method": "GET"
+    },
+    {
+      "at": "2026-11-10T12:41:00.030Z",
+      "url": "http://127.0.0.1:4203/__dev/host/assets/_virtual_mf___mfe_internal__mfe_development_host__mf_owner__246695962837441__loadShare__react_mf_2_dom_mf_1_client__loadShare__.js-BC9kKjq_.js",
+      "type": "script",
+      "method": "GET"
+    },
+    {
+      "at": "2026-11-10T12:41:00.032Z",
+      "url": "http://127.0.0.1:4203/artifacts/b_1_4_0_6cc8bf6c0028/remoteEntry.js",
+      "type": "script",
+      "method": "GET"
+    },
+    {
+      "at": "2026-11-10T12:41:00.034Z",
+      "url": "http://127.0.0.1:4203/artifacts/b_1_4_0_6cc8bf6c0028/assets/dist-Bo8xtUoB.js",
+      "type": "script",
+      "method": "GET"
+    },
+    {
+      "at": "2026-11-10T12:41:00.034Z",
+      "url": "http://127.0.0.1:4203/artifacts/b_1_4_0_6cc8bf6c0028/assets/vite-preload-helper-BVDCNeEa.js",
+      "type": "script",
+      "method": "GET"
+    },
+    {
+      "at": "2026-11-10T12:41:00.038Z",
+      "url": "http://127.0.0.1:4203/artifacts/b_1_4_0_6cc8bf6c0028/assets/_virtual_mf-localSharedImportMap___mfe_internal__mf_b_1_4_0_6cc8bf6c0028__mf_owner__1-BaCESpgK.js",
+      "type": "script",
+      "method": "GET"
+    },
+    {
+      "at": "2026-11-10T12:41:00.042Z",
+      "url": "http://127.0.0.1:4203/artifacts/d_1_0_0_c6adbe1cb721/remoteEntry.js",
+      "type": "script",
+      "method": "GET"
+    },
+    {
+      "at": "2026-11-10T12:41:00.044Z",
+      "url": "http://127.0.0.1:4203/artifacts/d_1_0_0_c6adbe1cb721/assets/dist-CzT-8ogd.js",
+      "type": "script",
+      "method": "GET"
+    },
+    {
+      "at": "2026-11-10T12:41:00.044Z",
+      "url": "http://127.0.0.1:4203/artifacts/d_1_0_0_c6adbe1cb721/assets/vite-preload-helper-D007Gmx9.js",
+      "type": "script",
+      "method": "GET"
+    },
+    {
+      "at": "2026-11-10T12:41:00.048Z",
+      "url": "http://127.0.0.1:4203/artifacts/d_1_0_0_c6adbe1cb721/assets/_virtual_mf-localSharedImportMap___mfe_internal__mf_d_1_0_0_c6adbe1cb721__mf_owner__1-K9UFUvmk.js",
+      "type": "script",
+      "method": "GET"
+    },
+    {
+      "at": "2026-11-10T12:41:00.050Z",
+      "url": "http://127.0.0.1:4203/artifacts/d_1_0_0_c6adbe1cb721/assets/src-BMVRR_2U.js",
+      "type": "script",
+      "method": "GET"
+    },
+    {
+      "at": "2026-11-10T12:41:00.052Z",
+      "url": "http://127.0.0.1:4203/artifacts/b_1_4_0_6cc8bf6c0028/assets/Widget-C3vmy5sd.css",
+      "type": "stylesheet",
+      "method": "GET"
+    },
+    {
+      "at": "2026-11-10T12:41:00.054Z",
+      "url": "http://127.0.0.1:4203/artifacts/b_1_4_0_6cc8bf6c0028/assets/_virtual_mf___mfe_internal__mf_b_1_4_0_6cc8bf6c0028__loadRemote__d_mf_1_data__mf_owner__1__loadRemote__-6LDeHEEF.js",
+      "type": "script",
+      "method": "GET"
+    },
+    {
+      "at": "2026-11-10T12:41:00.054Z",
+      "url": "http://127.0.0.1:4203/artifacts/b_1_4_0_6cc8bf6c0028/assets/_virtual_mf___mfe_internal__mf_b_1_4_0_6cc8bf6c0028__loadRemote__platform_mf_1_sdk__mf_owner__1__loadRemote__-Bqk7zvGL.js",
+      "type": "script",
+      "method": "GET"
+    },
+    {
+      "at": "2026-11-10T12:41:00.056Z",
+      "url": "http://127.0.0.1:4203/artifacts/b_1_4_0_6cc8bf6c0028/assets/rolldown-runtime-DQp2zzRu.js",
+      "type": "script",
+      "method": "GET"
+    },
+    {
+      "at": "2026-11-10T12:41:00.058Z",
+      "url": "http://127.0.0.1:4203/artifacts/b_1_4_0_6cc8bf6c0028/assets/hostInit-DFPIMONH.js",
+      "type": "script",
+      "method": "GET"
+    },
+    {
+      "at": "2026-11-10T12:41:00.060Z",
+      "url": "http://127.0.0.1:4203/artifacts/b_1_4_0_6cc8bf6c0028/assets/Widget-BiiMpLC6.js",
+      "type": "script",
+      "method": "GET"
+    },
+    {
+      "at": "2026-11-10T12:41:00.062Z",
+      "url": "http://127.0.0.1:4203/artifacts/b_1_4_0_6cc8bf6c0028/assets/_virtual_mf___mfe_internal__mf_b_1_4_0_6cc8bf6c0028__mf_owner__226140563824246__loadShare__react__loadShare__.js-DgQ7VONi.js",
+      "type": "script",
+      "method": "GET"
+    },
+    {
+      "at": "2026-11-10T12:41:00.062Z",
+      "url": "http://127.0.0.1:4203/artifacts/b_1_4_0_6cc8bf6c0028/assets/_virtual_mf___mfe_internal__mf_b_1_4_0_6cc8bf6c0028__mf_owner__226140563824246__loadShare__shared-B1DGyhpy.js",
+      "type": "script",
+      "method": "GET"
+    },
+    {
+      "at": "2026-11-10T12:41:00.067Z",
+      "url": "http://127.0.0.1:4203/__dev/events",
+      "type": "eventsource",
+      "method": "GET"
+    },
+    {
+      "at": "2026-11-10T12:41:01.057Z",
+      "url": "http://127.0.0.1:4203/",
+      "type": "document",
+      "method": "GET"
+    },
+    {
+      "at": "2026-11-10T12:41:01.064Z",
+      "url": "http://127.0.0.1:4203/__dev/host/host.js",
+      "type": "script",
+      "method": "GET"
+    },
+    {
+      "at": "2026-11-10T12:41:01.066Z",
+      "url": "http://127.0.0.1:4203/__dev/host/assets/import-module-DeeNAblr.js",
+      "type": "script",
+      "method": "GET"
+    },
+    {
+      "at": "2026-11-10T12:41:01.066Z",
+      "url": "http://127.0.0.1:4203/__dev/host/assets/vite-preload-helper-BzD9YtjY.js",
+      "type": "script",
+      "method": "GET"
+    },
+    {
+      "at": "2026-11-10T12:41:01.069Z",
+      "url": "http://127.0.0.1:4203/__dev/host/assets/hostInit-8OnpgmEB.js",
+      "type": "script",
+      "method": "GET"
+    },
+    {
+      "at": "2026-11-10T12:41:01.070Z",
+      "url": "http://127.0.0.1:4203/__dev/host/remoteEntry.js",
+      "type": "script",
+      "method": "GET"
+    },
+    {
+      "at": "2026-11-10T12:41:01.072Z",
+      "url": "http://127.0.0.1:4203/__dev/host/assets/dist-Bo8xtUoB.js",
+      "type": "script",
+      "method": "GET"
+    },
+    {
+      "at": "2026-11-10T12:41:01.076Z",
+      "url": "http://127.0.0.1:4203/__dev/host/assets/_virtual_mf-localSharedImportMap___mfe_internal__mfe_development_host__mf_owner__2-BSNdvrfF.js",
+      "type": "script",
+      "method": "GET"
+    },
+    {
+      "at": "2026-11-10T12:41:01.078Z",
+      "url": "http://127.0.0.1:4203/__dev/host/assets/_virtual_mf___mfe_internal__mfe_development_host__mf_owner__246695962837441__prebuild__react__prebuild__-CybhxOV4.js",
+      "type": "script",
+      "method": "GET"
+    },
+    {
+      "at": "2026-11-10T12:41:01.080Z",
+      "url": "http://127.0.0.1:4203/__dev/host/assets/_virtual_mf___mfe_internal__mfe_development_host__mf_owner__246695962837441__loadShare__react__loadShare__.js-glqflLJ5.js",
+      "type": "script",
+      "method": "GET"
+    },
+    {
+      "at": "2026-11-10T12:41:01.082Z",
+      "url": "http://127.0.0.1:4203/__dev/host/assets/rolldown-runtime-DQp2zzRu.js",
+      "type": "script",
+      "method": "GET"
+    },
+    {
+      "at": "2026-11-10T12:41:01.084Z",
+      "url": "http://127.0.0.1:4203/__dev/host/assets/_virtual_mf___mfe_internal__mfe_development_host__mf_owner__246695962837441__prebuild__react_mf_2_dom_mf_1_client__prebuild__-D2bwhWp6.js",
+      "type": "script",
+      "method": "GET"
+    },
+    {
+      "at": "2026-11-10T12:41:01.093Z",
+      "url": "http://127.0.0.1:4203/__dev/host/assets/react-dom-CNH_Zc-s.js",
+      "type": "script",
+      "method": "GET"
+    },
+    {
+      "at": "2026-11-10T12:41:01.096Z",
+      "url": "http://127.0.0.1:4203/__dev/host/assets/pendingShares-DZJGQvyk.js",
+      "type": "script",
+      "method": "GET"
+    },
+    {
+      "at": "2026-11-10T12:41:01.098Z",
+      "url": "http://127.0.0.1:4203/__dev/host/assets/browser-Pp4hwWdL.js",
+      "type": "script",
+      "method": "GET"
+    },
+    {
+      "at": "2026-11-10T12:41:01.099Z",
+      "url": "http://127.0.0.1:4203/__dev/snapshots/dev_777dce30fc335840ae66f7ae.json",
+      "type": "fetch",
+      "method": "GET"
+    },
+    {
+      "at": "2026-11-10T12:41:01.100Z",
+      "url": "http://127.0.0.1:4203/__dev/host/assets/_virtual_mf___mfe_internal__mfe_development_host__loadRemote__platform_mf_1_sdk__mf_owner__2__loadRemote__-BNKyQABX.js",
+      "type": "script",
+      "method": "GET"
+    },
+    {
+      "at": "2026-11-10T12:41:01.102Z",
+      "url": "http://127.0.0.1:4203/__dev/host/assets/_virtual_mf___mfe_internal__mfe_development_host__loadRemote__platform_mf_1_sdk__mf_owner__2__loadRemote__-_A6bHztr.js",
+      "type": "script",
+      "method": "GET"
+    },
+    {
+      "at": "2026-11-10T12:41:01.103Z",
+      "url": "http://127.0.0.1:4203/artifacts/platform_1_3_1_e25c8d049944/remoteEntry.js",
+      "type": "script",
+      "method": "GET"
+    },
+    {
+      "at": "2026-11-10T12:41:01.105Z",
+      "url": "http://127.0.0.1:4203/artifacts/platform_1_3_1_e25c8d049944/assets/dist-Bo8xtUoB.js",
+      "type": "script",
+      "method": "GET"
+    },
+    {
+      "at": "2026-11-10T12:41:01.106Z",
+      "url": "http://127.0.0.1:4203/artifacts/platform_1_3_1_e25c8d049944/assets/vite-preload-helper-CtLp1C0p.js",
+      "type": "script",
+      "method": "GET"
+    },
+    {
+      "at": "2026-11-10T12:41:01.108Z",
+      "url": "http://127.0.0.1:4203/artifacts/platform_1_3_1_e25c8d049944/assets/_virtual_mf-localSharedImportMap___mfe_internal__mf_platform_1_3_1_e25c8d049944__mf_owner__1-5YRVjoO3.js",
+      "type": "script",
+      "method": "GET"
+    },
+    {
+      "at": "2026-11-10T12:41:01.110Z",
+      "url": "http://127.0.0.1:4203/__dev/host/assets/_virtual_mf___mfe_internal__mfe_development_host__mf_owner__246695962837441__prebuild__react_mf_2_dom__prebuild__-x7nOhOSU.js",
+      "type": "script",
+      "method": "GET"
+    },
+    {
+      "at": "2026-11-10T12:41:01.112Z",
+      "url": "http://127.0.0.1:4203/artifacts/platform_1_3_1_e25c8d049944/assets/sdk-BbXiZY3X.css",
+      "type": "stylesheet",
+      "method": "GET"
+    },
+    {
+      "at": "2026-11-10T12:41:01.114Z",
+      "url": "http://127.0.0.1:4203/artifacts/platform_1_3_1_e25c8d049944/assets/sdk-ClnQiGJZ.js",
+      "type": "script",
+      "method": "GET"
+    },
+    {
+      "at": "2026-11-10T12:41:01.115Z",
+      "url": "http://127.0.0.1:4203/artifacts/platform_1_3_1_e25c8d049944/assets/_virtual_mf___mfe_internal__mf_platform_1_3_1_e25c8d049944__mf_owner__242075772864893__loadShare__react__loadShare__.js-B3vX5iHX.js",
+      "type": "script",
+      "method": "GET"
+    },
+    {
+      "at": "2026-11-10T12:41:01.117Z",
+      "url": "http://127.0.0.1:4203/artifacts/platform_1_3_1_e25c8d049944/assets/rolldown-runtime-SbdDWaPq.js",
+      "type": "script",
+      "method": "GET"
+    },
+    {
+      "at": "2026-11-10T12:41:01.119Z",
+      "url": "http://127.0.0.1:4203/__dev/host/assets/bootstrap-DjnWaNup.js",
+      "type": "script",
+      "method": "GET"
+    },
+    {
+      "at": "2026-11-10T12:41:01.120Z",
+      "url": "http://127.0.0.1:4203/__dev/host/assets/_virtual_mf___mfe_internal__mfe_development_host__mf_owner__246695962837441__loadShare__react_mf_2_dom_mf_1_client__loadShare__.js-BC9kKjq_.js",
+      "type": "script",
+      "method": "GET"
+    },
+    {
+      "at": "2026-11-10T12:41:01.122Z",
+      "url": "http://127.0.0.1:4203/artifacts/b_1_4_0_60bd7cd10190/remoteEntry.js",
+      "type": "script",
+      "method": "GET"
+    },
+    {
+      "at": "2026-11-10T12:41:01.124Z",
+      "url": "http://127.0.0.1:4203/artifacts/b_1_4_0_60bd7cd10190/assets/dist-Bo8xtUoB.js",
+      "type": "script",
+      "method": "GET"
+    },
+    {
+      "at": "2026-11-10T12:41:01.124Z",
+      "url": "http://127.0.0.1:4203/artifacts/b_1_4_0_60bd7cd10190/assets/vite-preload-helper-DOZLGZ-e.js",
+      "type": "script",
+      "method": "GET"
+    },
+    {
+      "at": "2026-11-10T12:41:01.128Z",
+      "url": "http://127.0.0.1:4203/artifacts/b_1_4_0_60bd7cd10190/assets/_virtual_mf-localSharedImportMap___mfe_internal__mf_b_1_4_0_60bd7cd10190__mf_owner__3-Cv949UTC.js",
+      "type": "script",
+      "method": "GET"
+    },
+    {
+      "at": "2026-11-10T12:41:01.132Z",
+      "url": "http://127.0.0.1:4203/artifacts/d_1_0_0_c6adbe1cb721/remoteEntry.js",
+      "type": "script",
+      "method": "GET"
+    },
+    {
+      "at": "2026-11-10T12:41:01.134Z",
+      "url": "http://127.0.0.1:4203/artifacts/d_1_0_0_c6adbe1cb721/assets/dist-CzT-8ogd.js",
+      "type": "script",
+      "method": "GET"
+    },
+    {
+      "at": "2026-11-10T12:41:01.134Z",
+      "url": "http://127.0.0.1:4203/artifacts/d_1_0_0_c6adbe1cb721/assets/vite-preload-helper-D007Gmx9.js",
+      "type": "script",
+      "method": "GET"
+    },
+    {
+      "at": "2026-11-10T12:41:01.136Z",
+      "url": "http://127.0.0.1:4203/artifacts/d_1_0_0_c6adbe1cb721/assets/_virtual_mf-localSharedImportMap___mfe_internal__mf_d_1_0_0_c6adbe1cb721__mf_owner__1-K9UFUvmk.js",
+      "type": "script",
+      "method": "GET"
+    },
+    {
+      "at": "2026-11-10T12:41:01.138Z",
+      "url": "http://127.0.0.1:4203/artifacts/d_1_0_0_c6adbe1cb721/assets/src-BMVRR_2U.js",
+      "type": "script",
+      "method": "GET"
+    },
+    {
+      "at": "2026-11-10T12:41:01.140Z",
+      "url": "http://127.0.0.1:4203/artifacts/b_1_4_0_60bd7cd10190/assets/Widget-DgpGETLC.css",
+      "type": "stylesheet",
+      "method": "GET"
+    },
+    {
+      "at": "2026-11-10T12:41:01.141Z",
+      "url": "http://127.0.0.1:4203/artifacts/b_1_4_0_60bd7cd10190/assets/_virtual_mf___mfe_internal__mf_b_1_4_0_60bd7cd10190__loadRemote__d_mf_1_data__mf_owner__3__loadRemote__-kV51FbJn.js",
+      "type": "script",
+      "method": "GET"
+    },
+    {
+      "at": "2026-11-10T12:41:01.142Z",
+      "url": "http://127.0.0.1:4203/artifacts/b_1_4_0_60bd7cd10190/assets/_virtual_mf___mfe_internal__mf_b_1_4_0_60bd7cd10190__loadRemote__platform_mf_1_sdk__mf_owner__3__loadRemote__-BijNgmPc.js",
+      "type": "script",
+      "method": "GET"
+    },
+    {
+      "at": "2026-11-10T12:41:01.143Z",
+      "url": "http://127.0.0.1:4203/artifacts/b_1_4_0_60bd7cd10190/assets/rolldown-runtime-DQp2zzRu.js",
+      "type": "script",
+      "method": "GET"
+    },
+    {
+      "at": "2026-11-10T12:41:01.145Z",
+      "url": "http://127.0.0.1:4203/artifacts/b_1_4_0_60bd7cd10190/assets/hostInit-BIRj_VoJ.js",
+      "type": "script",
+      "method": "GET"
+    },
+    {
+      "at": "2026-11-10T12:41:01.147Z",
+      "url": "http://127.0.0.1:4203/artifacts/b_1_4_0_60bd7cd10190/assets/Widget-DWCFAj48.js",
+      "type": "script",
+      "method": "GET"
+    },
+    {
+      "at": "2026-11-10T12:41:01.149Z",
+      "url": "http://127.0.0.1:4203/artifacts/b_1_4_0_60bd7cd10190/assets/_virtual_mf___mfe_internal__mf_b_1_4_0_60bd7cd10190__mf_owner__207102028746890__loadShare__react__loadShare__.js-BxmDIcRQ.js",
+      "type": "script",
+      "method": "GET"
+    },
+    {
+      "at": "2026-11-10T12:41:01.149Z",
+      "url": "http://127.0.0.1:4203/artifacts/b_1_4_0_60bd7cd10190/assets/_virtual_mf___mfe_internal__mf_b_1_4_0_60bd7cd10190__mf_owner__207102028746890__loadShare__shared-DdndfW4K.js",
+      "type": "script",
+      "method": "GET"
+    },
+    {
+      "at": "2026-11-10T12:41:01.153Z",
+      "url": "http://127.0.0.1:4203/__dev/events",
+      "type": "eventsource",
+      "method": "GET"
+    },
+    {
+      "at": "2026-11-10T12:41:12.692Z",
+      "url": "http://127.0.0.1:4203/",
+      "type": "document",
+      "method": "GET"
+    },
+    {
+      "at": "2026-11-10T12:41:12.700Z",
+      "url": "http://127.0.0.1:4203/__dev/host/host.js",
+      "type": "script",
+      "method": "GET"
+    },
+    {
+      "at": "2026-11-10T12:41:12.702Z",
+      "url": "http://127.0.0.1:4203/__dev/host/assets/import-module-DeeNAblr.js",
+      "type": "script",
+      "method": "GET"
+    },
+    {
+      "at": "2026-11-10T12:41:12.703Z",
+      "url": "http://127.0.0.1:4203/__dev/host/assets/vite-preload-helper-BzD9YtjY.js",
+      "type": "script",
+      "method": "GET"
+    },
+    {
+      "at": "2026-11-10T12:41:12.706Z",
+      "url": "http://127.0.0.1:4203/__dev/host/assets/hostInit-8OnpgmEB.js",
+      "type": "script",
+      "method": "GET"
+    },
+    {
+      "at": "2026-11-10T12:41:12.708Z",
+      "url": "http://127.0.0.1:4203/__dev/host/remoteEntry.js",
+      "type": "script",
+      "method": "GET"
+    },
+    {
+      "at": "2026-11-10T12:41:12.710Z",
+      "url": "http://127.0.0.1:4203/__dev/host/assets/dist-Bo8xtUoB.js",
+      "type": "script",
+      "method": "GET"
+    },
+    {
+      "at": "2026-11-10T12:41:12.713Z",
+      "url": "http://127.0.0.1:4203/__dev/host/assets/_virtual_mf-localSharedImportMap___mfe_internal__mfe_development_host__mf_owner__2-BSNdvrfF.js",
+      "type": "script",
+      "method": "GET"
+    },
+    {
+      "at": "2026-11-10T12:41:12.715Z",
+      "url": "http://127.0.0.1:4203/__dev/host/assets/_virtual_mf___mfe_internal__mfe_development_host__mf_owner__246695962837441__prebuild__react__prebuild__-CybhxOV4.js",
+      "type": "script",
+      "method": "GET"
+    },
+    {
+      "at": "2026-11-10T12:41:12.717Z",
+      "url": "http://127.0.0.1:4203/__dev/host/assets/_virtual_mf___mfe_internal__mfe_development_host__mf_owner__246695962837441__loadShare__react__loadShare__.js-glqflLJ5.js",
+      "type": "script",
+      "method": "GET"
+    },
+    {
+      "at": "2026-11-10T12:41:12.719Z",
+      "url": "http://127.0.0.1:4203/__dev/host/assets/rolldown-runtime-DQp2zzRu.js",
+      "type": "script",
+      "method": "GET"
+    },
+    {
+      "at": "2026-11-10T12:41:12.721Z",
+      "url": "http://127.0.0.1:4203/__dev/host/assets/_virtual_mf___mfe_internal__mfe_development_host__mf_owner__246695962837441__prebuild__react_mf_2_dom_mf_1_client__prebuild__-D2bwhWp6.js",
+      "type": "script",
+      "method": "GET"
+    },
+    {
+      "at": "2026-11-10T12:41:12.730Z",
+      "url": "http://127.0.0.1:4203/__dev/host/assets/react-dom-CNH_Zc-s.js",
+      "type": "script",
+      "method": "GET"
+    },
+    {
+      "at": "2026-11-10T12:41:12.734Z",
+      "url": "http://127.0.0.1:4203/__dev/host/assets/pendingShares-DZJGQvyk.js",
+      "type": "script",
+      "method": "GET"
+    },
+    {
+      "at": "2026-11-10T12:41:12.736Z",
+      "url": "http://127.0.0.1:4203/__dev/host/assets/browser-Pp4hwWdL.js",
+      "type": "script",
+      "method": "GET"
+    },
+    {
+      "at": "2026-11-10T12:41:12.737Z",
+      "url": "http://127.0.0.1:4203/__dev/snapshots/dev_4a170d16f20457a04ae180cf.json",
+      "type": "fetch",
+      "method": "GET"
+    },
+    {
+      "at": "2026-11-10T12:41:12.739Z",
+      "url": "http://127.0.0.1:4203/__dev/host/assets/_virtual_mf___mfe_internal__mfe_development_host__loadRemote__platform_mf_1_sdk__mf_owner__2__loadRemote__-BNKyQABX.js",
+      "type": "script",
+      "method": "GET"
+    },
+    {
+      "at": "2026-11-10T12:41:12.741Z",
+      "url": "http://127.0.0.1:4203/__dev/host/assets/_virtual_mf___mfe_internal__mfe_development_host__loadRemote__platform_mf_1_sdk__mf_owner__2__loadRemote__-_A6bHztr.js",
+      "type": "script",
+      "method": "GET"
+    },
+    {
+      "at": "2026-11-10T12:41:12.743Z",
+      "url": "http://127.0.0.1:4203/artifacts/platform_1_3_1_e25c8d049944/remoteEntry.js",
+      "type": "script",
+      "method": "GET"
+    },
+    {
+      "at": "2026-11-10T12:41:12.745Z",
+      "url": "http://127.0.0.1:4203/artifacts/platform_1_3_1_e25c8d049944/assets/dist-Bo8xtUoB.js",
+      "type": "script",
+      "method": "GET"
+    },
+    {
+      "at": "2026-11-10T12:41:12.745Z",
+      "url": "http://127.0.0.1:4203/artifacts/platform_1_3_1_e25c8d049944/assets/vite-preload-helper-CtLp1C0p.js",
+      "type": "script",
+      "method": "GET"
+    },
+    {
+      "at": "2026-11-10T12:41:12.749Z",
+      "url": "http://127.0.0.1:4203/artifacts/platform_1_3_1_e25c8d049944/assets/_virtual_mf-localSharedImportMap___mfe_internal__mf_platform_1_3_1_e25c8d049944__mf_owner__1-5YRVjoO3.js",
+      "type": "script",
+      "method": "GET"
+    },
+    {
+      "at": "2026-11-10T12:41:12.751Z",
+      "url": "http://127.0.0.1:4203/__dev/host/assets/_virtual_mf___mfe_internal__mfe_development_host__mf_owner__246695962837441__prebuild__react_mf_2_dom__prebuild__-x7nOhOSU.js",
+      "type": "script",
+      "method": "GET"
+    },
+    {
+      "at": "2026-11-10T12:41:12.753Z",
+      "url": "http://127.0.0.1:4203/artifacts/platform_1_3_1_e25c8d049944/assets/sdk-BbXiZY3X.css",
+      "type": "stylesheet",
+      "method": "GET"
+    },
+    {
+      "at": "2026-11-10T12:41:12.755Z",
+      "url": "http://127.0.0.1:4203/artifacts/platform_1_3_1_e25c8d049944/assets/sdk-ClnQiGJZ.js",
+      "type": "script",
+      "method": "GET"
+    },
+    {
+      "at": "2026-11-10T12:41:12.757Z",
+      "url": "http://127.0.0.1:4203/artifacts/platform_1_3_1_e25c8d049944/assets/_virtual_mf___mfe_internal__mf_platform_1_3_1_e25c8d049944__mf_owner__242075772864893__loadShare__react__loadShare__.js-B3vX5iHX.js",
+      "type": "script",
+      "method": "GET"
+    },
+    {
+      "at": "2026-11-10T12:41:12.759Z",
+      "url": "http://127.0.0.1:4203/artifacts/platform_1_3_1_e25c8d049944/assets/rolldown-runtime-SbdDWaPq.js",
+      "type": "script",
+      "method": "GET"
+    },
+    {
+      "at": "2026-11-10T12:41:12.760Z",
+      "url": "http://127.0.0.1:4203/__dev/host/assets/bootstrap-DjnWaNup.js",
+      "type": "script",
+      "method": "GET"
+    },
+    {
+      "at": "2026-11-10T12:41:12.762Z",
+      "url": "http://127.0.0.1:4203/__dev/host/assets/_virtual_mf___mfe_internal__mfe_development_host__mf_owner__246695962837441__loadShare__react_mf_2_dom_mf_1_client__loadShare__.js-BC9kKjq_.js",
+      "type": "script",
+      "method": "GET"
+    },
+    {
+      "at": "2026-11-10T12:41:12.764Z",
+      "url": "http://127.0.0.1:4203/artifacts/b_1_4_0_6cc8bf6c0028/remoteEntry.js",
+      "type": "script",
+      "method": "GET"
+    },
+    {
+      "at": "2026-11-10T12:41:12.766Z",
+      "url": "http://127.0.0.1:4203/artifacts/b_1_4_0_6cc8bf6c0028/assets/dist-Bo8xtUoB.js",
+      "type": "script",
+      "method": "GET"
+    },
+    {
+      "at": "2026-11-10T12:41:12.766Z",
+      "url": "http://127.0.0.1:4203/artifacts/b_1_4_0_6cc8bf6c0028/assets/vite-preload-helper-BVDCNeEa.js",
+      "type": "script",
+      "method": "GET"
+    },
+    {
+      "at": "2026-11-10T12:41:12.770Z",
+      "url": "http://127.0.0.1:4203/artifacts/b_1_4_0_6cc8bf6c0028/assets/_virtual_mf-localSharedImportMap___mfe_internal__mf_b_1_4_0_6cc8bf6c0028__mf_owner__1-BaCESpgK.js",
+      "type": "script",
+      "method": "GET"
+    },
+    {
+      "at": "2026-11-10T12:41:12.772Z",
+      "url": "http://127.0.0.1:4203/artifacts/d_1_0_0_c6adbe1cb721/remoteEntry.js",
+      "type": "script",
+      "method": "GET"
+    },
+    {
+      "at": "2026-11-10T12:41:12.779Z",
+      "url": "http://127.0.0.1:4203/artifacts/d_1_0_0_c6adbe1cb721/assets/dist-CzT-8ogd.js",
+      "type": "script",
+      "method": "GET"
+    },
+    {
+      "at": "2026-11-10T12:41:12.780Z",
+      "url": "http://127.0.0.1:4203/artifacts/d_1_0_0_c6adbe1cb721/assets/vite-preload-helper-D007Gmx9.js",
+      "type": "script",
+      "method": "GET"
+    },
+    {
+      "at": "2026-11-10T12:41:12.783Z",
+      "url": "http://127.0.0.1:4203/artifacts/d_1_0_0_c6adbe1cb721/assets/_virtual_mf-localSharedImportMap___mfe_internal__mf_d_1_0_0_c6adbe1cb721__mf_owner__1-K9UFUvmk.js",
+      "type": "script",
+      "method": "GET"
+    },
+    {
+      "at": "2026-11-10T12:41:12.785Z",
+      "url": "http://127.0.0.1:4203/artifacts/d_1_0_0_c6adbe1cb721/assets/src-BMVRR_2U.js",
+      "type": "script",
+      "method": "GET"
+    },
+    {
+      "at": "2026-11-10T12:41:12.787Z",
+      "url": "http://127.0.0.1:4203/artifacts/b_1_4_0_6cc8bf6c0028/assets/Widget-C3vmy5sd.css",
+      "type": "stylesheet",
+      "method": "GET"
+    },
+    {
+      "at": "2026-11-10T12:41:12.788Z",
+      "url": "http://127.0.0.1:4203/artifacts/b_1_4_0_6cc8bf6c0028/assets/_virtual_mf___mfe_internal__mf_b_1_4_0_6cc8bf6c0028__loadRemote__d_mf_1_data__mf_owner__1__loadRemote__-6LDeHEEF.js",
+      "type": "script",
+      "method": "GET"
+    },
+    {
+      "at": "2026-11-10T12:41:12.788Z",
+      "url": "http://127.0.0.1:4203/artifacts/b_1_4_0_6cc8bf6c0028/assets/_virtual_mf___mfe_internal__mf_b_1_4_0_6cc8bf6c0028__loadRemote__platform_mf_1_sdk__mf_owner__1__loadRemote__-Bqk7zvGL.js",
+      "type": "script",
+      "method": "GET"
+    },
+    {
+      "at": "2026-11-10T12:41:12.790Z",
+      "url": "http://127.0.0.1:4203/artifacts/b_1_4_0_6cc8bf6c0028/assets/rolldown-runtime-DQp2zzRu.js",
+      "type": "script",
+      "method": "GET"
+    },
+    {
+      "at": "2026-11-10T12:41:12.792Z",
+      "url": "http://127.0.0.1:4203/artifacts/b_1_4_0_6cc8bf6c0028/assets/hostInit-DFPIMONH.js",
+      "type": "script",
+      "method": "GET"
+    },
+    {
+      "at": "2026-11-10T12:41:12.794Z",
+      "url": "http://127.0.0.1:4203/artifacts/b_1_4_0_6cc8bf6c0028/assets/Widget-BiiMpLC6.js",
+      "type": "script",
+      "method": "GET"
+    },
+    {
+      "at": "2026-11-10T12:41:12.795Z",
+      "url": "http://127.0.0.1:4203/artifacts/b_1_4_0_6cc8bf6c0028/assets/_virtual_mf___mfe_internal__mf_b_1_4_0_6cc8bf6c0028__mf_owner__226140563824246__loadShare__react__loadShare__.js-DgQ7VONi.js",
+      "type": "script",
+      "method": "GET"
+    },
+    {
+      "at": "2026-11-10T12:41:12.795Z",
+      "url": "http://127.0.0.1:4203/artifacts/b_1_4_0_6cc8bf6c0028/assets/_virtual_mf___mfe_internal__mf_b_1_4_0_6cc8bf6c0028__mf_owner__226140563824246__loadShare__shared-B1DGyhpy.js",
+      "type": "script",
+      "method": "GET"
+    },
+    {
+      "at": "2026-11-10T12:41:12.798Z",
+      "url": "http://127.0.0.1:4203/__dev/events",
+      "type": "eventsource",
+      "method": "GET"
+    }
+  ],
+  "responses": [
+    {
+      "at": "2026-11-10T12:40:59.908Z",
+      "url": "http://127.0.0.1:4203/",
+      "status": 200
+    },
+    {
+      "at": "2026-11-10T12:40:59.930Z",
+      "url": "http://127.0.0.1:4203/__dev/host/host.js",
+      "status": 200
+    },
+    {
+      "at": "2026-11-10T12:40:59.934Z",
+      "url": "http://127.0.0.1:4203/__dev/host/assets/import-module-DeeNAblr.js",
+      "status": 200
+    },
+    {
+      "at": "2026-11-10T12:40:59.934Z",
+      "url": "http://127.0.0.1:4203/__dev/host/assets/vite-preload-helper-BzD9YtjY.js",
+      "status": 200
+    },
+    {
+      "at": "2026-11-10T12:40:59.945Z",
+      "url": "http://127.0.0.1:4203/__dev/host/assets/hostInit-8OnpgmEB.js",
+      "status": 200
+    },
+    {
+      "at": "2026-11-10T12:40:59.948Z",
+      "url": "http://127.0.0.1:4203/__dev/host/remoteEntry.js",
+      "status": 200
+    },
+    {
+      "at": "2026-11-10T12:40:59.951Z",
+      "url": "http://127.0.0.1:4203/__dev/host/assets/dist-Bo8xtUoB.js",
+      "status": 200
+    },
+    {
+      "at": "2026-11-10T12:40:59.954Z",
+      "url": "http://127.0.0.1:4203/__dev/host/assets/_virtual_mf-localSharedImportMap___mfe_internal__mfe_development_host__mf_owner__2-BSNdvrfF.js",
+      "status": 200
+    },
+    {
+      "at": "2026-11-10T12:40:59.959Z",
+      "url": "http://127.0.0.1:4203/__dev/host/assets/_virtual_mf___mfe_internal__mfe_development_host__mf_owner__246695962837441__prebuild__react__prebuild__-CybhxOV4.js",
+      "status": 200
+    },
+    {
+      "at": "2026-11-10T12:40:59.961Z",
+      "url": "http://127.0.0.1:4203/__dev/host/assets/_virtual_mf___mfe_internal__mfe_development_host__mf_owner__246695962837441__loadShare__react__loadShare__.js-glqflLJ5.js",
+      "status": 200
+    },
+    {
+      "at": "2026-11-10T12:40:59.963Z",
+      "url": "http://127.0.0.1:4203/__dev/host/assets/rolldown-runtime-DQp2zzRu.js",
+      "status": 200
+    },
+    {
+      "at": "2026-11-10T12:40:59.974Z",
+      "url": "http://127.0.0.1:4203/__dev/host/assets/_virtual_mf___mfe_internal__mfe_development_host__mf_owner__246695962837441__prebuild__react_mf_2_dom_mf_1_client__prebuild__-D2bwhWp6.js",
+      "status": 200
+    },
+    {
+      "at": "2026-11-10T12:40:59.976Z",
+      "url": "http://127.0.0.1:4203/__dev/host/assets/react-dom-CNH_Zc-s.js",
+      "status": 200
+    },
+    {
+      "at": "2026-11-10T12:40:59.998Z",
+      "url": "http://127.0.0.1:4203/__dev/host/assets/pendingShares-DZJGQvyk.js",
+      "status": 200
+    },
+    {
+      "at": "2026-11-10T12:40:59.999Z",
+      "url": "http://127.0.0.1:4203/__dev/host/assets/browser-Pp4hwWdL.js",
+      "status": 200
+    },
+    {
+      "at": "2026-11-10T12:41:00.001Z",
+      "url": "http://127.0.0.1:4203/__dev/snapshots/dev_4a170d16f20457a04ae180cf.json",
+      "status": 200
+    },
+    {
+      "at": "2026-11-10T12:41:00.003Z",
+      "url": "http://127.0.0.1:4203/__dev/host/assets/_virtual_mf___mfe_internal__mfe_development_host__loadRemote__platform_mf_1_sdk__mf_owner__2__loadRemote__-BNKyQABX.js",
+      "status": 200
+    },
+    {
+      "at": "2026-11-10T12:41:00.005Z",
+      "url": "http://127.0.0.1:4203/__dev/host/assets/_virtual_mf___mfe_internal__mfe_development_host__loadRemote__platform_mf_1_sdk__mf_owner__2__loadRemote__-_A6bHztr.js",
+      "status": 200
+    },
+    {
+      "at": "2026-11-10T12:41:00.008Z",
+      "url": "http://127.0.0.1:4203/artifacts/platform_1_3_1_e25c8d049944/remoteEntry.js",
+      "status": 200
+    },
+    {
+      "at": "2026-11-10T12:41:00.010Z",
+      "url": "http://127.0.0.1:4203/artifacts/platform_1_3_1_e25c8d049944/assets/vite-preload-helper-CtLp1C0p.js",
+      "status": 200
+    },
+    {
+      "at": "2026-11-10T12:41:00.011Z",
+      "url": "http://127.0.0.1:4203/artifacts/platform_1_3_1_e25c8d049944/assets/dist-Bo8xtUoB.js",
+      "status": 200
+    },
+    {
+      "at": "2026-11-10T12:41:00.014Z",
+      "url": "http://127.0.0.1:4203/artifacts/platform_1_3_1_e25c8d049944/assets/_virtual_mf-localSharedImportMap___mfe_internal__mf_platform_1_3_1_e25c8d049944__mf_owner__1-5YRVjoO3.js",
+      "status": 200
+    },
+    {
+      "at": "2026-11-10T12:41:00.018Z",
+      "url": "http://127.0.0.1:4203/__dev/host/assets/_virtual_mf___mfe_internal__mfe_development_host__mf_owner__246695962837441__prebuild__react_mf_2_dom__prebuild__-x7nOhOSU.js",
+      "status": 200
+    },
+    {
+      "at": "2026-11-10T12:41:00.020Z",
+      "url": "http://127.0.0.1:4203/artifacts/platform_1_3_1_e25c8d049944/assets/sdk-BbXiZY3X.css",
+      "status": 200
+    },
+    {
+      "at": "2026-11-10T12:41:00.022Z",
+      "url": "http://127.0.0.1:4203/artifacts/platform_1_3_1_e25c8d049944/assets/sdk-ClnQiGJZ.js",
+      "status": 200
+    },
+    {
+      "at": "2026-11-10T12:41:00.025Z",
+      "url": "http://127.0.0.1:4203/artifacts/platform_1_3_1_e25c8d049944/assets/_virtual_mf___mfe_internal__mf_platform_1_3_1_e25c8d049944__mf_owner__242075772864893__loadShare__react__loadShare__.js-B3vX5iHX.js",
+      "status": 200
+    },
+    {
+      "at": "2026-11-10T12:41:00.026Z",
+      "url": "http://127.0.0.1:4203/artifacts/platform_1_3_1_e25c8d049944/assets/rolldown-runtime-SbdDWaPq.js",
+      "status": 200
+    },
+    {
+      "at": "2026-11-10T12:41:00.030Z",
+      "url": "http://127.0.0.1:4203/__dev/host/assets/bootstrap-DjnWaNup.js",
+      "status": 200
+    },
+    {
+      "at": "2026-11-10T12:41:00.031Z",
+      "url": "http://127.0.0.1:4203/__dev/host/assets/_virtual_mf___mfe_internal__mfe_development_host__mf_owner__246695962837441__loadShare__react_mf_2_dom_mf_1_client__loadShare__.js-BC9kKjq_.js",
+      "status": 200
+    },
+    {
+      "at": "2026-11-10T12:41:00.034Z",
+      "url": "http://127.0.0.1:4203/artifacts/b_1_4_0_6cc8bf6c0028/remoteEntry.js",
+      "status": 200
+    },
+    {
+      "at": "2026-11-10T12:41:00.036Z",
+      "url": "http://127.0.0.1:4203/artifacts/b_1_4_0_6cc8bf6c0028/assets/vite-preload-helper-BVDCNeEa.js",
+      "status": 200
+    },
+    {
+      "at": "2026-11-10T12:41:00.037Z",
+      "url": "http://127.0.0.1:4203/artifacts/b_1_4_0_6cc8bf6c0028/assets/dist-Bo8xtUoB.js",
+      "status": 200
+    },
+    {
+      "at": "2026-11-10T12:41:00.039Z",
+      "url": "http://127.0.0.1:4203/artifacts/b_1_4_0_6cc8bf6c0028/assets/_virtual_mf-localSharedImportMap___mfe_internal__mf_b_1_4_0_6cc8bf6c0028__mf_owner__1-BaCESpgK.js",
+      "status": 200
+    },
+    {
+      "at": "2026-11-10T12:41:00.044Z",
+      "url": "http://127.0.0.1:4203/artifacts/d_1_0_0_c6adbe1cb721/remoteEntry.js",
+      "status": 200
+    },
+    {
+      "at": "2026-11-10T12:41:00.046Z",
+      "url": "http://127.0.0.1:4203/artifacts/d_1_0_0_c6adbe1cb721/assets/vite-preload-helper-D007Gmx9.js",
+      "status": 200
+    },
+    {
+      "at": "2026-11-10T12:41:00.047Z",
+      "url": "http://127.0.0.1:4203/artifacts/d_1_0_0_c6adbe1cb721/assets/dist-CzT-8ogd.js",
+      "status": 200
+    },
+    {
+      "at": "2026-11-10T12:41:00.049Z",
+      "url": "http://127.0.0.1:4203/artifacts/d_1_0_0_c6adbe1cb721/assets/_virtual_mf-localSharedImportMap___mfe_internal__mf_d_1_0_0_c6adbe1cb721__mf_owner__1-K9UFUvmk.js",
+      "status": 200
+    },
+    {
+      "at": "2026-11-10T12:41:00.052Z",
+      "url": "http://127.0.0.1:4203/artifacts/d_1_0_0_c6adbe1cb721/assets/src-BMVRR_2U.js",
+      "status": 200
+    },
+    {
+      "at": "2026-11-10T12:41:00.053Z",
+      "url": "http://127.0.0.1:4203/artifacts/b_1_4_0_6cc8bf6c0028/assets/Widget-C3vmy5sd.css",
+      "status": 200
+    },
+    {
+      "at": "2026-11-10T12:41:00.055Z",
+      "url": "http://127.0.0.1:4203/artifacts/b_1_4_0_6cc8bf6c0028/assets/_virtual_mf___mfe_internal__mf_b_1_4_0_6cc8bf6c0028__loadRemote__d_mf_1_data__mf_owner__1__loadRemote__-6LDeHEEF.js",
+      "status": 200
+    },
+    {
+      "at": "2026-11-10T12:41:00.056Z",
+      "url": "http://127.0.0.1:4203/artifacts/b_1_4_0_6cc8bf6c0028/assets/_virtual_mf___mfe_internal__mf_b_1_4_0_6cc8bf6c0028__loadRemote__platform_mf_1_sdk__mf_owner__1__loadRemote__-Bqk7zvGL.js",
+      "status": 200
+    },
+    {
+      "at": "2026-11-10T12:41:00.057Z",
+      "url": "http://127.0.0.1:4203/artifacts/b_1_4_0_6cc8bf6c0028/assets/rolldown-runtime-DQp2zzRu.js",
+      "status": 200
+    },
+    {
+      "at": "2026-11-10T12:41:00.059Z",
+      "url": "http://127.0.0.1:4203/artifacts/b_1_4_0_6cc8bf6c0028/assets/hostInit-DFPIMONH.js",
+      "status": 200
+    },
+    {
+      "at": "2026-11-10T12:41:00.062Z",
+      "url": "http://127.0.0.1:4203/artifacts/b_1_4_0_6cc8bf6c0028/assets/Widget-BiiMpLC6.js",
+      "status": 200
+    },
+    {
+      "at": "2026-11-10T12:41:00.064Z",
+      "url": "http://127.0.0.1:4203/artifacts/b_1_4_0_6cc8bf6c0028/assets/_virtual_mf___mfe_internal__mf_b_1_4_0_6cc8bf6c0028__mf_owner__226140563824246__loadShare__shared-B1DGyhpy.js",
+      "status": 200
+    },
+    {
+      "at": "2026-11-10T12:41:00.064Z",
+      "url": "http://127.0.0.1:4203/artifacts/b_1_4_0_6cc8bf6c0028/assets/_virtual_mf___mfe_internal__mf_b_1_4_0_6cc8bf6c0028__mf_owner__226140563824246__loadShare__react__loadShare__.js-DgQ7VONi.js",
+      "status": 200
+    },
+    {
+      "at": "2026-11-10T12:41:00.078Z",
+      "url": "http://127.0.0.1:4203/__dev/events",
+      "status": 200
+    },
+    {
+      "at": "2026-11-10T12:41:01.058Z",
+      "url": "http://127.0.0.1:4203/",
+      "status": 200
+    },
+    {
+      "at": "2026-11-10T12:41:01.065Z",
+      "url": "http://127.0.0.1:4203/__dev/host/host.js",
+      "status": 200
+    },
+    {
+      "at": "2026-11-10T12:41:01.067Z",
+      "url": "http://127.0.0.1:4203/__dev/host/assets/import-module-DeeNAblr.js",
+      "status": 200
+    },
+    {
+      "at": "2026-11-10T12:41:01.068Z",
+      "url": "http://127.0.0.1:4203/__dev/host/assets/vite-preload-helper-BzD9YtjY.js",
+      "status": 200
+    },
+    {
+      "at": "2026-11-10T12:41:01.070Z",
+      "url": "http://127.0.0.1:4203/__dev/host/assets/hostInit-8OnpgmEB.js",
+      "status": 200
+    },
+    {
+      "at": "2026-11-10T12:41:01.072Z",
+      "url": "http://127.0.0.1:4203/__dev/host/remoteEntry.js",
+      "status": 200
+    },
+    {
+      "at": "2026-11-10T12:41:01.076Z",
+      "url": "http://127.0.0.1:4203/__dev/host/assets/dist-Bo8xtUoB.js",
+      "status": 200
+    },
+    {
+      "at": "2026-11-10T12:41:01.078Z",
+      "url": "http://127.0.0.1:4203/__dev/host/assets/_virtual_mf-localSharedImportMap___mfe_internal__mfe_development_host__mf_owner__2-BSNdvrfF.js",
+      "status": 200
+    },
+    {
+      "at": "2026-11-10T12:41:01.080Z",
+      "url": "http://127.0.0.1:4203/__dev/host/assets/_virtual_mf___mfe_internal__mfe_development_host__mf_owner__246695962837441__prebuild__react__prebuild__-CybhxOV4.js",
+      "status": 200
+    },
+    {
+      "at": "2026-11-10T12:41:01.082Z",
+      "url": "http://127.0.0.1:4203/__dev/host/assets/_virtual_mf___mfe_internal__mfe_development_host__mf_owner__246695962837441__loadShare__react__loadShare__.js-glqflLJ5.js",
+      "status": 200
+    },
+    {
+      "at": "2026-11-10T12:41:01.083Z",
+      "url": "http://127.0.0.1:4203/__dev/host/assets/rolldown-runtime-DQp2zzRu.js",
+      "status": 200
+    },
+    {
+      "at": "2026-11-10T12:41:01.093Z",
+      "url": "http://127.0.0.1:4203/__dev/host/assets/_virtual_mf___mfe_internal__mfe_development_host__mf_owner__246695962837441__prebuild__react_mf_2_dom_mf_1_client__prebuild__-D2bwhWp6.js",
+      "status": 200
+    },
+    {
+      "at": "2026-11-10T12:41:01.094Z",
+      "url": "http://127.0.0.1:4203/__dev/host/assets/react-dom-CNH_Zc-s.js",
+      "status": 200
+    },
+    {
+      "at": "2026-11-10T12:41:01.097Z",
+      "url": "http://127.0.0.1:4203/__dev/host/assets/pendingShares-DZJGQvyk.js",
+      "status": 200
+    },
+    {
+      "at": "2026-11-10T12:41:01.099Z",
+      "url": "http://127.0.0.1:4203/__dev/host/assets/browser-Pp4hwWdL.js",
+      "status": 200
+    },
+    {
+      "at": "2026-11-10T12:41:01.100Z",
+      "url": "http://127.0.0.1:4203/__dev/snapshots/dev_777dce30fc335840ae66f7ae.json",
+      "status": 200
+    },
+    {
+      "at": "2026-11-10T12:41:01.102Z",
+      "url": "http://127.0.0.1:4203/__dev/host/assets/_virtual_mf___mfe_internal__mfe_development_host__loadRemote__platform_mf_1_sdk__mf_owner__2__loadRemote__-BNKyQABX.js",
+      "status": 200
+    },
+    {
+      "at": "2026-11-10T12:41:01.103Z",
+      "url": "http://127.0.0.1:4203/__dev/host/assets/_virtual_mf___mfe_internal__mfe_development_host__loadRemote__platform_mf_1_sdk__mf_owner__2__loadRemote__-_A6bHztr.js",
+      "status": 200
+    },
+    {
+      "at": "2026-11-10T12:41:01.105Z",
+      "url": "http://127.0.0.1:4203/artifacts/platform_1_3_1_e25c8d049944/remoteEntry.js",
+      "status": 200
+    },
+    {
+      "at": "2026-11-10T12:41:01.107Z",
+      "url": "http://127.0.0.1:4203/artifacts/platform_1_3_1_e25c8d049944/assets/vite-preload-helper-CtLp1C0p.js",
+      "status": 200
+    },
+    {
+      "at": "2026-11-10T12:41:01.108Z",
+      "url": "http://127.0.0.1:4203/artifacts/platform_1_3_1_e25c8d049944/assets/dist-Bo8xtUoB.js",
+      "status": 200
+    },
+    {
+      "at": "2026-11-10T12:41:01.110Z",
+      "url": "http://127.0.0.1:4203/artifacts/platform_1_3_1_e25c8d049944/assets/_virtual_mf-localSharedImportMap___mfe_internal__mf_platform_1_3_1_e25c8d049944__mf_owner__1-5YRVjoO3.js",
+      "status": 200
+    },
+    {
+      "at": "2026-11-10T12:41:01.112Z",
+      "url": "http://127.0.0.1:4203/__dev/host/assets/_virtual_mf___mfe_internal__mfe_development_host__mf_owner__246695962837441__prebuild__react_mf_2_dom__prebuild__-x7nOhOSU.js",
+      "status": 200
+    },
+    {
+      "at": "2026-11-10T12:41:01.113Z",
+      "url": "http://127.0.0.1:4203/artifacts/platform_1_3_1_e25c8d049944/assets/sdk-BbXiZY3X.css",
+      "status": 200
+    },
+    {
+      "at": "2026-11-10T12:41:01.115Z",
+      "url": "http://127.0.0.1:4203/artifacts/platform_1_3_1_e25c8d049944/assets/sdk-ClnQiGJZ.js",
+      "status": 200
+    },
+    {
+      "at": "2026-11-10T12:41:01.117Z",
+      "url": "http://127.0.0.1:4203/artifacts/platform_1_3_1_e25c8d049944/assets/_virtual_mf___mfe_internal__mf_platform_1_3_1_e25c8d049944__mf_owner__242075772864893__loadShare__react__loadShare__.js-B3vX5iHX.js",
+      "status": 200
+    },
+    {
+      "at": "2026-11-10T12:41:01.118Z",
+      "url": "http://127.0.0.1:4203/artifacts/platform_1_3_1_e25c8d049944/assets/rolldown-runtime-SbdDWaPq.js",
+      "status": 200
+    },
+    {
+      "at": "2026-11-10T12:41:01.120Z",
+      "url": "http://127.0.0.1:4203/__dev/host/assets/bootstrap-DjnWaNup.js",
+      "status": 200
+    },
+    {
+      "at": "2026-11-10T12:41:01.122Z",
+      "url": "http://127.0.0.1:4203/__dev/host/assets/_virtual_mf___mfe_internal__mfe_development_host__mf_owner__246695962837441__loadShare__react_mf_2_dom_mf_1_client__loadShare__.js-BC9kKjq_.js",
+      "status": 200
+    },
+    {
+      "at": "2026-11-10T12:41:01.124Z",
+      "url": "http://127.0.0.1:4203/artifacts/b_1_4_0_60bd7cd10190/remoteEntry.js",
+      "status": 200
+    },
+    {
+      "at": "2026-11-10T12:41:01.126Z",
+      "url": "http://127.0.0.1:4203/artifacts/b_1_4_0_60bd7cd10190/assets/vite-preload-helper-DOZLGZ-e.js",
+      "status": 200
+    },
+    {
+      "at": "2026-11-10T12:41:01.127Z",
+      "url": "http://127.0.0.1:4203/artifacts/b_1_4_0_60bd7cd10190/assets/dist-Bo8xtUoB.js",
+      "status": 200
+    },
+    {
+      "at": "2026-11-10T12:41:01.129Z",
+      "url": "http://127.0.0.1:4203/artifacts/b_1_4_0_60bd7cd10190/assets/_virtual_mf-localSharedImportMap___mfe_internal__mf_b_1_4_0_60bd7cd10190__mf_owner__3-Cv949UTC.js",
+      "status": 200
+    },
+    {
+      "at": "2026-11-10T12:41:01.133Z",
+      "url": "http://127.0.0.1:4203/artifacts/d_1_0_0_c6adbe1cb721/remoteEntry.js",
+      "status": 200
+    },
+    {
+      "at": "2026-11-10T12:41:01.135Z",
+      "url": "http://127.0.0.1:4203/artifacts/d_1_0_0_c6adbe1cb721/assets/vite-preload-helper-D007Gmx9.js",
+      "status": 200
+    },
+    {
+      "at": "2026-11-10T12:41:01.136Z",
+      "url": "http://127.0.0.1:4203/artifacts/d_1_0_0_c6adbe1cb721/assets/dist-CzT-8ogd.js",
+      "status": 200
+    },
+    {
+      "at": "2026-11-10T12:41:01.138Z",
+      "url": "http://127.0.0.1:4203/artifacts/d_1_0_0_c6adbe1cb721/assets/_virtual_mf-localSharedImportMap___mfe_internal__mf_d_1_0_0_c6adbe1cb721__mf_owner__1-K9UFUvmk.js",
+      "status": 200
+    },
+    {
+      "at": "2026-11-10T12:41:01.139Z",
+      "url": "http://127.0.0.1:4203/artifacts/d_1_0_0_c6adbe1cb721/assets/src-BMVRR_2U.js",
+      "status": 200
+    },
+    {
+      "at": "2026-11-10T12:41:01.141Z",
+      "url": "http://127.0.0.1:4203/artifacts/b_1_4_0_60bd7cd10190/assets/Widget-DgpGETLC.css",
+      "status": 200
+    },
+    {
+      "at": "2026-11-10T12:41:01.143Z",
+      "url": "http://127.0.0.1:4203/artifacts/b_1_4_0_60bd7cd10190/assets/_virtual_mf___mfe_internal__mf_b_1_4_0_60bd7cd10190__loadRemote__d_mf_1_data__mf_owner__3__loadRemote__-kV51FbJn.js",
+      "status": 200
+    },
+    {
+      "at": "2026-11-10T12:41:01.143Z",
+      "url": "http://127.0.0.1:4203/artifacts/b_1_4_0_60bd7cd10190/assets/_virtual_mf___mfe_internal__mf_b_1_4_0_60bd7cd10190__loadRemote__platform_mf_1_sdk__mf_owner__3__loadRemote__-BijNgmPc.js",
+      "status": 200
+    },
+    {
+      "at": "2026-11-10T12:41:01.144Z",
+      "url": "http://127.0.0.1:4203/artifacts/b_1_4_0_60bd7cd10190/assets/rolldown-runtime-DQp2zzRu.js",
+      "status": 200
+    },
+    {
+      "at": "2026-11-10T12:41:01.146Z",
+      "url": "http://127.0.0.1:4203/artifacts/b_1_4_0_60bd7cd10190/assets/hostInit-BIRj_VoJ.js",
+      "status": 200
+    },
+    {
+      "at": "2026-11-10T12:41:01.148Z",
+      "url": "http://127.0.0.1:4203/artifacts/b_1_4_0_60bd7cd10190/assets/Widget-DWCFAj48.js",
+      "status": 200
+    },
+    {
+      "at": "2026-11-10T12:41:01.150Z",
+      "url": "http://127.0.0.1:4203/artifacts/b_1_4_0_60bd7cd10190/assets/_virtual_mf___mfe_internal__mf_b_1_4_0_60bd7cd10190__mf_owner__207102028746890__loadShare__shared-DdndfW4K.js",
+      "status": 200
+    },
+    {
+      "at": "2026-11-10T12:41:01.151Z",
+      "url": "http://127.0.0.1:4203/artifacts/b_1_4_0_60bd7cd10190/assets/_virtual_mf___mfe_internal__mf_b_1_4_0_60bd7cd10190__mf_owner__207102028746890__loadShare__react__loadShare__.js-BxmDIcRQ.js",
+      "status": 200
+    },
+    {
+      "at": "2026-11-10T12:41:01.157Z",
+      "url": "http://127.0.0.1:4203/__dev/events",
+      "status": 200
+    },
+    {
+      "at": "2026-11-10T12:41:12.695Z",
+      "url": "http://127.0.0.1:4203/",
+      "status": 200
+    },
+    {
+      "at": "2026-11-10T12:41:12.702Z",
+      "url": "http://127.0.0.1:4203/__dev/host/host.js",
+      "status": 200
+    },
+    {
+      "at": "2026-11-10T12:41:12.704Z",
+      "url": "http://127.0.0.1:4203/__dev/host/assets/import-module-DeeNAblr.js",
+      "status": 200
+    },
+    {
+      "at": "2026-11-10T12:41:12.704Z",
+      "url": "http://127.0.0.1:4203/__dev/host/assets/vite-preload-helper-BzD9YtjY.js",
+      "status": 200
+    },
+    {
+      "at": "2026-11-10T12:41:12.707Z",
+      "url": "http://127.0.0.1:4203/__dev/host/assets/hostInit-8OnpgmEB.js",
+      "status": 200
+    },
+    {
+      "at": "2026-11-10T12:41:12.710Z",
+      "url": "http://127.0.0.1:4203/__dev/host/remoteEntry.js",
+      "status": 200
+    },
+    {
+      "at": "2026-11-10T12:41:12.713Z",
+      "url": "http://127.0.0.1:4203/__dev/host/assets/dist-Bo8xtUoB.js",
+      "status": 200
+    },
+    {
+      "at": "2026-11-10T12:41:12.714Z",
+      "url": "http://127.0.0.1:4203/__dev/host/assets/_virtual_mf-localSharedImportMap___mfe_internal__mfe_development_host__mf_owner__2-BSNdvrfF.js",
+      "status": 200
+    },
+    {
+      "at": "2026-11-10T12:41:12.716Z",
+      "url": "http://127.0.0.1:4203/__dev/host/assets/_virtual_mf___mfe_internal__mfe_development_host__mf_owner__246695962837441__prebuild__react__prebuild__-CybhxOV4.js",
+      "status": 200
+    },
+    {
+      "at": "2026-11-10T12:41:12.719Z",
+      "url": "http://127.0.0.1:4203/__dev/host/assets/_virtual_mf___mfe_internal__mfe_development_host__mf_owner__246695962837441__loadShare__react__loadShare__.js-glqflLJ5.js",
+      "status": 200
+    },
+    {
+      "at": "2026-11-10T12:41:12.720Z",
+      "url": "http://127.0.0.1:4203/__dev/host/assets/rolldown-runtime-DQp2zzRu.js",
+      "status": 200
+    },
+    {
+      "at": "2026-11-10T12:41:12.730Z",
+      "url": "http://127.0.0.1:4203/__dev/host/assets/_virtual_mf___mfe_internal__mfe_development_host__mf_owner__246695962837441__prebuild__react_mf_2_dom_mf_1_client__prebuild__-D2bwhWp6.js",
+      "status": 200
+    },
+    {
+      "at": "2026-11-10T12:41:12.732Z",
+      "url": "http://127.0.0.1:4203/__dev/host/assets/react-dom-CNH_Zc-s.js",
+      "status": 200
+    },
+    {
+      "at": "2026-11-10T12:41:12.735Z",
+      "url": "http://127.0.0.1:4203/__dev/host/assets/pendingShares-DZJGQvyk.js",
+      "status": 200
+    },
+    {
+      "at": "2026-11-10T12:41:12.737Z",
+      "url": "http://127.0.0.1:4203/__dev/host/assets/browser-Pp4hwWdL.js",
+      "status": 200
+    },
+    {
+      "at": "2026-11-10T12:41:12.739Z",
+      "url": "http://127.0.0.1:4203/__dev/snapshots/dev_4a170d16f20457a04ae180cf.json",
+      "status": 200
+    },
+    {
+      "at": "2026-11-10T12:41:12.741Z",
+      "url": "http://127.0.0.1:4203/__dev/host/assets/_virtual_mf___mfe_internal__mfe_development_host__loadRemote__platform_mf_1_sdk__mf_owner__2__loadRemote__-BNKyQABX.js",
+      "status": 200
+    },
+    {
+      "at": "2026-11-10T12:41:12.743Z",
+      "url": "http://127.0.0.1:4203/__dev/host/assets/_virtual_mf___mfe_internal__mfe_development_host__loadRemote__platform_mf_1_sdk__mf_owner__2__loadRemote__-_A6bHztr.js",
+      "status": 200
+    },
+    {
+      "at": "2026-11-10T12:41:12.745Z",
+      "url": "http://127.0.0.1:4203/artifacts/platform_1_3_1_e25c8d049944/remoteEntry.js",
+      "status": 200
+    },
+    {
+      "at": "2026-11-10T12:41:12.747Z",
+      "url": "http://127.0.0.1:4203/artifacts/platform_1_3_1_e25c8d049944/assets/vite-preload-helper-CtLp1C0p.js",
+      "status": 200
+    },
+    {
+      "at": "2026-11-10T12:41:12.748Z",
+      "url": "http://127.0.0.1:4203/artifacts/platform_1_3_1_e25c8d049944/assets/dist-Bo8xtUoB.js",
+      "status": 200
+    },
+    {
+      "at": "2026-11-10T12:41:12.751Z",
+      "url": "http://127.0.0.1:4203/artifacts/platform_1_3_1_e25c8d049944/assets/_virtual_mf-localSharedImportMap___mfe_internal__mf_platform_1_3_1_e25c8d049944__mf_owner__1-5YRVjoO3.js",
+      "status": 200
+    },
+    {
+      "at": "2026-11-10T12:41:12.753Z",
+      "url": "http://127.0.0.1:4203/__dev/host/assets/_virtual_mf___mfe_internal__mfe_development_host__mf_owner__246695962837441__prebuild__react_mf_2_dom__prebuild__-x7nOhOSU.js",
+      "status": 200
+    },
+    {
+      "at": "2026-11-10T12:41:12.754Z",
+      "url": "http://127.0.0.1:4203/artifacts/platform_1_3_1_e25c8d049944/assets/sdk-BbXiZY3X.css",
+      "status": 200
+    },
+    {
+      "at": "2026-11-10T12:41:12.756Z",
+      "url": "http://127.0.0.1:4203/artifacts/platform_1_3_1_e25c8d049944/assets/sdk-ClnQiGJZ.js",
+      "status": 200
+    },
+    {
+      "at": "2026-11-10T12:41:12.758Z",
+      "url": "http://127.0.0.1:4203/artifacts/platform_1_3_1_e25c8d049944/assets/_virtual_mf___mfe_internal__mf_platform_1_3_1_e25c8d049944__mf_owner__242075772864893__loadShare__react__loadShare__.js-B3vX5iHX.js",
+      "status": 200
+    },
+    {
+      "at": "2026-11-10T12:41:12.760Z",
+      "url": "http://127.0.0.1:4203/artifacts/platform_1_3_1_e25c8d049944/assets/rolldown-runtime-SbdDWaPq.js",
+      "status": 200
+    },
+    {
+      "at": "2026-11-10T12:41:12.762Z",
+      "url": "http://127.0.0.1:4203/__dev/host/assets/bootstrap-DjnWaNup.js",
+      "status": 200
+    },
+    {
+      "at": "2026-11-10T12:41:12.763Z",
+      "url": "http://127.0.0.1:4203/__dev/host/assets/_virtual_mf___mfe_internal__mfe_development_host__mf_owner__246695962837441__loadShare__react_mf_2_dom_mf_1_client__loadShare__.js-BC9kKjq_.js",
+      "status": 200
+    },
+    {
+      "at": "2026-11-10T12:41:12.766Z",
+      "url": "http://127.0.0.1:4203/artifacts/b_1_4_0_6cc8bf6c0028/remoteEntry.js",
+      "status": 200
+    },
+    {
+      "at": "2026-11-10T12:41:12.768Z",
+      "url": "http://127.0.0.1:4203/artifacts/b_1_4_0_6cc8bf6c0028/assets/vite-preload-helper-BVDCNeEa.js",
+      "status": 200
+    },
+    {
+      "at": "2026-11-10T12:41:12.769Z",
+      "url": "http://127.0.0.1:4203/artifacts/b_1_4_0_6cc8bf6c0028/assets/dist-Bo8xtUoB.js",
+      "status": 200
+    },
+    {
+      "at": "2026-11-10T12:41:12.772Z",
+      "url": "http://127.0.0.1:4203/artifacts/b_1_4_0_6cc8bf6c0028/assets/_virtual_mf-localSharedImportMap___mfe_internal__mf_b_1_4_0_6cc8bf6c0028__mf_owner__1-BaCESpgK.js",
+      "status": 200
+    },
+    {
+      "at": "2026-11-10T12:41:12.779Z",
+      "url": "http://127.0.0.1:4203/artifacts/d_1_0_0_c6adbe1cb721/remoteEntry.js",
+      "status": 200
+    },
+    {
+      "at": "2026-11-10T12:41:12.781Z",
+      "url": "http://127.0.0.1:4203/artifacts/d_1_0_0_c6adbe1cb721/assets/vite-preload-helper-D007Gmx9.js",
+      "status": 200
+    },
+    {
+      "at": "2026-11-10T12:41:12.782Z",
+      "url": "http://127.0.0.1:4203/artifacts/d_1_0_0_c6adbe1cb721/assets/dist-CzT-8ogd.js",
+      "status": 200
+    },
+    {
+      "at": "2026-11-10T12:41:12.785Z",
+      "url": "http://127.0.0.1:4203/artifacts/d_1_0_0_c6adbe1cb721/assets/_virtual_mf-localSharedImportMap___mfe_internal__mf_d_1_0_0_c6adbe1cb721__mf_owner__1-K9UFUvmk.js",
+      "status": 200
+    },
+    {
+      "at": "2026-11-10T12:41:12.786Z",
+      "url": "http://127.0.0.1:4203/artifacts/d_1_0_0_c6adbe1cb721/assets/src-BMVRR_2U.js",
+      "status": 200
+    },
+    {
+      "at": "2026-11-10T12:41:12.788Z",
+      "url": "http://127.0.0.1:4203/artifacts/b_1_4_0_6cc8bf6c0028/assets/Widget-C3vmy5sd.css",
+      "status": 200
+    },
+    {
+      "at": "2026-11-10T12:41:12.790Z",
+      "url": "http://127.0.0.1:4203/artifacts/b_1_4_0_6cc8bf6c0028/assets/_virtual_mf___mfe_internal__mf_b_1_4_0_6cc8bf6c0028__loadRemote__d_mf_1_data__mf_owner__1__loadRemote__-6LDeHEEF.js",
+      "status": 200
+    },
+    {
+      "at": "2026-11-10T12:41:12.790Z",
+      "url": "http://127.0.0.1:4203/artifacts/b_1_4_0_6cc8bf6c0028/assets/_virtual_mf___mfe_internal__mf_b_1_4_0_6cc8bf6c0028__loadRemote__platform_mf_1_sdk__mf_owner__1__loadRemote__-Bqk7zvGL.js",
+      "status": 200
+    },
+    {
+      "at": "2026-11-10T12:41:12.791Z",
+      "url": "http://127.0.0.1:4203/artifacts/b_1_4_0_6cc8bf6c0028/assets/rolldown-runtime-DQp2zzRu.js",
+      "status": 200
+    },
+    {
+      "at": "2026-11-10T12:41:12.793Z",
+      "url": "http://127.0.0.1:4203/artifacts/b_1_4_0_6cc8bf6c0028/assets/hostInit-DFPIMONH.js",
+      "status": 200
+    },
+    {
+      "at": "2026-11-10T12:41:12.795Z",
+      "url": "http://127.0.0.1:4203/artifacts/b_1_4_0_6cc8bf6c0028/assets/Widget-BiiMpLC6.js",
+      "status": 200
+    },
+    {
+      "at": "2026-11-10T12:41:12.797Z",
+      "url": "http://127.0.0.1:4203/artifacts/b_1_4_0_6cc8bf6c0028/assets/_virtual_mf___mfe_internal__mf_b_1_4_0_6cc8bf6c0028__mf_owner__226140563824246__loadShare__shared-B1DGyhpy.js",
+      "status": 200
+    },
+    {
+      "at": "2026-11-10T12:41:12.797Z",
+      "url": "http://127.0.0.1:4203/artifacts/b_1_4_0_6cc8bf6c0028/assets/_virtual_mf___mfe_internal__mf_b_1_4_0_6cc8bf6c0028__mf_owner__226140563824246__loadShare__react__loadShare__.js-DgQ7VONi.js",
+      "status": 200
+    },
+    {
+      "at": "2026-11-10T12:41:12.802Z",
+      "url": "http://127.0.0.1:4203/__dev/events",
+      "status": 200
+    }
+  ],
+  "failedRequests": [],
+  "browserErrors": [],
+  "externalRequests": [],
+  "findings": [
+    {
+      "type": "documentation-detail",
+      "observation": "Removing only the deliberately invalid line restores exactly the previous successful source, so the development build ID is unchanged; the error overlay clears without a reload and the previous input/counter/cache remain. A real successful source change creates a new ID and reloads, as checked earlier.",
+      "evidence": {
+        "beforeError": {
+          "heading": "Car Picker · Vite 실습",
+          "count": "1",
+          "input": "오류 중에도 유지할 메모",
+          "cache": "오류 중에도 유지할 메모",
+          "localId": "b_1_4_0_60bd7cd10190",
+          "navigations": 2
+        },
+        "afterRepair": {
+          "heading": "Car Picker · Vite 실습",
+          "count": "1",
+          "input": "오류 중에도 유지할 메모",
+          "cache": "오류 중에도 유지할 메모",
+          "localId": "b_1_4_0_60bd7cd10190",
+          "navigations": 2
+        }
+      },
+      "suggestedGuideText": "잘못 넣은 줄만 삭제해 직전 성공 소스로 돌아오면 오류 안내만 사라지고 입력이 유지됩니다. 다른 유효한 코드까지 바꿔 새 빌드가 생기면 전체 새로고침으로 입력이 초기화됩니다."
+    }
+  ],
+  "originalBefore": {
+    "sha256": "cbe8a511645131c4fb31bb38f3d9246eb57f4d5f2c3a276258fa2f55aaec5b47",
+    "count": 83,
+    "files": [
+      {
+        "path": ".gitignore",
+        "sha256": "e8bc935ce727f1809c792f4c5d26c5fc75ba2b7df7fc9390c56c8892f6a6007f"
+      },
+      {
+        "path": ".nvmrc",
+        "sha256": "68ca3fba3b7e864770cb61aeb306d4bd4354b68ab4dd38450860c5d823e42a53"
+      },
+      {
+        "path": "dev/manifest.json",
+        "sha256": "b5becb848eef076088690361a7db6f4cac908cff30ecb7e77f902d253985188c"
+      },
+      {
+        "path": "dev/remotes/d_1_0_0_c6adbe1cb721/assets/_virtual_mf-localSharedImportMap___mfe_internal__mf_d_1_0_0_c6adbe1cb721__mf_owner__1-K9UFUvmk.js",
+        "sha256": "1ed75eec18d3eda7c35160115e4fbea300ca1d9db58896613f118c7fbf184043"
+      },
+      {
+        "path": "dev/remotes/d_1_0_0_c6adbe1cb721/assets/dist-CzT-8ogd.js",
+        "sha256": "650a3c3386bba6bb52a0f046781b65794293f2fc9d4960d5f915a8fa3ff617d5"
+      },
+      {
+        "path": "dev/remotes/d_1_0_0_c6adbe1cb721/assets/dist-CzT-8ogd.js.map",
+        "sha256": "7fbac1dd2610346f188aa986804cad05e8b61fd09825c3c9de1518766c55ffad"
+      },
+      {
+        "path": "dev/remotes/d_1_0_0_c6adbe1cb721/assets/hostInit-Cqd6LV7E.js",
+        "sha256": "237e115d9dbb232382fb2c13109ff58f820540f0acbd3ec77e0c7154674346ac"
+      },
+      {
+        "path": "dev/remotes/d_1_0_0_c6adbe1cb721/assets/pendingShares-mJnuvvif.js",
+        "sha256": "75fad4356c24da1745b937958692936ccf2ba3e4e73b2e35180ee42ce26cccdf"
+      },
+      {
+        "path": "dev/remotes/d_1_0_0_c6adbe1cb721/assets/src-BMVRR_2U.js",
+        "sha256": "0ddeaa9d155a4dcaa415c7eed527640d7677a7e18af69f1a2d9f65633f731583"
+      },
+      {
+        "path": "dev/remotes/d_1_0_0_c6adbe1cb721/assets/src-BMVRR_2U.js.map",
+        "sha256": "6705cd3bf56d352cc834ef3b06b432029c812220e60eb0b5b94ecaaba2808c45"
+      },
+      {
+        "path": "dev/remotes/d_1_0_0_c6adbe1cb721/assets/vite-preload-helper-D007Gmx9.js",
+        "sha256": "0587b911376d9172ef501cfc4abc33f15385f4fbd7d6ee309f398bdec03fb605"
+      },
+      {
+        "path": "dev/remotes/d_1_0_0_c6adbe1cb721/release.json",
+        "sha256": "cd656442162cb50c8d67196197229ece9468720bcfc0ef503405fa00c0f29c23"
+      },
+      {
+        "path": "dev/remotes/d_1_0_0_c6adbe1cb721/remoteEntry.js",
+        "sha256": "d6c403aba2655d28950d816598806a0db44318eca6aea2c2286341374591cbe2"
+      },
+      {
+        "path": "dev/remotes/d_1_0_0_c6adbe1cb721/remoteEntry.js.map",
+        "sha256": "6c7bc172b9769bdd6888f5543b94fb7dfb08a6954e566b28dcbf75ce0b3c5fec"
+      },
+      {
+        "path": "dev/remotes/d_1_1_0_db32a5022c3e/release.json",
+        "sha256": "10baa5d44c48bed1e4ba6b2eda0c33b92ffcff58d3369c78e600f3fa15cab185"
+      },
+      {
+        "path": "dev/remotes/d_1_1_0_db32a5022c3e/remoteEntry.js",
+        "sha256": "f825bf4c8f167ee1aeac3c42f3aafbdd4c7f2dfd44242cb994540143a2ef046c"
+      },
+      {
+        "path": "dev/remotes/d_1_1_0_db32a5022c3e/remoteEntry.js.map",
+        "sha256": "b6c28e32510121a265ae52fdd2d6f8a517175d5cbca0d89ca33ed552bdba5b06"
+      },
+      {
+        "path": "dev/remotes/d_1_1_0_db32a5022c3e/src_index_js.358b94b63b6711185136.js",
+        "sha256": "f3a33e3e225de5f8e1f6e5053a0aae2513a9c03684133d05f9cd4c64a74858ef"
+      },
+      {
+        "path": "dev/remotes/d_1_1_0_db32a5022c3e/src_index_js.358b94b63b6711185136.js.map",
+        "sha256": "5c83dd2eefea6c388cde951966c4f0ca17c4854f3dcdab586ab553788b38b113"
+      },
+      {
+        "path": "dev/remotes/platform_1_2_0_11681bf2b051/release.json",
+        "sha256": "8688eeaf0de2aafb8b0d122e11345e307acb91b3c01b6661385c01a82b6ad4d0"
+      },
+      {
+        "path": "dev/remotes/platform_1_2_0_11681bf2b051/remoteEntry.js",
+        "sha256": "8380be279f36b9f31cdbcea59631d6ad70f284d968538137a47c229aaba86ed1"
+      },
+      {
+        "path": "dev/remotes/platform_1_2_0_11681bf2b051/remoteEntry.js.map",
+        "sha256": "6463cf5bc8bb96d04c90b8ba1ead6afc79cbefd280e290031b8907284db69833"
+      },
+      {
+        "path": "dev/remotes/platform_1_2_0_11681bf2b051/src_sdk_jsx.417d6a946906e3a74913.js",
+        "sha256": "9b43cc9c4119cc7140e762bf1a2da598c527c061af32bf65bf1727e9892c1450"
+      },
+      {
+        "path": "dev/remotes/platform_1_2_0_11681bf2b051/src_sdk_jsx.417d6a946906e3a74913.js.map",
+        "sha256": "99df08e47cc723a9b1c1bf8aca6bf4643e995b9a1044fa2d6360abab811fcc29"
+      },
+      {
+        "path": "dev/remotes/platform_1_2_0_11681bf2b051/vendors-node_modules_react_index_js.7ac5078087998dbfdb10.js",
+        "sha256": "dface5bb8815f826a81cf52f9df432a7f96cbda4cee376645129745ff70fd806"
+      },
+      {
+        "path": "dev/remotes/platform_1_2_0_11681bf2b051/vendors-node_modules_react_index_js.7ac5078087998dbfdb10.js.map",
+        "sha256": "9dfe59db071c6a7127b728970af89cc3adbf669ed28cd178f7f1b3d27c77cf6c"
+      },
+      {
+        "path": "dev/remotes/platform_1_3_1_e25c8d049944/assets/_virtual_mf___mfe_internal__mf_platform_1_3_1_e25c8d049944__mf_owner__242075772864893__loadShare__react__loadShare__.js-B3vX5iHX.js",
+        "sha256": "03c817b6b3a143dcd6e2a4e01c00af56b681e854e1ab854c0cd7fe28f7bef352"
+      },
+      {
+        "path": "dev/remotes/platform_1_3_1_e25c8d049944/assets/_virtual_mf___mfe_internal__mf_platform_1_3_1_e25c8d049944__mf_owner__242075772864893__loadShare__react__loadShare__.js-B3vX5iHX.js.map",
+        "sha256": "8347a72be517d3473f0e30a164870489883d8a35a2964f3cfcd14b0849040294"
+      },
+      {
+        "path": "dev/remotes/platform_1_3_1_e25c8d049944/assets/_virtual_mf___mfe_internal__mf_platform_1_3_1_e25c8d049944__mf_owner__242075772864893__loadShare__shared-J1-L7PDQ.js",
+        "sha256": "a98a0d934741605f0394cfe04d67144b9d5dab8c281bf9bb5211fa65b12e33f4"
+      },
+      {
+        "path": "dev/remotes/platform_1_3_1_e25c8d049944/assets/_virtual_mf___mfe_internal__mf_platform_1_3_1_e25c8d049944__mf_owner__242075772864893__prebuild__react_mf_2_dom__prebuild__-Bp2t7YDH.js",
+        "sha256": "2ef2e66e1b2d7eb760e5a2acee5179201542eb814aff87b36cbba5cb8b628f30"
+      },
+      {
+        "path": "dev/remotes/platform_1_3_1_e25c8d049944/assets/_virtual_mf___mfe_internal__mf_platform_1_3_1_e25c8d049944__mf_owner__242075772864893__prebuild__react_mf_2_dom_mf_1_client__prebuild__-KVvYFSOM.js",
+        "sha256": "1be587af2f9df4bf803219fb05dd9afbaeb30bfed2c80676514b6dcfb9e14cee"
+      },
+      {
+        "path": "dev/remotes/platform_1_3_1_e25c8d049944/assets/_virtual_mf___mfe_internal__mf_platform_1_3_1_e25c8d049944__mf_owner__242075772864893__prebuild__react_mf_2_dom_mf_1_client__prebuild__-KVvYFSOM.js.map",
+        "sha256": "121b3dd379bd6edbd5085dc531143280e77ef05399fb9367496ff529662b1783"
+      },
+      {
+        "path": "dev/remotes/platform_1_3_1_e25c8d049944/assets/_virtual_mf-localSharedImportMap___mfe_internal__mf_platform_1_3_1_e25c8d049944__mf_owner__1-5YRVjoO3.js",
+        "sha256": "78ca32fafe25ada693621155ef1a7c12e7ea4c2eb71f32977df3a6d3b9b1265b"
+      },
+      {
+        "path": "dev/remotes/platform_1_3_1_e25c8d049944/assets/dist-Bo8xtUoB.js",
+        "sha256": "6009fd1328c2d0697215f6996c12e3a8dea5744a3f7faf0b829d1ffc4a539ccb"
+      },
+      {
+        "path": "dev/remotes/platform_1_3_1_e25c8d049944/assets/dist-Bo8xtUoB.js.map",
+        "sha256": "accb14db01065440ecd520f96e404dcc013209eedcb846621a2ff7b7b56c38ab"
+      },
+      {
+        "path": "dev/remotes/platform_1_3_1_e25c8d049944/assets/hostInit-DMmU90Hg.js",
+        "sha256": "70d47b5d8db5b9d8d8b7751121786688612e504fb14ae81317bd19de8674cdf2"
+      },
+      {
+        "path": "dev/remotes/platform_1_3_1_e25c8d049944/assets/pendingShares-BkydpHFJ.js",
+        "sha256": "fb2cbbb3f82ca5a31ed886c62ec7d1ab4ae8bffdc6c01a7c38a7f8e24336cbf2"
+      },
+      {
+        "path": "dev/remotes/platform_1_3_1_e25c8d049944/assets/react-dom-DARWW5In.js",
+        "sha256": "4297f4dfc2b114952e9f7845fefe41cbad1f639f70a35cc82dc9fd2935088044"
+      },
+      {
+        "path": "dev/remotes/platform_1_3_1_e25c8d049944/assets/react-dom-DARWW5In.js.map",
+        "sha256": "9ed09e7736f9ebc56072749d16d091e2731d40ec37631466a215dc8fc9705b29"
+      },
+      {
+        "path": "dev/remotes/platform_1_3_1_e25c8d049944/assets/rolldown-runtime-SbdDWaPq.js",
+        "sha256": "8cd5f72ee962aad5f620072095a0c85942cb2b613ad628b8fb4774ab0c3b12b6"
+      },
+      {
+        "path": "dev/remotes/platform_1_3_1_e25c8d049944/assets/sdk-BbXiZY3X.css",
+        "sha256": "3545bc89ff006ea2e0bda1fb2e0dbae3fdf8a3bc9f975b007c86f32aef601d76"
+      },
+      {
+        "path": "dev/remotes/platform_1_3_1_e25c8d049944/assets/sdk-ClnQiGJZ.js",
+        "sha256": "0014e47121360d0f7d051c5e3efaf7bdbaa571ee3cba3dc22e52b43652364283"
+      },
+      {
+        "path": "dev/remotes/platform_1_3_1_e25c8d049944/assets/sdk-ClnQiGJZ.js.map",
+        "sha256": "511715d7016774be62f6a9e107a8679ad6854f28793eb70fdf1ef5757fb6e3cd"
+      },
+      {
+        "path": "dev/remotes/platform_1_3_1_e25c8d049944/assets/vite-preload-helper-CtLp1C0p.js",
+        "sha256": "0587b911376d9172ef501cfc4abc33f15385f4fbd7d6ee309f398bdec03fb605"
+      },
+      {
+        "path": "dev/remotes/platform_1_3_1_e25c8d049944/release.json",
+        "sha256": "25a2f048560090a5037e57b4d1b45f2a44beee213623a05f00cc8cc12456273a"
+      },
+      {
+        "path": "dev/remotes/platform_1_3_1_e25c8d049944/remoteEntry.js",
+        "sha256": "bc7c97be9da5b09f8c70e93f5e334a7bd410ff75aa7f816e608d748cb09d0735"
+      },
+      {
+        "path": "dev/remotes/platform_1_3_1_e25c8d049944/remoteEntry.js.map",
+        "sha256": "96d54646f1c50ee40e96945edebddb9fb0a0419bbeeb1a014a354facf1fc71e5"
+      },
+      {
+        "path": "dist/assets/_virtual_mf___mfe_internal__mf_b_1_4_0_6cc8bf6c0028__loadRemote__d_mf_1_data__mf_owner__1__loadRemote__-6LDeHEEF.js",
+        "sha256": "669b27487edb7f651cd508af9ce2bdd1d79fbceb50906924cb84a93902673d38"
+      },
+      {
+        "path": "dist/assets/_virtual_mf___mfe_internal__mf_b_1_4_0_6cc8bf6c0028__loadRemote__platform_mf_1_sdk__mf_owner__1__loadRemote__-Bqk7zvGL.js",
+        "sha256": "81b8361405aea6550f49add68e7132dea7a244e5c9d4ffd6289489fe4193c874"
+      },
+      {
+        "path": "dist/assets/_virtual_mf___mfe_internal__mf_b_1_4_0_6cc8bf6c0028__mf_owner__226140563824246__loadShare__react__loadShare__.js-DgQ7VONi.js",
+        "sha256": "41ed1f9c6e1f53632bb9f2fb5da668e6ff625786b774a819a44f8c99cb5d1045"
+      },
+      {
+        "path": "dist/assets/_virtual_mf___mfe_internal__mf_b_1_4_0_6cc8bf6c0028__mf_owner__226140563824246__loadShare__react__loadShare__.js-DgQ7VONi.js.map",
+        "sha256": "52c47ac131d52924503b877e70005d79ff90086b546a18c0c378f20d81e10aae"
+      },
+      {
+        "path": "dist/assets/_virtual_mf___mfe_internal__mf_b_1_4_0_6cc8bf6c0028__mf_owner__226140563824246__loadShare__shared-B1DGyhpy.js",
+        "sha256": "69f2c241be552a3d3ac5f32e564bb1fdcbfb55ff2e88a21ac36c13cbf0d62a69"
+      },
+      {
+        "path": "dist/assets/_virtual_mf___mfe_internal__mf_b_1_4_0_6cc8bf6c0028__mf_owner__226140563824246__prebuild__react_mf_2_dom__prebuild__-C-IYZClh.js",
+        "sha256": "11f0ec555789a736902e48f01d13cc6a338616de5af544b00366debbb7e1cba3"
+      },
+      {
+        "path": "dist/assets/_virtual_mf___mfe_internal__mf_b_1_4_0_6cc8bf6c0028__mf_owner__226140563824246__prebuild__react_mf_2_dom_mf_1_client__prebuild__-CIQW_MBc.js",
+        "sha256": "5564f753ad0cf7e3fe7f279074d20bda05986ace3969d837025c5a70fd243e9f"
+      },
+      {
+        "path": "dist/assets/_virtual_mf___mfe_internal__mf_b_1_4_0_6cc8bf6c0028__mf_owner__226140563824246__prebuild__react_mf_2_dom_mf_1_client__prebuild__-CIQW_MBc.js.map",
+        "sha256": "d00df5c5e2ac11117b8843c591ca191cedb66ae918846502bd439d8ef826f31f"
+      },
+      {
+        "path": "dist/assets/_virtual_mf-localSharedImportMap___mfe_internal__mf_b_1_4_0_6cc8bf6c0028__mf_owner__1-BaCESpgK.js",
+        "sha256": "37dd474669501ad404b472f6ea59f85ff707720cbfc255c10a456335f7933358"
+      },
+      {
+        "path": "dist/assets/dist-Bo8xtUoB.js",
+        "sha256": "6009fd1328c2d0697215f6996c12e3a8dea5744a3f7faf0b829d1ffc4a539ccb"
+      },
+      {
+        "path": "dist/assets/dist-Bo8xtUoB.js.map",
+        "sha256": "accb14db01065440ecd520f96e404dcc013209eedcb846621a2ff7b7b56c38ab"
+      },
+      {
+        "path": "dist/assets/hostInit-DFPIMONH.js",
+        "sha256": "98b3679c96e53d42c795ed0b7fdfe926c86e5969a2892b01ac1b98bbc3d5cf0e"
+      },
+      {
+        "path": "dist/assets/pendingShares-B4iSuhLp.js",
+        "sha256": "b7c55920bb535746d7822e631d679a099869d62fa3f259d3a37d33e2b027a271"
+      },
+      {
+        "path": "dist/assets/react-dom-D6O4b4PL.js",
+        "sha256": "21c095702cea1f2155c65d5a6d1e3882341ef5118c813d433f359d57bdac2c48"
+      },
+      {
+        "path": "dist/assets/react-dom-D6O4b4PL.js.map",
+        "sha256": "3ef55868c75b9d510638e5b9affbdf6e55d4e8ff8038e10ba5762465f95e62a4"
+      },
+      {
+        "path": "dist/assets/rolldown-runtime-DQp2zzRu.js",
+        "sha256": "0de66bbd84494ea80eb87ec70556319b56b7fb979ebbae90d39fa97f7cd3c392"
+      },
+      {
+        "path": "dist/assets/vite-preload-helper-BVDCNeEa.js",
+        "sha256": "0587b911376d9172ef501cfc4abc33f15385f4fbd7d6ee309f398bdec03fb605"
+      },
+      {
+        "path": "dist/assets/Widget-BiiMpLC6.js",
+        "sha256": "dead180a4851328e4f908956f39baf9fad36b1e4c7b29eda45b68181108d0245"
+      },
+      {
+        "path": "dist/assets/Widget-BiiMpLC6.js.map",
+        "sha256": "a4c8690779f8fddfc52115a7a61f33da101b130e17123385a60b3ad4d3d003ee"
+      },
+      {
+        "path": "dist/assets/Widget-C3vmy5sd.css",
+        "sha256": "894929bc4e556470ceb56e798f69ed30744a340deb862d066f108d612968ad51"
+      },
+      {
+        "path": "dist/release.json",
+        "sha256": "caf18ade689e999df9de9ba1638fd753a6ac1d55cb4e8e704406c3988b3dedf8"
+      },
+      {
+        "path": "dist/remoteEntry.js",
+        "sha256": "a8883cc49a16311227bddef8e66c755e77a8b3317343967539be60ab82bbcff5"
+      },
+      {
+        "path": "dist/remoteEntry.js.map",
+        "sha256": "0c75986acd57f90718019b7c27fe9b3d92494dd13c761df13ea0b6a4dc967b8a"
+      },
+      {
+        "path": "mf.config.cjs",
+        "sha256": "44370ae706c286b53b9df84efd4da4f532f8285555d79dcf165fb29b33463e86"
+      },
+      {
+        "path": "mf.dependencies.json",
+        "sha256": "385fe49c1ab162de691fb23fe817c096a1563280a01bb761a73cbce2b12b80f5"
+      },
+      {
+        "path": "mf.dev.json",
+        "sha256": "54a20d67910f8a7ea2eef5f677891c8fd45ebc95b0f02a8c9955d08f812e4af2"
+      },
+      {
+        "path": "package-lock.json",
+        "sha256": "a7cb7f47b64c8620491035b81c3151db730c26b8b657061bb82679ffc2b2085a"
+      },
+      {
+        "path": "package.json",
+        "sha256": "aadb2e6f78d63f5ef313d8ec7b4f9ce03babfb41430e713127fa1f264fee3ec4"
+      },
+      {
+        "path": "README.md",
+        "sha256": "6d2d0a904eb3a3e27c1dc9ed535710b3695df5cc6f9e8c1aa6b4641cd8338fc9"
+      },
+      {
+        "path": "src/Widget.jsx",
+        "sha256": "ce1c141bc8e2c487a46e73eeb51d8cbead4ac1698e6d46807c7b77a760355b95"
+      },
+      {
+        "path": "src/Widget.module.css",
+        "sha256": "fb3f8e58ab1eab3771fa20417933feb54b563c14c4b7a3519e96f633926e55c2"
+      },
+      {
+        "path": "vendor/mfe-platform-build-tools-1.0.0.tgz",
+        "sha256": "345efdb8dd40fb5be4fc59c52cf6f839f1319904cbd7addcee2243ed30e3ca51"
+      },
+      {
+        "path": "vendor/mfe-platform-build-tools-1.1.0.tgz",
+        "sha256": "92989447d8cc82dc83354dc9074f00b70b9c92cb5c415f1dd07dd0909568bffe"
+      },
+      {
+        "path": "vendor/mfe-platform-build-tools-1.2.0.tgz",
+        "sha256": "fdbe79a686d2c610842b8c06b773c778e8c175e39ec300ccb42a073939896cf0"
+      },
+      {
+        "path": "vendor/mfe-platform-build-tools-1.3.0.tgz",
+        "sha256": "91f6934e8749f4b40f957e388a9d14d1e6b500b27b10c5a659081c6862f181a0"
+      },
+      {
+        "path": "vendor/mfe-platform-build-tools-2.0.0.tgz",
+        "sha256": "b96dcf0e496ab1b0ee2e82a9051b1f01d397d51721f2eff862e96947aab85094"
+      }
+    ]
+  },
+  "productPointerBefore": "{\n  \"compositionId\": \"composition_88ee38ebfe391a69f3cdb828\"\n}\n",
+  "temporaryProject": "/private/tmp/mfe-vite-dev-Njrh1H/service-b-v1",
+  "port": {
+    "requested": null,
+    "reason": "Default B development port 4203 was available."
+  },
+  "baseURL": "http://127.0.0.1:4203",
+  "initialProof": {
+    "local": {
+      "id": "b_1_4_0_6cc8bf6c0028",
+      "name": "mf_b_1_4_0_6cc8bf6c0028",
+      "service": "b",
+      "version": "1.4.0",
+      "entry": "/artifacts/b_1_4_0_6cc8bf6c0028/remoteEntry.js",
+      "dependencies": {},
+      "runtimeRequirements": {
+        "platform": ">=1.0.0 <2.0.0",
+        "react": "19.3.1",
+        "react-dom": "19.3.1"
+      },
+      "runtimeDependencies": {
+        "d": {
+          "service": "d",
+          "requires": ">=1.0.0 <2.0.0"
+        }
+      },
+      "kind": "remote",
+      "format": "esm",
+      "federation": "vite",
+      "retryProtocol": "vite-preflight-v1",
+      "exposedModules": [
+        "./Widget"
+      ],
+      "federationImports": [
+        {
+          "alias": "d",
+          "exposedModule": "./data"
+        },
+        {
+          "alias": "platform",
+          "exposedModule": "./sdk"
+        }
+      ],
+      "exposeImports": {
+        "./Widget": [
+          {
+            "alias": "d",
+            "exposedModule": "./data"
+          },
+          {
+            "alias": "platform",
+            "exposedModule": "./sdk"
+          }
+        ]
+      },
+      "exposeChunks": {
+        "./Widget": "assets/Widget-BiiMpLC6.js"
+      }
+    },
+    "platform": {
+      "id": "platform_1_3_1_e25c8d049944",
+      "name": "mf_platform_1_3_1_e25c8d049944",
+      "service": "platform",
+      "version": "1.3.1",
+      "entry": "/artifacts/platform_1_3_1_e25c8d049944/remoteEntry.js",
+      "dependencies": {},
+      "runtimeRequirements": {
+        "react": "19.3.1",
+        "react-dom": "19.3.1"
+      },
+      "runtimeDependencies": {},
+      "kind": "remote",
+      "format": "esm",
+      "federation": "vite",
+      "retryProtocol": "vite-preflight-v1",
+      "exposedModules": [
+        "./sdk"
+      ],
+      "federationImports": [],
+      "exposeImports": {
+        "./sdk": []
+      },
+      "exposeChunks": {
+        "./sdk": "assets/sdk-ClnQiGJZ.js"
+      }
+    },
+    "d": "d_1_0_0_c6adbe1cb721",
+    "sdkReactMatchesHost": true,
+    "serviceReactMatchesSDK": true,
+    "serviceContextMatchesSDK": true,
+    "identity": {
+      "version": "1.4.0",
+      "artifactId": "b_1_4_0_6cc8bf6c0028",
+      "dependencyVersion": "1.0.0",
+      "dependencyArtifact": "d_1_0_0_c6adbe1cb721"
+    },
+    "diagnostics": {
+      "compositionId": "dev_4a170d16f20457a04ae180cf",
+      "platformArtifactId": "platform_1_3_1_e25c8d049944",
+      "runtimeBindings": {
+        "b_1_4_0_6cc8bf6c0028": {
+          "d": "d_1_0_0_c6adbe1cb721"
+        }
+      },
+      "bootURL": "/__dev/snapshots/dev_4a170d16f20457a04ae180cf.json",
+      "containers": [
+        {
+          "id": "platform_1_3_1_e25c8d049944",
+          "name": "mf_platform_1_3_1_e25c8d049944",
+          "entry": "/artifacts/platform_1_3_1_e25c8d049944/remoteEntry.js",
+          "format": "esm",
+          "status": "initialized",
+          "loadAttempts": 1,
+          "loadCount": 1,
+          "initCalls": 4,
+          "initCount": 1,
+          "lastError": null
+        },
+        {
+          "id": "b_1_4_0_6cc8bf6c0028",
+          "name": "mf_b_1_4_0_6cc8bf6c0028",
+          "entry": "/artifacts/b_1_4_0_6cc8bf6c0028/remoteEntry.js",
+          "format": "esm",
+          "status": "initialized",
+          "loadAttempts": 1,
+          "loadCount": 1,
+          "initCalls": 1,
+          "initCount": 1,
+          "lastError": null
+        },
+        {
+          "id": "d_1_0_0_c6adbe1cb721",
+          "name": "mf_d_1_0_0_c6adbe1cb721",
+          "entry": "/artifacts/d_1_0_0_c6adbe1cb721/remoteEntry.js",
+          "format": "esm",
+          "status": "initialized",
+          "loadAttempts": 1,
+          "loadCount": 1,
+          "initCalls": 2,
+          "initCount": 1,
+          "lastError": null
+        }
+      ],
+      "loadedContainerIds": [
+        "platform_1_3_1_e25c8d049944",
+        "b_1_4_0_6cc8bf6c0028",
+        "d_1_0_0_c6adbe1cb721"
+      ]
+    }
+  },
+  "beforeSourceEdit": {
+    "heading": "Car Picker",
+    "count": "2",
+    "input": "화면 입력은 별도",
+    "cache": "저장 전 상태 확인",
+    "localId": "b_1_4_0_6cc8bf6c0028",
+    "navigations": 1
+  },
+  "afterSourceEdit": {
+    "heading": "Car Picker · Vite 실습",
+    "count": "0",
+    "input": "",
+    "cache": "",
+    "localId": "b_1_4_0_60bd7cd10190",
+    "navigations": 2
+  },
+  "expectedBuildError": "빌드 오류 — 마지막 성공 화면을 유지합니다.\nBuild failed with 1 error:\n\n\u001b[31m[builtin:vite-transform] \u001b[0mUnexpected token\n    \u001b[38;5;246m╭\u001b[0m\u001b[38;5;246m─\u001b[0m\u001b[38;5;246m[\u001b[0m src/Widget.jsx:61:8 \u001b[38;5;246m]\u001b[0m\n    \u001b[38;5;246m│\u001b[0m\n \u001b[38;5;246m61 │\u001b[0m \u001b[38;5;249me\u001b[0m\u001b[38;5;249mx\u001b[0m\u001b[38;5;249mp\u001b[0m\u001b[38;5;249mo\u001b[0m\u001b[38;5;249mr\u001b[0m\u001b[38;5;249mt\u001b[0m\u001b[38;5;249m \u001b[0m!\u001b[38;5;249m!\u001b[0m\u001b[38;5;249m!\u001b[0m\u001b[38;5;249m \u001b[0m\u001b[38;5;249mi\u001b[0m\u001b[38;5;249mn\u001b[0m\u001b[38;5;249mv\u001b[0m\u001b[38;5;249ma\u001b[0m\u001b[38;5;249ml\u001b[0m\u001b[38;5;249mi\u001b[0m\u001b[38;5;249md\u001b[0m\u001b[38;5;249m \u001b[0m\u001b[38;5;249ms\u001b[0m\u001b[38;5;249my\u001b[0m\u001b[38;5;249mn\u001b[0m\u001b[38;5;249mt\u001b[0m\u001b[38;5;249ma\u001b[0m\u001b[38;5;249mx\u001b[0m\n \u001b[38;5;240m   │\u001b[0m        ┬  \n \u001b[38;5;240m   │\u001b[0m        ╰── \n\u001b[38;5;246m────╯\u001b[0m\n",
+  "restoredSourceSHA256": "ce1c141bc8e2c487a46e73eeb51d8cbead4ac1698e6d46807c7b77a760355b95",
+  "originalAfter": {
+    "sha256": "cbe8a511645131c4fb31bb38f3d9246eb57f4d5f2c3a276258fa2f55aaec5b47",
+    "count": 83,
+    "files": [
+      {
+        "path": ".gitignore",
+        "sha256": "e8bc935ce727f1809c792f4c5d26c5fc75ba2b7df7fc9390c56c8892f6a6007f"
+      },
+      {
+        "path": ".nvmrc",
+        "sha256": "68ca3fba3b7e864770cb61aeb306d4bd4354b68ab4dd38450860c5d823e42a53"
+      },
+      {
+        "path": "dev/manifest.json",
+        "sha256": "b5becb848eef076088690361a7db6f4cac908cff30ecb7e77f902d253985188c"
+      },
+      {
+        "path": "dev/remotes/d_1_0_0_c6adbe1cb721/assets/_virtual_mf-localSharedImportMap___mfe_internal__mf_d_1_0_0_c6adbe1cb721__mf_owner__1-K9UFUvmk.js",
+        "sha256": "1ed75eec18d3eda7c35160115e4fbea300ca1d9db58896613f118c7fbf184043"
+      },
+      {
+        "path": "dev/remotes/d_1_0_0_c6adbe1cb721/assets/dist-CzT-8ogd.js",
+        "sha256": "650a3c3386bba6bb52a0f046781b65794293f2fc9d4960d5f915a8fa3ff617d5"
+      },
+      {
+        "path": "dev/remotes/d_1_0_0_c6adbe1cb721/assets/dist-CzT-8ogd.js.map",
+        "sha256": "7fbac1dd2610346f188aa986804cad05e8b61fd09825c3c9de1518766c55ffad"
+      },
+      {
+        "path": "dev/remotes/d_1_0_0_c6adbe1cb721/assets/hostInit-Cqd6LV7E.js",
+        "sha256": "237e115d9dbb232382fb2c13109ff58f820540f0acbd3ec77e0c7154674346ac"
+      },
+      {
+        "path": "dev/remotes/d_1_0_0_c6adbe1cb721/assets/pendingShares-mJnuvvif.js",
+        "sha256": "75fad4356c24da1745b937958692936ccf2ba3e4e73b2e35180ee42ce26cccdf"
+      },
+      {
+        "path": "dev/remotes/d_1_0_0_c6adbe1cb721/assets/src-BMVRR_2U.js",
+        "sha256": "0ddeaa9d155a4dcaa415c7eed527640d7677a7e18af69f1a2d9f65633f731583"
+      },
+      {
+        "path": "dev/remotes/d_1_0_0_c6adbe1cb721/assets/src-BMVRR_2U.js.map",
+        "sha256": "6705cd3bf56d352cc834ef3b06b432029c812220e60eb0b5b94ecaaba2808c45"
+      },
+      {
+        "path": "dev/remotes/d_1_0_0_c6adbe1cb721/assets/vite-preload-helper-D007Gmx9.js",
+        "sha256": "0587b911376d9172ef501cfc4abc33f15385f4fbd7d6ee309f398bdec03fb605"
+      },
+      {
+        "path": "dev/remotes/d_1_0_0_c6adbe1cb721/release.json",
+        "sha256": "cd656442162cb50c8d67196197229ece9468720bcfc0ef503405fa00c0f29c23"
+      },
+      {
+        "path": "dev/remotes/d_1_0_0_c6adbe1cb721/remoteEntry.js",
+        "sha256": "d6c403aba2655d28950d816598806a0db44318eca6aea2c2286341374591cbe2"
+      },
+      {
+        "path": "dev/remotes/d_1_0_0_c6adbe1cb721/remoteEntry.js.map",
+        "sha256": "6c7bc172b9769bdd6888f5543b94fb7dfb08a6954e566b28dcbf75ce0b3c5fec"
+      },
+      {
+        "path": "dev/remotes/d_1_1_0_db32a5022c3e/release.json",
+        "sha256": "10baa5d44c48bed1e4ba6b2eda0c33b92ffcff58d3369c78e600f3fa15cab185"
+      },
+      {
+        "path": "dev/remotes/d_1_1_0_db32a5022c3e/remoteEntry.js",
+        "sha256": "f825bf4c8f167ee1aeac3c42f3aafbdd4c7f2dfd44242cb994540143a2ef046c"
+      },
+      {
+        "path": "dev/remotes/d_1_1_0_db32a5022c3e/remoteEntry.js.map",
+        "sha256": "b6c28e32510121a265ae52fdd2d6f8a517175d5cbca0d89ca33ed552bdba5b06"
+      },
+      {
+        "path": "dev/remotes/d_1_1_0_db32a5022c3e/src_index_js.358b94b63b6711185136.js",
+        "sha256": "f3a33e3e225de5f8e1f6e5053a0aae2513a9c03684133d05f9cd4c64a74858ef"
+      },
+      {
+        "path": "dev/remotes/d_1_1_0_db32a5022c3e/src_index_js.358b94b63b6711185136.js.map",
+        "sha256": "5c83dd2eefea6c388cde951966c4f0ca17c4854f3dcdab586ab553788b38b113"
+      },
+      {
+        "path": "dev/remotes/platform_1_2_0_11681bf2b051/release.json",
+        "sha256": "8688eeaf0de2aafb8b0d122e11345e307acb91b3c01b6661385c01a82b6ad4d0"
+      },
+      {
+        "path": "dev/remotes/platform_1_2_0_11681bf2b051/remoteEntry.js",
+        "sha256": "8380be279f36b9f31cdbcea59631d6ad70f284d968538137a47c229aaba86ed1"
+      },
+      {
+        "path": "dev/remotes/platform_1_2_0_11681bf2b051/remoteEntry.js.map",
+        "sha256": "6463cf5bc8bb96d04c90b8ba1ead6afc79cbefd280e290031b8907284db69833"
+      },
+      {
+        "path": "dev/remotes/platform_1_2_0_11681bf2b051/src_sdk_jsx.417d6a946906e3a74913.js",
+        "sha256": "9b43cc9c4119cc7140e762bf1a2da598c527c061af32bf65bf1727e9892c1450"
+      },
+      {
+        "path": "dev/remotes/platform_1_2_0_11681bf2b051/src_sdk_jsx.417d6a946906e3a74913.js.map",
+        "sha256": "99df08e47cc723a9b1c1bf8aca6bf4643e995b9a1044fa2d6360abab811fcc29"
+      },
+      {
+        "path": "dev/remotes/platform_1_2_0_11681bf2b051/vendors-node_modules_react_index_js.7ac5078087998dbfdb10.js",
+        "sha256": "dface5bb8815f826a81cf52f9df432a7f96cbda4cee376645129745ff70fd806"
+      },
+      {
+        "path": "dev/remotes/platform_1_2_0_11681bf2b051/vendors-node_modules_react_index_js.7ac5078087998dbfdb10.js.map",
+        "sha256": "9dfe59db071c6a7127b728970af89cc3adbf669ed28cd178f7f1b3d27c77cf6c"
+      },
+      {
+        "path": "dev/remotes/platform_1_3_1_e25c8d049944/assets/_virtual_mf___mfe_internal__mf_platform_1_3_1_e25c8d049944__mf_owner__242075772864893__loadShare__react__loadShare__.js-B3vX5iHX.js",
+        "sha256": "03c817b6b3a143dcd6e2a4e01c00af56b681e854e1ab854c0cd7fe28f7bef352"
+      },
+      {
+        "path": "dev/remotes/platform_1_3_1_e25c8d049944/assets/_virtual_mf___mfe_internal__mf_platform_1_3_1_e25c8d049944__mf_owner__242075772864893__loadShare__react__loadShare__.js-B3vX5iHX.js.map",
+        "sha256": "8347a72be517d3473f0e30a164870489883d8a35a2964f3cfcd14b0849040294"
+      },
+      {
+        "path": "dev/remotes/platform_1_3_1_e25c8d049944/assets/_virtual_mf___mfe_internal__mf_platform_1_3_1_e25c8d049944__mf_owner__242075772864893__loadShare__shared-J1-L7PDQ.js",
+        "sha256": "a98a0d934741605f0394cfe04d67144b9d5dab8c281bf9bb5211fa65b12e33f4"
+      },
+      {
+        "path": "dev/remotes/platform_1_3_1_e25c8d049944/assets/_virtual_mf___mfe_internal__mf_platform_1_3_1_e25c8d049944__mf_owner__242075772864893__prebuild__react_mf_2_dom__prebuild__-Bp2t7YDH.js",
+        "sha256": "2ef2e66e1b2d7eb760e5a2acee5179201542eb814aff87b36cbba5cb8b628f30"
+      },
+      {
+        "path": "dev/remotes/platform_1_3_1_e25c8d049944/assets/_virtual_mf___mfe_internal__mf_platform_1_3_1_e25c8d049944__mf_owner__242075772864893__prebuild__react_mf_2_dom_mf_1_client__prebuild__-KVvYFSOM.js",
+        "sha256": "1be587af2f9df4bf803219fb05dd9afbaeb30bfed2c80676514b6dcfb9e14cee"
+      },
+      {
+        "path": "dev/remotes/platform_1_3_1_e25c8d049944/assets/_virtual_mf___mfe_internal__mf_platform_1_3_1_e25c8d049944__mf_owner__242075772864893__prebuild__react_mf_2_dom_mf_1_client__prebuild__-KVvYFSOM.js.map",
+        "sha256": "121b3dd379bd6edbd5085dc531143280e77ef05399fb9367496ff529662b1783"
+      },
+      {
+        "path": "dev/remotes/platform_1_3_1_e25c8d049944/assets/_virtual_mf-localSharedImportMap___mfe_internal__mf_platform_1_3_1_e25c8d049944__mf_owner__1-5YRVjoO3.js",
+        "sha256": "78ca32fafe25ada693621155ef1a7c12e7ea4c2eb71f32977df3a6d3b9b1265b"
+      },
+      {
+        "path": "dev/remotes/platform_1_3_1_e25c8d049944/assets/dist-Bo8xtUoB.js",
+        "sha256": "6009fd1328c2d0697215f6996c12e3a8dea5744a3f7faf0b829d1ffc4a539ccb"
+      },
+      {
+        "path": "dev/remotes/platform_1_3_1_e25c8d049944/assets/dist-Bo8xtUoB.js.map",
+        "sha256": "accb14db01065440ecd520f96e404dcc013209eedcb846621a2ff7b7b56c38ab"
+      },
+      {
+        "path": "dev/remotes/platform_1_3_1_e25c8d049944/assets/hostInit-DMmU90Hg.js",
+        "sha256": "70d47b5d8db5b9d8d8b7751121786688612e504fb14ae81317bd19de8674cdf2"
+      },
+      {
+        "path": "dev/remotes/platform_1_3_1_e25c8d049944/assets/pendingShares-BkydpHFJ.js",
+        "sha256": "fb2cbbb3f82ca5a31ed886c62ec7d1ab4ae8bffdc6c01a7c38a7f8e24336cbf2"
+      },
+      {
+        "path": "dev/remotes/platform_1_3_1_e25c8d049944/assets/react-dom-DARWW5In.js",
+        "sha256": "4297f4dfc2b114952e9f7845fefe41cbad1f639f70a35cc82dc9fd2935088044"
+      },
+      {
+        "path": "dev/remotes/platform_1_3_1_e25c8d049944/assets/react-dom-DARWW5In.js.map",
+        "sha256": "9ed09e7736f9ebc56072749d16d091e2731d40ec37631466a215dc8fc9705b29"
+      },
+      {
+        "path": "dev/remotes/platform_1_3_1_e25c8d049944/assets/rolldown-runtime-SbdDWaPq.js",
+        "sha256": "8cd5f72ee962aad5f620072095a0c85942cb2b613ad628b8fb4774ab0c3b12b6"
+      },
+      {
+        "path": "dev/remotes/platform_1_3_1_e25c8d049944/assets/sdk-BbXiZY3X.css",
+        "sha256": "3545bc89ff006ea2e0bda1fb2e0dbae3fdf8a3bc9f975b007c86f32aef601d76"
+      },
+      {
+        "path": "dev/remotes/platform_1_3_1_e25c8d049944/assets/sdk-ClnQiGJZ.js",
+        "sha256": "0014e47121360d0f7d051c5e3efaf7bdbaa571ee3cba3dc22e52b43652364283"
+      },
+      {
+        "path": "dev/remotes/platform_1_3_1_e25c8d049944/assets/sdk-ClnQiGJZ.js.map",
+        "sha256": "511715d7016774be62f6a9e107a8679ad6854f28793eb70fdf1ef5757fb6e3cd"
+      },
+      {
+        "path": "dev/remotes/platform_1_3_1_e25c8d049944/assets/vite-preload-helper-CtLp1C0p.js",
+        "sha256": "0587b911376d9172ef501cfc4abc33f15385f4fbd7d6ee309f398bdec03fb605"
+      },
+      {
+        "path": "dev/remotes/platform_1_3_1_e25c8d049944/release.json",
+        "sha256": "25a2f048560090a5037e57b4d1b45f2a44beee213623a05f00cc8cc12456273a"
+      },
+      {
+        "path": "dev/remotes/platform_1_3_1_e25c8d049944/remoteEntry.js",
+        "sha256": "bc7c97be9da5b09f8c70e93f5e334a7bd410ff75aa7f816e608d748cb09d0735"
+      },
+      {
+        "path": "dev/remotes/platform_1_3_1_e25c8d049944/remoteEntry.js.map",
+        "sha256": "96d54646f1c50ee40e96945edebddb9fb0a0419bbeeb1a014a354facf1fc71e5"
+      },
+      {
+        "path": "dist/assets/_virtual_mf___mfe_internal__mf_b_1_4_0_6cc8bf6c0028__loadRemote__d_mf_1_data__mf_owner__1__loadRemote__-6LDeHEEF.js",
+        "sha256": "669b27487edb7f651cd508af9ce2bdd1d79fbceb50906924cb84a93902673d38"
+      },
+      {
+        "path": "dist/assets/_virtual_mf___mfe_internal__mf_b_1_4_0_6cc8bf6c0028__loadRemote__platform_mf_1_sdk__mf_owner__1__loadRemote__-Bqk7zvGL.js",
+        "sha256": "81b8361405aea6550f49add68e7132dea7a244e5c9d4ffd6289489fe4193c874"
+      },
+      {
+        "path": "dist/assets/_virtual_mf___mfe_internal__mf_b_1_4_0_6cc8bf6c0028__mf_owner__226140563824246__loadShare__react__loadShare__.js-DgQ7VONi.js",
+        "sha256": "41ed1f9c6e1f53632bb9f2fb5da668e6ff625786b774a819a44f8c99cb5d1045"
+      },
+      {
+        "path": "dist/assets/_virtual_mf___mfe_internal__mf_b_1_4_0_6cc8bf6c0028__mf_owner__226140563824246__loadShare__react__loadShare__.js-DgQ7VONi.js.map",
+        "sha256": "52c47ac131d52924503b877e70005d79ff90086b546a18c0c378f20d81e10aae"
+      },
+      {
+        "path": "dist/assets/_virtual_mf___mfe_internal__mf_b_1_4_0_6cc8bf6c0028__mf_owner__226140563824246__loadShare__shared-B1DGyhpy.js",
+        "sha256": "69f2c241be552a3d3ac5f32e564bb1fdcbfb55ff2e88a21ac36c13cbf0d62a69"
+      },
+      {
+        "path": "dist/assets/_virtual_mf___mfe_internal__mf_b_1_4_0_6cc8bf6c0028__mf_owner__226140563824246__prebuild__react_mf_2_dom__prebuild__-C-IYZClh.js",
+        "sha256": "11f0ec555789a736902e48f01d13cc6a338616de5af544b00366debbb7e1cba3"
+      },
+      {
+        "path": "dist/assets/_virtual_mf___mfe_internal__mf_b_1_4_0_6cc8bf6c0028__mf_owner__226140563824246__prebuild__react_mf_2_dom_mf_1_client__prebuild__-CIQW_MBc.js",
+        "sha256": "5564f753ad0cf7e3fe7f279074d20bda05986ace3969d837025c5a70fd243e9f"
+      },
+      {
+        "path": "dist/assets/_virtual_mf___mfe_internal__mf_b_1_4_0_6cc8bf6c0028__mf_owner__226140563824246__prebuild__react_mf_2_dom_mf_1_client__prebuild__-CIQW_MBc.js.map",
+        "sha256": "d00df5c5e2ac11117b8843c591ca191cedb66ae918846502bd439d8ef826f31f"
+      },
+      {
+        "path": "dist/assets/_virtual_mf-localSharedImportMap___mfe_internal__mf_b_1_4_0_6cc8bf6c0028__mf_owner__1-BaCESpgK.js",
+        "sha256": "37dd474669501ad404b472f6ea59f85ff707720cbfc255c10a456335f7933358"
+      },
+      {
+        "path": "dist/assets/dist-Bo8xtUoB.js",
+        "sha256": "6009fd1328c2d0697215f6996c12e3a8dea5744a3f7faf0b829d1ffc4a539ccb"
+      },
+      {
+        "path": "dist/assets/dist-Bo8xtUoB.js.map",
+        "sha256": "accb14db01065440ecd520f96e404dcc013209eedcb846621a2ff7b7b56c38ab"
+      },
+      {
+        "path": "dist/assets/hostInit-DFPIMONH.js",
+        "sha256": "98b3679c96e53d42c795ed0b7fdfe926c86e5969a2892b01ac1b98bbc3d5cf0e"
+      },
+      {
+        "path": "dist/assets/pendingShares-B4iSuhLp.js",
+        "sha256": "b7c55920bb535746d7822e631d679a099869d62fa3f259d3a37d33e2b027a271"
+      },
+      {
+        "path": "dist/assets/react-dom-D6O4b4PL.js",
+        "sha256": "21c095702cea1f2155c65d5a6d1e3882341ef5118c813d433f359d57bdac2c48"
+      },
+      {
+        "path": "dist/assets/react-dom-D6O4b4PL.js.map",
+        "sha256": "3ef55868c75b9d510638e5b9affbdf6e55d4e8ff8038e10ba5762465f95e62a4"
+      },
+      {
+        "path": "dist/assets/rolldown-runtime-DQp2zzRu.js",
+        "sha256": "0de66bbd84494ea80eb87ec70556319b56b7fb979ebbae90d39fa97f7cd3c392"
+      },
+      {
+        "path": "dist/assets/vite-preload-helper-BVDCNeEa.js",
+        "sha256": "0587b911376d9172ef501cfc4abc33f15385f4fbd7d6ee309f398bdec03fb605"
+      },
+      {
+        "path": "dist/assets/Widget-BiiMpLC6.js",
+        "sha256": "dead180a4851328e4f908956f39baf9fad36b1e4c7b29eda45b68181108d0245"
+      },
+      {
+        "path": "dist/assets/Widget-BiiMpLC6.js.map",
+        "sha256": "a4c8690779f8fddfc52115a7a61f33da101b130e17123385a60b3ad4d3d003ee"
+      },
+      {
+        "path": "dist/assets/Widget-C3vmy5sd.css",
+        "sha256": "894929bc4e556470ceb56e798f69ed30744a340deb862d066f108d612968ad51"
+      },
+      {
+        "path": "dist/release.json",
+        "sha256": "caf18ade689e999df9de9ba1638fd753a6ac1d55cb4e8e704406c3988b3dedf8"
+      },
+      {
+        "path": "dist/remoteEntry.js",
+        "sha256": "a8883cc49a16311227bddef8e66c755e77a8b3317343967539be60ab82bbcff5"
+      },
+      {
+        "path": "dist/remoteEntry.js.map",
+        "sha256": "0c75986acd57f90718019b7c27fe9b3d92494dd13c761df13ea0b6a4dc967b8a"
+      },
+      {
+        "path": "mf.config.cjs",
+        "sha256": "44370ae706c286b53b9df84efd4da4f532f8285555d79dcf165fb29b33463e86"
+      },
+      {
+        "path": "mf.dependencies.json",
+        "sha256": "385fe49c1ab162de691fb23fe817c096a1563280a01bb761a73cbce2b12b80f5"
+      },
+      {
+        "path": "mf.dev.json",
+        "sha256": "54a20d67910f8a7ea2eef5f677891c8fd45ebc95b0f02a8c9955d08f812e4af2"
+      },
+      {
+        "path": "package-lock.json",
+        "sha256": "a7cb7f47b64c8620491035b81c3151db730c26b8b657061bb82679ffc2b2085a"
+      },
+      {
+        "path": "package.json",
+        "sha256": "aadb2e6f78d63f5ef313d8ec7b4f9ce03babfb41430e713127fa1f264fee3ec4"
+      },
+      {
+        "path": "README.md",
+        "sha256": "6d2d0a904eb3a3e27c1dc9ed535710b3695df5cc6f9e8c1aa6b4641cd8338fc9"
+      },
+      {
+        "path": "src/Widget.jsx",
+        "sha256": "ce1c141bc8e2c487a46e73eeb51d8cbead4ac1698e6d46807c7b77a760355b95"
+      },
+      {
+        "path": "src/Widget.module.css",
+        "sha256": "fb3f8e58ab1eab3771fa20417933feb54b563c14c4b7a3519e96f633926e55c2"
+      },
+      {
+        "path": "vendor/mfe-platform-build-tools-1.0.0.tgz",
+        "sha256": "345efdb8dd40fb5be4fc59c52cf6f839f1319904cbd7addcee2243ed30e3ca51"
+      },
+      {
+        "path": "vendor/mfe-platform-build-tools-1.1.0.tgz",
+        "sha256": "92989447d8cc82dc83354dc9074f00b70b9c92cb5c415f1dd07dd0909568bffe"
+      },
+      {
+        "path": "vendor/mfe-platform-build-tools-1.2.0.tgz",
+        "sha256": "fdbe79a686d2c610842b8c06b773c778e8c175e39ec300ccb42a073939896cf0"
+      },
+      {
+        "path": "vendor/mfe-platform-build-tools-1.3.0.tgz",
+        "sha256": "91f6934e8749f4b40f957e388a9d14d1e6b500b27b10c5a659081c6862f181a0"
+      },
+      {
+        "path": "vendor/mfe-platform-build-tools-2.0.0.tgz",
+        "sha256": "b96dcf0e496ab1b0ee2e82a9051b1f01d397d51721f2eff862e96947aab85094"
+      }
+    ]
+  },
+  "productPointerAfter": "{\n  \"compositionId\": \"composition_88ee38ebfe391a69f3cdb828\"\n}\n",
+  "originalUnchanged": true,
+  "productPointerUnchanged": true,
+  "temporaryProjectRemoved": true,
+  "finishedAt": "2026-11-10T12:41:13.543Z"
+}

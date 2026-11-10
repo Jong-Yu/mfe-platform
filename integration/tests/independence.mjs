@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import { createHash } from 'node:crypto';
 import { spawn } from 'node:child_process';
-import { appendFile, cp, mkdir, mkdtemp, readFile, readdir, rm, stat, writeFile } from 'node:fs/promises';
+import { appendFile, cp, mkdir, mkdtemp, readFile, readdir, rm, stat, symlink, writeFile } from 'node:fs/promises';
 import os from 'node:os';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -19,7 +19,7 @@ const selectedProjects = [
 const report = {
   startedAt: new Date().toISOString(),
   status: 'running',
-  evidenceScope: 'Two source checkouts copied separately, installed offline and built without sibling project directories; original project sources, manifests and outputs compared before and after.',
+  evidenceScope: 'Two source checkouts copied separately, installed offline and built without sibling project directories; complete release metadata and artifact bytes compared across checkout paths. Isolated negative builds check JavaScript/CSS source boundaries, dependency symlink escapes and global CSS rejection. Original projects are compared before and after.',
   checks: [],
   projects: [],
 };
@@ -220,11 +220,72 @@ try {
       if (await exists(originalReleasePath)) {
         const originalRelease = await readJSON(originalReleasePath);
         assert.equal(release.id, originalRelease.id, 'An unchanged checkout copied to another absolute path must retain its artifact identity');
+        assert.deepEqual(release, originalRelease, 'An unchanged checkout must retain all release metadata, including emitted chunk names');
+        assert.deepEqual(await fingerprint(path.join(isolatedDirectory, 'dist')), originalsBefore[project.directory].outputs,
+          'An unchanged checkout copied to another absolute path must emit identical artifact bytes, including source maps');
         projectReport.matchesOriginalRelease = true;
+        projectReport.matchesOriginalArtifactBytes = true;
       }
       isolatedProjects.push({ project, directory: isolatedDirectory, release, projectReport });
     });
   }
+
+  const boundaryProject = isolatedProjects.find((item) => item.project.service === 'b');
+  const boundarySource = path.join(boundaryProject.directory, 'src/Widget.jsx');
+  const boundaryCSS = path.join(boundaryProject.directory, 'src/Widget.module.css');
+  const boundaryParent = path.dirname(boundaryProject.directory);
+  const savedSource = await readFile(boundarySource, 'utf8');
+  const savedCSS = await readFile(boundaryCSS, 'utf8');
+
+  await check('JavaScript imports cannot include source outside the service checkout', async () => {
+    const outside = path.join(boundaryParent, 'outside.js');
+    await writeFile(outside, 'globalThis.__MFE_OUTSIDE_SOURCE_PROBE__ = true;\n');
+    try {
+      await writeFile(boundarySource, `import '../../outside.js';\n${savedSource}`);
+      await assert.rejects(command('npm', ['run', 'build'], boundaryProject.directory), /Cross-project source imports are not allowed/);
+    } finally {
+      await writeFile(boundarySource, savedSource);
+      await rm(outside, { force: true });
+    }
+  });
+
+  await check('a node_modules symlink cannot bypass the service source boundary', async () => {
+    const outside = path.join(boundaryParent, 'outside-package');
+    const link = path.join(boundaryProject.directory, 'node_modules/mfe-boundary-probe');
+    await mkdir(outside);
+    await writeFile(path.join(outside, 'package.json'), JSON.stringify({ name: 'mfe-boundary-probe', version: '1.0.0', type: 'module', main: 'index.js' }));
+    await writeFile(path.join(outside, 'index.js'), 'globalThis.__MFE_SYMLINK_SOURCE_PROBE__ = true;\n');
+    await symlink(outside, link, 'dir');
+    try {
+      await writeFile(boundarySource, `import 'mfe-boundary-probe';\n${savedSource}`);
+      await assert.rejects(command('npm', ['run', 'build'], boundaryProject.directory), /Cross-project source imports are not allowed/);
+    } finally {
+      await writeFile(boundarySource, savedSource);
+      await rm(link, { force: true });
+      await rm(outside, { recursive: true, force: true });
+    }
+  });
+
+  await check('remote CSS Modules reject global-only selectors', async () => {
+    try {
+      await writeFile(boundaryCSS, `${savedCSS}\nbody { --mfe-global-selector-probe: 1; }\n`);
+      await assert.rejects(command('npm', ['run', 'build'], boundaryProject.directory), /not pure|local class or id/i);
+    } finally {
+      await writeFile(boundaryCSS, savedCSS);
+    }
+  });
+
+  await check('CSS imports cannot inline source outside the service checkout', async () => {
+    const outside = path.join(boundaryParent, 'outside.css');
+    await writeFile(outside, '.outside { --mfe-outside-css-probe: 1; }\n');
+    try {
+      await writeFile(boundaryCSS, `@import '../../outside.css';\n${savedCSS}`);
+      await assert.rejects(command('npm', ['run', 'build'], boundaryProject.directory), /Cross-project source imports are not allowed/);
+    } finally {
+      await writeFile(boundaryCSS, savedCSS);
+      await rm(outside, { force: true });
+    }
+  });
 
   await check('editing and rebuilding only the B checkout creates a new artifact without changing A or dependency pins', async () => {
     const a = isolatedProjects.find((item) => item.project.service === 'a');

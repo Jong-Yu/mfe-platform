@@ -44,10 +44,11 @@ try {
    await page.route('**/*',route=>{const request=route.request();requests.push(request.url());if(!request.url().startsWith(url+'/'))return route.abort();return route.continue();});page.on('pageerror',error=>errors.push(error.message));
    await page.goto(url);await page.getByTestId('widget-dev-1').waitFor({timeout:20000});
    const proof=await page.evaluate(()=>({registry:__MFE_DEV__.registry,react:__MFE_DEV__.sdkReactMatches,diagnostics:__MFE_DEV__.getDiagnostics()}));
-   assert.ok(proof.react);assert.equal(proof.registry.platformVersion,'1.2.0');assert.equal(await page.locator('[data-dev-layout]').count(),1);assert.equal(await page.locator('[data-page-container]').count(),1);
+   const manifest=JSON.parse(fs.readFileSync(path.join(dir,'dev/manifest.json'),'utf8'));
+   assert.ok(proof.react);assert.equal(proof.registry.platformVersion,manifest.artifacts[manifest.platform].version);assert.equal(await page.locator('[data-dev-layout]').count(),1);assert.equal(await page.locator('[data-page-container]').count(),1);
    assert.equal(await page.getByTestId('platform-user').textContent(),'서비스 개발자');
    const sdk=proof.registry.artifacts.platform;assert.ok(requests.some(u=>u===url+sdk.entry));
-   const service=new URL(sdk.entry,url);const response=await context.request.get(service.href);assert.equal(sha(await response.body()),JSON.parse(fs.readFileSync(path.join(dir,'dev/manifest.json'),'utf8')).files[sdk.id]['remoteEntry.js']);
+   const service=new URL(sdk.entry,url);const response=await context.request.get(service.href);assert.equal(sha(await response.body()),manifest.files[sdk.id]['remoteEntry.js']);
    assert.ok(proof.diagnostics.loadedContainerIds.includes(sdk.id));
    assert.ok(requests.every(u=>u.startsWith(url+'/')));assert.deepEqual(errors,[]);
    const hostFiles=fs.readdirSync(path.join(dir,'.mfe-dev/host')).filter(f=>f.endsWith('.js'));assert.ok(hostFiles.every(f=>!fs.readFileSync(path.join(dir,'.mfe-dev/host',f),'utf8').includes('function DevLayout')));

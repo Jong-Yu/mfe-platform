@@ -1,0 +1,32 @@
+[
+  {
+    "id": "first-install-prerequisites",
+    "observation": "All three initial online installs succeeded from separately verified empty caches. npm downloaded public dependencies; Node and Chrome were already installed.",
+    "change": "Added Node/npm checks, initial internet access and normal browser prerequisites. Separated manual practice from automated Playwright setup.",
+    "evidence": "development/report.json"
+  },
+  {
+    "id": "vendor-and-dev-kit",
+    "observation": "The local build-tool tarball and published dev kit are required source deliverables. They contain no preinstalled node_modules and are not the npm cache.",
+    "change": "Clarified complete source snapshot requirements and missing vendor/dev file troubleshooting; did not claim fresh Git-clone validation.",
+    "evidence": "development/report.json"
+  },
+  {
+    "id": "cache-modes",
+    "observation": "The first installation must have network access. Later project installations and isolated SDK/D upgrades can reuse the cache created during that same run.",
+    "change": "Added a new temporary-cache recipe, distinct first-install and offline-test instructions, and cold replay commands that preserve existing caches.",
+    "evidence": "versions/report.json"
+  },
+  {
+    "id": "dependency-installation",
+    "observation": "Build tools are devDependencies and platform binaries are optional dependencies. The tested macOS install included both.",
+    "change": "Added guidance for production/omit settings and cold harnesses now remove inherited NODE_ENV for reproducibility. This small post-run harness hardening does not change the recorded successful run.",
+    "evidence": "release/report.json"
+  },
+  {
+    "id": "no-blocking-failure",
+    "observation": "The initial downloads, same-copy development, deployment, binding changes, old/new tabs and CLI/UI rollback all passed.",
+    "change": "Kept application code unchanged and recorded the exact installation and browser scope.",
+    "evidence": "release/report.json"
+  }
+]

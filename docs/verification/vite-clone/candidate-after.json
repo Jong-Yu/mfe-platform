@@ -1,0 +1,13 @@
+{
+  "commit": "319fa9a1a3ffa683beb15eade95be3893455b44f",
+  "status": "",
+  "runtimeInstructionsUnchanged": true,
+  "v5ThroughV7SHA256": "be89b034f5dcdf92d3158193c8aa4e58b67bed043287a1723d72950de3461edd",
+  "harnessCodeMatchesClone": {
+    "vite-dev-walkthrough.mjs": "c19107b46f442fc3bd8f3529bcb183bb6118cd0a3b8be359f291e352b0aac48b",
+    "vite-release-walkthrough.mjs": "1d03d340bf0ff08bac83abd4a1ed411501df8f13e6107a2835e90c04e1d4fcb0",
+    "vite-version-walkthrough.mjs": "92b83e88c0437c8886bab41dea03405a398b896f2060f820add30af9901763dc"
+  },
+  "originalWorktreeHEAD": "e4498f6d02a87999940f4cec08a18979b05e38d0",
+  "originalIndexUnchanged": true
+}

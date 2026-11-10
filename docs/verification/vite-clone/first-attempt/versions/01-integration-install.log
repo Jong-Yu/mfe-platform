@@ -1,0 +1,27 @@
+npm warn cli npm v11.9.0 does not support Node.js v16.14.0. This version of npm supports the following node versions: `^20.17.0 || >=22.9.0`. You can find the latest version at https://nodejs.org/.
+npm warn EBADENGINE Unsupported engine {
+npm warn EBADENGINE   package: 'mfe-integration-verification@1.0.0',
+npm warn EBADENGINE   required: { node: '>=22.12.0' },
+npm warn EBADENGINE   current: { node: 'v16.14.0', npm: '11.9.0' }
+npm warn EBADENGINE }
+npm warn EBADENGINE Unsupported engine {
+npm warn EBADENGINE   package: 'playwright@1.62.1',
+npm warn EBADENGINE   required: { node: '>=20' },
+npm warn EBADENGINE   current: { node: 'v16.14.0', npm: '11.9.0' }
+npm warn EBADENGINE }
+npm warn EBADENGINE Unsupported engine {
+npm warn EBADENGINE   package: 'playwright-core@1.62.1',
+npm warn EBADENGINE   required: { node: '>=20' },
+npm warn EBADENGINE   current: { node: 'v16.14.0', npm: '11.9.0' }
+npm warn EBADENGINE }
+npm http cache semver@https://registry.npmjs.org/semver/-/semver-6.3.2.tgz 1ms (cache hit)
+npm http cache playwright-core@https://registry.npmjs.org/playwright-core/-/playwright-core-1.62.1.tgz 0ms (cache hit)
+npm http cache playwright@https://registry.npmjs.org/playwright/-/playwright-1.62.1.tgz 0ms (cache hit)
+npm http cache fsevents@https://registry.npmjs.org/fsevents/-/fsevents-2.3.2.tgz 1ms (cache hit)
+npm http fetch GET 200 https://registry.npmjs.org/npm 256ms
+npm http fetch GET 200 https://registry.npmjs.org/fsevents/-/fsevents-2.3.2.tgz 300ms (cache miss)
+npm http fetch GET 200 https://registry.npmjs.org/semver/-/semver-6.3.2.tgz 306ms (cache miss)
+npm http fetch GET 200 https://registry.npmjs.org/playwright/-/playwright-1.62.1.tgz 414ms (cache miss)
+npm http fetch GET 200 https://registry.npmjs.org/playwright-core/-/playwright-core-1.62.1.tgz 492ms (cache miss)
+
+added 4 packages in 959ms

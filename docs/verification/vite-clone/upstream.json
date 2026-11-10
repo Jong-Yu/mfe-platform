@@ -1,0 +1,13 @@
+{
+  "status": "blocked-at-version-check",
+  "source": "https://github.com/Jong-Yu/mfe-platform.git",
+  "directory": "/private/tmp/mfe-git-clone-check.otAOJS/remote",
+  "commit": "e4498f6d02a87999940f4cec08a18979b05e38d0",
+  "branch": "main",
+  "initialStatus": "",
+  "buildTools": "1.7.0",
+  "bundler": "webpack",
+  "currentViteChapterPresent": false,
+  "currentViteVendorPresent": false,
+  "finding": "The actual upstream clone is the committed Webpack implementation and older learning book. Local Vite migration and revised book are not yet in that commit. This is a version/distribution gap, not an npm or Vite runtime failure. No local files were overlaid onto this remote clone."
+}

@@ -4,12 +4,13 @@
   "private": true,
   "description": "Local artifact repository and cross-project verification; not an application workspace",
   "scripts": {
+    "update:build-tools": "node tools/update-build-tools.cjs",
     "setup": "node tools/setup.cjs",
     "bootstrap": "node tools/build-fixtures.cjs --bootstrap && node tools/build-admin.cjs",
     "build": "node tools/build-fixtures.cjs && node tools/build-admin.cjs",
     "start": "node tools/serve.cjs",
     "publish": "node tools/publish.cjs",
-    "test": "node tests/independence.mjs && node tools/test.cjs && node tests/sdk-upgrade.mjs && node tests/business-upgrade.mjs && node tests/dependency-upgrade.mjs && node tests/admin.mjs && node tests/lifecycle.mjs && node tests/retirement.mjs && node tests/sessions.mjs && node tests/legacy.mjs && node tests/development.mjs && node tests/nested-graph.mjs && node tests/remote-region-sdk-upgrade.mjs",
+    "test": "node tests/independence.mjs && node tools/test.cjs && node tests/sdk-upgrade.mjs && node tests/business-upgrade.mjs && node tests/dependency-upgrade.mjs && node tests/admin.mjs && node tests/lifecycle.mjs && node tests/retirement.mjs && node tests/sessions.mjs && node tests/legacy.mjs && node tests/development.mjs && node tests/nested-graph.mjs",
     "verify": "node tests/verify.mjs",
     "test:independence": "node tests/independence.mjs",
     "activate": "node tools/activate.cjs",
@@ -27,7 +28,7 @@
     "test:nested": "node tests/nested-graph.mjs",
     "prepare:nested": "node tools/prepare-nested.cjs",
     "demo:nested": "node tools/nested-demo.cjs",
-    "test:region-sdk": "node tests/remote-region-sdk-upgrade.mjs",
+    "test:region-sdk": "npm --prefix ../examples/17-sdk-retry-upgrade test",
     "demo:region-sdk": "node tools/remote-region-sdk-demo.cjs",
     "prepare:onboarding": "node tools/prepare-onboarding.cjs",
     "test:onboarding": "node tests/onboarding.mjs",
@@ -41,7 +42,7 @@
     "playwright": "1.62.1"
   },
   "engines": {
-    "node": ">=22.9.0"
+    "node": ">=22.12.0"
   },
   "dependencies": {
     "semver": "6.3.2"

@@ -3,28 +3,10 @@ const fs = require('node:fs');
 const path = require('node:path');
 const http = require('node:http');
 const crypto = require('node:crypto');
-const webpack = require('webpack');
 const { readProject, inside } = require('../lib/project.cjs');
-const { buildProject, sharedDependencies } = require('../lib/build.cjs');
+const { buildProject, buildBrowserHost, sharedDependencies } = require('../lib/build.cjs');
 const { readDevKit, createDevSnapshot } = require('../lib/dev-manifest.cjs');
 
-async function buildHost(project, directory) {
-  const browser = path.resolve(__dirname, '../browser');
-  const { shared } = sharedDependencies(project);
-  const compiler = webpack({
-    mode: 'development', devtool: 'source-map', context: project.root,
-    entry: path.join(browser, 'index.js'),
-    output: { path: directory, filename: 'host.js', chunkFilename: '[name].[contenthash].js', publicPath: '/__dev/host/', uniqueName: 'mfe_development_host' },
-    resolve: { extensions: ['.js', '.jsx'], modules: [path.join(project.root, 'node_modules'), 'node_modules'] },
-    module: { rules: [{ test: /\.jsx?$/, include: browser, use: { loader: require.resolve('babel-loader'), options: { babelrc: false, configFile: false, presets: [[require.resolve('@babel/preset-react'), { runtime: 'classic' }]] } } }] },
-    plugins: [new webpack.container.ModuleFederationPlugin({ name: 'mfe_development_host', remotes: { platform: 'promise globalThis.__MFE_RUNTIME__.getContainer("platform")' }, shared })],
-    performance: { hints: false }, stats: 'errors-warnings',
-  });
-  await new Promise((resolve, reject) => compiler.run((error, stats) => compiler.close(closeError => {
-    if (error || closeError || stats?.hasErrors()) reject(error || closeError || new Error(stats.toString({ all: false, errors: true })));
-    else resolve();
-  })));
-}
 async function main() {
   const root = fs.realpathSync(process.cwd());
   const initial = readProject(root);
@@ -72,7 +54,7 @@ async function main() {
   }
   await rebuild();
   const hostDirectory = path.join(work, 'host');
-  await buildHost(initial, hostDirectory);
+  await buildBrowserHost(initial, hostDirectory);
   const types = { '.js': 'text/javascript; charset=utf-8', '.json': 'application/json; charset=utf-8', '.css': 'text/css; charset=utf-8', '.map': 'application/json; charset=utf-8' };
   function reply(req, res, code, body, type='text/plain; charset=utf-8') {
     res.writeHead(code, { 'Content-Type': type, 'Cache-Control': 'no-store', 'X-Content-Type-Options': 'nosniff' });
@@ -92,7 +74,7 @@ async function main() {
     catch { return reply(req, res, 400, 'Invalid path'); }
     if (url === '/') {
       const boot = JSON.stringify(`/__dev/snapshots/${current.compositionId}.json`).replaceAll('<', '\\u003c');
-      return reply(req, res, 200, `<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>서비스 개발 Host</title><link rel="icon" href="data:,"><style>body{margin:0}button,select{font:inherit}button{cursor:pointer}#build-status{position:fixed;inset:auto 16px 16px;z-index:1000;max-height:45vh;overflow:auto;background:#4f1522;color:white;padding:20px;white-space:pre-wrap;font:13px/1.6 monospace;border-radius:8px}</style></head><body><div id="root">개발 화면을 준비하고 있습니다…</div><pre id="build-status" role="alert" hidden></pre><script>globalThis.__MFE_DEV_BOOT__=${boot};</script><script src="/__dev/host/host.js"></script></body></html>`, 'text/html; charset=utf-8');
+      return reply(req, res, 200, `<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>서비스 개발 Host</title><link rel="icon" href="data:,"><style>body{margin:0}button,select{font:inherit}button{cursor:pointer}#build-status{position:fixed;inset:auto 16px 16px;z-index:1000;max-height:45vh;overflow:auto;background:#4f1522;color:white;padding:20px;white-space:pre-wrap;font:13px/1.6 monospace;border-radius:8px}</style></head><body><div id="root">개발 화면을 준비하고 있습니다…</div><pre id="build-status" role="alert" hidden></pre><script>globalThis.__MFE_DEV_BOOT__=${boot};</script><script type="module" src="/__dev/host/host.js"></script></body></html>`, 'text/html; charset=utf-8');
     }
     if (url === '/__dev/events' && req.method === 'GET') {
       res.writeHead(200, { 'Content-Type': 'text/event-stream', 'Cache-Control': 'no-store', Connection: 'keep-alive' });

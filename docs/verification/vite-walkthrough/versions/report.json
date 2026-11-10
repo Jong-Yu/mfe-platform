@@ -1,0 +1,235 @@
+{
+  "startedAt": "2026-11-10T12:38:15.484Z",
+  "status": "passed",
+  "scope": "Current Vite V7 SDK-only and D-only replacement, unchanged consumer bytes, old/new tabs, rollback and failed-selection behavior. This is not the historical Webpack example 17.",
+  "sourceRepository": "/Users/jong-yu/Projects/mfe",
+  "nodeVersion": "v24.22.1",
+  "installation": {
+    "cache": "/private/tmp/mfe-npm-cache",
+    "mode": "prepared npm cache, offline installs"
+  },
+  "commands": [
+    {
+      "label": "integration-install",
+      "command": "npm",
+      "args": [
+        "ci",
+        "--ignore-scripts",
+        "--no-audit",
+        "--no-fund",
+        "--cache",
+        "/private/tmp/mfe-npm-cache",
+        "--offline"
+      ],
+      "cwd": "/private/tmp/mfe-vite-versions-EsSRXX/integration",
+      "log": "01-integration-install.log",
+      "startedAt": "2026-11-10T12:38:15.808Z",
+      "status": "passed",
+      "exitCode": 0,
+      "signal": null,
+      "durationMs": 432,
+      "finishedAt": "2026-11-10T12:38:16.241Z"
+    },
+    {
+      "label": "project-install",
+      "command": "npm",
+      "args": [
+        "run",
+        "setup"
+      ],
+      "cwd": "/private/tmp/mfe-vite-versions-EsSRXX/integration",
+      "log": "02-project-install.log",
+      "startedAt": "2026-11-10T12:38:16.241Z",
+      "status": "passed",
+      "exitCode": 0,
+      "signal": null,
+      "durationMs": 5612,
+      "finishedAt": "2026-11-10T12:38:21.853Z"
+    },
+    {
+      "label": "baseline-build",
+      "command": "npm",
+      "args": [
+        "run",
+        "build"
+      ],
+      "cwd": "/private/tmp/mfe-vite-versions-EsSRXX/integration",
+      "log": "03-baseline-build.log",
+      "startedAt": "2026-11-10T12:38:21.853Z",
+      "status": "passed",
+      "exitCode": 0,
+      "signal": null,
+      "durationMs": 15495,
+      "finishedAt": "2026-11-10T12:38:37.348Z"
+    },
+    {
+      "label": "test-sdk",
+      "command": "npm",
+      "args": [
+        "run",
+        "test:sdk"
+      ],
+      "cwd": "/private/tmp/mfe-vite-versions-EsSRXX/integration",
+      "log": "04-test-sdk.log",
+      "startedAt": "2026-11-10T12:38:37.350Z",
+      "status": "passed",
+      "exitCode": 0,
+      "signal": null,
+      "durationMs": 7283,
+      "finishedAt": "2026-11-10T12:38:44.633Z"
+    },
+    {
+      "label": "test-dependency",
+      "command": "npm",
+      "args": [
+        "run",
+        "test:dependency"
+      ],
+      "cwd": "/private/tmp/mfe-vite-versions-EsSRXX/integration",
+      "log": "05-test-dependency.log",
+      "startedAt": "2026-11-10T12:38:44.635Z",
+      "status": "passed",
+      "exitCode": 0,
+      "signal": null,
+      "durationMs": 15133,
+      "finishedAt": "2026-11-10T12:38:59.769Z"
+    }
+  ],
+  "suites": [
+    {
+      "name": "SDK only replacement and rollback",
+      "command": "npm run test:sdk",
+      "status": "passed",
+      "passedChecks": 10,
+      "checks": 10,
+      "consumerBuildsExecuted": 0,
+      "browserVersion": "157.0.8103.39",
+      "report": "sdk-upgrade.json",
+      "transition": {
+        "from": "1.3.1",
+        "to": "1.4.0",
+        "unsupported": "2.0.0"
+      },
+      "evidenceScope": "Only a temporary SDK checkout is installed and rebuilt at the next minor version. Existing consumer sources, configurations and dist bytes are fingerprinted. Browser tabs execute the actual baseline and upgraded SDK files; incompatible-release probes are explicitly metadata-only."
+    },
+    {
+      "name": "D only replacement and rollback",
+      "command": "npm run test:dependency",
+      "status": "passed",
+      "passedChecks": 12,
+      "checks": 12,
+      "consumerBuildsExecuted": 0,
+      "browserVersion": "157.0.8103.39",
+      "report": "dependency-upgrade.json",
+      "transition": {
+        "service-d-v1": {
+          "from": "1.0.0",
+          "to": "1.1.0"
+        },
+        "service-d-v2": {
+          "from": "2.0.0",
+          "to": "2.1.0"
+        }
+      },
+      "evidenceScope": "After the one-time runtime migration, only two isolated D checkouts are built. All original project source/configuration/output bytes are compared. Real browser tabs keep A/C and B identities unchanged while B 1.x and B 2.x select different D releases using one SDK. Invalid graph probes are metadata-only."
+    }
+  ],
+  "originalSourceFingerprints": {
+    "projects": {
+      "files": 401,
+      "sha256": "307f5360a72241f6aab038fe717fd3a14f0f25951c30b1e20da410ba63aad8fd"
+    },
+    "integration": {
+      "files": 65,
+      "sha256": "12cf8a6774db1bc8315b275364c77e6e01c8fd405cb6d53e1a86389bc220ac84"
+    }
+  },
+  "isolatedRepository": "/private/tmp/mfe-vite-versions-EsSRXX",
+  "copyExclusions": [
+    "node_modules",
+    "dist",
+    ".mfe-dev",
+    "artifact-store",
+    "artifacts",
+    ".git"
+  ],
+  "copiedSourceFingerprints": {
+    "projects": {
+      "files": 401,
+      "sha256": "307f5360a72241f6aab038fe717fd3a14f0f25951c30b1e20da410ba63aad8fd"
+    },
+    "integration": {
+      "files": 65,
+      "sha256": "12cf8a6774db1bc8315b275364c77e6e01c8fd405cb6d53e1a86389bc220ac84"
+    }
+  },
+  "baselineCurrent": {
+    "compositionId": "composition_88ee38ebfe391a69f3cdb828"
+  },
+  "baselineReleases": {
+    "platform-sdk": {
+      "id": "platform_1_3_1_e25c8d049944",
+      "version": "1.3.1",
+      "format": "esm",
+      "federation": "vite"
+    },
+    "service-d-v1": {
+      "id": "d_1_0_0_c6adbe1cb721",
+      "version": "1.0.0",
+      "format": "esm",
+      "federation": "vite"
+    },
+    "service-d-v2": {
+      "id": "d_2_0_0_a4251bae8bc7",
+      "version": "2.0.0",
+      "format": "esm",
+      "federation": "vite"
+    },
+    "service-b-v1": {
+      "id": "b_1_4_0_6cc8bf6c0028",
+      "version": "1.4.0",
+      "format": "esm",
+      "federation": "vite"
+    },
+    "service-b-v2": {
+      "id": "b_2_1_0_479272f66af5",
+      "version": "2.1.0",
+      "format": "esm",
+      "federation": "vite"
+    },
+    "service-a": {
+      "id": "a_1_0_0_0321deb69c28",
+      "version": "1.0.0",
+      "format": "esm",
+      "federation": "vite"
+    },
+    "service-c": {
+      "id": "c_1_0_0_369b0db5dc78",
+      "version": "1.0.0",
+      "format": "esm",
+      "federation": "vite"
+    },
+    "shell": {
+      "id": "shell_1_3_0_46ac9795cddf",
+      "version": "1.3.0",
+      "format": "esm",
+      "federation": "vite"
+    }
+  },
+  "passedChecks": 22,
+  "totalChecks": 22,
+  "baselineStorePointerUnchanged": true,
+  "originalSourceFingerprintsAfter": {
+    "projects": {
+      "files": 401,
+      "sha256": "307f5360a72241f6aab038fe717fd3a14f0f25951c30b1e20da410ba63aad8fd"
+    },
+    "integration": {
+      "files": 65,
+      "sha256": "12cf8a6774db1bc8315b275364c77e6e01c8fd405cb6d53e1a86389bc220ac84"
+    }
+  },
+  "originalSourcesUnchanged": true,
+  "retainedIsolatedCopy": "/private/tmp/mfe-vite-versions-EsSRXX",
+  "finishedAt": "2026-11-10T12:38:59.874Z"
+}

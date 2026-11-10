@@ -102,6 +102,12 @@ try {
   page.on('pageerror', (error) => report.pageErrors.push(error.message));
   const adminRequests = [];
   page.on('request', (request) => adminRequests.push(request.url()));
+  const adminEntryPath = `/artifacts/${adminRelease.id}/remoteEntry.js`;
+  function assertAdminRemoteIndependence() {
+    const entries = adminRequests.map((url) => new URL(url)).filter((url) => url.pathname.endsWith('/remoteEntry.js'));
+    if (adminRelease.format === 'esm') assert(entries.length > 0, 'Vite Admin initializes its own federation container');
+    assert(entries.every((url) => url.origin === baseURL && url.pathname === adminEntryPath), 'Admin must load only its own bootstrap and no SDK/business containers');
+  }
   const old = await context.newPage();
   old.on('pageerror', (error) => report.pageErrors.push(error.message));
   await old.goto(`${baseURL}/`, { waitUntil: 'networkidle' });
@@ -130,7 +136,7 @@ try {
       assert.equal(await page.getByTestId(`current-b-${role}`).innerText(), selectedPath(initial, role).b.version);
       assert.equal(await page.getByTestId(`current-d-${role}`).innerText(), selectedPath(initial, role).d.version);
     }
-    assert(!adminRequests.some((url) => /\/remoteEntry\.js/.test(url)), 'Admin is independent of selected SDK/business containers');
+    assertAdminRemoteIndependence();
     assert(await page.getByTestId('apply').isDisabled());
     await page.screenshot({ path: path.join(output, 'admin-overview.png'), fullPage: true });
   });
@@ -219,10 +225,11 @@ try {
       assert.equal(current().selected.shell, historical.selected.shell);
       report.historicalShellRollback = historical.id;
     } else report.historicalShellRollback = 'No historical Shell in this repository; remote independence still checked.';
-    await page.route('**/remoteEntry.js', (route) => route.abort());
+    await page.route('**/remoteEntry.js', (route) => new URL(route.request().url()).pathname === adminEntryPath ? route.continue() : route.abort());
     await page.reload({ waitUntil: 'networkidle' }); await page.getByTestId('current-sdk').waitFor();
     assert.equal(await page.locator('h1').innerText(), '버전과 의존 관계');
     assert.equal(read('admin.json').artifactId, adminRelease.id);
+    assertAdminRemoteIndependence();
     await page.unroute('**/remoteEntry.js');
     activate(initial.selected, initial.runtimeBindings, { replaceBindings: true });
     await page.reload({ waitUntil: 'networkidle' }); await page.getByTestId('current-sdk').waitFor();
