@@ -96,6 +96,14 @@ def link(value, source):
     }
     if target in legacy_recovery:
         target = ROOT/'examples/15-transitive-retry'/target.relative_to(ROOT)
+    # Link to the committed walkthrough evidence, not ignored local test output.
+    if target.is_relative_to(ROOT/'examples'):
+        parts = target.relative_to(ROOT/'examples').parts
+        if len(parts) > 2:
+            relative = '/'.join(parts[1:]).replace('integration/artifacts/verification/', 'integration-verification/')
+            archived = ROOT/'docs/verification/walkthrough'/parts[0]/relative
+            if (parts[1] == 'verification' or relative.startswith('integration-verification/')) and archived.is_file():
+                target = archived
     if target in documents:
         base = documents[target]
         return '#' + base + ('--'+unquote(u.fragment) if u.fragment in ids[target] else '')
@@ -117,7 +125,16 @@ def render_reference(path):
         for k in ['id','href','src','alt','title','colspan','rowspan','scope','width','height','viewbox','d','fill','stroke','x','y','rx','cx','cy','r','points']:
             if n.attrs.get(k) is not None: attrs[k] = n.attrs[k]
         if 'id' in attrs: attrs['id'] = prefix+'--'+attrs['id']
-        if 'href' in attrs: attrs['href'] = link(attrs['href'],path)
+        generated_output = None
+        if 'href' in attrs:
+            u = urlsplit(attrs['href'])
+            target = (path.parent/unquote(u.path)).resolve() if u.path else path
+            if not u.scheme and not u.netloc and target.is_relative_to(ROOT/'integration/artifacts'):
+                generated_output = str(target.relative_to(ROOT))
+                attrs.pop('href')
+                tag = 'span'
+            else:
+                attrs['href'] = link(attrs['href'],path)
         if tag == 'img' and attrs.get('src'):
             p = (path.parent/unquote(attrs['src'])).resolve()
             if p.exists():
@@ -126,6 +143,8 @@ def render_reference(path):
                 attrs['loading'] = 'lazy'
             else: raise ValueError('Missing image '+str(p))
         body = ''.join(render(c) for c in n.children)
+        if generated_output:
+            body += f' <small>(로컬 검증 실행 후 생성: <code>{E(generated_output)}</code>)</small>'
         attr = ''.join(f' {k}="{E(str(v),quote=True)}"' for k,v in attrs.items())
         result = f'<{tag}{attr}>' + ('' if tag in VOID else body+f'</{tag}>')
         if tag == 'table': result = '<div class="table-scroll">'+result+'</div>'
@@ -174,7 +193,7 @@ def make_labs():
 <p><strong>코드를 읽는 순서:</strong> {E(lesson['read'])}</p>
 <details class="answer"><summary>내 말로 설명하기: {E(lesson['question'])}</summary><p>{E(lesson['answer'])}</p></details>
 <details class="compact"><summary>이 예제에서 사용할 수 있는 선택 프로필</summary><p>아래 값은 <code>composition.config.json</code>에서 읽은 실제 프로필입니다. <code>npm run select -- 프로필명</code>으로 적용합니다. 값은 기준 설정에 대한 변경분이며 이전 선택에 누적되지 않습니다.</p><div class="table-scroll"><table><tr><th>프로필</th><th>기준과의 차이</th></tr>{profile_rows}</table></div></details>
-<p class="evidence">보존된 검증 결과: <strong>{checks}개 검사 통과</strong> · <a href="../examples/{item['id']}/verification/report.json">기본 보고서</a> · <a href="../examples/{item['id']}/verify.mjs">검증 소스</a></p>
+<p class="evidence">보존된 검증 결과: <strong>{checks}개 검사 통과</strong> · <a href="verification/walkthrough/{item['id']}/verification/report.json">따라 하기 보고서</a> · <a href="../examples/{item['id']}/verify.mjs">검증 소스</a></p>
 <details class="reference print-expand" id="lab-{n:02}-reference"><summary>전체 실행 안내·파일 역할·고정 버전 표·검증 범위</summary><div class="reference-body"><p class="scope">이 영역의 상대 폴더와 버전은 <code>examples/{item['id']}</code>에 해당합니다. 위 시작 명령으로 해당 폴더에 들어간 뒤 읽으세요. 수록 기준: 2026-11-08.</p>{render_reference(folder/'docs/index.html')}</div></details>
 </article>''')
         result[-1] = result[-1].replace('</article>', '<nav class="lab-navigation" aria-label="권장 학습 순서">'+' · '.join(navigation)+'</nav></article>')
